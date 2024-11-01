@@ -14,7 +14,6 @@ from anymail.message import attach_inline_image_file
 from common.utils import email_as_text, nhs_titlecase
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
-from django.contrib.humanize.templatetags.humanize import apnumber
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.urls import reverse
@@ -531,82 +530,13 @@ def attach_image(msg, url, file_path, selector, dimensions="1024x1024"):
     return attach_inline_image_file(msg, file_path, subtype="png")
 
 
-def getIntroText(stats, org_type):
-    declines = len(stats["most_changing"]["declines"])
-    improvements = len(stats["most_changing"]["improvements"])
-    possible_savings = len(stats["top_savings"]["possible_savings"])
-    worst = len(stats["worst"])
-    best = len(stats["best"])
-    not_great = worst + declines
-    pretty_good = best + improvements
-    msg = ""
-    in_sentence = False
-    if not_great or pretty_good or possible_savings:
-        if not_great:
-            msg = "We've found %s prescribing measure%s where this %s " % (
-                apnumber(not_great),
-                not_great > 1 and "s" or "",
-                org_type,
-            )
-            in_sentence = True
-            if declines and worst:
-                msg += "is <span class='worse'>getting worse, or could be "
-                msg += "doing better</span>"
-            elif declines:
-                msg += "is <span class='worse'>getting worse</span>"
-            else:
-                msg += "could be <span class='worse'>doing better</span>"
-        else:
-            msg = (
-                "Good news: we've not found any problem prescribing "
-                "measures for this %s!" % org_type
-            )
-            in_sentence = False
-        if pretty_good:
-            if msg and in_sentence:
-                msg += ", and %s measure%s where it " % (
-                    apnumber(pretty_good),
-                    pretty_good > 1 and "s" or "",
-                )
-            else:
-                msg = "We've found %s prescribing measure%s where " "this %s " % (
-                    apnumber(pretty_good),
-                    pretty_good > 1 and "s" or "",
-                    org_type,
-                )
-            if best and improvements:
-                msg += "is <span class='better'>doing well</span>."
-            elif improvements:
-                msg += "is <span class='better'>improving</span>."
-            else:
-                msg += "is <span class='better'>already doing "
-                msg += "very well</span>."
-            in_sentence = False
-        if in_sentence:
-            msg += ". "
-        if possible_savings:
-            if msg:
-                msg += " We've also found "
-            else:
-                msg = "We've found "
-            msg += (
-                "%s prescribing measure%s where there are some "
-                "potential cost savings. "
-                % (apnumber(possible_savings), possible_savings > 1 and "s" or "")
-            )
-        msg += (
-            "Note that there can sometimes be good reasons why one %s is "
-            "an outlier, and you should interpret the data thoughtfully: "
-            'these are <a href="https://openprescribing.net/faq/#measureinterpret">'
-            "measures, not indicators</a>." % org_type
-        )
-    else:
-        msg = (
-            "We've no new information about this %s this month! "
-            "Its performance is not an outlier on any "
-            "of our common prescribing measures. " % org_type
-        )
-    return mark_safe(msg)
+def get_intro_counts(stats):
+    return {
+        "pretty_good": len(stats["best"]) + len(stats["most_changing"]["improvements"]),
+        "opportunities_for_improvement": len(stats["worst"])
+        + len(stats["most_changing"]["declines"]),
+        "possible_savings": len(stats["top_savings"]["possible_savings"]),
+    }
 
 
 def _hasStats(stats):
@@ -745,7 +675,6 @@ def make_org_email(org_bookmark, stats, tag=None):
     )
 
     context = {
-        "intro_text": getIntroText(stats, org_bookmark.org_type()),
         "total_possible_savings": sum(
             [x[1] for x in stats["top_savings"]["possible_savings"]]
         ),
@@ -761,6 +690,7 @@ def make_org_email(org_bookmark, stats, tag=None):
         "stats": stats,
         "unsubscribe_link": unsubscribe_link,
     }
+    context.update(get_intro_counts(stats))
 
     finalise_email(msg, "bookmarks/email_for_measures.html", context, ["measures", tag])
 
