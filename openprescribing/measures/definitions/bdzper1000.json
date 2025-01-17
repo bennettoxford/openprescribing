@@ -24,12 +24,19 @@
   "is_cost_based": false,
   "low_is_good": true,
   "numerator_type": "custom",
-  "numerator_columns": "SUM(p.quantity * r.percent_of_adq) AS numerator",
-  "numerator_from": "{hscic}.normalised_prescribing p  LEFT JOIN {hscic}.bdz_adq r  ON concat(substr(p.bnf_code,0,9),substr(p.bnf_code,-2)) = concat(substr(r.bnf_code,0,9),substr(r.bnf_code,-2)) ",
+  "numerator_columns": "SUM(p.quantity) * IEEE_DIVIDE(CASE when vpi.strnt_nmrtr_uom = 258685003 THEN vpi.strnt_nmrtr_val/1000 ELSE vpi.strnt_nmrtr_val END, COALESCE(vpi.strnt_dnmtr_val, 1))/adq.adq AS numerator",
+  "numerator_from": [
+    "{hscic}.normalised_prescribing p ",
+    "INNER JOIN {dmd}.vmp AS vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),SUBSTR(p.bnf_code,-2)) = CONCAT(SUBSTR(vmp.bnf_code,0,9),SUBSTR(vmp.bnf_code,-2)) ",
+    "INNER JOIN {dmd}.vpi AS vpi ON vpi.vmp = vmp.id ",
+        "INNER JOIN {measures}.adq_bdz AS adq ON SUBSTR(p.bnf_code,0,9) = adq.chemical_substance"
+  ],
   "numerator_where": [
     "p.bnf_code LIKE '0401%' AND --Hypnotics and Anxiolytics \n",
+    "p.bnf_code NOT LIKE '0401010S0%' AND   --Potassium bromide \n",
     "p.bnf_code NOT LIKE '0401010AC%' AND   --Sodium Oxybate \n",
     "p.bnf_code NOT LIKE '0401010AD%' AND   --Melatonin \n",
+    "p.bnf_code NOT LIKE '0401040%' AND     --Darioxidant \n",
     "p.bnf_code NOT LIKE '0401020K0%AD' AND --Diazepam_Soln 5mg/2.5ml Rectal Tube \n",
     "p.bnf_code NOT LIKE '0401020K0%AE' AND --Diazepam_Soln 10mg/2.5ml Rectal Tube \n",
     "p.bnf_code NOT LIKE '0401020K0%BQ'     --Diazepam_Soln 2.5mg/1.25ml Rectal Tube"
@@ -37,10 +44,10 @@
   "denominator_type": "list_size",
   "no_analyse_url": true,
   "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "andrew.brown@phc.ox.ac.uk",
-  "date_reviewed": "2024-02-12",
-  "next_review": "2025-02-12",
+  "checked_by": "",
+  "date_reviewed": "",
+  "next_review": "",
   "measure_complexity": "medium",
   "measure_type": "custom",
   "radar_exclude": false
-}
+} 
