@@ -1,10 +1,8 @@
 import datetime
 
 import requests
-
 from django.core.cache import cache
 from django.core.management.base import BaseCommand
-
 
 FEED_URL = "https://www.bennett.ox.ac.uk/blog/index.json"
 
