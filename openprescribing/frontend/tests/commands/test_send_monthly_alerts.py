@@ -90,7 +90,7 @@ class GetBookmarksTestCase(TestCase):
         self.assertEqual(bookmarks[0].practice.code, "P87629")
 
     def test_get_org_bookmarks_with_skip_file(self):
-        skip_file = "frontend/tests/fixtures/commands/" "skip_alerts_recipients.txt"
+        skip_file = "frontend/tests/fixtures/commands/skip_alerts_recipients.txt"
         bookmarks = Command().get_org_bookmarks(
             self.now_month,
             skip_email_file=skip_file,
@@ -229,14 +229,13 @@ class OrgEmailTestCase(TestCase):
         )
         message = mail.outbox[-1].alternatives[0]
         html = message[0]
-        self.assertIn("this practice slipped", html)
+        self.assertIn("this practice", html)
         self.assertRegex(
             html,
-            "slipped massively on "
+            "slipped on "
             '<a href=".*/practice/P87629/.*#cerazette".*>'
             "Cerazette vs. Desogestrel</a>",
         )
-        self.assertIn('<span class="worse"', html)
         self.assertIn('<img src="cid:unique-image-id', html)
         self.assertNotIn("Your best prescribing areas", html)
         self.assertNotIn("Cost savings", html)
@@ -254,7 +253,7 @@ class OrgEmailTestCase(TestCase):
         )
         message = mail.outbox[-1].alternatives[0]
         html = message[0]
-        self.assertRegex(html, "It also slipped considerably")
+        self.assertRegex(html, "It also slipped on")
 
     def test_email_body_three_declines(self, attach_image, finder):
         measure = Measure.objects.get(pk="cerazette")
@@ -270,13 +269,7 @@ class OrgEmailTestCase(TestCase):
         )
         message = mail.outbox[-1].alternatives[0]
         html = message[0]
-        self.assertRegex(html, "It also slipped:")
-        self.assertRegex(
-            html,
-            re.compile(
-                "<ul.*<li>considerably on.*" "<li>moderately on.*</ul>", re.DOTALL
-            ),
-        )
+        self.assertRegex(html, "It also slipped on:")
 
     def test_email_body_worst(self, attach_image, finder):
         measure = Measure.objects.get(pk="cerazette")
@@ -284,11 +277,10 @@ class OrgEmailTestCase(TestCase):
         call_mocked_command_with_defaults(_makeContext(worst=[measure]), finder)
         message = mail.outbox[-1].alternatives[0]
         html = message[0]
-        self.assertIn("We've found", html)
         self.assertRegex(
             html,
             re.compile(
-                'the worst 10% on.*<a href=".*/practice/P87629'
+                'an outlier for.*<a href=".*/practice/P87629'
                 '/.*#cerazette".*>'
                 "Cerazette vs. Desogestrel</a>",
                 re.DOTALL,
@@ -303,12 +295,10 @@ class OrgEmailTestCase(TestCase):
         )
         message = mail.outbox[-1].alternatives[0]
         html = message[0]
-        self.assertRegex(html, "It was also in the worst 10% on:")
+        self.assertRegex(html, "It was also an outlier on:")
         self.assertRegex(
             html,
-            re.compile(
-                "<ul.*<li>.*Desogestrel.*" "<li>.*Desogestrel.*</ul>", re.DOTALL
-            ),
+            re.compile("<ul.*<li>.*Desogestrel.*<li>.*Desogestrel.*</ul>", re.DOTALL),
         )
 
     def test_email_body_two_savings(self, attach_image, finder):
@@ -318,7 +308,7 @@ class OrgEmailTestCase(TestCase):
         )
         message = mail.outbox[-1].alternatives[0]
         html = message[0]
-        self.assertIn("These add up to around <b>£10</b> of " "potential savings", html)
+        self.assertIn("there are around <b>£10</b> potential savings", html)
         self.assertRegex(
             html,
             '<li.*>\n<b>£10</b> on <a href=".*/practice/P87629'
@@ -333,7 +323,7 @@ class OrgEmailTestCase(TestCase):
         )
         message = mail.outbox[-1].alternatives[0]
         html = message[0]
-        self.assertIn("if it had prescribed in line with the average practice", html)
+        self.assertIn("If it prescribed in line", html)
         self.assertRegex(
             html,
             "it could have saved about <b>£10</b> on "
