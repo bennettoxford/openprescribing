@@ -30,13 +30,13 @@ class MockApiRequestHandler(BaseHTTPRequestHandler):
         o = urllib.parse.urlparse(self.path)
         q = urllib.parse.parse_qs(o.query)
         data = {}
-        if "/spending_by_org" in o.path and "ccg" in q.get("org_type"):
+        if "/spending_by_org" in o.path and "ccg" in q.get("org_type", ""):
             code = q.get("code")[0]
             if code == "2.12":
                 data = _load_json("spending_by_ccg_denom")
             elif code == "0212000AA":
                 data = _load_json("spending_by_ccg_num")
-        if "/spending_by_org" in o.path and "practice" in q.get("org_type"):
+        if "/spending_by_org" in o.path and "practice" in q.get("org_type", ""):
             # for SmallListTest
             data = (
                 '[{"items":9000000.0,"actual_cost":1026.22,"setting":4,'
