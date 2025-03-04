@@ -66,7 +66,7 @@ class Command(BaseCommand):
                             group[
                                 (group.SEX == gender.upper())
                                 & (group.AGE_GROUP_5 == quintile)
-                            ].NUMBER_OF_PATIENTS
+                            ].NUMBER_OF_PATIENTS.iloc[0]
                         )
                         data["%s_%s" % (gender, age_group)] = val
             try:
