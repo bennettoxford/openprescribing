@@ -25,7 +25,6 @@ class ValidateOptionsTestCase(unittest.TestCase):
             "ccg": None,
             "practice": None,
             "recipient_email": None,
-            "url": None,
         }
         for k, v in extra.items():
             default[k] = v
@@ -173,7 +172,7 @@ class OrgEmailTestCase(TestCase):
         call_mocked_command_with_defaults(test_context, finder)
         self.assertEqual(EmailMessage.objects.count(), 2)
         self.assertEqual(len(mail.outbox), 1)
-        email_message = EmailMessage.objects.last()
+        email_message = EmailMessage.objects.latest("created_at")
         self.assertEqual(mail.outbox[-1].to, email_message.to)
         self.assertEqual(mail.outbox[-1].to, ["s@s.com"])
 
@@ -387,7 +386,7 @@ class SearchEmailTestCase(TestCase):
         self.assertEqual(EmailMessage.objects.count(), 1)  # a fixture
         call_command(CMD_NAME, **opts)
         self.assertEqual(EmailMessage.objects.count(), 2)
-        email_message = EmailMessage.objects.last()
+        email_message = EmailMessage.objects.latest("created_at")
         self.assertEqual(email_message.send_count, 1)
         mail_queue = mail.outbox[-1]
         self.assertEqual(mail_queue.to, email_message.to)
@@ -403,7 +402,7 @@ class SearchEmailTestCase(TestCase):
             "search_name": "some name",
         }
         call_command(CMD_NAME, **opts)
-        email_message = EmailMessage.objects.last()
+        email_message = EmailMessage.objects.latest("created_at")
         mail_queue = mail.outbox[-1]
         self.assertEqual(
             mail_queue.extra_headers["message-id"], email_message.message_id
