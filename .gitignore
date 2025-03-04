@@ -10,6 +10,7 @@ openprescribing/docs/*.svg
 analysis/
 cache-warming/
 openprescribing/pipeline/data
+openprescribing/pipeline/test-data/log.json
 openprescribing/pipeline/e2e-test-data/data
 openprescribing/pipeline/e2e-test-data/log.json
 
