@@ -55,7 +55,15 @@ ROLLED_OVER_HEADING_DATE_RE = re.compile(
     rf"""
     ^
     # Optional leading text
-    ( The \s+ following \s+ price \s+ concessions \s+ rolled \s+ over \s+ from \s+ \w+ \s+ 20\d\d \s+ to \s+ )?
+    (
+        The \s+ following \s+ price \s+ concessions \s+
+        (
+            rolled \s+ over \s+ from \s+ \w+ \s+ 20\d\d \s+ to
+            |
+            granted \s+ in \s+ \w+ \s+ 20\d\d \s+ have \s+ rolled \s+ over \s+ to
+        )
+        \s+
+    )?
     # Date in the form "March 2020"
     {DATE_RE}
     :?
@@ -108,10 +116,10 @@ def parse_concessions(html):
         headers = next(rows)
         assert headers[0].lower() in ("drug", "drug name"), headers[0]
         assert headers[1].lower() == "pack size", headers[1]
-        assert headers[2].lower() in (
-            "price concession",
-            "price concessions",
-            "price",
+        assert re.match(
+            # Match things like "March 2020 Price Concessions"
+            r"(\w+ 20\d\d )?(price concession|price concessions|price)",
+            headers[2].lower(),
         ), headers[2]
         assert len(headers) == 3, headers
 
