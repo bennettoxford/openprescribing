@@ -30,43 +30,19 @@ DEFAULT_HEADERS = {
     "User-Agent": "OpenPrescribing-Bot (+https://openprescribing.net)",
 }
 
-DATE_RE = r"""
+
+HEADING_DATE_RE = re.compile(
+    r"""
+    ^
+    # Optional leading text
+    ( The \s+ following \s+ price \s+ concessions \s+ have \s+ been \s+ granted \s+ for \s+ )?
+    # Date in the form "March 2020"
     (?P<month>
         january | february | march | april | may | june | july | august |
         september | october | november | december
     )
     \s+
     (?P<year> 20\d\d)
-"""
-
-HEADING_DATE_RE = re.compile(
-    rf"""
-    ^
-    # Optional leading text
-    ( The \s+ following \s+ price \s+ concessions \s+ have \s+ been \s+ granted \s+ for \s+ )?
-    # Date in the form "March 2020"
-    {DATE_RE}
-    $
-    """,
-    re.VERBOSE | re.IGNORECASE,
-)
-
-ROLLED_OVER_HEADING_DATE_RE = re.compile(
-    rf"""
-    ^
-    # Optional leading text
-    (
-        The \s+ following \s+ price \s+ concessions \s+
-        (
-            rolled \s+ over \s+ from \s+ \w+ \s+ 20\d\d \s+ to
-            |
-            granted \s+ in \s+ \w+ \s+ 20\d\d \s+ have \s+ rolled \s+ over \s+ to
-        )
-        \s+
-    )?
-    # Date in the form "March 2020"
-    {DATE_RE}
-    :?
     $
     """,
     re.VERBOSE | re.IGNORECASE,
@@ -109,6 +85,8 @@ def parse_concessions(html):
         if (td.text or "").strip().lower() == "pack size"
     ]
     for table in tables:
+        if is_rollover_table(table):
+            continue
         date = get_date_for_table(table)
         rows = rows_from_table(table)
 
@@ -141,23 +119,19 @@ def get_date_for_table(table):
         return parse_date(f"1 {match['month']} {match['year']}")
     # However later sections of the historical archive are grouped by year, and in this
     # case the date for the table is given by the text immediately preceeding it
-    #
-    # Rolled over price concessions may also appear as their own table, again the
-    # date for the table is given by the text immediately preceding it
-    # The rolled over concessions, when seen in a separate table, ALSO appear
-    # in the main table for that month; we could ignore the rolled-over table, but in
-    # case they are separated out in future, we parse data from both tables and check
-    # for duplicates in match_concession_vmpp_ids() later
-    elif re.match(r"[\d\d\d\d]|[Rolled over price concessions]", heading):
+    elif re.match(r"\d\d\d\d", heading):
         intro = fix_spaces(table.find_previous_sibling().text or "")
-        if match := HEADING_DATE_RE.match(intro) or ROLLED_OVER_HEADING_DATE_RE.match(
-            intro
-        ):
+        if match := HEADING_DATE_RE.match(intro):
             return parse_date(f"1 {match['month']} {match['year']}")
         else:
             assert False, f"Unhandled table intro: {intro!r}"
     else:
         assert False, f"Unhandled section heading: {heading!r}"
+
+
+def is_rollover_table(table):
+    heading = get_section_heading(table)
+    return bool(re.search(r"\bRolled over price concessions\b", heading, re.IGNORECASE))
 
 
 def get_section_heading(table):
@@ -245,8 +219,8 @@ def match_concession_vmpp_ids(items, vmpp_id_to_name):
             item["vmpp_id"] = get_vmpp_id_from_previous_concession(
                 item["drug"], item["pack_size"]
             )
-        if item not in matched:
-            matched.append(item)
+
+        matched.append(item)
 
     return matched
 
