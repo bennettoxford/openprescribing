@@ -50,11 +50,11 @@ cssutils==2.11.1
     # via premailer
 cycler==0.12.1
     # via matplotlib
-db-dtypes==1.4.1
+db-dtypes==1.4.2
     # via pandas-gbq
 diskcache==5.6.3
     # via -r requirements.in
-django==4.2.19
+django==4.2.20
     # via
     #   -r requirements.in
     #   crispy-bootstrap3
@@ -105,7 +105,7 @@ google-api-core[grpc]==2.24.1
     #   google-cloud-core
     #   google-cloud-storage
     #   pandas-gbq
-google-api-python-client==2.162.0
+google-api-python-client==2.163.0
     # via -r requirements.in
 google-auth==2.38.0
     # via
@@ -145,7 +145,7 @@ google-resumable-media==2.7.2
     # via
     #   google-cloud-bigquery
     #   google-cloud-storage
-googleapis-common-protos==1.68.0
+googleapis-common-protos==1.69.1
     # via
     #   google-api-core
     #   grpcio-status
@@ -173,7 +173,7 @@ idna==3.10
     # via
     #   requests
     #   trio
-jinja2==3.1.5
+jinja2==3.1.6
     # via -r requirements.in
 kiwisolver==1.4.8
     # via matplotlib
@@ -192,7 +192,7 @@ matplotlib==3.10.1
     #   seaborn
 mccabe==0.7.0
     # via flake8
-mock==5.1.0
+mock==5.2.0
     # via -r requirements.in
 more-itertools==10.6.0
     # via cssutils
