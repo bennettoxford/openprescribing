@@ -127,7 +127,7 @@ def get_total_savings_for_org(date, org_type, org_id):
 
 # Increment the version number if the logic of this function changes such that
 # the same inputs no longer produce the same outputs
-@memoize(version=1)
+@memoize(version=2)
 def get_total_savings_for_org_type(
     db,
     substitution_sets,
