@@ -21,6 +21,7 @@ jobs:
         private-key: ${{ secrets.CREATE_PR_APP_PRIVATE_KEY }}
 
     - uses: bennettoxford/update-dependencies-action@v1
+      id: update
       with:
         token: ${{ steps.generate-token.outputs.token }}
         automerge: false
@@ -29,3 +30,13 @@ jobs:
           pip install pip-tools && \
           pip-compile -U requirements.dev.in && \
           pip-compile -U requirements.in
+
+    - name: Notify slack of PR
+      if: ${{ steps.update.outputs.pull-request-operation != 'none' }}
+      uses: slackapi/slack-github-action@v2.0.0
+      with:
+        method: chat.postMessage
+        token: ${{ secrets.BENNETTBOT_SLACK_BOT_TOKEN }}
+        payload: |
+          channel: "C080S7W2ZPX"
+          text: "Update dependencies\n${{ steps.update.outputs.pull-request-url }}"
