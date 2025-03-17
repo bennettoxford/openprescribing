@@ -115,7 +115,12 @@ FROM original
 UNION ALL
 
 SELECT -- BNF code match to pick up blood glucose testing strips
-    amp_1.bnf_code AS Code, amp_1.nm AS Name, NULL as Formulation, amp_2.bnf_code AS Alternative_code, amp_2.nm AS Alternative_name, NULL as Alternative_formulation
+    amp_1.bnf_code AS Code,
+    amp_1.nm AS Name,
+    amp_2.bnf_code AS Alternative_code,
+    NULL as Formulation,
+    amp_2.nm AS Alternative_name,
+    NULL as Alternative_formulation
 FROM dmd.amp AS amp_1
 JOIN dmd.amp AS amp_2
     ON CONCAT(SUBSTRING(amp_1.bnf_code, 0, 9), SUBSTRING(amp_1.bnf_code, -2,2)) = CONCAT(SUBSTRING(amp_2.bnf_code, 0, 9), SUBSTRING(amp_2.bnf_code, -2,2)) -- join first 9 and last 2 digits of BNF code
