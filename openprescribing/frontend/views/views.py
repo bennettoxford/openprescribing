@@ -915,7 +915,6 @@ def price_per_unit_by_presentation(request, entity_code, bnf_code):
         "highlight_name": entity.cased_name,
         "name": presentation.product_name,
         "bnf_code": presentation.bnf_code,
-        "presentation": presentation,
         "dmd_info": presentation.dmd_info(),
         "date": date,
         "by_presentation": True,
@@ -944,7 +943,6 @@ def all_england_price_per_unit_by_presentation(request, bnf_code):
     context = {
         "name": presentation.product_name,
         "bnf_code": presentation.bnf_code,
-        "presentation": presentation,
         "dmd_info": presentation.dmd_info(),
         "date": date,
         "by_presentation": True,

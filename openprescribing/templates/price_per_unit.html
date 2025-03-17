@@ -69,7 +69,7 @@
     </div>
     <p>
       We have identified about <strong>£<span id="total-savings"><span class="text-muted">(&hellip;)</span></span> of possible savings</strong>
-      {% if presentation %} for {{ presentation.product_name }}{% endif %} in
+      {% if by_presentation %} for {{ name }}{% endif %} in
       {% if entity.ccg %}
         <a href="{% url 'practice_price_per_unit' highlight %}?date={{ date|date:"Y-m-d" }}">{{entity_name }}</a>
       {% elif entity %}
@@ -86,11 +86,11 @@
       {% endif %}
     </p>
     {% if by_presentation %}
-      <h3>What is the cheapest presentation of {{ presentation.product_name }}?</h3>
+      <h3>What is the cheapest presentation of {{ name }}?</h3>
       <p>
         The following chart is to help you pick the cheapest treatment. It shows
         the various prices for all brands and formulations of
-        <span id="extended-info-link">{{ presentation.product_name }}</span> that are
+        <span id="extended-info-link">{{ name }}</span> that are
         prescribed across the country.
         {% if entity %}
           You can click the adjacent tab to view your own practice or Sub-ICB Location’s prescribing.
