@@ -82,6 +82,11 @@ original AS (
   SELECT generic_bnf_code AS col1, generic_bnf_name as Name,  brand_bnf_code AS col2, vmp_amp.brand_bnf_name AS Alternative_name FROM vmp_amp
   UNION ALL
   SELECT brand_bnf_code AS col1, brand_bnf_name as Name, generic_bnf_code AS col2, vmp_amp.generic_bnf_name AS Alternative_name FROM vmp_amp
+),
+generic_bgts AS ( --used to create a fake generic code for mapping blood glucose testing strips
+    SELECT 
+        '0601060D0AAAAA0' AS bnf_code, 
+        'Blood glucose biosensor testing strips' AS nm
 )
 SELECT DISTINCT
 
@@ -129,4 +134,18 @@ WHERE amp_1.bnf_code LIKE '0601060D0%A0' -- blood glucose testing strips
 AND amp_1.avail_restrict = 1 --make sure only available drugs are shown
 AND amp_2.avail_restrict = 1
 
+UNION ALL
+
+SELECT -- create fake BNF code and name for blood glucose testing strips
+    generic_bgts.bnf_code AS Code, 
+    generic_bgts.nm AS Name, 
+    NULL AS Formulation, 
+    amp_2.bnf_code AS Alternative_code, 
+    amp_2.nm AS Alternative_name, 
+    NULL AS Alternative_formulation
+FROM generic_bgts
+JOIN dmd.amp AS amp_2
+    ON CONCAT(SUBSTRING(generic_bgts.bnf_code, 0, 9), SUBSTRING(generic_bgts.bnf_code, -2,2)) = CONCAT(SUBSTRING(amp_2.bnf_code, 0, 9), SUBSTRING(amp_2.bnf_code, -2,2))
+    AND generic_bgts.bnf_code <> amp_2.bnf_code  -- Exclude self-match
+WHERE amp_2.avail_restrict = 1
 ORDER BY Code
