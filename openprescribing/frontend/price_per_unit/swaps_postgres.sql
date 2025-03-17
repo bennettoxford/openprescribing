@@ -225,4 +225,21 @@ UNION ALL
 SELECT col1 AS Code, Name, col2 AS Alternative_code, NULL as Formulation, Alternative_name, NULL as Alternative_formulation
 FROM original
 
+UNION ALL
+
+SELECT -- BNF code match to pick up blood glucose testing strips
+    amp_1.bnf_code AS Code,
+    amp_1.nm AS Name,
+    amp_2.bnf_code AS Alternative_code,
+    NULL as Formulation,
+    amp_2.nm AS Alternative_name,
+    NULL as Alternative_formulation
+FROM bq_dmd_amp AS amp_1
+JOIN bq_dmd_amp AS amp_2
+    ON CONCAT(SUBSTRING(amp_1.bnf_code, 0, 9), SUBSTRING(amp_1.bnf_code, -2,2)) = CONCAT(SUBSTRING(amp_2.bnf_code, 0, 9), SUBSTRING(amp_2.bnf_code, -2,2)) -- join first 9 and last 2 digits of BNF code
+    AND amp_1.bnf_code <> amp_2.bnf_code  -- Exclude self-match
+WHERE amp_1.bnf_code LIKE '0601060D0%A0' -- blood glucose testing strips
+AND amp_1.avail_restrict = 1 --make sure only available drugs are shown
+AND amp_2.avail_restrict = 1
+
 ORDER BY Code
