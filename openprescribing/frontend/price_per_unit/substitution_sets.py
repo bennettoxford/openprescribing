@@ -161,6 +161,7 @@ def get_substitution_sets_by_presentation():
     """
     index = {}
     for substitution_set in get_substitution_sets().values():
+        index[substitution_set.id] = substitution_set
         for presentation in substitution_set.presentations:
             index[presentation] = substitution_set
     return index

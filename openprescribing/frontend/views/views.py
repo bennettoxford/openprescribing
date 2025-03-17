@@ -888,8 +888,7 @@ def all_england_price_per_unit(request):
 @handle_bad_request
 def price_per_unit_by_presentation(request, entity_code, bnf_code):
     date = _specified_or_last_date(request, "prescribing")
-    presentation = get_object_or_404(Presentation, pk=bnf_code)
-    primary_code = _get_primary_substitutable_bnf_code(bnf_code)
+    primary_code, product_name, dmd_info = _get_substitution_details(bnf_code)
     if bnf_code != primary_code:
         url = request.get_full_path().replace(bnf_code, primary_code)
         return HttpResponseRedirect(url)
@@ -900,7 +899,7 @@ def price_per_unit_by_presentation(request, entity_code, bnf_code):
 
     params = {
         "format": "json",
-        "bnf_code": presentation.bnf_code,
+        "bnf_code": bnf_code,
         "highlight": entity.code,
         "date": date.strftime("%Y-%m-%d"),
     }
@@ -913,10 +912,9 @@ def price_per_unit_by_presentation(request, entity_code, bnf_code):
         "entity_name_and_status": entity.name_and_status,
         "highlight": entity.code,
         "highlight_name": entity.cased_name,
-        "name": presentation.product_name,
-        "bnf_code": presentation.bnf_code,
-        "presentation": presentation,
-        "dmd_info": presentation.dmd_info(),
+        "name": product_name,
+        "bnf_code": bnf_code,
+        "dmd_info": dmd_info,
         "date": date,
         "by_presentation": True,
         "bubble_data_url": bubble_data_url,
@@ -927,25 +925,23 @@ def price_per_unit_by_presentation(request, entity_code, bnf_code):
 @handle_bad_request
 def all_england_price_per_unit_by_presentation(request, bnf_code):
     date = _specified_or_last_date(request, "prescribing")
-    presentation = get_object_or_404(Presentation, pk=bnf_code)
-    primary_code = _get_primary_substitutable_bnf_code(bnf_code)
+    primary_code, product_name, dmd_info = _get_substitution_details(bnf_code)
     if bnf_code != primary_code:
         url = request.get_full_path().replace(bnf_code, primary_code)
         return HttpResponseRedirect(url)
 
     params = {
         "format": "json",
-        "bnf_code": presentation.bnf_code,
+        "bnf_code": bnf_code,
         "date": date.strftime("%Y-%m-%d"),
     }
 
     bubble_data_url = _build_api_url("bubble", params)
 
     context = {
-        "name": presentation.product_name,
-        "bnf_code": presentation.bnf_code,
-        "presentation": presentation,
-        "dmd_info": presentation.dmd_info(),
+        "name": product_name,
+        "bnf_code": bnf_code,
+        "dmd_info": dmd_info,
         "date": date,
         "by_presentation": True,
         "bubble_data_url": bubble_data_url,
@@ -956,7 +952,7 @@ def all_england_price_per_unit_by_presentation(request, bnf_code):
     return render(request, "price_per_unit.html", context)
 
 
-def _get_primary_substitutable_bnf_code(bnf_code):
+def _get_substitution_details(bnf_code):
     """
     If this BNF code belongs to a "substitution set" (e.g. it's a branded
     version of a generic presentation) then return the primary code of that
@@ -964,9 +960,24 @@ def _get_primary_substitutable_bnf_code(bnf_code):
     """
     substitution_sets = get_substitution_sets_by_presentation()
     try:
-        return substitution_sets[bnf_code].id
+        substitution = substitution_sets[bnf_code]
     except KeyError:
-        return bnf_code
+        substitution = None
+
+    presentation = Presentation.objects.filter(pk=bnf_code).first()
+
+    if substitution is not None:
+        new_bnf_code = substitution.id
+        name = substitution.name
+        dmd_info = presentation.dmd_info() if presentation else None
+    elif presentation is not None:
+        new_bnf_code = bnf_code
+        name = presentation.product_name
+        dmd_info = presentation.dmd_info()
+    else:
+        raise Http404()
+
+    return new_bnf_code, name, dmd_info
 
 
 ##################################################
