@@ -139,8 +139,8 @@ UNION ALL
 SELECT -- create fake BNF code and name for blood glucose testing strips
     generic_bgts.bnf_code AS Code, 
     generic_bgts.nm AS Name, 
-    NULL AS Formulation, 
     amp_2.bnf_code AS Alternative_code, 
+    NULL AS Formulation, 
     amp_2.nm AS Alternative_name, 
     NULL AS Alternative_formulation
 FROM generic_bgts
