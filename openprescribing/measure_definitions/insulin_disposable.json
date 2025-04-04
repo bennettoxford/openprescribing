@@ -1,0 +1,56 @@
+{
+  "name": "Prescribing of disposable insulin devices",
+  "title": "Prescribing of disposable insulin devices",
+  "description": "Prescribing of disposable insulin devices as percentage of all insulin prescribing",
+  "why_it_matters": [
+    ""
+  ],
+  "numerator_short": "Items of disposable insulin devices",
+  "denominator_short": "Items for all insulin devices",
+  "url": null,
+  "is_percentage": true,
+  "is_cost_based": false,
+  "low_is_good": true,
+  "tags": [
+    "core",
+    "diabetes",
+    "greenernhs"
+  ],
+  "numerator_type": "custom",
+  "numerator_columns": "SUM(items) AS numerator",
+  "numerator_from": [
+   "{hscic}.normalised_prescribing p", 
+   "INNER JOIN {dmd}.vmp v --this joins data table to dm+d vmp table \n",
+   "ON CONCAT(SUBSTR(p.bnf_code,0,9),SUBSTR(p.bnf_code,-2)) = CONCAT(SUBSTR(v.bnf_code,0,9),SUBSTR(v.bnf_code,-2)) --joins both brand and generics to vmp table \n",
+   "INNER JOIN {dmd}.vtm t --this joins VMP table to VTM table \n",
+   "ON v.vtm = t.id",    
+   "INNER JOIN {dmd}.unitofmeasure u --this joins to unit of measure table to get device details \n",
+   "ON v.unit_dose_uom = u.cd"
+  ],
+  "numerator_where": [
+    "lOWER(t.nm) LIKE '%insulin%' -- filters to any insulin \n",
+    "and LOWER(u.descr) = 'pre-filled disposable injection' -- filters to disposable pens"
+  ],
+  "denominator_type": "custom",
+  "denominator_columns": "SUM(items) AS denominator",
+  "denominator_from": [
+   "{hscic}.normalised_prescribing p", 
+   "INNER JOIN {dmd}.vmp v --this joins data table to dm+d vmp table \n",
+   "ON CONCAT(SUBSTR(p.bnf_code,0,9),SUBSTR(p.bnf_code,-2)) = CONCAT(SUBSTR(v.bnf_code,0,9),SUBSTR(v.bnf_code,-2)) --joins both brand and generics to vmp table \n",
+   "INNER JOIN {dmd}.vtm t --this joins VMP table to VTM table \n",
+   "ON v.vtm = t.id",    
+   "INNER JOIN {dmd}.unitofmeasure u --this joins to unit of measure table to get device details \n",
+   "ON v.unit_dose_uom = u.cd"
+  ],
+  "denominator_where": [
+    "lOWER(t.nm) LIKE '%insulin%' -- filters to any insulin \n",
+    "and LOWER(u.descr) IN('pre-filled disposable injection', 'cartridge') -- filters to disposable pens and catridges"
+  ],
+   "date_reviewed":"",
+   "next_review": "1",
+   "authored_by": "richard.croker@phc.ox.ac.uk",
+   "checked_by":"",
+   "measure_complexity":"medium",
+   "measure_type": "dmd",
+   "radar_exclude": false
+}
