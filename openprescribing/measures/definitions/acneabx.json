@@ -1,0 +1,35 @@
+{
+    "name": "Prescribing of oxytetracycline and lymecycline",
+    "title": "Oxytetracycline and lymecycline items per 1000 patients",
+    "description": "Oxytetracycline and lymecycline per 1000 patients",
+    "numerator_short": "Oxytetracycline and lymecycline items",
+    "denominator_short": "1000 patients",
+    "y_label": "Oxytetracycline and lymecycline per 1000 patients",
+    "why_it_matters": [
+      ""
+    ],
+    "tags": [
+      "antimicrobial",
+      "cost",
+      "lowpriority",
+      "nice",
+      "safety"
+    ],
+    "url": null,
+    "is_percentage": false,
+    "is_cost_based": false,
+    "low_is_good": true,
+    "numerator_type": "bnf_cost",
+    "numerator_bnf_codes_filter": [
+      "0501030L0%AB # Lymecycline 408mg capsules (brands and generics)",
+      "0501030T0%AJ # Oxytetracycline 250mg tablets (brands and generics)"
+    ],
+    "denominator_type": "list_size",
+    "authored_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": "",
+    "date_reviewed": "2024-09-02",
+    "next_review": "",
+    "measure_complexity": "low",
+    "measure_type": "bnf_code",
+    "radar_exclude": false
+}
