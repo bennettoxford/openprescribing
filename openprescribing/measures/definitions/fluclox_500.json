@@ -1,0 +1,41 @@
+{
+  "name": "Antibiotic stewardship: courses for flucloxacillin 500mg greater than 20 capsules",
+  "title": "Antibiotic stewardship: courses for flucloxacillin 500mg greater than 20 capsules",
+  "description": "Proportion of prescription items of flucloxacillin 500mg capsules with quantity greater than 20 capsules",
+  "numerator_short": "flucloxacillin capsules 500mg items for greater than 20 caps",
+  "denominator_short": "flucloxacillin capsules 500mg items",
+  "why_it_matters": [
+    "<a href='https://academic.oup.com/jac/article/73/suppl_2/ii2/4841822' target='_Blank'>The most common indication for the prescribing of flucloxacillin in primary care</a> ",
+    "is the treatment of skin and wound infections. NICE guidance recommends for example that, where flucloxacillin is used for cellulitis, the dose is ",
+    "<a href='https://www.nice.org.uk/guidance/ng141/resources/visual-summary-pdf-6908401837' target='_Blank'> 500mg to 1g four times a day for 5 to 7 days.</a> ", 
+    "The upper dose of 1g four times a day is off label and our data shows the majority of prescription are for 28 capsules of 500mg, which is likely to represent a 7 day course at a ",
+    "dose of 500mg four times a day. ",
+    "Reducing durations to 5 days, where appropriate, reduces the exposure to antibiotics and the associated risks. ",
+    "There are however some occasions which will require higher doses or 7 days or even longer durations of flucloxacillin for example, unresolving cellulitis.</p>"
+  ],
+  "tags": [
+    "antimicrobial",
+    "core",
+    "infections",
+    "nice"
+  ],
+  "url": null,
+  "is_percentage": true,
+  "is_cost_based": false,
+  "low_is_good": true,
+  "numerator_type": "custom",
+  "numerator_columns": "SUM(items) AS numerator",
+  "numerator_from": "{hscic}.raw_prescribing_normalised",
+  "numerator_where": "bnf_code LIKE '0501012G0%AB' AND quantity_per_item > 20 --Flucloxacillin 500mg capsules (brands and generic)",
+  "denominator_type": "custom",
+  "denominator_columns": "SUM(items) AS denominator",
+  "denominator_from": "{hscic}.raw_prescribing_normalised",
+  "denominator_where": "bnf_code LIKE '0501012G0%AB' --Flucloxacillin 500mg capsules (brands and generic)",
+  "no_analyse_url": true,
+  "authored_by": "christopher.wood@phc.ox.ac.uk",
+  "checked_by": "",
+  "date_reviewed": "",
+  "next_review": "",
+  "measure_complexity": "low",
+  "radar_exclude": false
+}
