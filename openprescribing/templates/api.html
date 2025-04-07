@@ -22,7 +22,7 @@
 
 <p>Methods to calculate prescribing spending.</p>
 
-<p>Retrieve total spending and items by Sub-ICB Location or practice on a particular chemical, presentation or BNF section. (Spending is calculated using the <strong>actual_cost</strong> field in the NHS Business Service Authority's data, items using the <strong>total_items</strong> field.)</p>
+<p>Retrieve total spending, quanitity and items by Sub-ICB Location or practice on a particular chemical, presentation or BNF section. (Spending is calculated using the <strong>actual_cost</strong> field in the NHS Business Service Authority's data, quantity using the <strong>total_quantity</strong> field, and items using the <strong>total_items</strong> field.)</p>
 
 
 
@@ -33,15 +33,18 @@
 <p><b>Total prescribing spending by month</b>: <code><a href="/api/1.0/spending/">/api/1.0/spending</a></code></p>
 
 <p><b>Total by BNF code by month<</b></p>
-<p>You can add multiple BNF codes using a comma separated list:</p>
-<p><ul>,
-<li>Prescribing of lipid-regulation drugs: <code><a href="/api/1.0/spending/?code=0212">/api/1.0/spending/?code=0212</a></code></li>
+<ul>
+<li>Prescribing of lipid-regulating drugs: <code><a href="/api/1.0/spending/?code=0212">/api/1.0/spending/?code=0212</a></code></li>
 <li>Prescribing of rosuvastatin: <code><a href="/api/1.0/spending/?code=0212000AA">/api/1.0/spending/?code=0212000AA</a></code></li>
-<li>Prescribing of rosuvastatin and atorvastatin: <code><a href="/api/1.0/spending/?code=0212000AA,0212000B0">/api/1.0/spending/?code=0212000AA,0212000B0</a></code></li>
 <li>Prescribing of rosuvastatin 20mg tablets: <code><a href="/api/1.0/spending/?code=0212000AAAAABAB">/api/1.0/spending/?code=0212000AAAAABAB</a></code></li>
+</ul>
+
+<p>You can also add multiple BNF codes using a comma separated list:
+<ul>
+<li>Prescribing of rosuvastatin and atorvastatin: <code><a href="/api/1.0/spending/?code=0212000AA,0212000B0">/api/1.0/spending/?code=0212000AA,0212000B0</a></code></li>
 <li>Prescribing of rosuvastatin 20mg and 40mg tablets: <code><a href="/api/1.0/spending/?code=0212000AAAAABAB,0212000AAAAACAC">/api/1.0/spending/?code=0212000AAAAABAB,0212000AAAAACAC</a></code></li>
 </ul></p>
-
+  
 <h3>Spending by Sub-ICB Location</h3>
 
 <p>Queries the last five years of data and returns spending and items by Sub-ICB Location by month.</p>
