@@ -65,7 +65,7 @@ django==4.2.20
     #   django-debug-toolbar-template-timings
     #   django-extensions
     #   djangorestframework
-django-anymail[mailgun]==12.0
+django-anymail[mailgun]==13.0
     # via -r requirements.in
 django-cors-headers==4.7.0
     # via -r requirements.in
@@ -81,7 +81,7 @@ django-debug-toolbar-template-timings==0.9
     # via -r requirements.in
 django-dotenv==1.4.2
     # via -r requirements.in
-django-extensions==3.2.3
+django-extensions==4.0
     # via -r requirements.in
 djangorestframework==3.16.0
     # via
@@ -95,7 +95,7 @@ fab-classic==1.20.0
     # via -r requirements.in
 flake8==7.2.0
     # via -r requirements.in
-fonttools==4.56.0
+fonttools==4.57.0
     # via matplotlib
 google-api-core[grpc]==2.24.2
     # via
@@ -151,11 +151,11 @@ googleapis-common-protos==1.69.2
     #   grpcio-status
 graphviz==0.20.3
     # via -r requirements.in
-grpcio==1.71.0
+grpcio==1.72.0rc1
     # via
     #   google-api-core
     #   grpcio-status
-grpcio-status==1.71.0
+grpcio-status==1.72.0rc1
     # via google-api-core
 gunicorn==23.0.0
     # via -r requirements.in
@@ -177,7 +177,7 @@ jinja2==3.1.6
     # via -r requirements.in
 kiwisolver==1.4.8
     # via matplotlib
-lxml==5.3.1
+lxml==5.3.2
     # via
     #   -r requirements.in
     #   premailer
@@ -224,6 +224,7 @@ packaging==24.2
     #   gunicorn
     #   matplotlib
     #   pandas-gbq
+    #   wheel
 pandas==2.2.3
     # via
     #   -r requirements.in
@@ -234,7 +235,7 @@ pandas-gbq==0.28.0
     # via -r requirements.in
 paramiko-ng==2.9.0
     # via fab-classic
-pillow==11.2.0
+pillow==11.1.0
     # via matplotlib
 pip-tools==7.4.1
     # via -r requirements.in
@@ -244,7 +245,7 @@ proto-plus==1.26.1
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
-protobuf==5.29.4
+protobuf==6.30.2
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
@@ -317,7 +318,7 @@ scipy==1.15.2
     # via -r requirements.in
 seaborn==0.13.2
     # via -r requirements.in
-selenium==4.30.0
+selenium==4.31.0
     # via -r requirements.in
 six==1.17.0
     # via
@@ -343,7 +344,7 @@ trio==0.29.0
     #   trio-websocket
 trio-websocket==0.12.2
     # via selenium
-typing-extensions==4.13.0
+typing-extensions==4.13.1
     # via
     #   beautifulsoup4
     #   selenium
@@ -362,7 +363,7 @@ webencodings==0.5.1
     # via html5lib
 websocket-client==1.8.0
     # via selenium
-wheel==0.45.1
+wheel==0.46.1
     # via pip-tools
 when-changed==0.3.0
     # via -r requirements.in
