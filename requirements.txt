@@ -16,7 +16,7 @@ backports-csv==1.0.7
     # via -r requirements.in
 bcrypt==4.3.0
     # via paramiko-ng
-beautifulsoup4==4.13.3
+beautifulsoup4==4.13.4
     # via -r requirements.in
 build==1.2.2.post1
     # via pip-tools
@@ -34,7 +34,7 @@ charset-normalizer==3.4.1
     # via requests
 click==8.1.8
     # via pip-tools
-contourpy==1.3.1
+contourpy==1.3.2
     # via matplotlib
 coverage==7.8.0
     # via -r requirements.in
@@ -69,7 +69,7 @@ django-anymail[mailgun]==13.0
     # via -r requirements.in
 django-cors-headers==4.7.0
     # via -r requirements.in
-django-crispy-forms==2.3
+django-crispy-forms==2.4
     # via
     #   -r requirements.in
     #   crispy-bootstrap3
@@ -81,7 +81,7 @@ django-debug-toolbar-template-timings==0.9
     # via -r requirements.in
 django-dotenv==1.4.2
     # via -r requirements.in
-django-extensions==4.0
+django-extensions==4.1
     # via -r requirements.in
 djangorestframework==3.16.0
     # via
@@ -105,9 +105,9 @@ google-api-core[grpc]==2.24.2
     #   google-cloud-core
     #   google-cloud-storage
     #   pandas-gbq
-google-api-python-client==2.166.0
+google-api-python-client==2.167.0
     # via -r requirements.in
-google-auth==2.38.0
+google-auth==2.39.0
     # via
     #   google-api-core
     #   google-api-python-client
@@ -145,7 +145,7 @@ google-resumable-media==2.7.2
     # via
     #   google-cloud-bigquery
     #   google-cloud-storage
-googleapis-common-protos==1.69.2
+googleapis-common-protos==1.70.0
     # via
     #   google-api-core
     #   grpcio-status
@@ -224,7 +224,6 @@ packaging==24.2
     #   gunicorn
     #   matplotlib
     #   pandas-gbq
-    #   wheel
 pandas==2.2.3
     # via
     #   -r requirements.in
@@ -235,7 +234,7 @@ pandas-gbq==0.28.0
     # via -r requirements.in
 paramiko-ng==2.9.0
     # via fab-classic
-pillow==11.1.0
+pillow==11.2.1
     # via matplotlib
 pip-tools==7.4.1
     # via -r requirements.in
@@ -344,7 +343,7 @@ trio==0.29.0
     #   trio-websocket
 trio-websocket==0.12.2
     # via selenium
-typing-extensions==4.13.1
+typing-extensions==4.13.2
     # via
     #   beautifulsoup4
     #   selenium
@@ -352,7 +351,7 @@ tzdata==2025.2
     # via pandas
 uritemplate==4.1.1
     # via google-api-python-client
-urllib3[socks]==2.3.0
+urllib3[socks]==2.4.0
     # via
     #   django-anymail
     #   requests
@@ -363,7 +362,7 @@ webencodings==0.5.1
     # via html5lib
 websocket-client==1.8.0
     # via selenium
-wheel==0.46.1
+wheel==0.45.1
     # via pip-tools
 when-changed==0.3.0
     # via -r requirements.in
