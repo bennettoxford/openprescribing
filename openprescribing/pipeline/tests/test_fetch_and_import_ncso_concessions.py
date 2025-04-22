@@ -2,6 +2,7 @@
 
 import contextlib
 import datetime
+import tempfile
 from pathlib import Path
 
 import mock
@@ -108,6 +109,48 @@ class TestFetchAndImportNCSOConcesions(TestCase):
                 },
             ],
         )
+
+    def test_read_concessions_csv(self):
+        contents = (
+            "Date,Name,Pack Size,Price Pence,Notes,URL (if applicable)\n"
+            "2025-03-01,Trimethoprim 200mg tablets,6,179,,\n"
+            "2025-03-01,Trimethoprim 200mg tablets,14,419,,"
+        )
+        with tempfile.TemporaryDirectory() as tmpdir:
+            file_path = Path(tmpdir) / "concessions.csv"
+            with open(file_path, "w") as f:
+                f.write(contents)
+            concessions = fetch_ncso.read_concessions_csv(file_path)
+        self.assertEqual(
+            concessions,
+            [
+                {
+                    "date": datetime.date(2025, 3, 1),
+                    "drug": "Trimethoprim 200mg tablets",
+                    "pack_size": "6",
+                    "price_pence": 179,
+                },
+                {
+                    "date": datetime.date(2025, 3, 1),
+                    "drug": "Trimethoprim 200mg tablets",
+                    "pack_size": "14",
+                    "price_pence": 419,
+                },
+            ],
+        )
+
+    def test_convert_concessions_csv_row_raises_error_for_incorrect_date(self):
+        with self.assertRaises(
+            AssertionError, msg="2025-03-03 is not the first of the month"
+        ):
+            fetch_ncso.convert_concessions_csv_row(
+                {
+                    "Date": "2025-03-03",
+                    "Name": "Trimethoprim 200mg tablets",
+                    "Pack Size": "6",
+                    "Price Pence": "179",
+                }
+            )
 
     def test_match_concession_vmpp_ids_unambiguous_match(self):
         # The happy case: there's a single VMPP which matches the name and pack-size

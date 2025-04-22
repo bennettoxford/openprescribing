@@ -1,5 +1,6 @@
 # coding=utf8
 
+import csv
 import datetime
 import logging
 import re
@@ -223,6 +224,23 @@ def match_concession_vmpp_ids(items, vmpp_id_to_name):
         matched.append(item)
 
     return matched
+
+
+def read_concessions_csv(path):
+    with open(path, newline="") as f:
+        reader = csv.DictReader(f)
+        return [convert_concessions_csv_row(row) for row in reader]
+
+
+def convert_concessions_csv_row(row):
+    date = datetime.datetime.fromisoformat(row["Date"]).date()
+    assert date.day == 1, f"{date} is not the first of the month"
+    return {
+        "date": date,
+        "drug": row["Name"],
+        "pack_size": row["Pack Size"],
+        "price_pence": int(row["Price Pence"]),
+    }
 
 
 def get_vmpp_id_to_name_map():
