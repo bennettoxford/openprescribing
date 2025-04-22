@@ -152,6 +152,12 @@ class TestFetchAndImportNCSOConcesions(TestCase):
                 }
             )
 
+    def test_manually_added_concessions_file(self):
+        concessions = fetch_ncso.read_concessions_csv(
+            fetch_ncso.MANUALLY_ADDED_CONCESSIONS_PATH
+        )  # Should not error
+        self.assertGreaterEqual(len(concessions), 0)
+
     def test_match_concession_vmpp_ids_unambiguous_match(self):
         # The happy case: there's a single VMPP which matches the name and pack-size
         concession = {

@@ -3,6 +3,7 @@
 import csv
 import datetime
 import logging
+import pathlib
 import re
 from collections import defaultdict
 
@@ -54,6 +55,13 @@ NAME_FIXES = {
     "co-amoxiclav 500/125 tablets 21": "co-amoxiclav 500mg/125mg tablets 21",
     "co-amoxiclav 250/125 tablets 21": "co-amoxiclav 250mg/125mg tablets 21",
 }
+
+MANUALLY_ADDED_CONCESSIONS_PATH = (
+    pathlib.Path(__file__).parent
+    / "supplementary_files"
+    / "fetch_and_import_ncso_concessions"
+    / "manually_added_concessions.csv"
+)
 
 
 class Command(BaseCommand):
