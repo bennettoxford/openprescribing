@@ -70,6 +70,9 @@ class Command(BaseCommand):
         response = requests.get(PRICE_CONCESSIONS_URL, headers=DEFAULT_HEADERS)
         items = parse_concessions(response.content)
 
+        # Insert manually added concessions
+        items.extend(read_concessions_csv(MANUALLY_ADDED_CONCESSIONS_PATH))
+
         # Find matching VMPPs for each concession, where possible
         vmpp_id_to_name = get_vmpp_id_to_name_map()
         matched = match_concession_vmpp_ids(items, vmpp_id_to_name)

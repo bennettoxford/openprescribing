@@ -279,6 +279,7 @@ class TestFetchAndImportNCSOConcesions(TestCase):
         with ContextStack(mock.patch.object) as patch:
             patch(fetch_ncso, "requests")
             patch(fetch_ncso, "parse_concessions")
+            patch(fetch_ncso, "read_concessions_csv")
             patch(fetch_ncso, "match_concession_vmpp_ids", return_value=matched)
 
             Client = patch(fetch_ncso, "Client")
@@ -303,6 +304,39 @@ class TestFetchAndImportNCSOConcesions(TestCase):
                     vmpp_id=item["vmpp_id"],
                 ).exists()
             )
+
+    def test_fetch_and_import_ncso_concessions_includes_manual_additions(self):
+        manual_additions = [
+            {
+                "date": datetime.date(2023, 3, 1),
+                "drug": "Amiloride 5mg tablets",
+                "pack_size": "28",
+                "price_pence": 925,
+            },
+        ]
+
+        item_exists = NCSOConcession.objects.filter(
+            date=datetime.date(2023, 3, 1),
+            drug="Amiloride 5mg tablets",
+            pack_size="28",
+            price_pence=925,
+        ).exists
+        self.assertFalse(item_exists())
+
+        with ContextStack(mock.patch.object) as patch:
+            patch(fetch_ncso, "requests")
+            patch(fetch_ncso, "parse_concessions", return_value=[])
+            patch(fetch_ncso, "read_concessions_csv", return_value=manual_additions)
+            patch(fetch_ncso, "get_vmpp_id_to_name_map", return_value={})
+            patch(fetch_ncso, "Client")
+            notify_slack = patch(fetch_ncso, "notify_slack")
+
+            call_command("fetch_and_import_ncso_concessions")
+            self.assertIn(
+                "Fetched 1 concessions. Imported 1 new concessions.",
+                notify_slack.call_args[0][0],
+            )
+        self.assertTrue(item_exists())
 
     def test_format_message_when_nothing_to_do(self):
         msg = fetch_ncso.format_message([])
