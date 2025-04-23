@@ -14,9 +14,9 @@ isort==6.0.1
     # via -r requirements.dev.in
 mccabe==0.7.0
     # via flake8
-mypy-extensions==1.0.0
+mypy-extensions==1.1.0
     # via black
-packaging==24.2
+packaging==25.0
     # via black
 pathspec==0.12.1
     # via black
