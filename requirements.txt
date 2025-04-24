@@ -159,7 +159,7 @@ grpcio-status==1.72.0rc1
     # via google-api-core
 gunicorn==23.0.0
     # via -r requirements.in
-h11==0.14.0
+h11==0.16.0
     # via wsproto
 html2text==2020.1.16
     # via -r requirements.in
