@@ -1,7 +1,9 @@
 # coding=utf8
 
+import csv
 import datetime
 import logging
+import pathlib
 import re
 from collections import defaultdict
 
@@ -54,12 +56,22 @@ NAME_FIXES = {
     "co-amoxiclav 250/125 tablets 21": "co-amoxiclav 250mg/125mg tablets 21",
 }
 
+MANUALLY_ADDED_CONCESSIONS_PATH = (
+    pathlib.Path(__file__).parent
+    / "supplementary_files"
+    / "fetch_and_import_ncso_concessions"
+    / "manually_added_concessions.csv"
+)
+
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         # Fetch and parse the concession data
         response = requests.get(PRICE_CONCESSIONS_URL, headers=DEFAULT_HEADERS)
         items = parse_concessions(response.content)
+
+        # Insert manually added concessions
+        items.extend(read_concessions_csv(MANUALLY_ADDED_CONCESSIONS_PATH))
 
         # Find matching VMPPs for each concession, where possible
         vmpp_id_to_name = get_vmpp_id_to_name_map()
@@ -225,6 +237,24 @@ def match_concession_vmpp_ids(items, vmpp_id_to_name):
     return matched
 
 
+def read_concessions_csv(path):
+    with open(path, newline="") as f:
+        reader = csv.DictReader(f)
+        return [convert_concessions_csv_row(row) for row in reader]
+
+
+def convert_concessions_csv_row(row):
+    date = datetime.datetime.fromisoformat(row["Date"]).date()
+    assert date.day == 1, f"{date} is not the first of the month"
+    return {
+        "date": date,
+        "drug": row["Name"],
+        "pack_size": row["Pack Size"],
+        "price_pence": int(row["Price Pence"]),
+        "manually_added": True,
+    }
+
+
 def get_vmpp_id_to_name_map():
     # Build mapping from ID to name for all valid VMPPs. We only want VMPPs which are
     # not marked as "invalid" and which we can match to prescribing data. See:
@@ -340,19 +370,23 @@ def insert_or_update(items):
 
 
 def format_message(inserted):
-    created = [i for i in inserted if i["created"]]
+    num_manually_added = sum(1 for i in inserted if i.get("manually_added"))
+    num_created = sum(1 for i in inserted if i["created"])
     unmatched = [i for i in inserted if i["vmpp_id"] is None]
 
-    msg = f"Fetched {len(inserted)} concessions. "
+    msg = (
+        f"Fetched {len(inserted)} concessions, "
+        f"including {num_manually_added} manually added concessions. "
+    )
 
-    if not created:
+    if num_created == 0:
         msg += "Found no new concessions to import."
     else:
-        msg += f"Imported {len(created)} new concessions."
+        msg += f"Imported {num_created} new concessions."
 
     # Warn about cases where we couldn't match the drug name and pack size to a VMPP
     if unmatched:
-        msg += "\n\n" "The following concessions will need to be manually matched:\n"
+        msg += "\n\nThe following concessions will need to be manually matched:\n"
         for item in unmatched:
             msg += f"Name: {item['drug']} {item['pack_size']}\n"
 

@@ -2,6 +2,7 @@
 
 import contextlib
 import datetime
+import tempfile
 from pathlib import Path
 
 import mock
@@ -108,6 +109,56 @@ class TestFetchAndImportNCSOConcesions(TestCase):
                 },
             ],
         )
+
+    def test_read_concessions_csv(self):
+        contents = (
+            "Date,Name,Pack Size,Price Pence,Notes,URL (if applicable)\n"
+            "2025-03-01,Trimethoprim 200mg tablets,6,179,,\n"
+            "2025-03-01,Trimethoprim 200mg tablets,14,419,,"
+        )
+        with tempfile.TemporaryDirectory() as tmpdir:
+            file_path = Path(tmpdir) / "concessions.csv"
+            with open(file_path, "w") as f:
+                f.write(contents)
+            concessions = fetch_ncso.read_concessions_csv(file_path)
+        self.assertEqual(
+            concessions,
+            [
+                {
+                    "date": datetime.date(2025, 3, 1),
+                    "drug": "Trimethoprim 200mg tablets",
+                    "pack_size": "6",
+                    "price_pence": 179,
+                    "manually_added": True,
+                },
+                {
+                    "date": datetime.date(2025, 3, 1),
+                    "drug": "Trimethoprim 200mg tablets",
+                    "pack_size": "14",
+                    "price_pence": 419,
+                    "manually_added": True,
+                },
+            ],
+        )
+
+    def test_convert_concessions_csv_row_raises_error_for_incorrect_date(self):
+        with self.assertRaises(
+            AssertionError, msg="2025-03-03 is not the first of the month"
+        ):
+            fetch_ncso.convert_concessions_csv_row(
+                {
+                    "Date": "2025-03-03",
+                    "Name": "Trimethoprim 200mg tablets",
+                    "Pack Size": "6",
+                    "Price Pence": "179",
+                }
+            )
+
+    def test_manually_added_concessions_file(self):
+        concessions = fetch_ncso.read_concessions_csv(
+            fetch_ncso.MANUALLY_ADDED_CONCESSIONS_PATH
+        )  # Should not error
+        self.assertGreaterEqual(len(concessions), 0)
 
     def test_match_concession_vmpp_ids_unambiguous_match(self):
         # The happy case: there's a single VMPP which matches the name and pack-size
@@ -230,6 +281,7 @@ class TestFetchAndImportNCSOConcesions(TestCase):
         with ContextStack(mock.patch.object) as patch:
             patch(fetch_ncso, "requests")
             patch(fetch_ncso, "parse_concessions")
+            patch(fetch_ncso, "read_concessions_csv")
             patch(fetch_ncso, "match_concession_vmpp_ids", return_value=matched)
 
             Client = patch(fetch_ncso, "Client")
@@ -239,7 +291,7 @@ class TestFetchAndImportNCSOConcesions(TestCase):
 
             self.assertEqual(NCSOConcession, Client().upload_model.call_args[0][0])
             self.assertIn(
-                "Fetched 3 concessions. Imported 2 new concessions.",
+                "Fetched 3 concessions, including 0 manually added concessions. Imported 2 new concessions.",
                 notify_slack.call_args[0][0],
             )
 
@@ -255,10 +307,45 @@ class TestFetchAndImportNCSOConcesions(TestCase):
                 ).exists()
             )
 
+    def test_fetch_and_import_ncso_concessions_includes_manual_additions(self):
+        manual_additions = [
+            {
+                "date": datetime.date(2023, 3, 1),
+                "drug": "Amiloride 5mg tablets",
+                "pack_size": "28",
+                "price_pence": 925,
+                "manually_added": True,
+            },
+        ]
+
+        item_exists = NCSOConcession.objects.filter(
+            date=datetime.date(2023, 3, 1),
+            drug="Amiloride 5mg tablets",
+            pack_size="28",
+            price_pence=925,
+        ).exists
+        self.assertFalse(item_exists())
+
+        with ContextStack(mock.patch.object) as patch:
+            patch(fetch_ncso, "requests")
+            patch(fetch_ncso, "parse_concessions", return_value=[])
+            patch(fetch_ncso, "read_concessions_csv", return_value=manual_additions)
+            patch(fetch_ncso, "get_vmpp_id_to_name_map", return_value={})
+            patch(fetch_ncso, "Client")
+            notify_slack = patch(fetch_ncso, "notify_slack")
+
+            call_command("fetch_and_import_ncso_concessions")
+            self.assertIn(
+                "Fetched 1 concessions, including 1 manually added concessions. Imported 1 new concessions.",
+                notify_slack.call_args[0][0],
+            )
+        self.assertTrue(item_exists())
+
     def test_format_message_when_nothing_to_do(self):
         msg = fetch_ncso.format_message([])
         self.assertEqual(
-            msg, "Fetched 0 concessions. Found no new concessions to import."
+            msg,
+            "Fetched 0 concessions, including 0 manually added concessions. Found no new concessions to import.",
         )
 
     def test_regularise_name(self):
