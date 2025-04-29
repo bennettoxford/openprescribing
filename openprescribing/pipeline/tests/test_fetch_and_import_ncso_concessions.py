@@ -129,12 +129,14 @@ class TestFetchAndImportNCSOConcesions(TestCase):
                     "drug": "Trimethoprim 200mg tablets",
                     "pack_size": "6",
                     "price_pence": 179,
+                    "manually_added": True,
                 },
                 {
                     "date": datetime.date(2025, 3, 1),
                     "drug": "Trimethoprim 200mg tablets",
                     "pack_size": "14",
                     "price_pence": 419,
+                    "manually_added": True,
                 },
             ],
         )
@@ -289,7 +291,7 @@ class TestFetchAndImportNCSOConcesions(TestCase):
 
             self.assertEqual(NCSOConcession, Client().upload_model.call_args[0][0])
             self.assertIn(
-                "Fetched 3 concessions. Imported 2 new concessions.",
+                "Fetched 3 concessions, including 0 manually added concessions. Imported 2 new concessions.",
                 notify_slack.call_args[0][0],
             )
 
@@ -312,6 +314,7 @@ class TestFetchAndImportNCSOConcesions(TestCase):
                 "drug": "Amiloride 5mg tablets",
                 "pack_size": "28",
                 "price_pence": 925,
+                "manually_added": True,
             },
         ]
 
@@ -333,7 +336,7 @@ class TestFetchAndImportNCSOConcesions(TestCase):
 
             call_command("fetch_and_import_ncso_concessions")
             self.assertIn(
-                "Fetched 1 concessions. Imported 1 new concessions.",
+                "Fetched 1 concessions, including 1 manually added concessions. Imported 1 new concessions.",
                 notify_slack.call_args[0][0],
             )
         self.assertTrue(item_exists())
@@ -341,7 +344,8 @@ class TestFetchAndImportNCSOConcesions(TestCase):
     def test_format_message_when_nothing_to_do(self):
         msg = fetch_ncso.format_message([])
         self.assertEqual(
-            msg, "Fetched 0 concessions. Found no new concessions to import."
+            msg,
+            "Fetched 0 concessions, including 0 manually added concessions. Found no new concessions to import.",
         )
 
     def test_regularise_name(self):

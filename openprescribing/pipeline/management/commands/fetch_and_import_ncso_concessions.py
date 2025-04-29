@@ -251,6 +251,7 @@ def convert_concessions_csv_row(row):
         "drug": row["Name"],
         "pack_size": row["Pack Size"],
         "price_pence": int(row["Price Pence"]),
+        "manually_added": True,
     }
 
 
@@ -369,15 +370,19 @@ def insert_or_update(items):
 
 
 def format_message(inserted):
-    created = [i for i in inserted if i["created"]]
+    num_manually_added = sum(1 for i in inserted if i.get("manually_added"))
+    num_created = sum(1 for i in inserted if i["created"])
     unmatched = [i for i in inserted if i["vmpp_id"] is None]
 
-    msg = f"Fetched {len(inserted)} concessions. "
+    msg = (
+        f"Fetched {len(inserted)} concessions, "
+        f"including {num_manually_added} manually added concessions. "
+    )
 
-    if not created:
+    if num_created == 0:
         msg += "Found no new concessions to import."
     else:
-        msg += f"Imported {len(created)} new concessions."
+        msg += f"Imported {num_created} new concessions."
 
     # Warn about cases where we couldn't match the drug name and pack size to a VMPP
     if unmatched:
