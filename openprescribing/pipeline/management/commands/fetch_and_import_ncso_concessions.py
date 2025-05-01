@@ -71,6 +71,7 @@ class Command(BaseCommand):
         items = parse_concessions(response.content)
 
         # Insert manually added concessions
+        items = list(items)
         items.extend(read_concessions_csv(MANUALLY_ADDED_CONCESSIONS_PATH))
 
         # Find matching VMPPs for each concession, where possible
