@@ -95,9 +95,9 @@ fab-classic==1.20.0
     # via -r requirements.in
 flake8==7.2.0
     # via -r requirements.in
-fonttools==4.58.0
+fonttools==4.58.1
     # via matplotlib
-google-api-core[grpc]==2.24.2
+google-api-core[grpc]==2.25.0
     # via
     #   google-api-python-client
     #   google-cloud-bigquery
@@ -105,7 +105,7 @@ google-api-core[grpc]==2.24.2
     #   google-cloud-core
     #   google-cloud-storage
     #   pandas-gbq
-google-api-python-client==2.170.0
+google-api-python-client==2.171.0
     # via -r requirements.in
 google-auth==2.40.2
     # via
@@ -125,11 +125,11 @@ google-auth-oauthlib==1.2.2
     # via
     #   pandas-gbq
     #   pydata-google-auth
-google-cloud-bigquery==3.33.0
+google-cloud-bigquery==3.34.0
     # via
     #   -r requirements.in
     #   pandas-gbq
-google-cloud-bigquery-storage==2.31.0
+google-cloud-bigquery-storage==2.32.0
     # via -r requirements.in
 google-cloud-core==2.4.3
     # via
@@ -151,11 +151,11 @@ googleapis-common-protos==1.70.0
     #   grpcio-status
 graphviz==0.20.3
     # via -r requirements.in
-grpcio==1.72.0rc1
+grpcio==1.72.1
     # via
     #   google-api-core
     #   grpcio-status
-grpcio-status==1.72.0rc1
+grpcio-status==1.72.1
     # via google-api-core
 gunicorn==23.0.0
     # via -r requirements.in
@@ -196,7 +196,7 @@ mock==5.2.0
     # via -r requirements.in
 more-itertools==10.7.0
     # via cssutils
-networkx==3.4.2
+networkx==3.5
     # via -r requirements.in
 numpy==2.2.6
     # via
@@ -244,7 +244,7 @@ proto-plus==1.26.1
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
-protobuf==6.31.0
+protobuf==6.31.1
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
@@ -349,7 +349,7 @@ typing-extensions==4.13.2
     #   selenium
 tzdata==2025.2
     # via pandas
-uritemplate==4.1.1
+uritemplate==4.2.0
     # via google-api-python-client
 urllib3[socks]==2.4.0
     # via
