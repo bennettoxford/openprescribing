@@ -1,0 +1,44 @@
+{
+  "name": "High quantity prescribing of morphine sulphate oral solution",
+  "title": [
+    "High quantity prescribing of morphine sulphate oral solution"
+  ],
+  "description": [
+    "Total proportion of morphine sulphate oral solution with a quantity of >300ml"
+  ],
+  "numerator_short": "Morphine sulphate oral solution quantity with quantity of >300ml",
+  "denominator_short": "Morphine sulphate oral solution quantity",
+  "why_it_matters": [
+    "Tbc"
+  ],
+  "tags": [
+    "core",
+    "safety"
+  ],
+  "url": null,
+  "is_percentage": true,
+  "is_cost_based": false,
+  "low_is_good": true,
+  "numerator_type": "custom",
+  "numerator_columns": [
+    "SUM(total_quantity) AS numerator"
+  ],
+  "numerator_from": "{hscic}.raw_prescribing_normalised",
+  "numerator_where": [
+    "quantity_per_item>300",
+    "AND",
+    "bnf_code LIKE '0407020Q0%CN' #morphine sulphate oral solution 10mg/5ml"
+  ],
+  "numerator_is_list_of_bnf_codes": false,
+  "denominator_type": "custom",
+  "denominator_columns": [
+    "SUM(total_quantity) AS denominator"
+  ],
+  "denominator_from": "{hscic}.raw_prescribing_normalised",
+  "denominator_where": [
+    "bnf_code LIKE '0407020Q0%CN' #morphine sulphate oral solution 10mg/5ml"
+ ],
+  "measure_complexity": [
+    "low"
+  ]
+}
