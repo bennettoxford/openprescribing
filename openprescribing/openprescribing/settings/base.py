@@ -434,8 +434,7 @@ if sentry_raven_dsn and not SHELL:
 
 
 # For downloading data from TRUD
-TRUD_USERNAME = utils.get_env_setting("TRUD_USERNAME", default="")
-TRUD_PASSWORD = utils.get_env_setting("TRUD_PASSWORD", default="")
+TRUD_API_KEY = utils.get_env_setting("TRUD_API_KEY", default="")
 
 # check_numbers.py will write copies of scraped pages here.  By writing to a
 # location in /tmp/, we benefit from tmpreaper, which is run by cron to delete
