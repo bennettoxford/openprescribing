@@ -51,5 +51,4 @@ CF_API_KEY=cf_api_key
 # Only required for the pipeline
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TRUD_USERNAME=
-TRUD_PASSWORD=
+TRUD_API_KEY=
