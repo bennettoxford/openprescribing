@@ -52,15 +52,17 @@ def get_savings_for_orgs(generic_code, date, org_type, org_ids, min_saving=1):
     Get available savings for the given orgs within a particular class of
     substitutable presentations
     """
+    substitution_sets = get_substitution_sets()
     try:
-        substitution_set = get_substitution_sets()[generic_code]
+        substitution_set = substitution_sets[generic_code]
     # Gracefully handle being asked for the savings for a code with no
     # substitutions (to which the answer is always: no savings)
     except KeyError:
         return []
 
+    discounts = get_discounts_for_all_substitution_sets_at_date(substitution_sets, date)
     quantities, net_costs = get_quantities_and_net_costs_at_date(
-        get_db(), substitution_set, date
+        get_db(), substitution_set, date, discounts
     )
 
     group_by_org = get_row_grouper(org_type)
@@ -150,9 +152,10 @@ def get_total_savings_for_org_type(
     slightly convoluted call signature.
     """
     totals = None
+    discounts = get_discounts_for_all_substitution_sets_at_date(substitution_sets, date)
     for substitution_set in substitution_sets.values():
         quantities, net_costs = get_quantities_and_net_costs_at_date(
-            db, substitution_set, date
+            db, substitution_set, date, discounts
         )
         target_ppu = get_target_ppu(
             quantities,
@@ -197,8 +200,8 @@ def get_savings(quantities, net_costs, target_ppu):
 
 # Increment the version number if the logic of this function changes such that
 # the same inputs no longer produce the same outputs
-@memoize(version=2)
-def get_quantities_and_net_costs_at_date(db, substitution_set, date):
+@memoize(version=3)
+def get_quantities_and_net_costs_at_date(db, substitution_set, date, discounts):
     """
     Sum quantities and net costs over the supplied list of BNF codes for just
     the specified date.
@@ -206,8 +209,6 @@ def get_quantities_and_net_costs_at_date(db, substitution_set, date):
     bnf_codes = substitution_set.presentations
     date_column = db.date_offsets[date]
     date_slice = slice(date_column, date_column + 1)
-
-    discounts = get_discounts_at_date(bnf_codes, date)
 
     results = db.query(
         """
@@ -295,3 +296,26 @@ def get_discounts_at_date(bnf_codes, date):
         )
         for bnf_code in bnf_codes
     }
+
+
+# We need an object that wraps the discounts dict but provides the `cache_key` attribute
+# required by the convoluted caching system past-me somehow thought was a good idea
+class DiscountLookupTable:
+    items = None
+    cache_key = None
+
+    def __getitem__(self, key):
+        return self.items[key]
+
+
+@memoize(version=1)
+def get_discounts_for_all_substitution_sets_at_date(substitution_sets, date):
+    # Get all BNF codes across all substitution sets
+    bnf_codes = sum((s.presentations for s in substitution_sets.values()), start=[])
+    # Determine their discounts on the supplied date
+    discounts = get_discounts_at_date(bnf_codes, date)
+    # Wrap the results up in a thing which plays nicely with the caching system
+    table = DiscountLookupTable()
+    table.items = discounts
+    table.cache_key = substitution_sets.cache_key + str(date).encode("ascii")
+    return table
