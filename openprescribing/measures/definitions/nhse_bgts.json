@@ -8,8 +8,8 @@
   "why_it_matters": [
     " Many people with diabetes test their blood glucose levels, using a blood glucose meter, in order to help control their diabetes by adjusting diet and the dose of medicines.  A drop of blood from the user’s finger is placed on a ",
     "testing strip in order for the meter to analyse the glucose levels.  A new strip is required each time, and is specific to a brand of meter.</p>",
-    "<p>In April 2023 NHS England published <a href='https://www.england.nhs.uk/publication/commissioning-recommendations-blood-glucose-and-ketone-meters-testing-strips-and-lancets/' target='_blank'>",
-    "commissioning guidelines, recommending specific meters, test strips and lancets.</a></p>",
+    "<p>In June 2025 NHS England published <a href='https://www.england.nhs.uk/publication/commissioning-recommendations-blood-glucose-and-ketone-meters-testing-strips-and-lancets/' target='_blank'>",
+    "updated commissioning guidelines, recommending specific meters, test strips and lancets.</a></p>",
     "<p>The <a href='https://www.england.nhs.uk/long-read/national-medicines-optimisation-opportunities-2023-24/#8-appropriate-prescribing-and-supply-of-blood-glucose-and-ketone-meters-and-testing-strips' target='_Blank'>",
     "NHS England National Medicines Optimisation Opportunities for 2024/25</a> identify promoting uptake of best value testing strips as an area for improvement.</p>",
     "<b>Please note:</b> OpenPrescribing.net measures also have a consistent way of visualising measures, where 'lower is better', and therefore in this case we show the proportion of prescriptions for strips ",
@@ -40,9 +40,13 @@
     "~0601060D0EJAAA0 # True Metrix testing strips (Trividia Health UK Ltd)",
     "~0601060D0CIAAA0 # WaveSense JAZZ testing strips (AgaMatrix Europe Ltd)",
     "~0601060D0CIABA0 # WaveSense JAZZ Duo testing strips (AgaMatrix Europe Ltd)",
-    "~0601060D0CUABA0 # GlucoRx Nexus testing strips (GlucoRx Ltd)",
     "~0601060D0FCAAA0 # CareSens S testing strips (Spirit Healthcare Ltd)",
-    "~0601060D0FDAAA0 # AgaMatrix Agile Test Strips (AgaMatrix Europe Ltd)"
+    "~0601060D0FDAAA0 # AgaMatrix Agile Test Strips (AgaMatrix Europe Ltd)",
+    "~0601060D0CUAGA0 # GlucoRx Vivid testing strips (GlucoRx Ltd)",
+    "~0601060D0EFAAA0 # palmdoc testing strips (Palmdoc Ltd)",
+    "#Neon GK+ Glucose testing strips (Neon Diagnostics Ltd) WAITING FOR BNF CODE",
+    "#ALLYbg Test Strips WAITING FOR INCLUSION IN dm+d AND BNF CODE",
+    "GlucoRx Smart Glucose testing strips (GlucoRx Ltd) WAITING FOR BNF CODE"
   ],
   "denominator_type": "bnf_items",
   "denominator_bnf_codes_filter": [
@@ -50,9 +54,9 @@
     "0601060D0 # Glucose blood testing reagents"
   ],
   "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "christopher.wood@phc.ox.ac.uk",
-  "date_reviewed": "2023-09-10",
-  "next_review": "2025-09-10",
+  "checked_by": "",
+  "date_reviewed": "2025-07-01",
+  "next_review": "2027-07-01",
   "measure_complexity": "low",
   "measure_type": "bnf_code",
   "radar_exclude": false
