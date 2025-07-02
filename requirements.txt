@@ -105,7 +105,7 @@ google-api-core[grpc]==2.25.1
     #   google-cloud-core
     #   google-cloud-storage
     #   pandas-gbq
-google-api-python-client==2.173.0
+google-api-python-client==2.174.0
     # via -r requirements.in
 google-auth==2.40.3
     # via
@@ -151,11 +151,11 @@ googleapis-common-protos==1.70.0
     #   grpcio-status
 graphviz==0.21
     # via -r requirements.in
-grpcio==1.73.0
+grpcio==1.73.1
     # via
     #   google-api-core
     #   grpcio-status
-grpcio-status==1.73.0
+grpcio-status==1.73.1
     # via google-api-core
 gunicorn==23.0.0
     # via -r requirements.in
@@ -177,7 +177,7 @@ jinja2==3.1.6
     # via -r requirements.in
 kiwisolver==1.4.8
     # via matplotlib
-lxml==5.4.0
+lxml==6.0.0
     # via
     #   -r requirements.in
     #   premailer
@@ -234,7 +234,7 @@ pandas-gbq==0.29.1
     # via -r requirements.in
 paramiko-ng==2.9.0
     # via fab-classic
-pillow==11.2.1
+pillow==11.3.0
     # via matplotlib
 pip-tools==7.4.1
     # via -r requirements.in
@@ -317,7 +317,7 @@ scipy==1.16.0
     # via -r requirements.in
 seaborn==0.13.2
     # via -r requirements.in
-selenium==4.33.0
+selenium==4.34.0
     # via -r requirements.in
 six==1.17.0
     # via
@@ -343,7 +343,7 @@ trio==0.30.0
     #   trio-websocket
 trio-websocket==0.12.2
     # via selenium
-typing-extensions==4.13.2
+typing-extensions==4.14.0
     # via
     #   beautifulsoup4
     #   selenium
