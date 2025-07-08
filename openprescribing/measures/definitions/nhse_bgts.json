@@ -54,7 +54,7 @@
     "0601060D0 # Glucose blood testing reagents"
   ],
   "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "",
+  "checked_by": "christopher.wood@phc.ox.ac.uk",
   "date_reviewed": "2025-07-01",
   "next_review": "2027-07-01",
   "measure_complexity": "low",
