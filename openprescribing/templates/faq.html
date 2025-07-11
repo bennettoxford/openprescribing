@@ -252,7 +252,7 @@
 <h3 id="ghostgenericshow">How can I decrease our use of ghost-branded generics?</h3>
 <p>The spreadsheet download on ghost-branded generics page is sorted by total possible savings.  The practices and items appearing near the top of this list are likely to be prescribing the highest level of ghost-branded generics.  ePACT2 now carries data at an <em>AMPP</em> level for ghost-generics (termed "premium price generics"), meaning you can identify individual scripts which are at fault; PrescQIPP has also added ghost-generic reports and searches.</p>
 <p>In general, the fix will be dependent on your prescribing software. It should be possible to configure it so only true generics can be picked, at least for the most egregious items.</p>
-<p>We are currently gathering feedback from practices who have implemented such fixes, and will publish a summary on our blog in due course</p>.
+<p>We are currently gathering feedback from practices who have implemented such fixes, and will publish a summary on our blog in due course.</p>
 
 <h3 id="gpclose">A GP Practice has closed or merged - why is it included on your dashboards?</h3>
 <p>
@@ -278,8 +278,14 @@
 
 <h3 id="hownormalised">How was the data normalised?</h3>
 
-<p>All figures are shown per 1000 population (adjusted for England's mid-year population size each year) and costs are corrected for inflation (using consumer price index), both obtained from the ONS.
-  We also normalised the data by drug name and classification, where possible, such that drugs moving around Chapters, or changing name, do not disrupt the trends. We did this by mapping all drug names to their current position in the BNF. Drug names not matched exactly to a currently available item were assigned appropriate classifications via approximate matching, ensuring that drugs were not inappropriately moved across categories, e.g. those with multiple uses. Some chemicals which are no longer available will not have been assigned an up-to-date chemical code, but will have a chemical name (as supplied in the original dataset) and a product name (derived from the drug name). Efforts were concentrated on Chapters 1-6 and 10 so other Chapters may have more inconsistencies, particularly Chapters 9 (Nutrition) and 13 (Skin). The details are explained further in our paper, currently under review with BMJ Open, and in the code can be found <a href="https://gist.github.com/HelenCEBM/192307b3c671a391f5ad6b44a3676880">here</a>.</p>
+<p>All figures are shown per 1000 population (adjusted for England's mid-year population size each year) and costs are corrected for inflation (using consumer price index), 
+  both obtained from the Office for National Statistics(ONS). We also normalised the data by drug name and classification, where possible, such that drugs moving around Chapters, 
+  or changing name, do not disrupt the trends. We did this by mapping all drug names to their current position in the BNF. Drug names not matched exactly to a currently available 
+  item were assigned appropriate classifications via approximate matching, ensuring that drugs were not inappropriately moved across categories, e.g. those with multiple uses. 
+  Some chemicals which are no longer available will not have been assigned an up-to-date chemical code, but will have a chemical name (as supplied in the original dataset) and a 
+  product name (derived from the drug name). Efforts were concentrated on Chapters 1-6 and 10 so other Chapters may have more inconsistencies, particularly Chapters 9 (Nutrition) 
+  and 13 (Skin). The details are explained further in our paper, currently under review with BMJ Open, and in the code can be found 
+  <a href="https://gist.github.com/HelenCEBM/192307b3c671a391f5ad6b44a3676880">here</a>.</p>
 
 <h3 id="howshare">How can I share the view I created?</h3>
 
