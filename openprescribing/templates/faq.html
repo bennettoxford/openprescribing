@@ -178,7 +178,7 @@
 <p>Medicines administered to patients under both categories appear in OpenPrescribing data.  For example <a href="https://openprescribing.net/chemical/1404000H0/"> here is data on influenza vaccines</a>, which are usually claimed on FP34D/PD.</p>
 
 <h3 id="ssps">How do items dispensed under a Serious Shortage Protocol (SSP) appear in OpenPrescribing?</h3>
-<p>The BSA <a href="https://opendata.nhsbsa.net/dataset/65050ec0-5abd-48ce-989d-defc08ed837e/issues/2">have confirmed</a> that the prescribing dataset we use shows entries for items dispensed under an SSP, but does not include information on the item originally prescribed.</p>
+<p>The BSA <a href="https://opendata.nhsbsa.net/dataset/65050ec0-5abd-48ce-989d-defc08ed837e/discussions/2">have confirmed</a> that the prescribing dataset we use shows entries for items dispensed under an SSP, but does not include information on the item originally prescribed.</p>
 
 <h3 id="concessioncosts">How are price concession costs calculated?</h3>
 <p>
@@ -217,7 +217,7 @@
 <h2>Dashboards</h2>
 
 <h3 id="measureinterpret">How should I interpret the measures?</h3>
-<p>We recommend reading NHS Digitals's <a href="https://digital.nhs.uk/practice-level-prescribing-summary">Practice Level Prescribing in England: a summary</a>, including the <a href="https://digital.nhs.uk/data-and-information/areas-of-interest/prescribing/practice-level-prescribing-in-england-a-summary/practice-level-prescribing-data-more-information">more information section</a> and <a href="https://digital.nhs.uk/data-and-information/areas-of-interest/prescribing/practice-level-prescribing-in-england-a-summary/practice-level-prescribing-glossary-of-terms">glossary of terms</a>.</p>
+<p>We recommend reading NHS Digitals's <a href="https://digital.nhs.uk/data-and-information/areas-of-interest/prescribing/practice-level-prescribing-in-england-a-summary">Practice Level Prescribing in England: a summary</a>, including the <a href="https://digital.nhs.uk/data-and-information/areas-of-interest/prescribing/practice-level-prescribing-in-england-a-summary/practice-level-prescribing-data-more-information">more information section</a> and <a href="https://digital.nhs.uk/data-and-information/areas-of-interest/prescribing/practice-level-prescribing-in-england-a-summary/practice-level-prescribing-glossary-of-terms">glossary of terms</a>.</p>
 
 <p>Just because a practice or NHS organisation is an outlier for high or low use of a particular treatment, that doesn't necessarily mean they are good or bad prescribers. These are <em>measures</em> rather than <em>indicators</em>, and they need to be interpreted judiciously.</p>
 
@@ -241,7 +241,7 @@
 
 <p>The prescribing data released by NHS BSA aggregates all generic and ghost-generic prescribing together, so it is not possible for us to break down the data precisely.</p>
 
-<p>In addition, the published Drug Tariff prices are not necessarily the ones used by BSA for reimbursement (see <a href="https://github.com/ebmdatalab/openprescribing/issues/1318">our technical notes here</a> for an explanation of this). Therefore, to estimate the size of the problem for individual practices or NHS organisations, we first have to estimate the Drug Tariff price for a generic, which we do by taking the median price paid for that generic item across the entire country. This gives us a price that <em>should</em> be paid for all prescriptions of that generic. We then compare this with the price that was used for reimbursement. This difference gives a reasonable estimate of the total possible savings if a generic were prescribed correctly. We only include savings of more than £5. Note that we use Net Ingredient Cost for our calculations; the true reimbursement cost will typically be 7% less due to bulk discounts.</p>
+<p>In addition, the published Drug Tariff prices are not necessarily the ones used by BSA for reimbursement (see <a href="https://github.com/bennettoxford/openprescribing/issues/1318">our technical notes here</a> for an explanation of this). Therefore, to estimate the size of the problem for individual practices or NHS organisations, we first have to estimate the Drug Tariff price for a generic, which we do by taking the median price paid for that generic item across the entire country. This gives us a price that <em>should</em> be paid for all prescriptions of that generic. We then compare this with the price that was used for reimbursement. This difference gives a reasonable estimate of the total possible savings if a generic were prescribed correctly. We only include savings of more than £5. Note that we use Net Ingredient Cost for our calculations; the true reimbursement cost will typically be 7% less due to bulk discounts.</p>
 
 <p>You can read more about the background of this issue <a href="https://www.bennett.ox.ac.uk/blog/2018/12/ghost-branded-generics-why-does-the-cost-of-generic-atorvastatin-vary/">on our blog</a>.</p>
 
