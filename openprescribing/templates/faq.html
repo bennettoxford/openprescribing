@@ -47,11 +47,7 @@
 <p><a href="#gpclose">A GP Practice has closed or merged - why is it included on your dashboards?</a></p>
 
 <h2>Long term trends</h2>
-<p><a href="#howdifferent">How is this different to the data on the rest of the site?</a></p>
-<p><a href="#hownormalised">How was the data normalised?</a></p>
-<p><a href="#howshare">How can I share the view I created?</a></p>
-<p><a href="#trendsdownload">Can I download the data?</a></p>
-<p><a href="#trendsupdated">When will it be updated?</a></p>
+<p><a href="#wheretrends">What's happened to the Long Term Trends tool?</a></p>
 
 <h2>Disclaimer</h2>
 <p><a href="#Disclaimer">Disclaimer</a></p>
@@ -73,7 +69,7 @@
 <p>If you use data or images from this site online or in a report, please link back to us. Your readers will then be able to see live updates to the data you are interested in, and explore other queries for themselves.</p>
 
 <h3 id="timeperiod">What time period does the dataset cover?</h3>
-<p>We have data from the past 5 years on OpenPrescribing.net, and from 1998 in the <a href="https://openprescribing.net/long_term_trends/">Long Term Trends section</a>.</p>
+<p>We have data from the past 5 years on OpenPrescribing.net.</p>
 
 <h3 id="olddata">How can I access data older than available on your website?</h3>
 <p>Given our limited resources, we do not routinely provide data not accessible through the website. However, you may be able to access this data yourself. The NHS BSA openly publishes the <a href="https://opendata.nhsbsa.net/dataset/english-prescribing-data-epd">English prescribing dataset</a> dating back to January 2014. If data prior to 2014 is required, the <a href="https://www.nhsbsa.nhs.uk/statistical-collections/prescription-cost-analysis-england">Prescription Cost Analysis dataset</a> is accessible from 1998 onward although is not as detailed as the English Prescribing Dataset.</p>
@@ -252,7 +248,7 @@
 <h3 id="ghostgenericshow">How can I decrease our use of ghost-branded generics?</h3>
 <p>The spreadsheet download on ghost-branded generics page is sorted by total possible savings.  The practices and items appearing near the top of this list are likely to be prescribing the highest level of ghost-branded generics.  ePACT2 now carries data at an <em>AMPP</em> level for ghost-generics (termed "premium price generics"), meaning you can identify individual scripts which are at fault; PrescQIPP has also added ghost-generic reports and searches.</p>
 <p>In general, the fix will be dependent on your prescribing software. It should be possible to configure it so only true generics can be picked, at least for the most egregious items.</p>
-<p>We are currently gathering feedback from practices who have implemented such fixes, and will publish a summary on our blog in due course</p>.
+<p>We are currently gathering feedback from practices who have implemented such fixes, and will publish a summary on our blog in due course.</p>
 
 <h3 id="gpclose">A GP Practice has closed or merged - why is it included on your dashboards?</h3>
 <p>
@@ -261,46 +257,8 @@
 
 <h2 id="longtermtrends"><a name="longtermtrends"></a>Long term trends</h2>
 
-<h3 id="howdifferent">How is this different to the data on the rest of the site?</h3>
-
-<p>This tool uses Prescription Cost Analysis (PCA) data back to 1998, which shows all products dispensed in the community (or personally administered by doctors) in England, 
-  whereas the data used elsewhere on the site gives more detail about how items were prescribed (but still only includes those which were dispensed). This causes two main differences to arise:</p>
-
-<ul>
-  <li>generic drug names/codes do not appear in our long-term trends tool until the generic product is available to be dispensed, even if doctors are prescribing generically</li>
-  <li>cross-border issues: in our long-term trends tool, items are included which were prescribed by doctors in other parts of the UK, provided they were dispensed in England, 
-    but any items are excluded which were prescribed in England and dispensed in other parts of the UK</li>
-</ul>
-
-<p>
-  This data cannot be split down to individual months or practices.
-</p>
-
-<h3 id="hownormalised">How was the data normalised?</h3>
-
-<p>All figures are shown per 1000 population (adjusted for England's mid-year population size each year) and costs are corrected for inflation (using consumer price index), both obtained from the ONS.
-  We also normalised the data by drug name and classification, where possible, such that drugs moving around Chapters, or changing name, do not disrupt the trends. We did this by mapping all drug names to their current position in the BNF. Drug names not matched exactly to a currently available item were assigned appropriate classifications via approximate matching, ensuring that drugs were not inappropriately moved across categories, e.g. those with multiple uses. Some chemicals which are no longer available will not have been assigned an up-to-date chemical code, but will have a chemical name (as supplied in the original dataset) and a product name (derived from the drug name). Efforts were concentrated on Chapters 1-6 and 10 so other Chapters may have more inconsistencies, particularly Chapters 9 (Nutrition) and 13 (Skin). The details are explained further in our paper, currently under review with BMJ Open, and in the code can be found <a href="https://gist.github.com/HelenCEBM/192307b3c671a391f5ad6b44a3676880">here</a>.</p>
-
-<h3 id="howshare">How can I share the view I created?</h3>
-
-<p>Scroll to the bottom right, then:</p>
-
-<ul>
-  <li>To share the dashboard as a link for someone else to access, or to save for later, select <strong>Share</strong>. If you have made changes then "Current View" will be selected. Copy the link:<br>
-
-    <img src="{% static 'img/tableau_share.png' %}" alt="Tableau share menu"/>
-
-  </li>
-  <li>To share the view as an image or PDF, select <strong>Download</strong> and select your preferred option.</li>
-</ul>
-
-<h3 id="trendsdownload">Can I download the data?</h3>
-
-<p>You can download the entire dataset, either the compiled original data or our normalised data, from <a href="https://figshare.com/articles/NHS_prescription_cost_analysis_data_1998-2016/5447194">FigShare</a>.</p>
-
-<h3 id="trendsupdated">When will it be updated?</h3>
-
-<p>The annual data is released in March each year; however, ONS figures for population size are not available until June.</p>
+<h3 id="wheretrends">What's happened to the Long Term Trends tool?</h3>
+<p>We released the long term trends tool in 2017.  The data has not been updated in the tool since the 2018 data release, and unfortunately continued support for the tool is not a priority for us at this time.  The tool is still available <a href="https://openprescribing.net/long_term_trends/">here>/a>, but please be aware we are no longer supporting or updating the data.</p>
 
 <h2 id="Disclaimer">Disclaimer</h2>
 <p>We accept no liability for any errors in the data or its publication here: use this data at your own risk. You should not use this data to make individual prescribing decisions.</p>
