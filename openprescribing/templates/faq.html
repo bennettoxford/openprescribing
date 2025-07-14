@@ -75,7 +75,7 @@
 <p>Given our limited resources, we do not routinely provide data not accessible through the website. However, you may be able to access this data yourself. The NHS BSA openly publishes the <a href="https://opendata.nhsbsa.net/dataset/english-prescribing-data-epd">English prescribing dataset</a> dating back to January 2014. If data prior to 2014 is required, the <a href="https://www.nhsbsa.nhs.uk/statistical-collections/prescription-cost-analysis-england">Prescription Cost Analysis dataset</a> is accessible from 1998 onward although is not as detailed as the English Prescribing Dataset.</p>
 
 <h3 id="compare">Why do OpenPrescribing figures not always match with other prescribing data analysis platforms?</h3>
-<p>At OpenPrescribing we anticipate that our results will not always be exactly the same as those displayed on alternative data analysis platforms. There are two common reasons for this. Firstly, different platforms may use different underlying datasets. At OpenPrescribing we use two openly available datasets: the <a href="https://www.nhsbsa.nhs.uk/prescription-data/prescribing-data/english-prescribing-data-epd">English Prescribing dataset (EPD)</a> and the <a href="https://www.nhsbsa.nhs.uk/prescription-data/dispensing-data/prescription-cost-analysis-pca-data"> Prescription Cost Analysis (PCA)</a>. Secondly, different platforms will make different choices in their analytic code for preparing the data and displaying it to users.</p>
+<p>At OpenPrescribing we anticipate that our results will not always be exactly the same as those displayed on alternative data analysis platforms. There are two common reasons for this. Firstly, different platforms may use different underlying datasets. At OpenPrescribing we use the openly available <a href="https://www.nhsbsa.nhs.uk/prescription-data/prescribing-data/english-prescribing-data-epd">English Prescribing dataset (EPD). Secondly, different platforms will make different choices in their analytic code for preparing the data and displaying it to users.</p>
 <p>All our code used in data preparation, analysis and visualisation is openly available on the Bennett Institute <a href="https://github.com/ebmdatalab/openprescribing"> Github</a> for inspection and re-use by anyone. You can also click on the "<i>view technical details for this measure</i>" link in each measure to show exactly what code we are using to create it.</p>
 
 <h3 id="subscribe">How do I subscribe/unsubscribe from emails?</h3>
@@ -178,7 +178,7 @@
 <p>Medicines administered to patients under both categories appear in OpenPrescribing data.  For example <a href="https://openprescribing.net/chemical/1404000H0/"> here is data on influenza vaccines</a>, which are usually claimed on FP34D/PD.</p>
 
 <h3 id="ssps">How do items dispensed under a Serious Shortage Protocol (SSP) appear in OpenPrescribing?</h3>
-<p>The BSA <a href="https://opendata.nhsbsa.net/dataset/65050ec0-5abd-48ce-989d-defc08ed837e/issues/2">have confirmed</a> that the prescribing dataset we use shows entries for items dispensed under an SSP, but does not include information on the item originally prescribed.</p>
+<p>The BSA <a href="https://opendata.nhsbsa.net/dataset/65050ec0-5abd-48ce-989d-defc08ed837e/discussions/2">have confirmed</a> that the prescribing dataset we use shows entries for items dispensed under an SSP, but does not include information on the item originally prescribed.</p>
 
 <h3 id="concessioncosts">How are price concession costs calculated?</h3>
 <p>
@@ -217,7 +217,7 @@
 <h2>Dashboards</h2>
 
 <h3 id="measureinterpret">How should I interpret the measures?</h3>
-<p>We recommend reading NHS Digitals's <a href="https://digital.nhs.uk/practice-level-prescribing-summary">Practice Level Prescribing in England: a summary</a>, including the <a href="https://digital.nhs.uk/data-and-information/areas-of-interest/prescribing/practice-level-prescribing-in-england-a-summary/practice-level-prescribing-data-more-information">more information section</a> and <a href="https://digital.nhs.uk/data-and-information/areas-of-interest/prescribing/practice-level-prescribing-in-england-a-summary/practice-level-prescribing-glossary-of-terms">glossary of terms</a>.</p>
+<p>We recommend reading NHS Digitals's <a href="https://digital.nhs.uk/data-and-information/areas-of-interest/prescribing/practice-level-prescribing-in-england-a-summary">Practice Level Prescribing in England: a summary</a>, including the <a href="https://digital.nhs.uk/data-and-information/areas-of-interest/prescribing/practice-level-prescribing-in-england-a-summary/practice-level-prescribing-data-more-information">more information section</a> and <a href="https://digital.nhs.uk/data-and-information/areas-of-interest/prescribing/practice-level-prescribing-in-england-a-summary/practice-level-prescribing-glossary-of-terms">glossary of terms</a>.</p>
 
 <p>Just because a practice or NHS organisation is an outlier for high or low use of a particular treatment, that doesn't necessarily mean they are good or bad prescribers. These are <em>measures</em> rather than <em>indicators</em>, and they need to be interpreted judiciously.</p>
 
@@ -241,7 +241,7 @@
 
 <p>The prescribing data released by NHS BSA aggregates all generic and ghost-generic prescribing together, so it is not possible for us to break down the data precisely.</p>
 
-<p>In addition, the published Drug Tariff prices are not necessarily the ones used by BSA for reimbursement (see <a href="https://github.com/ebmdatalab/openprescribing/issues/1318">our technical notes here</a> for an explanation of this). Therefore, to estimate the size of the problem for individual practices or NHS organisations, we first have to estimate the Drug Tariff price for a generic, which we do by taking the median price paid for that generic item across the entire country. This gives us a price that <em>should</em> be paid for all prescriptions of that generic. We then compare this with the price that was used for reimbursement. This difference gives a reasonable estimate of the total possible savings if a generic were prescribed correctly. We only include savings of more than £5. Note that we use Net Ingredient Cost for our calculations; the true reimbursement cost will typically be 7% less due to bulk discounts.</p>
+<p>In addition, the published Drug Tariff prices are not necessarily the ones used by BSA for reimbursement (see <a href="https://github.com/bennettoxford/openprescribing/issues/1318">our technical notes here</a> for an explanation of this). Therefore, to estimate the size of the problem for individual practices or NHS organisations, we first have to estimate the Drug Tariff price for a generic, which we do by taking the median price paid for that generic item across the entire country. This gives us a price that <em>should</em> be paid for all prescriptions of that generic. We then compare this with the price that was used for reimbursement. This difference gives a reasonable estimate of the total possible savings if a generic were prescribed correctly. We only include savings of more than £5. Note that we use Net Ingredient Cost for our calculations; the true reimbursement cost will typically be 7% less due to bulk discounts.</p>
 
 <p>You can read more about the background of this issue <a href="https://www.bennett.ox.ac.uk/blog/2018/12/ghost-branded-generics-why-does-the-cost-of-generic-atorvastatin-vary/">on our blog</a>.</p>
 
@@ -258,7 +258,7 @@
 <h2 id="longtermtrends"><a name="longtermtrends"></a>Long term trends</h2>
 
 <h3 id="wheretrends">What's happened to the Long Term Trends tool?</h3>
-<p>We released the long term trends tool in 2017.  The data has not been updated in the tool since the 2018 data release, and unfortunately continued support for the tool is not a priority for us at this time.  The tool is still available <a href="https://openprescribing.net/long_term_trends/">here>/a>, but please be aware we are no longer supporting or updating the data.</p>
+<p>We released the long term trends tool in 2017.  The data has not been updated in the tool since the 2018 data release, and unfortunately continued support for the tool is not a priority for us at this time.  The tool is still available <a href="https://openprescribing.net/long_term_trends/">here</a>, but please be aware we are no longer supporting or updating the data.</p>
 
 <h2 id="Disclaimer">Disclaimer</h2>
 <p>We accept no liability for any errors in the data or its publication here: use this data at your own risk. You should not use this data to make individual prescribing decisions.</p>
