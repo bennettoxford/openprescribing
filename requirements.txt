@@ -24,7 +24,7 @@ cachetools==5.5.2
     # via
     #   google-auth
     #   premailer
-certifi==2025.7.9
+certifi==2025.7.14
     # via
     #   requests
     #   selenium
@@ -125,7 +125,7 @@ google-auth-oauthlib==1.2.2
     # via
     #   pandas-gbq
     #   pydata-google-auth
-google-cloud-bigquery==3.34.0
+google-cloud-bigquery==3.35.0
     # via
     #   -r requirements.in
     #   pandas-gbq
@@ -230,7 +230,7 @@ pandas==2.3.1
     #   db-dtypes
     #   pandas-gbq
     #   seaborn
-pandas-gbq==0.29.1
+pandas-gbq==0.29.2
     # via -r requirements.in
 paramiko-ng==2.9.0
     # via fab-classic
