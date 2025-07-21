@@ -67,7 +67,8 @@ cmd="gunicorn openprescribing.wsgi:application \
   --timeout $GUNICORN_TIMEOUT \
   --log-level=$GUNICORN_LOG_LEVEL \
   --log-file=$LOGFILE \
-  --access-logfile=$ACCESS_LOGFILE"
+  --access-logfile=$ACCESS_LOGFILE \
+  --limit-request-line=8190"
 
 if [[ ! -z $CHECK_CONFIG ]]; then
     cmd="$cmd --check-config"
