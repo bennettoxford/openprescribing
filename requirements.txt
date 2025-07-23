@@ -95,7 +95,7 @@ fab-classic==1.20.0
     # via -r requirements.in
 flake8==7.3.0
     # via -r requirements.in
-fonttools==4.58.5
+fonttools==4.59.0
     # via matplotlib
 google-api-core[grpc]==2.25.1
     # via
@@ -253,7 +253,7 @@ protobuf==6.31.1
     #   proto-plus
 psycopg2-binary==2.9.10
     # via -r requirements.in
-pyarrow==20.0.0
+pyarrow==21.0.0
     # via
     #   db-dtypes
     #   pandas-gbq
