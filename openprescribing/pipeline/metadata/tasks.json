@@ -1,7 +1,8 @@
 {
     "fetch_bnf_codes": {
-        "type": "manual_fetch",
-        "source_id": "bnf_codes"
+        "type": "auto_fetch",
+        "source_id": "bnf_codes",
+        "command": "fetch_bnf_codes"
     },
     "fetch_ccg_boundaries": {
         "type": "manual_fetch_skip_for_now",

@@ -26,21 +26,21 @@ class Command(BaseCommand):
         with transaction.atomic():
             for row in reader:
                 # Add to sections list.
-                c_id = row["BNF Chapter Code"]
+                c_id = row["BNF_CHAPTER_CODE"]
                 if c_id not in sections:
-                    sections[c_id] = {"id": c_id, "name": row["BNF Chapter"]}
-                s_id = row["BNF Section Code"]
+                    sections[c_id] = {"id": c_id, "name": row["BNF_CHAPTER"]}
+                s_id = row["BNF_SECTION_CODE"]
                 if s_id not in sections:
-                    sections[s_id] = {"id": s_id, "name": row["BNF Section"]}
-                p_id = row["BNF Paragraph Code"]
+                    sections[s_id] = {"id": s_id, "name": row["BNF_SECTION"]}
+                p_id = row["BNF_PARAGRAPH_CODE"]
                 if p_id not in sections:
-                    sections[p_id] = {"id": p_id, "name": row["BNF Paragraph"]}
-                sp_id = row["BNF Subparagraph Code"]
+                    sections[p_id] = {"id": p_id, "name": row["BNF_PARAGRAPH"]}
+                sp_id = row["BNF_SUBPARAGRAPH_CODE"]
                 if sp_id not in sections:
-                    sections[sp_id] = {"id": sp_id, "name": row["BNF Subparagraph"]}
+                    sections[sp_id] = {"id": sp_id, "name": row["BNF_SUBPARAGRAPH"]}
 
-                chemical_name = row["BNF Chemical Substance"].strip()
-                chemical_code = row["BNF Chemical Substance Code"].strip()
+                chemical_name = row["BNF_CHEMICAL_SUBSTANCE"].strip()
+                chemical_code = row["BNF_CHEMICAL_SUBSTANCE_CODE"].strip()
                 if not chemical_name.startswith("DUMMY "):
                     try:
                         p = Chemical.objects.get(bnf_code=chemical_code)
@@ -51,8 +51,8 @@ class Command(BaseCommand):
                             bnf_code=chemical_code, chem_name=chemical_name
                         )
 
-                product_name = row["BNF Product"].strip()
-                product_code = row["BNF Product Code"].strip()
+                product_name = row["BNF_PRODUCT"].strip()
+                product_code = row["BNF_PRODUCT_CODE"].strip()
                 if not product_name.startswith("DUMMY "):
                     try:
                         p = Product.objects.get(bnf_code=product_code)
@@ -63,8 +63,8 @@ class Command(BaseCommand):
                             bnf_code=product_code, name=product_name
                         )
 
-                pres_name = row["BNF Presentation"].strip()
-                pres_code = row["BNF Presentation Code"].strip()
+                pres_name = row["BNF_PRESENTATION"].strip()
+                pres_code = row["BNF_PRESENTATION_CODE"].strip()
                 if not pres_name.startswith("DUMMY "):
                     try:
                         p = Presentation.objects.get(bnf_code=pres_code)

@@ -49,7 +49,8 @@ class Command(BaseCommand):
 
         zip_filename = base_filename + ".zip"
         if base_filename == "epcn":
-            url = "https://digital.nhs.uk/binaries/content/assets/website-assets/services/ods/data-downloads-other-nhs-organisations/epcn.zip"
+            # See https://github.com/bennettoxford/nhsd-proxy/ for details.
+            url = "http://nhsd-proxy.openprescribing.net:8080/binaries/content/assets/website-assets/services/ods/data-downloads-other-nhs-organisations/epcn.zip"
             filename = "ePCN.xlsx"
         else:
             url = "https://files.digital.nhs.uk/assets/ods/current/" + zip_filename
