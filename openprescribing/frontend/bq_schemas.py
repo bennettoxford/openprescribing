@@ -117,6 +117,7 @@ TARIFF_SCHEMA = build_schema(
 )
 
 BNF_SCHEMA = build_schema(
+    ("year_month", "STRING"),
     ("chapter", "STRING"),
     ("chapter_code", "STRING"),
     ("section", "STRING"),
