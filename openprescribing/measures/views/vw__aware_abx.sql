@@ -10,8 +10,8 @@ WITH matched_vtms AS ( -- This query does the fuzzy matching of Antibiotic name 
       WHEN aware.Antibiotic = vtm.nm THEN 'DIRECT'
       ELSE 'ASSUMED'
     END AS match_type
-  FROM `ebmdatalab.chris.aware_list_extended` aware
-  LEFT JOIN `ebmdatalab.dmd.vtm` vtm 
+  FROM measures.aware_grouping
+  LEFT JOIN {project}.{dmd}.vtm vtm 
     ON vtm.nm LIKE CONCAT('%', aware.Antibiotic, '%')
   WHERE vtm.invalid IS NOT TRUE
 ),
@@ -35,11 +35,11 @@ vmp_with_route AS (
     vmp.vtm AS vtm,
     vmp.nm AS nm,
     COALESCE(sroute.route, routelookup.who_route) AS vmp_atc_route
-  FROM `ebmdatalab.dmd.vmp` vmp
-  LEFT JOIN dmd.ont ont ON vmp.id = ont.vmp
-  LEFT JOIN dmd.ontformroute ofr ON ont.form = ofr.cd
-  LEFT JOIN chris.vmp_single_route_identifier sroute ON vmp.id = sroute.vmp_id
-  LEFT JOIN `scmd_dmd_views.dmd_to_atc_route` routelookup ON ofr.descr = routelookup.dmd_ofr
+  FROM {project}.{dmd}.vmp vmp
+  LEFT JOIN {project}.{dmd}.ont ont ON vmp.id = ont.vmp
+  LEFT JOIN {project}.{dmd}.ontformroute ofr ON ont.form = ofr.cd
+  LEFT JOIN measures.vmp_single_route_identifier sroute ON vmp.id = sroute.vmp_id
+  LEFT JOIN measures.vw__dmd_to_atc_route routelookup ON ofr.descr = routelookup.dmd_ofr
   WHERE ofr.descr NOT LIKE '%.auricular'
   AND ofr.descr NOT LIKE '%.cutaneous'
   AND ofr.descr NOT LIKE '%.ophthalmic'
