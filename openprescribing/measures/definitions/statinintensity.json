@@ -62,7 +62,7 @@
   "OR vpi.ing = 96306007) --Pravastatin sodium (all strengths) (ing code)"
   ],
   "authored_by": "christopher.wood@phc.ox.ac.uk",
-  "checked_by": "",
+  "checked_by": "richard.croker@phc.ox.ac.uk",
   "date_reviewed": "2025-07-29",
   "next_review": "2026-07-29",
   "measure_complexity": "medium",
