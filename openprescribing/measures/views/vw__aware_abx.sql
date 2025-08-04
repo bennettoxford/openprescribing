@@ -1,5 +1,5 @@
 WITH aware_vmps AS (
-  SELECT 
+  SELECT DISTINCT
     vmp.id AS vmp_id,
     vmp.nm AS vmp_nm,
     vmp.bnf_code AS bnf_code,
