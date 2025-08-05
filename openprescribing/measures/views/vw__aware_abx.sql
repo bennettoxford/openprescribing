@@ -5,12 +5,12 @@ WITH aware_vmps AS (
     vmp.bnf_code AS bnf_code,
     aware.aware_2019,  -- Historic AWaRE categories
     aware.aware_2024 -- Current AWaRE categories
-  FROM `{project}.{measures}.tbl__aware_vtms` aware -- Table containing VTM IDs and their AWaRE categories
-  INNER JOIN `{project}.{dmd}.vmp` vmp 
+  FROM {project}.{measures}.tbl__aware_vtms aware -- Table containing VTM IDs and their AWaRE categories
+  INNER JOIN {project}.{dmd}.vmp vmp 
     ON aware.vtm_id = vmp.vtm
-  INNER JOIN `{project}.{dmd}.ont` ont 
+  INNER JOIN {project}.{dmd}.ont ont 
     ON vmp.id = ont.vmp
-  INNER JOIN `{project}.{dmd}.ontformroute` ofr 
+  INNER JOIN {project}.{dmd}.ontformroute ofr 
     ON ont.form = ofr.cd
   WHERE (
     aware.atc_route IS NULL
