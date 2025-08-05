@@ -17,8 +17,7 @@ WITH aware_vmps AS (
     OR (
       aware.atc_route = 'P'
       AND (
-        ofr.descr LIKE '%.intravenous'
-        OR ofr.descr LIKE '%.intramuscular'
+        SUBSTR(ofr.descr, STRPOS(ofr.descr, '.') + 1) IN ('intravenous', 'intramuscular', 'intramuscular-deep')
       )
     )
     OR (
@@ -26,6 +25,9 @@ WITH aware_vmps AS (
       AND ofr.descr LIKE '%.oral'
     )
   )
+  AND SUBSTR(ofr.descr, STRPOS(ofr.descr, '.') + 1) IN ('inhalation', 'intramuscular', 'intramuscular-deep', 'intravenous', 'oral', 'vaginal', 'gastroenteral', 'rectal')
+  AND ofr.descr != 'gel.vaginal'
+  AND ofr.descr != 'cream.vaginal'
 )
 
 SELECT
