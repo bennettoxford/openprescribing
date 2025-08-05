@@ -37,9 +37,9 @@
     "p.aware IN ('Access', 'Watch', 'Reserve')"
   ],
   "authored_by": "christopher.wood@phc.ox.ac.uk",
-  "checked_by": "",
-  "date_reviewed": "",
-  "next_review": "",
+  "checked_by": "richard.croker@phc.ox.ac.uk",
+  "date_reviewed": "2025-08-05",
+  "next_review": "2026-08-05",
   "measure_complexity": "high",
   "measure_type": "custom",
   "radar_exclude": false
