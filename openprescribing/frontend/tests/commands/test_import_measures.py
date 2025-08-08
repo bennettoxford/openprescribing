@@ -382,6 +382,7 @@ class BuildMeasureSQLTests(TestCase):
             "010101 # Everything in 1.1.1",
             "~010101000BBABA0 # Langdales_Cinnamon Tab",
             "~0302000N0%AV # Fluticasone Prop_Inh Soln 500mcg/2ml Ud (brands and generic)",
+            "# #GlucoRx Smart Glucose testing strips (GlucoRx Ltd) WAITING FOR BNF CODE",
         ]
 
         expected_sql = """
