@@ -44,9 +44,9 @@
     "~0601060D0FDAAA0 # AgaMatrix Agile Test Strips (AgaMatrix Europe Ltd)",
     "~0601060D0CUAGA0 # GlucoRx Vivid testing strips (GlucoRx Ltd)",
     "~0601060D0EFAAA0 # palmdoc testing strips (Palmdoc Ltd)",
-    "#Neon GK+ Glucose testing strips (Neon Diagnostics Ltd) WAITING FOR BNF CODE",
+    "~0601060D0FFAAA0 # Neon GK+ Glucose testing strips (Neon Diagnostics Ltd)",
     "#ALLYbg Test Strips WAITING FOR INCLUSION IN dm+d AND BNF CODE",
-    "GlucoRx Smart Glucose testing strips (GlucoRx Ltd) WAITING FOR BNF CODE"
+    "#GlucoRx Smart Glucose testing strips (GlucoRx Ltd) WAITING FOR BNF CODE"
   ],
   "denominator_type": "bnf_items",
   "denominator_bnf_codes_filter": [
