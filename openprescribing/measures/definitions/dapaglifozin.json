@@ -27,10 +27,10 @@
     "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names "
   ],
   "numerator_where": [
-    "vpi.ing = 703674001 AND NOT((LEFT(p.bnf_code,11) ='0601023AGAA' AND route.descr ='tablet.oral')) --Dapagliflozin (except generic tablets for non-combination) \n",
-    "OR vpi.ing = 703676004 --Canagliflozin \n",
+    "(vpi.ing = 783086004 AND NOT(LEFT(p.bnf_code,11) ='0601023AGAA' AND route.descr ='tablet.oral')) --Dapagliflozin propanediol monohydrate (except generic tablets for non-combination) \n",
+    "OR vpi.ing = 725664009 --Canagliflozin hemihydrate \n",
     "OR vpi.ing = 703894008 --Empagliflozin\n", 
-    "OR vpi.ing = 764274008 --Ertugliflozin"
+    "OR vpi.ing = 1162393006 --Ertugliflozin L-pyroglutamic acid"
   ],
   "denominator_type": "custom",
   "denominator_columns": "SUM(p.items) AS denominator",
@@ -40,7 +40,7 @@
     "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n"
   ],
   "denominator_where": [
-    "vpi.ing IN (703676004,703674001,703894008,764274008) --Canagliflozin, Dapagliflozin, Empagliflozin, Ertugliflozin \n"
+    "vpi.ing IN (725664009,783086004,703894008,1162393006) --Canagliflozin hemihydrate, Dapagliflozin propanediol monohydrate, Empagliflozin, Ertugliflozin L-pyroglutamic acid \n"
   ], 
 "authored_by": "richard.croker@phc.ox.ac.uk",
   "checked_by": "",
