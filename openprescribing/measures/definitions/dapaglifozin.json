@@ -1,0 +1,52 @@
+{
+  "name": "Proportion of sodium-glucose co-transporter 2 (SGLT-2) inhibitors (including combination products) not prescribed as generic dapagliflozin tablets",
+  "title": "Percentage SGLT-2 inhibitors items not prescribed as generic dapagliflozin tablets",
+  "description": "Percentage SGLT-2 inhibitors items not prescribed as generic dapagliflozin tablets",
+  "numerator_short": "SGLT-2 inhibitors items not prescribed as generic dapagliflozin tablets",
+  "denominator_short": "SGLT-2 inhibitors items",
+  "y_label": "Percentage SGLT-2 inhibitors items not prescribed as generic dapagliflozin tablets",
+  "why_it_matters": [
+    "Lost patent, from september Cat M etc."
+  ],
+  "tags": [
+    "diabetes",
+    "core",
+    "cost"
+  ],
+  "url": null,
+  "is_percentage": true,
+  "is_cost_based": false,
+  "low_is_good": true,
+  "numerator_type": "custom",
+  "numerator_columns": "SUM(p.items) AS numerator",
+  "numerator_from": [
+    "{hscic}.normalised_prescribing p ",
+    "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
+    "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n",
+    "INNER JOIN {dmd}.ont AS ont ON vmp.id = ont.vmp -- joins vmp to ont table to get formulation codes \n",
+    "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names "
+  ],
+  "numerator_where": [
+    "vpi.ing = 703674001 AND NOT((LEFT(p.bnf_code,11) ='0601023AGAA' AND route.descr ='tablet.oral')) --Dapagliflozin (except generic tablets for non-combination) \n",
+    "OR vpi.ing = 703676004 --Canagliflozin \n",
+    "OR vpi.ing = 703894008 --Empagliflozin\n", 
+    "OR vpi.ing = 764274008 --Ertugliflozin"
+  ],
+  "denominator_type": "custom",
+  "denominator_columns": "SUM(p.items) AS denominator",
+  "denominator_from": [
+    "{hscic}.normalised_prescribing p ",
+    "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
+    "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n"
+  ],
+  "denominator_where": [
+    "vpi.ing IN (703676004,703674001,703894008,764274008) --Canagliflozin, Dapagliflozin, Empagliflozin, Ertugliflozin \n"
+  ], 
+"authored_by": "richard.croker@phc.ox.ac.uk",
+  "checked_by": "",
+  "date_reviewed": "",
+  "next_review": "",
+  "measure_complexity": "low",
+  "measure_type": "dmd",
+  "radar_exclude": false
+}
