@@ -50,9 +50,9 @@
     "vpi.ing IN (725664009,783086004,703894008,1162393006) --Canagliflozin hemihydrate, Dapagliflozin propanediol monohydrate, Empagliflozin, Ertugliflozin L-pyroglutamic acid \n"
   ], 
 "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "",
-  "date_reviewed": "",
-  "next_review": "",
+  "checked_by": "andrew.brown@phc.ox.ac.uk",
+  "date_reviewed": "18/08/2025",
+  "next_review": "18/08/2027",
   "measure_complexity": "low",
   "measure_type": "dmd",
   "radar_exclude": false
