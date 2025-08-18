@@ -67,7 +67,7 @@
   ],
   "url": null,
   "is_percentage": true,
-  "is_cost_based": false,
+  "is_cost_based": true,
   "low_is_good": true,
   "numerator_type": "custom",
   "numerator_columns": "SUM(p.items) AS numerator",
