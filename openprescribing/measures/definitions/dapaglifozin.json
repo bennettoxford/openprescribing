@@ -6,7 +6,13 @@
   "denominator_short": "SGLT-2 inhibitors items",
   "y_label": "Percentage SGLT-2 inhibitors items not prescribed as generic dapagliflozin tablets",
   "why_it_matters": [
-    "Lost patent, from september Cat M etc."
+    "<p>Dapaglifozin is a sodium-glucose co-transporter 2 (SGLT-2) inhibitor, commonly prescribed in type 2 diabetes, as well as in the treatment of chronic heart failure and chronic kidney disease.</p>",
+    "<p>Dapaglifozin lost its patent in August 2025.  From September 2025 the NHS tariff price is likely to fall, as it will be <a href='https://cpe.org.uk/our-news/dapagliflozin-tablets-changes-to-reimbursement-from-september-2025/' target='_Blank'>",
+    "based on the generic price</a>, rather than the branded product.",
+    "<a href='https://www.nice.org.uk/guidance/ng28/chapter/Recommendations#drug-treatment' target='_Blank'> NICE guidance on the treatment of diabetes states that</a> 'if 2 drugs in the same class are appropriate, choose the option with the lowest acquisition cost'. ",
+    " Dapagliflozin is likely to have cost-saving opportunities when compared with other SGLT-2s.<p>",
+    "<p><b>Please note:</b> OpenPrescribing.net measures have a consistent way of visualising measures, where 'lower is better' ",
+    "and therefore in this case we show the proportion of SGLT-2 inhibitos which are NOT prescribed as generic dapagliflozin tablets."
   ],
   "tags": [
     "diabetes",
