@@ -1,4 +1,4 @@
--- this view adjusts inhaler quantities where they are showing as doses, rather than inhalers.  If the quantity per item is more than 10, it adjusts by the smallest dm+d pack size.
+-- this view adjusts inhaler quantities where they are showing as doses, rather than inhalers.  If the quantity per item is more than 9, it adjusts by the smallest dm+d pack size.
 SELECT
   TIMESTAMP(month) as date,
   rx.bnf_code,
