@@ -1,14 +1,13 @@
 {
-  "name": "Bile acid sequestrants, fibrates, nicotinic acid, and omega 3 fatty acids",
-  "title": "Total cost of prescriptions for bile acid sequestrants, fibrates, nicotinic acid, and omega 3 fatty acid compounds per 1000 registered patients",
-  "description": "Total cost of prescriptions for bile acid sequestrants, fibrates, nicotinic acid, and omega 3 fatty acid compounds per 1000 registered patients",
+  "name": "Fibrates and nicotinic acid",
+  "title": "Total cost of prescriptions for fibrates and nicotinic acid per 1000 registered patients",
+  "description": "Total cost of prescriptions for fibrates and nicotinic acid per 1000 registered patients",
   "numerator_short": "Cost of selected items (£)",
   "denominator_short": "1000 patients",
   "y_label": "Cost (£) per 1000 patients",
   "why_it_matters": [
     "NICE guideline <a href='https://www.nice.org.uk/guidance/ng238/chapter/Recommendations#lipid-lowering-treatments-that-should-not-be-used-or-not-used-routinely' target='_blank'>NG238 (cardiovascular disease: risk assessment and reduction, including lipid modification)</a> recommends that ",
-    "fibrates, nicotinic acid, bile acid sequestrants, and omega-3 fatty acid compounds (excluding icosapent ethyl) should not be routinely offered to patients for the primary or secondary prevention of cardiovascular disease (CVD). ",
-    "In particular,  NICE state that there is no evidence that omega 3 fatty acid compounds help to prevent CVD (with the exception of icosapent ethyl).",
+    "fibrates and nicotinic acid should not be routinely offered to patients for the primary or secondary prevention of cardiovascular disease (CVD). ",
     "This guidance does not apply to people with familial hypercholesterolaemia, which is covered by <a href='https://www.nice.org.uk/guidance/cg71' target='_blank'> separate NICE guidance</a>."
   ],
   "tags": [
@@ -26,13 +25,8 @@
     "0212000A0 # Acipimox",
     "0212000D0 # Bezafibrate",    
     "021200010 # Ciprofibrate",
-    "0212000AD # Colesevelam Hydrochloride",
-    "0212000K0 # Colestipol Hydrochloride",
-    "0212000F0 # Colestyramine",
     "0212000P0 # Fenofibrate",
     "0212000Q0 # Gemfibrozil",
-    "0212000AB # Omega-3-Acid Ethyl Esters",
-    "0212000V0 # Omega-3 Marine Triglycerides",
     "0212000U0 # Nicotinic Acid",    
     "0212000AE # Nicotinic Acid/Laropiprant"
   ],
