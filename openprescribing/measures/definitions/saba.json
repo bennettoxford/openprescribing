@@ -54,7 +54,7 @@
     "AND ( \n",
     "p.bnf_code LIKE '0301011R0%' -- Salbutamol \n",
     "OR p.bnf_code LIKE '0301011V0%' -- Terbutaline \n" ,
-    "OR p.bnf_code LIKE '0302%') -- Corticosteroids (Respiratory)",
+    "OR p.bnf_code LIKE '0302%') -- Corticosteroids (Respiratory) \n",
     "AND \n",
     "count.ing_count <3 --only includes inhalers with fewer than 3 ingredients, removing triple therapy (usually used in COPD)"
   ],
