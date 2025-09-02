@@ -4,15 +4,13 @@
   "description": "Total DDD of pregabalin + gabapentin per 1000 patients",
   "y_label": "DDD per 1000 patients",
   "why_it_matters": [
-    "Gabapentin and pregabalin are increasingly used in neuropathic and other types of pain, and use is ",
-    "rising rapidly in the NHS. There are also concerns about the ",
-    "<a href='https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/385791/PHE-NHS_England_pregabalin_and_gabapentin_advice_Dec_2014.pdf'>",
-    "potential for abuse</a> and consequently both medicines have been reclassified legally  <a href='https://www.england.nhs.uk/wp-content/uploads/2019/02/handling-pregabalin-and-gabapentin.pdf'> (more information here)</a>. There appears to be no robust evidence for dose conversion between gabapentin and pregabalin. ",
-     "We have therefore chosen to use the <a href='https://www.who.int/medicines/regulation/medicines-safety/toolkit_ddd/en/'>",
-    "Defined Daily Dose</a> (DDD) for this measure.  This is a similar dose ratio that <a href='https://www.ncbi.nlm.nih.gov/pubmed/20113408'>",
-    "Toth described</a> in his paper on the substitution of gabapentin with pregabalin. ",
-    "<br><br><strong>Please note that this is an experimental measure.</strong> We would be grateful for any feedback at ",
-    "<a href='mailto:bennett@phc.ox.ac.uk'>bennett@phc.ox.ac.uk</a>."
+    "Gabapentin and pregabalin are increasingly used in neuropathic and other types of pain. There are concerns about the ",
+    "<a href='https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/385791/PHE-NHS_England_pregabalin_and_gabapentin_advice_Dec_2014.pdf' target='_Blank'>",
+    "potential for abuse with these drugs</a>, as well as a risk of respiratory depression with both <a href='https://www.gov.uk/drug-safety-update/pregabalin-lyrica-reports-of-severe-respiratory-depression' target='_Blank'>pregabalin</a> and ",
+    "<a href='https://www.gov.uk/drug-safety-update/gabapentin-neurontin-risk-of-severe-respiratory-depression' target='_Blank'>gabapentin</a>.</p>",
+    "<p>There appears to be no robust evidence for dose conversion between gabapentin and pregabalin. We have therefore chosen to use the <a href='https://www.who.int/medicines/regulation/medicines-safety/toolkit_ddd/en/' target='_Blank'>",
+    "Defined Daily Dose</a> (DDD) for this measure.  This is a similar dose ratio that <a href='https://www.ncbi.nlm.nih.gov/pubmed/20113408' target='_Blank'>",
+    "Toth described</a> in his paper on the substitution of gabapentin with pregabalin."
   ],
   "numerator_short": "Gabapentin total DDD prescribed + pregabalin total DDD prescribed",
   "denominator_short": "1000 patients",
@@ -52,8 +50,8 @@
   "denominator_type": "list_size",
   "authored_by": "richard.croker@phc.ox.ac.uk",
   "checked_by":"andrew.brown@phc.ox.ac.uk",
-  "date_reviewed":"2024-02-12",
-  "next_review": "2025-02-12",
+  "date_reviewed":"2025-05-13",
+  "next_review": "2026-05-13",
   "measure_complexity":"medium",
   "measure_type": "dmd",
   "radar_exclude": false
