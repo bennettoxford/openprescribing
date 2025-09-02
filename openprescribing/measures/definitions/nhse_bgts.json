@@ -45,8 +45,8 @@
     "~0601060D0CUAGA0 # GlucoRx Vivid testing strips (GlucoRx Ltd)",
     "~0601060D0EFAAA0 # palmdoc testing strips (Palmdoc Ltd)",
     "~0601060D0FFAAA0 # Neon GK+ Glucose testing strips (Neon Diagnostics Ltd)",
-    "#ALLYbg Test Strips WAITING FOR INCLUSION IN dm+d AND BNF CODE",
-    "#GlucoRx Smart Glucose testing strips (GlucoRx Ltd) WAITING FOR BNF CODE"
+    "~0601060D0FGAAA0 # GlucoRx Smart Glucose testing strips (GlucoRx Ltd)",
+    "#ALLYbg Test Strips WAITING FOR INCLUSION IN dm+d AND BNF CODE"
   ],
   "denominator_type": "bnf_items",
   "denominator_bnf_codes_filter": [
@@ -55,8 +55,8 @@
   ],
   "authored_by": "richard.croker@phc.ox.ac.uk",
   "checked_by": "christopher.wood@phc.ox.ac.uk",
-  "date_reviewed": "2025-07-01",
-  "next_review": "2027-07-01",
+  "date_reviewed": "2025-09-02",
+  "next_review": "2027-09-02",
   "measure_complexity": "low",
   "measure_type": "bnf_code",
   "radar_exclude": false
