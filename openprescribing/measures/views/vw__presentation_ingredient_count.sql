@@ -1,7 +1,6 @@
 -- This view describes the number of separate ingredients in each presentation.  It's useful to have for areas like identifying where inhalers have multiple ingredients.
 SELECT
-  presentation,
-  presentation_code,
+  presentation_code as bnf_code,
   COUNT(ing) AS ing_count
 FROM
   dmd.vpi vpi
@@ -16,7 +15,4 @@ ON
 WHERE
   presentation_code LIKE '03%'
 GROUP BY
-  presentation,
-  presentation_code
-HAVING
-  COUNT(ing) >2
+  bnf_code
