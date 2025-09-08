@@ -24,23 +24,23 @@
   "is_percentage": true,
   "is_cost_based": false,
   "low_is_good": true,
-  "numerator_type": "custom",
-  "numerator_columns": "SUM(p.items) AS numerator",
-  "numerator_from": "{measures}.vw__aware_abx p",
-  "numerator_where": [
+  "numerator_type": "items",
+  "numerator_bnf_codes_query": [
+    "SELECT DISTINCT p.bnf_code",
+    "FROM {measures}.vw_aware_abx_bnf_codes p",
     "p.aware IN ('Watch', 'Reserve')"
   ],
-  "denominator_type": "custom",
-  "denominator_columns": "SUM(p.items) AS denominator",
-  "denominator_from": "{measures}.vw__aware_abx p",
-  "denominator_where": [
+  "denominator_type": "items",
+  "numerator_bnf_codes_query": [
+    "SELECT DISTINCT p.bnf_code",
+    "FROM {measures}.vw_aware_abx_bnf_codes p",
     "p.aware IN ('Access', 'Watch', 'Reserve')"
   ],
-  "authored_by": "christopher.wood@phc.ox.ac.uk",
-  "checked_by": "richard.croker@phc.ox.ac.uk",
-  "date_reviewed": "2025-08-05",
-  "next_review": "2026-08-05",
-  "measure_complexity": "high",
+  "authored_by": "",
+  "checked_by": "",
+  "date_reviewed": "",
+  "next_review": "",
+  "measure_complexity": "",
   "measure_type": "custom",
   "radar_exclude": false
 }
