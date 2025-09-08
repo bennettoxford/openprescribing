@@ -26,15 +26,11 @@
   "low_is_good": true,
   "numerator_type": "bnf_items",
   "numerator_bnf_codes_query": [
-    "SELECT DISTINCT bnf_code",
-    "FROM {measures}.vw_aware_abx_bnf_codes",
-    "WHERE aware IN ('Watch', 'Reserve')"
+    "SELECT DISTINCT bnf_code FROM {measures}.vw_aware_abx_bnf_codes WHERE aware IN ('Watch', 'Reserve')"
   ],
   "denominator_type": "bnf_items",
-  "numerator_bnf_codes_query": [
-    "SELECT DISTINCT bnf_code",
-    "FROM {measures}.vw_aware_abx_bnf_codes",
-    "WHERE aware IN ('Access', 'Watch', 'Reserve')"
+  "denominator_bnf_codes_query": [
+    "SELECT DISTINCT bnf_code FROM {measures}.vw_aware_abx_bnf_codes WHERE aware IN ('Access', 'Watch', 'Reserve')"
   ],
   "authored_by": "",
   "checked_by": "",
