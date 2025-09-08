@@ -1,0 +1,30 @@
+{
+  "name": "Discontinuation of insulin detemir",
+  "title": "Insulin detemir items per 1000 patients",
+  "description": "Insulin detemir items per 1000 patients",
+  "numerator_short": "Items for insulin detemir",
+  "denominator_short": "1000 patients",
+  "y_label": "Insulin detemir items per 1000 patients",
+  "why_it_matters": [
+  "Detemir is being discontinued, click on the individual preps button to see how many prescriptions and what they are etc)
+  ],
+  "tags": [
+    "diabetes"
+  ],
+  "url": null,
+  "is_percentage": false,
+  "is_cost_based": false,
+  "low_is_good": false,
+  "numerator_type": "bnf_items",
+  "numerator_bnf_codes_filter": [
+    "0601012X0% # Insulin detemir"
+  ],
+  "denominator_type": "list_size",
+  "authored_by": "richard.croker@phc.ox.ac.uk",
+  "checked_by": "",
+  "date_reviewed": "",
+  "next_review": "",
+  "measure_complexity": "low",
+  "measure_type": "bnf_code",
+  "radar_exclude": true
+}
