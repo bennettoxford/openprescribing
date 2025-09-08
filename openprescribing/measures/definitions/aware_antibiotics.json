@@ -24,13 +24,13 @@
   "is_percentage": true,
   "is_cost_based": false,
   "low_is_good": true,
-  "numerator_type": "items",
+  "numerator_type": "bnf_items",
   "numerator_bnf_codes_query": [
     "SELECT DISTINCT p.bnf_code",
     "FROM {measures}.vw_aware_abx_bnf_codes p",
     "p.aware IN ('Watch', 'Reserve')"
   ],
-  "denominator_type": "items",
+  "denominator_type": "bnf_items",
   "numerator_bnf_codes_query": [
     "SELECT DISTINCT p.bnf_code",
     "FROM {measures}.vw_aware_abx_bnf_codes p",
