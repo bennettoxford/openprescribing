@@ -111,7 +111,7 @@ def import_month(rows, date):
 
     with transaction.atomic():
         for row in rows:
-            if all(v is None for v in row):
+            if all(v == "" for v in row):
                 continue
 
             d = {k: row[n] for k, n in headers.items()}
