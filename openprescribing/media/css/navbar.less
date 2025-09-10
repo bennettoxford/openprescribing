@@ -1,37 +1,29 @@
-.navbar-inverse {
-  margin-bottom: 10px;
-  background: rgba(28,28,28,1);
-  background: -moz-linear-gradient(top, rgba(28,28,28,1) 0%, rgba(19,19,19,1) 0%, rgba(51,51,51,1) 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(28,28,28,1)), color-stop(0%, rgba(19,19,19,1)), color-stop(100%, rgba(51,51,51,1)));
-  background: -webkit-linear-gradient(top, rgba(28,28,28,1) 0%, rgba(19,19,19,1) 0%, rgba(51,51,51,1) 100%);
-  background: -o-linear-gradient(top, rgba(28,28,28,1) 0%, rgba(19,19,19,1) 0%, rgba(51,51,51,1) 100%);
-  background: -ms-linear-gradient(top, rgba(28,28,28,1) 0%, rgba(19,19,19,1) 0%, rgba(51,51,51,1) 100%);
-  background: linear-gradient(to bottom, rgba(28,28,28,1) 0%, rgba(19,19,19,1) 0%, rgba(51,51,51,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1c1c1c', endColorstr='#333333', GradientType=0 );
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-}
-.home .active_home > a,
-.analyse .active_analyse > a,
-.dashboards .active_dashboards > a,
-.trends .active_trends > a,
-.more .active_more > a
- {
-    color: #fff !important;
-    background-color: #080808;
-}
-img.logo {
-  width: 20px;
-  margin-right: 5px;
-  float: left;
-}
-img.logo path {
-  fill: white;
-}
-
 /* Ensure dropdown menu has higher z-index than Mapbox controls.
 -------------------------------------------------- */
 .dropdown-menu {
   z-index: 1001 !important;
+}
+
+// Navbar 2025 styles
+#opNav {
+  margin-bottom: 10px;
+
+  .navbar-brand {
+    padding: 2px 0px 2px 8px;
+
+    svg {
+      display: flex;
+      height: 100%;
+      width: auto;
+    }
+  }
+
+  .home .active_home > a,
+  .analyse .active_analyse > a,
+  .dashboards .active_dashboards > a,
+  .trends .active_trends > a,
+  .more .active_more > a {
+    color: #555;
+    background-color: #e7e7e7;
+  }
 }
