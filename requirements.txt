@@ -28,7 +28,7 @@ certifi==2025.8.3
     # via
     #   requests
     #   selenium
-cffi==1.17.1
+cffi==2.0.0
     # via cryptography
 charset-normalizer==3.4.3
     # via requests
@@ -54,7 +54,7 @@ db-dtypes==1.4.3
     # via pandas-gbq
 diskcache==5.6.3
     # via -r requirements.in
-django==4.2.23
+django==4.2.24
     # via
     #   -r requirements.in
     #   crispy-bootstrap3
@@ -65,9 +65,9 @@ django==4.2.23
     #   django-debug-toolbar-template-timings
     #   django-extensions
     #   djangorestframework
-django-anymail[mailgun]==13.0.1
+django-anymail[mailgun]==13.1
     # via -r requirements.in
-django-cors-headers==4.7.0
+django-cors-headers==4.8.0
     # via -r requirements.in
 django-crispy-forms==2.4
     # via
@@ -125,11 +125,11 @@ google-auth-oauthlib==1.2.2
     # via
     #   pandas-gbq
     #   pydata-google-auth
-google-cloud-bigquery==3.36.0
+google-cloud-bigquery==3.37.0
     # via
     #   -r requirements.in
     #   pandas-gbq
-google-cloud-bigquery-storage==2.32.0
+google-cloud-bigquery-storage==2.33.1
     # via -r requirements.in
 google-cloud-core==2.4.3
     # via
@@ -198,7 +198,7 @@ more-itertools==10.8.0
     # via cssutils
 networkx==3.5
     # via -r requirements.in
-numpy==2.3.2
+numpy==2.3.3
     # via
     #   -r requirements.in
     #   contourpy
@@ -265,7 +265,7 @@ pyasn1-modules==0.4.2
     # via google-auth
 pycodestyle==2.14.0
     # via flake8
-pycparser==2.22
+pycparser==2.23
     # via cffi
 pydata-google-auth==1.9.1
     # via pandas-gbq
