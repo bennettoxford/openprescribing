@@ -32,11 +32,11 @@
   "denominator_bnf_codes_query": [
     "SELECT DISTINCT bnf_code FROM {measures}.vw_aware_abx_bnf_codes WHERE aware IN ('Access', 'Watch', 'Reserve')"
   ],
-  "authored_by": "",
-  "checked_by": "",
-  "date_reviewed": "",
-  "next_review": "",
-  "measure_complexity": "",
+  "authored_by": "richard.croker@phc.ox.ac.uk",
+  "checked_by": "christopher.wood@phc.ox.ac.uk",
+  "date_reviewed": "2025-09-22",
+  "next_review": "2027-09-22",
+  "measure_complexity": "medium",
   "measure_type": "custom",
   "radar_exclude": false
 }
