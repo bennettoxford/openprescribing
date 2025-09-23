@@ -4,13 +4,13 @@ SELECT
   presentation_code as bnf_code,
   COUNT(ing) AS ing_count
 FROM
-  dmd.vpi AS vpi
+  {project}.dmd.vpi AS vpi
 INNER JOIN
-  dmd.vmp AS v
+  {project}.dmd.vmp AS v
 ON
   v.id = vpi.vmp
 INNER JOIN
-  hscic.bnf AS bnf
+  {project}.hscic.bnf AS bnf
 ON
   CONCAT(SUBSTR(bnf.presentation_code, 0, 9),'AA',SUBSTR(bnf.presentation_code,-2, 2)) = CONCAT(SUBSTR(v.bnf_code, 0, 11),SUBSTR(v.bnf_code,-2, 2))
 GROUP BY
