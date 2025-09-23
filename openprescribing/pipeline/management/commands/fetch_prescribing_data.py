@@ -20,7 +20,8 @@ class Command(BaseCommand):
         urls = [
             r["url"]
             for r in resources
-            if r["name"] == "EPD_SNOMED_{year}{month:02d}".format(year=year, month=month)
+            if r["name"]
+            == "EPD_SNOMED_{year}{month:02d}".format(year=year, month=month)
         ]
         assert len(urls) == 1, urls
         rsp = requests.get(urls[0], stream=True)
