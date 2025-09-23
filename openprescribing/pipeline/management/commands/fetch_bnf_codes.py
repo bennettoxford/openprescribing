@@ -19,7 +19,7 @@ class Command(BaseCommand):
         latest = resources[-1]
 
         match = re.match(
-            r"^BNF_CODE_CURRENT_(?P<year>\d{4})(?P<month>\d{2})_VERSION_(\d+)$",
+            r"^BNF_CODE_CURRENT_(?P<year>\d{4})(?P<month>\d{2})_VERSION_(\d+)(?:_FINAL)?$",
             latest["name"],
         )
         assert match is not None
