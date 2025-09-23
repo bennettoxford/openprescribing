@@ -14,13 +14,13 @@ class Command(BaseCommand):
 
     def handle(self, year, month, **kwargs):
         rsp = requests.get(
-            "https://opendata.nhsbsa.net/api/3/action/package_show?id=english-prescribing-data-epd"
+            "https://opendata.nhsbsa.net/api/3/action/package_show?id=english-prescribing-dataset-epd-with-snomed-code"
         )
         resources = rsp.json()["result"]["resources"]
         urls = [
             r["url"]
             for r in resources
-            if r["name"] == "EPD_{year}{month:02d}".format(year=year, month=month)
+            if r["name"] == "EPD_SNOMED_{year}{month:02d}".format(year=year, month=month)
         ]
         assert len(urls) == 1, urls
         rsp = requests.get(urls[0], stream=True)
