@@ -85,7 +85,7 @@ class Command(BaseCommand):
           LEFT(PCO_CODE, 3) AS pct,
           PRACTICE_CODE AS practice,
           BNF_PRESENTATION_CODE AS bnf_code,
-          BNF_PRESENTATION_DESCRIPTION AS bnf_name,
+          BNF_PRESENTATION_NAME AS bnf_name,
           SUM(ITEMS) AS items,
           SUM(NIC) AS net_cost,
           SUM(ACTUAL_COST) AS actual_cost,
