@@ -11,11 +11,11 @@ END
 FROM
   hscic.normalised_prescribing AS rx
 INNER JOIN
-  dmd.vmpp_full AS vmpp
+  {project}.dmd.vmpp_full AS vmpp
 ON
   CONCAT( SUBSTR(rx.bnf_code, 0, 9), 'AA', SUBSTR(rx.bnf_code,-2, 2) ) = CONCAT( SUBSTR(vmpp.bnf_code, 0, 11), SUBSTR(vmpp.bnf_code,-2, 2) )
 INNER JOIN
-  measures.vw__dmd_objs_with_form_route AS form
+  {project}.measures.vw__dmd_objs_with_form_route AS form
 ON
   form.vpid = vmpp.vmp
 WHERE
