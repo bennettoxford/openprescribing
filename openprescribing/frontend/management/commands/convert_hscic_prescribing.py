@@ -81,7 +81,7 @@ class Command(BaseCommand):
         # Append aggregated data to prescribing table
         sql = """
          SELECT
-          AREA_TEAM_CODE AS sha,
+          ICB_CODE AS sha,
           LEFT(PCO_CODE, 3) AS pct,
           PRACTICE_CODE AS practice,
           BNF_PRESENTATION_CODE AS bnf_code,
