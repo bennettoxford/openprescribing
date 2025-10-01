@@ -528,11 +528,15 @@ def _get_measure_details(measure_id):
         return {}
     with open(file, "r") as f:
         details = json.load(f)
-    formatted_details = {
-        key: value if not isinstance(value, list) else "\n".join(value)
-        for key, value in details.items()
-    }
-    return formatted_details
+    for key, value in details.items():
+        if isinstance(value, list):
+            # We approximate support for multi-line strings by allowing strings
+            # to be split into a list of shorter strings.
+            if key == "history":
+                # history is a list of dicts not strings, so we ignore it here.
+                continue
+            details[key] = "\n".join(value)
+    return details
 
 
 def measure_for_one_entity(request, measure, entity_code, entity_type):
