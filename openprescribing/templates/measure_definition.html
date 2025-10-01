@@ -83,6 +83,16 @@
         </a>
       </td>
     </tr>
+    {% if measure_details.change_log %}
+    <tr>
+      <th>Change log</th>
+      <td>
+      {% for log in measure_details.change_log %}
+        <p><em>{{ log.date }}</em>: {{ log.description }}</p>
+      {% endfor %}
+      </td>
+    </tr>
+    {% endif %}
 
   </table>
 

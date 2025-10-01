@@ -532,8 +532,8 @@ def _get_measure_details(measure_id):
         if isinstance(value, list):
             # We approximate support for multi-line strings by allowing strings
             # to be split into a list of shorter strings.
-            if key == "history":
-                # history is a list of dicts not strings, so we ignore it here.
+            if key == "change_log":
+                # change_log is a list of dicts not strings, so we ignore it here.
                 continue
             details[key] = "\n".join(value)
     return details
