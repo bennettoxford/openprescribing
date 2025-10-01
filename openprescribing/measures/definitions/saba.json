@@ -58,11 +58,32 @@
     "AND \n",
     "count.ing_count <3 --only includes inhalers with fewer than 3 ingredients, removing triple therapy (usually used in COPD)"
   ],
+
   "authored_by": "richard.croker@phc.ox.ac.uk",
   "checked_by": "christopher.wood@phc.ox.ac.uk",
   "date_reviewed": "2024-12-02",
   "next_review": "2025-12-02",
   "measure_complexity": "medium",
   "measure_type": "dmd",
-  "radar_exclude": false
+  "radar_exclude": false,
+  "history": [
+    {
+      "date": "2016-12-09",
+      "description": "Created measure",
+      "action_by": "richard.croker@phc.ox.ac.uk",
+      "checked_by": "sebastian.bacon@phc.ox.ac.uk"
+    },
+    {
+      "date": "2024-12-02",
+      "description": "Reviewed measure - code logic tidied, text and links updated",
+      "action_by": "richard.croker@phc.ox.ac.uk",
+      "checked_by": "christopher.wood@phc.ox.ac.uk"
+    },
+    {
+      "date": "2025-09-02",
+      "description": "Adjust quantities where inhaler count is shown instead of dose count. Remove triple inhalers from corticosteroids in denominator.",
+      "action_by": "richard.croker@phc.ox.ac.uk",
+      "checked_by": "andrew.brown@phc.ox.ac.uk"
+    }
+  ]
 }
