@@ -66,7 +66,7 @@
   "measure_complexity": "medium",
   "measure_type": "dmd",
   "radar_exclude": false,
-  "history": [
+  "change_log": [
     {
       "date": "2016-12-09",
       "description": "Created measure",
