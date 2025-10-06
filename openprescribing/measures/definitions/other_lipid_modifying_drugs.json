@@ -8,7 +8,8 @@
   "why_it_matters": [
     "NICE guideline <a href='https://www.nice.org.uk/guidance/ng238/chapter/Recommendations#lipid-lowering-treatments-that-should-not-be-used-or-not-used-routinely' target='_blank'>NG238 (cardiovascular disease: risk assessment and reduction, including lipid modification)</a> recommends that ",
     "fibrates and nicotinic acid should not be routinely offered to patients for the primary or secondary prevention of cardiovascular disease (CVD). ",
-    "This guidance does not apply to people with familial hypercholesterolaemia, which is covered by <a href='https://www.nice.org.uk/guidance/cg71' target='_blank'> separate NICE guidance</a>."
+    "This guidance does not apply to people with familial hypercholesterolaemia, which is covered by <a href='https://www.nice.org.uk/guidance/cg71' target='_blank'> separate NICE guidance</a>.</p>",
+    "<p><b>Please note:</b> this measure used to also contain bile acid sequestrants and omega-3.  However, given their increased use in non-cardiovascular settings, we have removed them."
   ],
   "tags": [
     "cardiovascular",
@@ -32,9 +33,9 @@
   ],
   "denominator_type": "list_size",
   "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "andrew.brown@phc.ox.ac.uk",
-  "date_reviewed": "2024-01-02",
-  "next_review": "2026-01-02",
+  "checked_by": "",
+  "date_reviewed": "2025-10-06",
+  "next_review": "2027-10-06",
   "measure_complexity": "low",
   "measure_type": "bnf_code",
   "radar_exclude": false
