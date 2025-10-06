@@ -100,5 +100,20 @@
   "next_review": "2026-09-16",
   "measure_complexity": "low",
   "measure_type": "dmd",
-  "radar_exclude": false
+  "radar_exclude": false,
+   "change_log": [
+    {
+      "date": "2024-10-01",
+      "description": "Created measure",
+      "action_by": "richard.croker@phc.ox.ac.uk",
+      "checked_by": "victoria.speed@phc.ox.ac.uk"
+    },
+    {
+      "date": "2025-10-06",
+      "description": "Changed to cost-based measure",
+      "action_by": "richard.croker@phc.ox.ac.uk",
+      "checked_by": "christopher.wood@phc.ox.ac.uk"
+    }
+  ]
+}
 }
