@@ -4,13 +4,13 @@
 #
 #    pip-compile requirements.dev.in
 #
-black==25.1.0
+black==25.9.0
     # via -r requirements.dev.in
-click==8.2.1
+click==8.3.0
     # via black
 flake8==7.3.0
     # via -r requirements.dev.in
-isort==6.0.1
+isort==6.1.0
     # via -r requirements.dev.in
 mccabe==0.7.0
     # via flake8
@@ -26,3 +26,5 @@ pycodestyle==2.14.0
     # via flake8
 pyflakes==3.4.0
     # via flake8
+pytokens==0.1.10
+    # via black
