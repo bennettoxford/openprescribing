@@ -69,19 +69,19 @@
   "change_log": [
     {
       "date": "2016-12-09",
-      "description": "Created measure. | Action by: richard.croker@phc.ox.ac.uk | Checked by: sebastian.bacon@phc.ox.ac.uk",
+      "description": "Created measure.\n Action by: richard.croker@phc.ox.ac.uk | Checked by: sebastian.bacon@phc.ox.ac.uk",
       "action_by": "richard.croker@phc.ox.ac.uk",
       "checked_by": "sebastian.bacon@phc.ox.ac.uk"
     },
     {
       "date": "2024-12-02",
-      "description": "Reviewed measure - code logic tidied, text and links updated. | Action by: richard.croker@phc.ox.ac.uk | Checked by: christopher.wood@phc.ox.ac.uk",
+      "description": "Reviewed measure - code logic tidied, text and links updated.\n Action by: richard.croker@phc.ox.ac.uk | Checked by: christopher.wood@phc.ox.ac.uk",
       "action_by": "richard.croker@phc.ox.ac.uk",
       "checked_by": "christopher.wood@phc.ox.ac.uk"
     },
     {
       "date": "2025-09-02",
-      "description": "Adjust quantities where inhaler count is shown instead of dose count. Remove triple inhalers from corticosteroids in denominator. | Action by: richard.croker@phc.ox.ac.uk | Checked by: andrew.brown@phc.ox.ac.uk",
+      "description": "Adjust quantities where inhaler count is shown instead of dose count. Remove triple inhalers from corticosteroids in denominator.\n Action by: richard.croker@phc.ox.ac.uk | Checked by: andrew.brown@phc.ox.ac.uk",
       "action_by": "richard.croker@phc.ox.ac.uk",
       "checked_by": "andrew.brown@phc.ox.ac.uk"
     }
