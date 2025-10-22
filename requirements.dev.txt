@@ -26,5 +26,5 @@ pycodestyle==2.14.0
     # via flake8
 pyflakes==3.4.0
     # via flake8
-pytokens==0.1.10
+pytokens==0.2.0
     # via black
