@@ -110,7 +110,7 @@
     "import_pcn_details": {
         "type": "import",
         "source_id": "pcn_details",
-        "command": "import_pcns --filename ePCN.xlsx",
+        "command": "import_pcns --filename epcn.xlsx",
         "dependencies": [
             "import_practice_details",
             "fetch_pcn_details"
