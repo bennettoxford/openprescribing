@@ -1,0 +1,38 @@
+{
+  "name": "Percentage of items of high anticholinergic burden",
+  "title": "Percentage of items of high anticholinergic burden",
+  "description": "Percentage of items of high anticholinergic burden",
+  "numerator_short": "Items of high anticholinergic burde",
+  "denominator_short": "Total items",
+  "y_label": "Percentage of items of high anticholinergic burden",
+  "why_it_matters": [
+    "tbc"
+  ],
+  "tags": [
+    "safety"
+  ],
+  "url": null, 
+  "is_percentage": true,
+  "is_cost_based": false,
+  "low_is_good": true,
+  "numerator_type": "bnf_items",
+  "numerator_from": [
+    "{hscic}.normalised_prescribing p ",
+    "INNER JOIN {measures}.vw__acb_bnf_codes acb ON CONCAT(SUBSTR(rx.bnf_code,0,9),'AA', SUBSTR(rx.bnf_code,-2), SUBSTR(rx.bnf_code,-2)) = acb.bnf_code -- joins prescribing data to acb view \n"
+    ],
+  "numerator_where": [
+    "acb.acb_score >=3 - high scoring acb drugs"
+  ],
+  "denominator_type": "bnf_items",
+  "denominator_columns": "SUM(p.quantity/adj.qtyadj) AS denominator",
+  "denominator_from": [
+    "{hscic}.normalised_prescribing p "
+    ],
+  "authored_by": "",
+  "checked_by": "",
+  "date_reviewed": "",
+  "next_review": "",
+  "measure_complexity": "",
+  "measure_type": "",
+  "radar_exclude": false
+}
