@@ -21,7 +21,7 @@
   ],
   "numerator_from": [
     "{hscic}.normalised_prescribing p ",
-    "INNER JOIN {measures}.vw__acb_bnf_codes acb ON CONCAT(SUBSTR(rx.bnf_code,0,9),'AA', SUBSTR(rx.bnf_code,-2), SUBSTR(rx.bnf_code,-2)) = acb.bnf_code -- joins prescribing data to acb view \n"
+    "INNER JOIN {measures}.vw__acb_bnf_codes acb ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = acb.bnf_code -- joins prescribing data to acb view \n"
     ],
   "numerator_where": [
     "acb.acb_score >=3 -- high scoring acb drugs"
