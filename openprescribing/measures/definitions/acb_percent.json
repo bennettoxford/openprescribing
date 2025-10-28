@@ -24,6 +24,12 @@
     "acb.acb_score >=3 - high scoring acb drugs"
   ],
   "denominator_type": "bnf_items",
+  "numerator_from": [
+  "{hscic}.normalised_prescribing p "
+  ],
+  "numerator_where": [
+    "bnf_code IS NOT NULL"
+  ],
   "authored_by": "",
   "checked_by": "",
   "date_reviewed": "",
