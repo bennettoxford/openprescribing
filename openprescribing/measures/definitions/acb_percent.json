@@ -28,6 +28,9 @@
   "denominator_from": [
     "{hscic}.normalised_prescribing p "
     ],
+  "denominator_where": [
+  "1=1"
+  ],
   "authored_by": "",
   "checked_by": "",
   "date_reviewed": "",
