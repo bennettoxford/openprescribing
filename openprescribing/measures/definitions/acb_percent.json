@@ -26,17 +26,8 @@
   "numerator_where": [
     "acb.acb_score >=3 -- high scoring acb drugs"
   ],
-  "denominator_type": "custom",
-  "denominator_columns": [
-    "SUM(items) AS denominator"
-  ],
-  "denominator_from": [
-    "{hscic}.normalised_prescribing p "
-    ],
-  "denominator_where": [
-    "p.bnf_code IS NOT NULL"
-  ],
-  "authored_by": "",
+  "denominator_type": "bnf_items",
+  "authored_by": "RC",
   "checked_by": "",
   "date_reviewed": "",
   "next_review": "",
