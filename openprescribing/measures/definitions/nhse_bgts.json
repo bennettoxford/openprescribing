@@ -8,7 +8,7 @@
   "why_it_matters": [
     " Many people with diabetes test their blood glucose levels, using a blood glucose meter, in order to help control their diabetes by adjusting diet and the dose of medicines.  A drop of blood from the user’s finger is placed on a ",
     "testing strip in order for the meter to analyse the glucose levels.  A new strip is required each time, and is specific to a brand of meter.</p>",
-    "<p>In June 2025 NHS England published <a href='https://www.england.nhs.uk/publication/commissioning-recommendations-blood-glucose-and-ketone-meters-testing-strips-and-lancets/' target='_blank'>",
+    "<p>In October 2025 NHS England published <a href='https://www.england.nhs.uk/publication/commissioning-recommendations-blood-glucose-and-ketone-meters-testing-strips-and-lancets/' target='_blank'>",
     "updated commissioning guidelines, recommending specific meters, test strips and lancets.</a></p>",
     "<p>The <a href='https://www.england.nhs.uk/long-read/national-medicines-optimisation-opportunities-2023-24/#8-appropriate-prescribing-and-supply-of-blood-glucose-and-ketone-meters-and-testing-strips' target='_Blank'>",
     "NHS England National Medicines Optimisation Opportunities for 2024/25</a> identify promoting uptake of best value testing strips as an area for improvement.</p>",
@@ -38,8 +38,6 @@
     "~0601060D0CUAAA0 # GlucoRx Q testing strips (GlucoRx Ltd)",
     "~0601060D0EDAAA0 # Finetest Lite testing strips (Neon Diagnostics Ltd)",
     "~0601060D0EJAAA0 # True Metrix testing strips (Trividia Health UK Ltd)",
-    "~0601060D0CIAAA0 # WaveSense JAZZ testing strips (AgaMatrix Europe Ltd)",
-    "~0601060D0CIABA0 # WaveSense JAZZ Duo testing strips (AgaMatrix Europe Ltd)",
     "~0601060D0FCAAA0 # CareSens S testing strips (Spirit Healthcare Ltd)",
     "~0601060D0FDAAA0 # AgaMatrix Agile Test Strips (AgaMatrix Europe Ltd)",
     "~0601060D0CUAGA0 # GlucoRx Vivid testing strips (GlucoRx Ltd)",
@@ -55,9 +53,29 @@
   ],
   "authored_by": "richard.croker@phc.ox.ac.uk",
   "checked_by": "christopher.wood@phc.ox.ac.uk",
-  "date_reviewed": "2025-09-02",
-  "next_review": "2027-09-02",
+  "date_reviewed": "2025-11-03",
+  "next_review": "2027-11-03",
   "measure_complexity": "low",
   "measure_type": "bnf_code",
-  "radar_exclude": false
+  "radar_exclude": false,
+  "change_log": [
+    {
+      "date": "2023-05-22",
+      "description": "Created measure.<br/>Action by: richard.croker@phc.ox.ac.uk<br/>Checked by: christopher.wood@phc.ox.ac.uk",
+      "action_by": "richard.croker@phc.ox.ac.uk",
+      "checked_by": "christopher.wood@phc.ox.ac.uk"
+    },
+    {
+      "date": "2025-08-08",
+      "description": "Updated following publication of June 2025 version of recommendations.<br/>Action by: richard.croker@phc.ox.ac.uk<br/>Checked by: christopher.wood@phc.ox.ac.uk",
+      "action_by": "richard.croker@phc.ox.ac.uk",
+      "checked_by": "christopher.wood@phc.ox.ac.uk"
+    },
+    {
+      "date": "2025-11-03",
+      "description": "Updated following publication of October 2025 version of recommendations.<br/>Action by: richard.croker@phc.ox.ac.uk<br/>Checked by: andrew.brown@phc.ox.ac.uk",
+      "action_by": "christopher.wood@phc.ox.ac.uk",
+      "checked_by": "richard.croker@phc.ox.ac.uk"
+    }
+  ]
 }
