@@ -58,6 +58,9 @@
   "measure_complexity": "low",
   "measure_type": "bnf_code",
   "radar_exclude": false,
+  "testing_measure": true,
+  "testing_comments": "Simple test to identify new products based on specified BNF code filter.",
+  "testing_type": "numerator_bnf_codes_filter",
   "change_log": [
     {
       "date": "2023-05-22",
