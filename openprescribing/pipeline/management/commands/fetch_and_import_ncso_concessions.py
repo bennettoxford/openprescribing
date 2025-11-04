@@ -37,7 +37,11 @@ HEADING_DATE_RE = re.compile(
     r"""
     ^
     # Optional leading text
-    ( The \s+ following \s+ price \s+ concessions \s+ have \s+ been \s+ granted \s+ for \s+ )?
+    (
+        The \s+ following \s+ price \s+ concessions \s+
+        ((have \s+ been) | were)
+        \s+ granted \s+ for \s+
+    )?
     # Date in the form "March 2020"
     (?P<month>
         january | february | march | april | may | june | july | august |
@@ -194,6 +198,9 @@ def parse_price(price_str):
         ( \d+ )
         # Optional pence digits (.N or .NN)
         ( \. (\d) (\d)? ) ?
+        # Optional asterisk
+        \s*
+        \*?
         # Optional previous price in parentheses
         \s*
         ( \( previously \s+ [£\d\.]+ \) ) ?

@@ -362,6 +362,7 @@ class TestFetchAndImportNCSOConcesions(TestCase):
             ("12", 1200),
             ("£12", 1200),
             ("£7.02 (previously £6.17)", 702),
+            ("£24.55* (previously £23.32)", 2455),
             # Correct weird one-off typo
             ("11..35", 1135),
         ]
