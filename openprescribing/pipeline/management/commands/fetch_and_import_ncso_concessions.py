@@ -194,6 +194,9 @@ def parse_price(price_str):
         ( \d+ )
         # Optional pence digits (.N or .NN)
         ( \. (\d) (\d)? ) ?
+        # Optional asterisk
+        \s*
+        \*?
         # Optional previous price in parentheses
         \s*
         ( \( previously \s+ [£\d\.]+ \) ) ?
