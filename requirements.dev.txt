@@ -20,13 +20,14 @@ packaging==25.0
     # via black
 pathspec==0.12.1
     # via black
-pip==25.2
-    # via -r requirements.dev.in
 platformdirs==4.5.0
     # via black
 pycodestyle==2.14.0
     # via flake8
 pyflakes==3.4.0
     # via flake8
-pytokens==0.2.0
+pytokens==0.3.0
     # via black
+
+# The following packages are considered to be unsafe in a requirements file:
+# pip
