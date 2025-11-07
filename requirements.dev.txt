@@ -20,6 +20,8 @@ packaging==25.0
     # via black
 pathspec==0.12.1
     # via black
+pip==25.2
+    # via -r requirements.dev.in
 platformdirs==4.5.0
     # via black
 pycodestyle==2.14.0

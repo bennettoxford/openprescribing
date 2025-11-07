@@ -27,6 +27,7 @@ jobs:
         automerge: false
         pr_title: "Update python dependencies"
         update_command: |
+          pip install pip==25.2 && \
           pip install pip-tools && \
           pip-compile -U requirements.dev.in && \
           pip-compile -U requirements.in
