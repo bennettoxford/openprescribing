@@ -11,7 +11,7 @@
     "and the risk of harm increases significantly above 90mg morphine (or equivalent) per day (recently reduced from 120mg), without much increase in benefit. ",
     "We have assumed that if a patient is on regular doses of 90mg morphine a day or above that they are likely to have also had ",
     "additional opioids for breakthrough pain.  This is why we have set the threshold at ≥90mg morphine equivalence per day. ",
-    "The calculations are based on likely doses of long acting, regular opioids, for example morphine sulphate tablets or ",
+    "The calculations are based on likely doses of long-acting, regular opioids, for example morphine sulphate tablets or ",
     "fentanyl patches. For example, we have assumed that Longtec 30mg tablets are “high dose”, as they are usually taken as one tablet ",
     "twice daily (60mg daily dose, equivalent to 90mg of oral morphine), whereas Longtec 20mg are not, as the daily dose is 40mg (60mg of oral morphine). ",
     "We have not included preparations used for breakthrough pain, e.g. Oramorph, or opioid injections which tend to be ",
@@ -67,9 +67,9 @@
     "OR (COALESCE(vpi.bs_subid,vpi.ing) = 387485001  AND route.descr LIKE '%modified-release.oral')) --Hydromorphone HCl MR oral preps (ing code) \n"
  ],
   "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "",
-  "date_reviewed": "",
-  "next_review": "",
+  "checked_by": "andrew.brown@phc.ox.ac.uk",
+  "date_reviewed": "10/11/2025",
+  "next_review": "10/11/2027",
   "measure_complexity": "medium",
   "measure_type": "dmd",
   "radar_exclude": false
