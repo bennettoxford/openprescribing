@@ -36,7 +36,7 @@ click==8.3.0
     # via pip-tools
 contourpy==1.3.3
     # via matplotlib
-coverage==7.11.0
+coverage==7.11.1
     # via -r requirements.in
 crispy-bootstrap3==2024.1
     # via -r requirements.in
@@ -54,7 +54,7 @@ db-dtypes==1.4.3
     # via pandas-gbq
 diskcache==5.6.3
     # via -r requirements.in
-django==4.2.25
+django==4.2.26
     # via
     #   -r requirements.in
     #   crispy-bootstrap3
@@ -69,11 +69,11 @@ django-anymail[mailgun]==13.1
     # via -r requirements.in
 django-cors-headers==4.9.0
     # via -r requirements.in
-django-crispy-forms==2.4
+django-crispy-forms==2.5
     # via
     #   -r requirements.in
     #   crispy-bootstrap3
-django-debug-toolbar==6.0.0
+django-debug-toolbar==6.1.0
     # via
     #   -r requirements.in
     #   django-debug-toolbar-template-timings
@@ -105,9 +105,9 @@ google-api-core[grpc]==2.28.1
     #   google-cloud-core
     #   google-cloud-storage
     #   pandas-gbq
-google-api-python-client==2.185.0
+google-api-python-client==2.187.0
     # via -r requirements.in
-google-auth==2.42.0
+google-auth==2.41.1
     # via
     #   google-api-core
     #   google-api-python-client
@@ -119,9 +119,9 @@ google-auth==2.42.0
     #   google-cloud-storage
     #   pandas-gbq
     #   pydata-google-auth
-google-auth-httplib2==0.2.0
+google-auth-httplib2==0.2.1
     # via google-api-python-client
-google-auth-oauthlib==1.2.2
+google-auth-oauthlib==1.2.3
     # via
     #   pandas-gbq
     #   pydata-google-auth
@@ -131,11 +131,11 @@ google-cloud-bigquery==3.38.0
     #   pandas-gbq
 google-cloud-bigquery-storage==2.34.0
     # via -r requirements.in
-google-cloud-core==2.4.3
+google-cloud-core==2.5.0
     # via
     #   google-cloud-bigquery
     #   google-cloud-storage
-google-cloud-storage==3.4.1
+google-cloud-storage==3.5.0
     # via -r requirements.in
 google-crc32c==1.7.1
     # via
@@ -145,7 +145,7 @@ google-resumable-media==2.7.2
     # via
     #   google-cloud-bigquery
     #   google-cloud-storage
-googleapis-common-protos==1.71.0
+googleapis-common-protos==1.72.0
     # via
     #   google-api-core
     #   grpcio-status
@@ -183,7 +183,7 @@ lxml==6.0.2
     #   -r requirements.in
     #   premailer
     #   pyquery
-lz4==4.4.4
+lz4==4.4.5
     # via -r requirements.in
 markupsafe==3.0.3
     # via jinja2
@@ -231,7 +231,7 @@ pandas==2.3.3
     #   db-dtypes
     #   pandas-gbq
     #   seaborn
-pandas-gbq==0.29.2
+pandas-gbq==0.30.0
     # via -r requirements.in
 paramiko-ng==2.9.0
     # via fab-classic
@@ -338,7 +338,7 @@ sqlparse==0.5.3
     #   django-debug-toolbar
 titlecase==0.12.0
     # via -r requirements.in
-trio==0.31.0
+trio==0.32.0
     # via
     #   selenium
     #   trio-websocket
