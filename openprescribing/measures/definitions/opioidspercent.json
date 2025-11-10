@@ -68,8 +68,8 @@
  ],
   "authored_by": "richard.croker@phc.ox.ac.uk",
   "checked_by": "andrew.brown@phc.ox.ac.uk",
-  "date_reviewed": "10/11/2025",
-  "next_review": "10/11/2027",
+  "date_reviewed": "2025-11-10",
+  "next_review": "2027-11-10",
   "measure_complexity": "medium",
   "measure_type": "dmd",
   "radar_exclude": false
