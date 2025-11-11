@@ -69,4 +69,6 @@
       "description": "Reduce threshold for 'high dose' from 120mg OME to 90mg OME.",
       "action_by": "andrew.brown@phc.ox.ac.uk",
       "checked_by": ""
+    }
+  ]
 }
