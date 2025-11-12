@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements.dev.in
 #
-black==25.9.0
+black==25.11.0
     # via -r requirements.dev.in
 click==8.3.0
     # via black
