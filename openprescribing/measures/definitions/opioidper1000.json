@@ -52,24 +52,24 @@
   ],
   "denominator_type": "list_size",
   "authored_by": "andrew.brown@phc.ox.ac.uk",
-  "checked_by": "",
-  "date_reviewed": "",
-  "next_review": "",
+  "checked_by": "richard.croker@phc.ox.ac.uk",
+  "date_reviewed": "2025-11-17",
+  "next_review": "2027-11-17",
   "measure_complexity": "medium",
   "measure_type": "dmd",
   "radar_exclude": false,
   "change_log": [
     {
       "date": "2017-02-20",
-      "description": "Created measure.",
+      "description": "Created measure",
       "action_by": "richard.croker@phc.ox.ac.uk",
       "checked_by": "sebastian.bacon@phc.ox.ac.uk"
     },
     {
-      "date": "",
-      "description": "Reduce threshold for 'high dose' from 120mg OME to 90mg OME.",
+      "date": "2025-11-17",
+      "description": "Reduce threshold for 'high dose' from 120mg OME to 90mg OME",
       "action_by": "andrew.brown@phc.ox.ac.uk",
-      "checked_by": ""
+      "checked_by": "richard.croker@phc.ox.ac.uk"
     }
   ]
 }
