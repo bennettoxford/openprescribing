@@ -20,7 +20,7 @@ beautifulsoup4==4.14.2
     # via -r requirements.in
 build==1.3.0
     # via pip-tools
-cachetools==6.2.1
+cachetools==6.2.2
     # via
     #   google-auth
     #   premailer
@@ -32,11 +32,11 @@ cffi==2.0.0
     # via cryptography
 charset-normalizer==3.4.4
     # via requests
-click==8.3.0
+click==8.3.1
     # via pip-tools
 contourpy==1.3.3
     # via matplotlib
-coverage==7.11.3
+coverage==7.12.0
     # via -r requirements.in
 crispy-bootstrap3==2024.1
     # via -r requirements.in
@@ -135,13 +135,13 @@ google-cloud-core==2.5.0
     # via
     #   google-cloud-bigquery
     #   google-cloud-storage
-google-cloud-storage==3.5.0
+google-cloud-storage==3.6.0
     # via -r requirements.in
 google-crc32c==1.7.1
     # via
     #   google-cloud-storage
     #   google-resumable-media
-google-resumable-media==2.7.2
+google-resumable-media==2.8.0
     # via
     #   google-cloud-bigquery
     #   google-cloud-storage
@@ -199,7 +199,7 @@ more-itertools==10.8.0
     # via cssutils
 networkx==3.5
     # via -r requirements.in
-numpy==2.3.4
+numpy==2.3.5
     # via
     #   -r requirements.in
     #   contourpy
@@ -231,13 +231,13 @@ pandas==2.3.3
     #   db-dtypes
     #   pandas-gbq
     #   seaborn
-pandas-gbq==0.30.0
+pandas-gbq==0.31.0
     # via -r requirements.in
 paramiko-ng==2.9.0
     # via fab-classic
 pillow==12.0.0
     # via matplotlib
-pip-tools==7.5.1
+pip-tools==7.5.2
     # via -r requirements.in
 premailer==3.10.0
     # via -r requirements.in
@@ -245,13 +245,15 @@ proto-plus==1.26.1
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
-protobuf==6.33.0
+protobuf==6.33.1
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
     #   googleapis-common-protos
     #   grpcio-status
     #   proto-plus
+psutil==7.1.3
+    # via pandas-gbq
 psycopg2-binary==2.9.11
     # via -r requirements.in
 pyarrow==22.0.0
@@ -368,7 +370,7 @@ wheel==0.45.1
     # via pip-tools
 when-changed==0.3.0
     # via -r requirements.in
-wsproto==1.3.0
+wsproto==1.3.1
     # via trio-websocket
 xlrd==2.0.2
     # via -r requirements.in

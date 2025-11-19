@@ -6,7 +6,7 @@
 #
 black==25.11.0
     # via -r requirements.dev.in
-click==8.3.0
+click==8.3.1
     # via black
 flake8==7.3.0
     # via -r requirements.dev.in
