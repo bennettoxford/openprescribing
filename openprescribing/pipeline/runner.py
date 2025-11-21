@@ -353,7 +353,7 @@ def upload_task_input_files(task):
     bucket = storage_client.get_bucket()
 
     for path in task.input_paths():
-        if re.match("epd_\d{6}_full.csv", path):
+        if re.search(r"epd_\d{6}_full.csv", path):
             continue
         assert path[0] == "/"
         assert settings.PIPELINE_DATA_BASEDIR[-1] == "/"
