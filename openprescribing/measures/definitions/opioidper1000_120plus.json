@@ -1,0 +1,59 @@
+{
+  "name": "High dose opioids per 1000 patients",
+  "title": "High dose opioid items per 1000 patients",
+  "description": "Opioids with likely daily dose of ≥120mg morphine equivalence per 1000 patients",
+  "numerator_short": "High dose opioid items",
+  "denominator_short": "1000 patients",
+  "y_label": "Items per 1000 patients",
+  "why_it_matters": [
+    "<p><b>PLEASE NOTE:</b> This is a retired measure provided for reference while existing work is completed. Guidance from the Faculty of Pain Medicine now advises that the risk of harm increases significantly above 90mg morphine (or equivalent) per day.",
+    "The most up to date version of this measure is <a href='https://openprescribing.net/measure/opioidper1000/' target='_Blank'>available here</a>.</p>",
+    "<p>The <a href='https://www.rcoa.ac.uk/faculty-of-pain-medicine/opioids-aware' target='_Blank'> Opioids Aware</a> project seeks to ",
+    "improve prescribing of opioid analgesia.  There is little evidence that opioids are helpful in long term pain, ",
+    "and the risk of harm increases significantly above 120mg morphine (or equivalent) per day, without much increase in benefit. ",
+    "We have assumed that if a patient is on regular doses of 120mg morphine a day or above that they are likely to have also had ",
+    "additional opioids for breakthrough pain.  This is why we have set the threshold at ≥120mg morphine equivalence per day. ",
+    "The calculations are based on likely doses of long acting, regular opioids, for example morphine sulphate tablets or ",
+    "fentanyl patches. For example, we have assumed that MST 60mg tablets are “high dose”, as they are usually taken as one tablet ",
+    "twice daily (120mg daily dose), whereas MST 30mg are not, as the daily dose is 60mg. ",
+    "We have not included preparations used for breakthrough pain, e.g. Oramorph, or opioid injections which tend to be ",
+    "used more commonly in palliative care.  We have calculated morphine equivalencies using ",
+    "the updated August 2020 <a href='https://www.rcoa.ac.uk/faculty-of-pain-medicine/opioids-aware/structured-approach-to-prescribing/dose-equivalents-and-changing-opioids' target='_Blank'> ",
+    "tables available </a> from the Faculty of Pain Medicine, Royal College of Anaesthetists.</p>",
+    "<p>The <a href='https://www.england.nhs.uk/long-read/national-medicines-optimisation-opportunities-2023-24/#15-reducing-opioid-use-in-chronic-non-cancer-pain' target='_Blank'>",
+    "NHS England National Medicines Optimisation Opportunities for 2024/25</a> identify reducing opioid use in chronic non-cancer pain as an area for improvement.</p>"
+  ],
+  "tags": [
+
+  ],
+  "url": null,
+  "is_percentage": false,
+  "is_cost_based": false,
+  "low_is_good": true,
+  "numerator_type": "custom",
+  "numerator_columns": "SUM(p.items) AS numerator",
+  "numerator_from": [
+    "{hscic}.normalised_prescribing p ",
+    "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
+    "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n",
+    "INNER JOIN {dmd}.ont AS ont ON vmp.id = ont.vmp -- joins vmp to ont table to get formulation codes \n",
+    "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names "
+  ],
+  "numerator_where": [
+    "((COALESCE(vpi.bs_subid,vpi.ing) = 373492002 AND route.descr = 'patch.transdermal' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=50) --Fentanyl patches (strengths equal to or higher than 50mcg/hour) (ing code) \n",
+    "OR (COALESCE(vpi.bs_subid,vpi.ing) = 387024006 AND route.descr LIKE '%modified-release.oral' AND p.bnf_name NOT LIKE '%Onexila%40mg%' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=40) --Oxycodone MR oral preps [excluding Onexila 40mg as 24hr] (strengths equal to or higher than 40mg) (ing code) \n",
+    "OR (COALESCE(vpi.bs_subid,vpi.ing) = 441757005 AND route.descr LIKE '%modified-release.oral' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=150) --Tapentadol base substance (strengths equal to or higher than 150mg) (ing code) \n",
+    "OR (COALESCE(vpi.bs_subid,vpi.ing) = 387173000 AND route.descr LIKE 'patch.transdermal' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=52.5) --Buprenorphine patches (strengths equal to or higher than 52.5mg/hour) (ing code) \n",
+    "OR (COALESCE(vpi.bs_subid,vpi.ing) = 60886004 AND route.descr LIKE '%modified-release.oral' AND p.bnf_name NOT LIKE '%MXL%' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=60) --Morphine Sulfate MR oral preps [excluding MXL as 24hr] (strengths equal to or higher than 60mg) (ing code) \n",
+    "OR (COALESCE(vpi.bs_subid,vpi.ing) = 60886004 AND route.descr LIKE '%modified-release.oral' AND p.bnf_name LIKE '%MXL%' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=120)) --MXL (strengths equal to or higher than 120mg) (ing code)"
+    
+  ],
+  "denominator_type": "list_size",
+  "authored_by": "richard.croker@phc.ox.ac.uk",
+  "checked_by": "christopher.wood@phc.ox.ac.uk",
+  "date_reviewed": "2025-11-24",
+  "next_review": "2026-05-31",
+  "measure_complexity": "medium",
+  "measure_type": "dmd",
+  "radar_exclude": false
+}
