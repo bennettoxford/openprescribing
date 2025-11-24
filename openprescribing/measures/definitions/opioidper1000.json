@@ -48,7 +48,7 @@
     "OR (COALESCE(vpi.bs_subid,vpi.ing) = 387173000 AND route.descr LIKE 'patch.transdermal' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=39.375) --Buprenorphine patches (strengths equal to or higher than 39.375mg/hour) (ing code) \n",
     "OR (COALESCE(vpi.bs_subid,vpi.ing) = 60886004 AND route.descr LIKE '%modified-release.oral' AND p.bnf_name NOT LIKE '%MXL%' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=45) --Morphine Sulfate MR oral preps [excluding MXL as 24hr] (strengths equal to or higher than 45mg) (ing code) \n",
     "OR (COALESCE(vpi.bs_subid,vpi.ing) = 60886004 AND route.descr LIKE '%modified-release.oral' AND p.bnf_name LIKE '%MXL%' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=90) --MXL (strengths equal to or higher than 90mg) (ing code) \n",
-    "OR (COALESCE(vpi.bs_subid,vpi.ing) = 44508008 AND route.descr LIKE '%modified-release.oral' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=9)) --Hydromorphone base substance (strengths equal to or higher than 9mg) (ing code)"
+    "OR (COALESCE(vpi.bs_subid,vpi.ing) IN (44508008, 387485001) AND route.descr LIKE '%modified-release.oral' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=9)) --Hydromorphone base substance (strengths equal to or higher than 9mg) (ing code)"
   ],
   "denominator_type": "list_size",
   "authored_by": "andrew.brown@phc.ox.ac.uk",
