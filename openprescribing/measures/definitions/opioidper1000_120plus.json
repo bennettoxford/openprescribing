@@ -45,7 +45,7 @@
     "OR (COALESCE(vpi.bs_subid,vpi.ing) = 441757005 AND route.descr LIKE '%modified-release.oral' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=150) --Tapentadol base substance (strengths equal to or higher than 150mg) (ing code) \n",
     "OR (COALESCE(vpi.bs_subid,vpi.ing) = 387173000 AND route.descr LIKE 'patch.transdermal' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=52.5) --Buprenorphine patches (strengths equal to or higher than 52.5mg/hour) (ing code) \n",
     "OR (COALESCE(vpi.bs_subid,vpi.ing) = 60886004 AND route.descr LIKE '%modified-release.oral' AND p.bnf_name NOT LIKE '%MXL%' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=60) --Morphine Sulfate MR oral preps [excluding MXL as 24hr] (strengths equal to or higher than 60mg) (ing code) \n",
-    "OR (COALESCE(vpi.bs_subid,vpi.ing) = 60886004 AND route.descr LIKE '%modified-release.oral' AND p.bnf_name LIKE '%MXL%' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=120)) --MXL (strengths equal to or higher than 120mg) (ing code) \n",
+    "OR (COALESCE(vpi.bs_subid,vpi.ing) = 60886004 AND route.descr LIKE '%modified-release.oral' AND p.bnf_name LIKE '%MXL%' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=120) --MXL (strengths equal to or higher than 120mg) (ing code) \n",
     "OR (COALESCE(vpi.bs_subid,vpi.ing) IN (44508008, 387485001) AND route.descr LIKE '%modified-release.oral' AND strnt_nmrtr_val/(COALESCE(strnt_dnmtr_val,1)) >=12)) --Hydromorphone base substance (strengths equal to or higher than 12mg) (ing code)"
     
   ],
