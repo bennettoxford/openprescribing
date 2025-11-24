@@ -1,6 +1,6 @@
 {
-  "name": "High dose opioids per 1000 patients",
-  "title": "High dose opioid items per 1000 patients",
+  "name": "Retired measure: High dose opioids per 1000 patients",
+  "title": "Retired measure: High dose opioid items per 1000 patients",
   "description": "Opioids with likely daily dose of ≥120mg morphine equivalence per 1000 patients",
   "numerator_short": "High dose opioid items",
   "denominator_short": "1000 patients",
