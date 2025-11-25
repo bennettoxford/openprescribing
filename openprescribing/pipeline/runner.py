@@ -84,6 +84,8 @@ class Task(object):
     def filename_pattern(self):
         """Return pattern that matches the part of the task's command that
         should be substituted for the task's input filename."""
+
+        # This is a list of names of parameters to commands that take a filename.
         filename_flags = [
             "filename",
             "ccg",
@@ -92,6 +94,7 @@ class Task(object):
             "hscic_address",
             "month_from_prescribing_filename",
             "zip_path",
+            "path",
         ]
 
         cmd_parts = shlex.split(self.command)
