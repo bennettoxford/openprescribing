@@ -42,7 +42,7 @@ class Command(BaseCommand):
         with open(full_path) as f1:
             with open(path, "w") as f2:
                 reader = csv.reader(f1)
-                writer = csv.reader(f2)
+                writer = csv.writer(f2)
                 for row in reader:
                     writer.writerow(row[:-1])
 
