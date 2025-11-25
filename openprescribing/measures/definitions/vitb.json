@@ -35,6 +35,7 @@
     "<p>Please see our other measure: <a href='https://openprescribing.net/measure/vitbper1000/'> Vitamin B per 1000 patients.</a></p>"
   ],
   "tags": [
+    "core",
     "efficacy",
     "nice",
     "cost"
