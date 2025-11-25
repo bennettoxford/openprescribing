@@ -97,6 +97,10 @@
     "name": "Respiratory",
     "description": "These measures are for treatments commonly used for treating respiratory conditions such as asthma and COPD."
   },
+  "retired": {
+    "name": "Retired measures",
+    "description": "These measures are no longer current, and have been retired from OpenPrescribing."
+  },
   "safety": {
     "name": "Safety",
     "description": "Improving safety is about reducing risk and minimising mistakes. The World Health Organisation has launched its third patient safety challenge Medication Without Harm. Changes in the following measures may result in reduction of the risk of harm to patients and contribute to WHOs ambition in reducting medication related harm by 50% within 5 years."
