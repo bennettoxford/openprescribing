@@ -11,6 +11,7 @@
     "<p>This OpenPrescribing measure, alongside it’s <a href='https://hospitals.openprescribing.net/measures/insulin_detemir/' target='_blank'>OpenPrescribing Hospitals counterpart</a> provides data on variation across primary and secondary care to support this planning.</p>"
   ],
   "tags": [
+    "core",
     "diabetes"
   ],
   "url": null,
