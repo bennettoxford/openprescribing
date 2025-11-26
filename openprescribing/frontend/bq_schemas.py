@@ -179,7 +179,6 @@ RAW_PRESCRIBING_SCHEMA_V2 = build_schema(
     ("NIC", "FLOAT"),
     ("ACTUAL_COST", "FLOAT"),
     ("UNIDENTIFIED", "STRING"),
-    ("SNOMED_CODE", "STRING"),
 )
 
 BDZ_ADQ_SCHEMA = build_schema(
