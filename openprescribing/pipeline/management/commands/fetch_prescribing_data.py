@@ -45,8 +45,3 @@ class Command(BaseCommand):
                 writer = csv.writer(f2)
                 for row in reader:
                     writer.writerow(row[:-1])
-
-        # Temporary assert -- when this is hit we'll be notified in Slack.  PI will
-        # check the resulting CSV file before removing this assert and restarting the
-        # import.
-        assert False
