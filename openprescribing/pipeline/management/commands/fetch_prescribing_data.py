@@ -45,3 +45,7 @@ class Command(BaseCommand):
                 writer = csv.writer(f2)
                 for row in reader:
                     writer.writerow(row[:-1])
+
+        # The pipeline runner will try to call convert_hscic_prescribing on any
+        # unimported files, so we delete the full file once we have processed it.
+        os.remove(full_path)
