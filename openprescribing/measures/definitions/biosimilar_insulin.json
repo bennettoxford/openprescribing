@@ -1,0 +1,41 @@
+{
+  "name": "Percentage of available insulins prescribed as biosimilar",
+  "title": "",
+  "description": "Percentage of available insulins prescribed as biosimilar",
+  "numerator_short": "Biosimilar insulin items",
+  "denominator_short": "Insulin items",
+  "why_it_matters": [
+    "tbc"
+  ], 
+  "tags": [
+    "diabetes"
+  ],
+  "url": null,
+  "is_percentage": true,
+  "is_cost_based": false,
+  "low_is_good": true,
+  "numerator_type": "bnf_items",
+  "numerator_bnf_codes_filter": [
+    "0601012V0BDABAA # Abasaglar 100units/ml solution for injection 3ml cartridges",
+    "0601012V0BDACAD # Abasaglar KwikPen 100units/ml solution for injection 3ml pre-filled pens",
+    "0601012V0BDADAD # Abasaglar Tempo Pen 100units/ml solution for injection 3ml pre-filled pens", 
+    "0601012V0BEAAAD # Semglee 100units/ml solution for injection 3ml pre-filled pens",
+    "0601011L0BEABAB # Admelog 100units/ml solution for injection 10ml vials",
+    "0601011L0BEAAAC # Admelog 100units/ml solution for injection 3ml cartridges",
+    "0601011L0BEACAF # Admelog 100units/ml solution for injection 3ml pre-filled pens",
+    "0601011A0BDACAA # Trurapi 100units/ml solution for injection 10ml vials",
+    "0601011A0BDAAAB # Trurapi 100units/ml solution for injection 3ml cartridges",
+    "0601011A0BDABAC #Trurapi 100units/ml solution for injection 3ml pre-filled Solostar pens"
+  ],
+  "denominator_type": "bnf_items",
+  "denominator_bnf_codes_filter": [
+    "0601012V0%AA # Insulin glargine 100units/ml solution for injection 3ml cartridge (brands and generic)",
+    "0601012V0%AD # Insulin glargine 100units/ml solution for injection 3ml pre-filled disposable devices (brands and generic)", 
+    "0601011L0%AB # Insulin lispro 100units/ml solution for injection 10ml vials (brands and generic)",
+    "0601011L0%AC # Insulin lispro 100units/ml solution for injection 3ml cartridges (brands and generic)",
+    "0601011L0%AF # Insulin lispro 100units/ml solution for injection 3ml pre-filled disposable devices (brands and generic)",
+    "0601011A0%AA # Insulin aspart 100units/ml solution for injection 10ml vials (brands and generic)",
+    "0601011A0%AB # Insulin aspart 100units/ml solution for injection 3ml cartridges (brands and generic)",
+    "0601011A0%AC # Insulin aspart 100units/ml solution for injection 3ml pre-filled disposable devices (brands and generic)"
+  ]
+}
