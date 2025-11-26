@@ -16,6 +16,12 @@ class Command(BaseCommand):
 
 @transaction.atomic
 def import_all(records):
+    # The data contains some (but not all) non-English organisations (eg practice
+    # W95633, a practice in Aberdare), which can reference parent organisations (eg PCO
+    # 7A5, ie Cwm Taf Morgannwg University Local Health Board) that are not present in
+    # the data.  This breaks FK constraints, so we remove them here.
+    records = [r for r in records if r["country"] == "ENGLAND"]
+
     # By importing in this order, we guarantee that parent organisations have been
     # created before child organisations that reference them.
     import_regions(records)

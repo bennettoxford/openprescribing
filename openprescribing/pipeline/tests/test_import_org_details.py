@@ -94,6 +94,21 @@ class ImportOrgCodes(TestCase):
                 "legStartDate": "2023-12-11",
                 "legEndDate": "",
             },
+            {
+                "id": "W95633",
+                "name": "74 MONK STREET",
+                "inactive": False,
+                "roleName": ["GP PRACTICE"],
+                "primaryRoleName": "PRESCRIBING COST CENTRE",
+                "isPartnerToCode": [],
+                "PCO": "7A5",
+                "ICB": "",
+                "NHSER": "",
+                "country": "WALES",
+                "status": "Active",
+                "legStartDate": "1988-11-01",
+                "legEndDate": "",
+            },
         ]
 
         import_all(records)
