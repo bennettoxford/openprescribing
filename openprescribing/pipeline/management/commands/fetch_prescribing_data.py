@@ -46,7 +46,6 @@ class Command(BaseCommand):
                 for row in reader:
                     writer.writerow(row[:-1])
 
-        # Temporary assert -- when this is hit we'll be notified in Slack.  PI will
-        # check the resulting CSV file before removing this assert and restarting the
-        # import.
-        assert False
+        # The pipeline runner will try to call convert_hscic_prescribing on any
+        # unimported files, so we delete the full file once we have processed it.
+        os.remove(full_path)
