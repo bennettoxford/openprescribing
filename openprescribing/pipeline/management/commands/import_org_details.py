@@ -17,9 +17,9 @@ class Command(BaseCommand):
 @transaction.atomic
 def import_all(records):
     # The data contains some (but not all) non-English organisations (eg practice
-    # W95633, a practice in Aberdare), which can reference parent organisations (eg PCO
-    # 7A5, ie Cwm Taf Morgannwg University Local Health Board) that are not present in
-    # the data.  This breaks FK constraints, so we remove them here.
+    # W95633, a practice in Aberdare), which can reference parent organisations (eg
+    # SICBL 7A5, ie Cwm Taf Morgannwg University Local Health Board) that are not
+    # present in the data.  This breaks FK constraints, so we remove them here.
     records = [r for r in records if r["country"] == "ENGLAND"]
 
     # By importing in this order, we guarantee that parent organisations have been
@@ -116,7 +116,7 @@ def import_practices(records):
                 "close_date": r["legEndDate"] or None,
                 "status_code": status_to_code[r["status"]],
                 "setting": 4,  # All GP PRACTICE records have setting 4
-                "ccg_id": r["PCO"],
+                "ccg_id": r["RE4"],
                 "pcn_id": r["isPartnerToCode"][0] if r["isPartnerToCode"] else None,
             },
         )
