@@ -16,7 +16,7 @@ backports-csv==1.0.7
     # via -r requirements.in
 bcrypt==5.0.0
     # via paramiko-ng
-beautifulsoup4==4.14.2
+beautifulsoup4==4.14.3
     # via -r requirements.in
 build==1.3.0
     # via pip-tools
@@ -36,7 +36,7 @@ click==8.3.1
     # via pip-tools
 contourpy==1.3.3
     # via matplotlib
-coverage==7.12.0
+coverage==7.13.0
     # via -r requirements.in
 crispy-bootstrap3==2024.1
     # via -r requirements.in
@@ -54,7 +54,7 @@ db-dtypes==1.4.4
     # via pandas-gbq
 diskcache==5.6.3
     # via -r requirements.in
-django==4.2.26
+django==4.2.27
     # via
     #   -r requirements.in
     #   crispy-bootstrap3
@@ -95,7 +95,7 @@ fab-classic==1.20.2
     # via -r requirements.in
 flake8==7.3.0
     # via -r requirements.in
-fonttools==4.60.1
+fonttools==4.61.0
     # via matplotlib
 google-api-core[grpc]==2.28.1
     # via
@@ -129,13 +129,13 @@ google-cloud-bigquery==3.38.0
     # via
     #   -r requirements.in
     #   pandas-gbq
-google-cloud-bigquery-storage==2.34.0
+google-cloud-bigquery-storage==2.35.0
     # via -r requirements.in
 google-cloud-core==2.5.0
     # via
     #   google-cloud-bigquery
     #   google-cloud-storage
-google-cloud-storage==3.6.0
+google-cloud-storage==3.7.0
     # via -r requirements.in
 google-crc32c==1.7.1
     # via
@@ -197,7 +197,7 @@ mock==5.2.0
     # via -r requirements.in
 more-itertools==10.8.0
     # via cssutils
-networkx==3.6
+networkx==3.6.1
     # via -r requirements.in
 numpy==2.3.5
     # via
@@ -231,7 +231,7 @@ pandas==2.3.3
     #   db-dtypes
     #   pandas-gbq
     #   seaborn
-pandas-gbq==0.31.0
+pandas-gbq==0.31.1
     # via -r requirements.in
 paramiko-ng==2.9.0
     # via fab-classic
@@ -245,7 +245,7 @@ proto-plus==1.26.1
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
-protobuf==6.33.1
+protobuf==6.33.2
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
@@ -320,7 +320,7 @@ scipy==1.16.3
     # via -r requirements.in
 seaborn==0.13.2
     # via -r requirements.in
-selenium==4.38.0
+selenium==4.39.0
     # via -r requirements.in
 six==1.17.0
     # via
@@ -334,7 +334,7 @@ soupsieve==2.8
     # via beautifulsoup4
 sqlean-py==3.50.4.5
     # via -r requirements.in
-sqlparse==0.5.3
+sqlparse==0.5.4
     # via
     #   django
     #   django-debug-toolbar
@@ -355,7 +355,7 @@ tzdata==2025.2
     # via pandas
 uritemplate==4.2.0
     # via google-api-python-client
-urllib3[socks]==2.5.0
+urllib3[socks]==2.6.1
     # via
     #   django-anymail
     #   requests
