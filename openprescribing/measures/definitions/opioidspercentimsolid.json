@@ -19,8 +19,8 @@
 "low_is_good": true,
 "numerator_type": "custom",
 "numerator_columns": "SUM(ome_dose) AS numerator",
-"numerator_from":[
-    "SELECT p.bnf_code ",
+"numerator_bnf_codes_query":[
+    "SELECT DISTINCT p.bnf_code ",
     "FROM {measures}.vw__opioids_total_dmd p",
     "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
     "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n",
@@ -31,7 +31,7 @@
 "numerator_where": "1 = 1",
 "denominator_type": "custom",
 "denominator_columns": "SUM(ome_dose) AS denominator p",
-"denominator_from":[
+"denominator_bnf_codes_query":[
     "SELECT p.bnf_code ",
     "FROM {measures}.vw__opioids_total_dmd p",
     "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
