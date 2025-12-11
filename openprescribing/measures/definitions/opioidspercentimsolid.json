@@ -1,0 +1,55 @@
+{
+"name": "Proportion of immediate release oral morphine prescribed as liquid",
+"title": "Immediate release oral morphine prescribed as liquid",
+"description": "Proportion of mg of immediate release oral morphine prescribed as liquid formulations",
+"numerator_short": "mg of liquid oral morphine formulations",
+"denominator_short": "mg of all immediate release oral morphine formulations",
+"why_it_matters": [
+    "Oral liquid morphine has been implicated in a number of <a href='https://pharmaceutical-journal.com/article/feature/investigation-should-liquid-morphine-be-reclassified' target='_Blank'>drug-related ",
+    "deaths in the NHS</a>. There have been some concerns regarding accidental overdose, due to the ability to 'swig' the bottle,  compared to using solid or orodispersible formulations.</p>" ,
+    "<p>Morphine oral solution also contains high quantities of alcohol and sugar as excipients. For example, ",
+    "branded Oramorph contains xg of sugar and yg of ethanol (equivalent to z units of alcohol) in each 300ml bottle.</p>"
+  ],
+"tags": [
+    "core",
+    "opioids",
+    "opportunities",
+    "pain",
+    "safety"
+],
+"url": null,
+"is_percentage": true,
+"is_cost_based": false,
+"low_is_good": true,
+"numerator_type": "custom",
+"numerator_columns": "SUM(quantity * (strnt_nmrtr_val/COALESCE(strnt_dnmtr_val,1))) AS numerator",
+"numerator_from":[
+    "{hscic}.normalised_prescribing p",
+    "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
+    "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n",
+    "INNER JOIN {dmd}.ont AS ont ON vmp.id = ont.vmp -- joins vmp to ont table to get formulation codes \n",
+    "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names \n"
+],
+"numerator_where": [
+    "vpi.ing = 60886004 AND route.descr = ('solution.oral') -- morphine oral solution preparations"
+],
+"denominator_type": "custom",
+"denominator_columns": "SUM(quantity * (strnt_nmrtr_val/COALESCE(strnt_dnmtr_val,1))) AS denominator",
+"denominator_from":[
+    "{hscic}.normalised_prescribing p",
+    "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
+    "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n",
+    "INNER JOIN {dmd}.ont AS ont ON vmp.id = ont.vmp -- joins vmp to ont table to get formulation codes \n",
+    "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names \n"
+],
+"denominator_where":[
+    "vpi.ing = 60886004 AND route.descr IN ('tablet.oral','tabletdispersible.oral','solution.oral') -- morphine oral solution, oraldispersible and immediate release oral preparations"
+],
+"authored_by": "",
+"checked_by": "",
+"date_reviewed": "",
+"next_review": "",
+"measure_complexity": "medium",
+"measure_type": "dmd",
+"radar_exclude": false
+}
