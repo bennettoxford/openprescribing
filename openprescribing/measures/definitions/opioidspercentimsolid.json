@@ -1,15 +1,15 @@
 {
 "name": "Proportion of immediate release oral morphine prescribed as liquid",
 "title": "Immediate release oral morphine prescribed as liquid",
-"description": "Proportion of immediate release oral morphine prescribed as liquid formulations",
-"numerator_short": "liquid oral morphine formulations",
-"denominator_short": "OME all immediate release oral morphine formulations",
+"description": "Proportion of mg of immediate release oral morphine prescribed as liquid formulations",
+"numerator_short": "mg of liquid oral morphine formulations",
+"denominator_short": "mg of all immediate release oral morphine formulations",
 "why_it_matters": [
-    "Oral liquid morphine has been implicated in drug-related deaths in the NHS. ",
-    "It contains high quantities of alcohol and sugar as excipients. ",
-    "Patients are often discharged from the acute Trusts with oral liquid morphine because as a Schedule 5 drug it negates the paperwork required for higher schedule Controlled Drugs. ",
-    "GPs then continue to prescribe it for some patients."   
-],
+    "Oral liquid morphine has been implicated in a number of <a href='https://pharmaceutical-journal.com/article/feature/investigation-should-liquid-morphine-be-reclassified' target='_Blank'>drug-related ",
+    "deaths in the NHS</a>. There have been some concerns regarding accidental overdose, due to the ability to 'swig' the bottle,  compared to using solid or orodispersible formulations.</p>" ,
+    "<p>Morphine oral solution also contains high quantities of alcohol and sugar as excipients. For example, ",
+    "branded Oramorph contains xg of sugar and yg of ethanol (equivalent to z units of alcohol) in each 300ml bottle.</p>"
+  ],
 "tags": [
     "core",
     "opioids",
