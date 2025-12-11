@@ -4,7 +4,8 @@
 "description": "Proportion of immediate release oral morphine prescribed as liquid formulations",
 "numerator_short": "OME liquid oral morphine formulations",
 "denominator_short": "OME all immediate release oral morphine formulations",
-"why_it_matters": ["tbc"   
+"why_it_matters": [
+    "tbc"   
 ],
 "tags": [
     "core",
@@ -24,10 +25,9 @@
     "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
     "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n",
     "INNER JOIN {dmd}.ont AS ont ON vmp.id = ont.vmp -- joins vmp to ont table to get formulation codes \n",
-    "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names \n",
-    "WHERE vpi.ing = 60886004 AND route.descr = ('solution.oral') -- morphine oral solution preparations"
+    "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names \n"
 ],
-"numerator_where": "1 = 1",
+"numerator_where": "WHERE vpi.ing = 60886004 AND route.descr = ('solution.oral') -- morphine oral solution preparations",
 "denominator_type": "custom",
 "denominator_columns": "SUM(ome_dose) AS denominator p",
 "denominator_from":[
@@ -35,10 +35,9 @@
     "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
     "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n",
     "INNER JOIN {dmd}.ont AS ont ON vmp.id = ont.vmp -- joins vmp to ont table to get formulation codes \n",
-    "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names \n",
-    "WHERE vpi.ing = 60886004 AND route.descr IN ('tablet.oral','tabletdispersible.oral','solution.oral') -- morphine oral solution, oraldispersible and immediate release oral preparations"
+    "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names \n"
 ],
-"denominator_where": "1 = 1",
+"WHERE vpi.ing = 60886004 AND route.descr IN ('tablet.oral','tabletdispersible.oral','solution.oral') -- morphine oral solution, oraldispersible and immediate release oral preparations",
 "authored_by": "",
 "checked_by": "",
 "date_reviewed": "",
