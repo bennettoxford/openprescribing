@@ -2,9 +2,13 @@
 "name": "Proportion of immediate release oral morphine prescribed as liquid",
 "title": "Immediate release oral morphine prescribed as liquid",
 "description": "Proportion of immediate release oral morphine prescribed as liquid formulations",
-"numerator_short": "OME liquid oral morphine formulations",
+"numerator_short": "liquid oral morphine formulations",
 "denominator_short": "OME all immediate release oral morphine formulations",
-"why_it_matters": ["tbc"   
+"why_it_matters": [
+    "Oral liquid morphine has been implicated in drug-related deaths in the NHS. ",
+    "It contains high quantities of alcohol and sugar as excipients. ",
+    "Patients are often discharged from the acute Trusts with oral liquid morphine because as a Schedule 5 drug it negates the paperwork required for higher schedule Controlled Drugs. ",
+    "GPs then continue to prescribe it for some patients."   
 ],
 "tags": [
     "core",
