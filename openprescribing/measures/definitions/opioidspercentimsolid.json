@@ -51,5 +51,10 @@
 "next_review": "",
 "measure_complexity": "medium",
 "measure_type": "dmd",
-"radar_exclude": false
+"radar_exclude": false,
+"testing_measure": true,
+"testing_type": "custom",
+"testing_comments": "Simple test to identify new morphine products. The measure relies on dm+d codes/route so this test might over identify products.",
+"testing_include": ["0407020Q0%"],
+"testing_exclude": []
 }
