@@ -43,7 +43,7 @@
     "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names \n"
 ],
 "denominator_where":[
-    "vpi.ing = 60886004 AND route.descr IN ('tablet.oral','tabletdispersible.oral','solution.oral') -- morphine oral solution, oraldispersible and immediate release oral preparations"
+    "vpi.ing = 60886004 AND (route.descr LIKE '%.oral' AND route.descr NOT LIKE '%modified-release%') -- all none modified-release morphine preparations"
 ],
 "authored_by": "",
 "checked_by": "",
