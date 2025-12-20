@@ -26,7 +26,7 @@ class Command(BaseCommand):
         assert rsp.ok
 
         dir_path = os.path.join(
-            settings.PIPELINE_DATA_BASEDIR, "prescribing_v2", year_month
+            settings.PIPELINE_DATA_BASEDIR, "prescribing_v2", f"{year}_{month:02}"
         )
         mkdir_p(dir_path)
         full_path = os.path.join(dir_path, f"epd_{year_month}_full.csv")
