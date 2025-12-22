@@ -55,7 +55,8 @@
 "        --ALLYbg CODE \n",
 "        -- version 5 published 2025-09-19\n",
 "        (bnf_code != '0601060D0CIAAA0' AND DATE(month) >= '2025-10-01') OR -- WaveSense JAZZ testing strips (AgaMatrix Europe Ltd) REMOVED VERSION 5\n",
-"        (bnf_code != '0601060D0CIABA0' AND DATE(month) >= '2025-10-01') -- WaveSense JAZZ Duo testing strips (AgaMatrix Europe Ltd) REMOVED VERSION 5\n"
+"        (bnf_code != '0601060D0CIABA0' AND DATE(month) >= '2025-10-01') -- WaveSense JAZZ Duo testing strips (AgaMatrix Europe Ltd) REMOVED VERSION 5\n",
+"      )"
   ],
   "denominator_type": "bnf_items",
   "denominator_bnf_codes_filter": [
