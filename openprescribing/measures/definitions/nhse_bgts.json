@@ -38,6 +38,7 @@
     ")\n",
     "AND\n",
     "(\n",
+    "(\n",
     "  ( -- Version 1 - published 11/04/2023\n",
     "    bnf_code NOT IN (\n",
     "      '0601060D0EKAAA0', -- 4SURE testing strips (Nipro Diagnostics (UK) Ltd)\n",
@@ -156,6 +157,7 @@
     "    )\n",
     "    AND (MONTH >='2025-10-01 00:00:00')\n",
     "  )\n",
+    ")\n",
     ")\n"
   ],
   "denominator_type": "bnf_items",
