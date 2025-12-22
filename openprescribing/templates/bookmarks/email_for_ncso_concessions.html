@@ -1,16 +1,21 @@
 {% extends 'bookmarks/email_base.html' %}
 {% load template_extras %}
 {% load humanize %}
-{% block title %}Your price concession alert from OpenPrescribing{% endblock %}
+{% block title %}Your price concession alert from OpenPrescribing - CORRECTED information{% endblock %}
 
 {% block content %}
 
 <p><b>Hello from OpenPrescribing!</b></p>
 
+
 <p>
   This is an alert service from OpenPrescribing and we are always keen for feedback: just reply
   to this email.
 </p>
+
+<p><b>
+Due to a gremlin in our system, the emails sent earlier today and last week used the concession information for November 2025, rather than the December information.  We've now fixed the problem, and the correct price concession impact for December 2025 is shown below.  We'd like to apologise for this error.
+</b></p>
 
 <p>
   New or updated price concession data has been published for
