@@ -33,7 +33,6 @@
   "numerator_where": [
     "  SUBSTR(bnf_code,0,9) IN ('0601060X0','0601060D0')",
     "    AND",
-    "    (",
     " -- versions 1, 2, 3 published 2023-04-11, 2023-10-12, 2024-11-18, unchanged\n",
     "bnf_code NOT IN (",
     "'0601060D0EKAAA0',  -- 4SURE testing strips (Nipro Diagnostics (UK) Ltd) CURRENT\n",
