@@ -64,9 +64,7 @@
     ")"
   ],
   "denominator_type": "bnf_items",
-  "denominator_where": [
-    "DATE(month) >= '2023-04-01'"
-  ],
+  "denominator_where": "DATE(month) >= '2023-04-01'"
   "denominator_bnf_codes_filter": [
     "0601060X0 # Glucose and ketone blood testing reagents",
     "0601060D0 # Glucose blood testing reagents"
