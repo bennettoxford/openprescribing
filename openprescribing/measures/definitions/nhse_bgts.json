@@ -55,7 +55,7 @@
       ")",
       "AND ",
         "bnf_code NOT IN (",
-        "DATE(month) < '2025-07-01' I",
+        "DATE(month) < '2025-07-01' OR ",
         "'0601060D0FGAAA0',  -- GlucoRx Smart Glucose testing strips (GlucoRx Ltd) ADDED VERSION 4\n",
         "'0601060D0CUAGA0',  -- GlucoRx Vivid testing strips (GlucoRx Ltd) ADDED VERSION 4\n",
         "'0601060D0FFAAA0',  -- Neon GK+ Glucose testing strips (Neon Diagnostics Ltd) ADDED VERSION 4\n",
