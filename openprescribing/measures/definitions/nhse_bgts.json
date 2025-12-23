@@ -31,7 +31,6 @@
   ],
   "numerator_from": "{hscic}.normalised_prescribing ",
   "numerator_where": [
-    "DATE(month) >= '2023-04-01' AND ",
     "  SUBSTR(bnf_code,0,9) IN ('0601060X0','0601060D0')",
     "    AND",
     "    (",
@@ -64,7 +63,6 @@
     ")"
   ],
   "denominator_type": "bnf_items",
-  "denominator_where": "DATE(month) >= '2023-04-01'",
   "denominator_bnf_codes_filter": [
     "0601060X0 # Glucose and ketone blood testing reagents",
     "0601060D0 # Glucose blood testing reagents"
