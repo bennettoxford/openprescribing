@@ -28,10 +28,6 @@
   "numerator_columns": "SUM(items) AS numerator",
   "numerator_from": "{hscic}.normalised_prescribing ",
   "numerator_where": [
-    "SELECT",
-    " SUM(items) AS numerator",
-    "FROM hscic.normalised_prescribing",
-    "WHERE",
     "LOWER(bnf_name) LIKE '%lancets%'",
     "AND (",
     " -- versions 1, 2, 3 published 2023-04-11, 2023-10-12, 2024-11-18, unchanged\n",
