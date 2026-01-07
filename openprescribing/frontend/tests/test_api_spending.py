@@ -750,7 +750,7 @@ class TestAPISpendingViewsGhostGenerics(TestCase):
             ):
                 net_costs.append(rx.net_cost / rx.quantity)
             presentation_medians[presentation.bnf_code] = np.percentile(
-                net_costs, 50, interpolation="lower"
+                net_costs, 50, method="lower"
             )
         practice_savings = autovivify(levels=2, final=int)
         ccg_savings = autovivify(levels=2, final=int)
