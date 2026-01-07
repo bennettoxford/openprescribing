@@ -1,0 +1,60 @@
+{
+  "name": "Proportion of denosumab prescribed as branded (Prolia or Xgeva)",
+  "title": "Percentage denosumab items prescribed as branded (Prolia or Xgeva)",
+  "description": "Percentage denosumab items prescribed as branded (Prolia or Xgeva)",
+  "numerator_short": "Denosumab items prescribed as branded (Prolia or Xgeva)",
+  "denominator_short": "Denosumab items",
+  "y_label": "Percentage denosumab prescribed as branded (Prolia or Xgeva)",
+  "why_it_matters": [
+    "Biosimilars of denosumab 60mg (Prolia) and 120mg (Xgeva) became available in November 2025.",
+    "All denosumab biosimilar products are licensed for all reference product indications.",
+    "<p>Denosumab 60mg is used for the treatment of osteoporosis in postmenopausal women and in men at increased risk of fractures, as well as for treatment of bone loss associated with hormone ablation in men with prostate cancer and in women with breast cancer.</p>",
+    "<p>Denosumab 120mg is used for the prevention of skeletal-related events in adults with advanced cancers involving bone, and for treatment of unresectable or high-morbidity giant cell tumours of bone.</p>",
+    "<p>The <a href='https://www.sps.nhs.uk/articles/the-licence-and-supporting-evidence-for-denosumab-60mg-biosimilars/' target='_Blank'>Specialist Pharmacy Service</a> states that all denosumab biosimilars have demonstrated high similarity to the reference products in terms of structure, purity, biological activity and clinical efficacy.</p>",
+    "<p>Using biosimilar denosumab products in place of branded Prolia or Xgeva offers significant cost savings to the NHS.</p>",
+    "<p><b>Please note:</b> OpenPrescribing.net measures have a consistent way of visualising measures, where 'lower is better' and therefore in this case we show the proportion of denosumab which IS prescribed as branded (Prolia or Xgeva), rather than as a biosimilar.</p>"
+  ],
+  "tags": [
+    "core",
+    "cost",
+    "musculoskeletal",
+    "opportunities"
+  ],
+  "url": null,
+  "is_percentage": true,
+  "is_cost_based": true,
+  "low_is_good": true,
+  "numerator_type": "custom",
+  "numerator_columns": "SUM(p.items) AS numerator",
+  "numerator_from": [
+    "{hscic}.normalised_prescribing p \n"
+  ],
+  "numerator_where": [
+    "p.bnf_code IN ('0606020Z0BBAAAA', '0606020Z0BCAAAB', '0606020Z0BCABAC') --Prolia 60mg, Xgeva 120mg vials, Xgeva 120mg PFS \n"
+  ],
+  "denominator_type": "custom",
+  "denominator_columns": "SUM(p.items) AS denominator",
+  "denominator_from": [
+    "{hscic}.normalised_prescribing p ",
+    "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
+    "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient \n"
+  ],
+  "denominator_where": [
+    "vpi.ing = 446321003 --Denosumab \n"
+  ],
+  "authored_by": "[caroline.acuda@phc.ox.ac.uk]",
+  "checked_by": "[christopher.wood@phc.ox.ac.uk]",
+  "date_reviewed": "2026-01-06",
+  "next_review": "2028-01-06",
+  "measure_complexity": "low",
+  "measure_type": "dmd",
+  "radar_exclude": false,
+  "change_log": [
+    {
+      "date": "2026-01-06",
+      "description": "Created measure",
+      "action_by": "[caroline.acuda@phc.ox.ac.uk]",
+      "checked_by": "[christopher.wood@phc.ox.ac.uk]"
+    }
+  ]
+}
