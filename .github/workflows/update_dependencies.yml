@@ -39,5 +39,5 @@ jobs:
         method: chat.postMessage
         token: ${{ secrets.BENNETTBOT_SLACK_BOT_TOKEN }}
         payload: |
-          channel: "C080S7W2ZPX"
+          channel: "C0A5WSK8L75"
           text: "Update dependencies\n${{ steps.update.outputs.pull-request-url }}"
