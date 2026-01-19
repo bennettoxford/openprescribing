@@ -8,8 +8,12 @@
 "why_it_matters": [
     "Oral liquid morphine has been implicated in a number of <a href='https://pharmaceutical-journal.com/article/feature/investigation-should-liquid-morphine-be-reclassified' target='_Blank'>drug-related ",
     "deaths in the NHS</a>. There have been some concerns regarding accidental overdose, due to the ability to 'swig' the bottle, compared to using solid or orodispersible formulations.</p>" ,
+    "<p>Despite these risks, oral liquid morphine is classified as a Schedule 5 Controlled Drug, meaning it is subject to fewer regulatory controls than Schedule 2 morphine tablets. ",
+    "This classification reduces prescribing, storage and record keeping requirements, potentially leading it to be perceived as a simple option to give as a just in case of pain at discharge.</p>",
     "<p>Morphine oral solution also contains high quantities of alcohol and sugar as excipients. For example, ",
-    "branded Oramorph contains 90g of sugar and 24g of ethanol (equivalent to 3 units of alcohol) in each 300ml bottle.</p>"
+    "<a href='https://mhraproducts4853.blob.core.windows.net/docs/ded38835b171a612e33c82e0103d5482cd76d1a3' target='_Blank'>branded Oramorph</a> contains 90g of sugar and 24g of ethanol (equivalent to 3 units of alcohol) in each 300ml bottle.</p>",
+    "<p>You can read more about the rationale behind this measure, and the wider considerations surrounding the use of oral liquid morphine, ",
+    "<a href='#' target='_Blank'>in our guest blog</a>.</p>"
   ],
 "tags": [
     "core",
@@ -35,10 +39,10 @@
     "vpi.ing = 60886004 AND route.descr = ('solution.oral') -- morphine oral solution preparations"
 ],
 "denominator_type": "list_size",
-"authored_by": "",
-"checked_by": "",
-"date_reviewed": "",
-"next_review": "",
+"authored_by": "richard.croker@phc.ox.ac.uk",
+"checked_by": "christopher.wood@phc.ox.ac.uk",
+"date_reviewed": "2026-01-19",
+"next_review": "2028-01-19",
 "measure_complexity": "medium",
 "measure_type": "dmd",
 "radar_exclude": false,
