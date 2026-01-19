@@ -35,6 +35,16 @@
   "numerator_where": [
     "p.bnf_code IS NOT NULL"
   ],
+"numerator_bnf_codes_query" [
+    "SELECT DISTINCT count.bnf_code",
+    "FROM dmd.vpi vpi",
+    "INNER JOIN",
+    "measures.vw__presentation_ingredient_count count",
+    "ON vpi.vmp = count.vmp ",
+    "WHERE ",
+    "vpi.ing = 387517004 ",
+    "AND count.ing_count > 1 "
+],
  "denominator_type": "custom",
  "denominator_columns": "SUM(p.quantity*s.unit_dose) AS denominator",
  "denominator_from": [
