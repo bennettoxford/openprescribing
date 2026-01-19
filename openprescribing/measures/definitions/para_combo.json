@@ -1,10 +1,10 @@
 {
-  "name": "Paracetamol combo",
-  "title": "Paracetamol combo",
-  "description": "Paracetamol combo.",
-  "numerator_short": "Paracetamol combo",
-  "denominator_short": "Paracetamol combo",
-  "y_label": "Paracetamol combo",
+  "name": "Proportion of paracetamol prescribed as combination preparations",
+  "title": "Proportion of paracetamol prescribed as combination preparations",
+  "description": "Percentage of paracetamol (mg) prescribed as combination preparations.",
+  "numerator_short": "Paracetamol in combo preps (mg)",
+  "denominator_short": "Total paracetamol (mg)",
+  "y_label": "Paracetamol prescribed as combination preparation",
   "why_it_matters": [
     "tbc"
   ],
@@ -17,25 +17,24 @@
   "is_cost_based": false,
   "low_is_good": true,
   "numerator_type": "custom",
-  "numerator_columns": "SUM(CASE WHEN s.combo = 'combo' THEN p.quantity*s.unit_dose ELSE 0 END) AS numerator",
-   "numerator_from": [
-    "{hscic}.normalised_prescribing p ",
+  "numerator_columns": "SUM(p.quantity * s.unit_dose) AS numerator",
+  "numerator_from": [
+  "{hscic}.normalised_prescribing p ",
     "INNER JOIN (",
       "SELECT ",
-        "bnf_code,",
-        "(CASE WHEN strnt_nmrtr_uom = 258682000 THEN strnt_nmrtr_val*1000 ELSE strnt_nmrtr_val END)/COALESCE(strnt_dnmtr_val,1) AS unit_dose,",
-        "CASE WHEN count.ing_count > 1 THEN 'combo' ELSE NULL END AS combo",
+      "bnf_code,",
+      "(CASE WHEN strnt_nmrtr_uom = 258682000 THEN strnt_nmrtr_val*1000 ELSE strnt_nmrtr_val END)/COALESCE(strnt_dnmtr_val,1) AS unit_dose,",
       "FROM {dmd}.vpi vpi",
       "INNER JOIN measures.vw__presentation_ingredient_count AS count ",
       "ON vpi.vmp = count.vmp ",
       "WHERE vpi.ing = 387517004 ",
       ") s",
     "ON p.bnf_code = s.bnf_code"
-    ],
-  "numerator_where": [
-    "p.bnf_code IS NOT NULL"
   ],
-"numerator_bnf_codes_query": [
+  "numerator_where": [
+    "count.ing_count > 1"
+  ],
+  "numerator_bnf_codes_query": [
     "SELECT DISTINCT count.bnf_code",
     "FROM dmd.vpi vpi",
     "INNER JOIN",
@@ -46,20 +45,20 @@
     "AND count.ing_count > 1 "
 ],
  "denominator_type": "custom",
- "denominator_columns": "SUM(p.quantity*s.unit_dose) AS denominator",
+ "denominator_columns": "SUM(p.quantity * s.unit_dose) AS denominator",
  "denominator_from": [
     "{hscic}.normalised_prescribing p ",
     "INNER JOIN (",
       "SELECT ",
-        "bnf_code,",
-        "(CASE WHEN strnt_nmrtr_uom = 258682000 THEN strnt_nmrtr_val*1000 ELSE strnt_nmrtr_val END)/COALESCE(strnt_dnmtr_val,1) AS unit_dose,",
+      "bnf_code,",
+      "(CASE WHEN strnt_nmrtr_uom = 258682000 THEN strnt_nmrtr_val*1000 ELSE strnt_nmrtr_val END)/COALESCE(strnt_dnmtr_val,1) AS unit_dose,",
       "FROM {dmd}.vpi vpi",
       "INNER JOIN measures.vw__presentation_ingredient_count AS count ",
       "ON vpi.vmp = count.vmp ",
       "WHERE vpi.ing = 387517004 ",
       ") s",
     "ON p.bnf_code = s.bnf_code"
-    ],
+  ],
   "denominator_where": [
     "p.bnf_code IS NOT NULL"
   ],
