@@ -27,12 +27,13 @@
       "FROM {dmd}.vpi vpi",
       "INNER JOIN measures.vw__presentation_ingredient_count AS count ",
       "ON vpi.vmp = count.vmp ",
-      "WHERE vpi.ing = 387517004 ",
+      "WHERE vpi.ing = 387517004",
+      "AND count.ing_count > 1",
       ") s",
     "ON p.bnf_code = s.bnf_code"
   ],
   "numerator_where": [
-    "count.ing_count > 1"
+    "1 = 1"
   ],
   "numerator_bnf_codes_query": [
     "SELECT DISTINCT count.bnf_code",
