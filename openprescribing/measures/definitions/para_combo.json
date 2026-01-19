@@ -30,7 +30,7 @@
       "ON vpi.vmp = count.vmp ",
       "WHERE vpi.ing = 387517004 ",
       ") s",
-    "ON rx.bnf_code = para_strength.bnf_code"
+    "ON p.bnf_code = s.bnf_code"
     ],
   "numerator_where": [
     "vpi.ing = 387517004"
@@ -49,7 +49,7 @@
       "ON vpi.vmp = count.vmp ",
       "WHERE vpi.ing = 387517004 ",
       ") s",
-    "ON rx.bnf_code = para_strength.bnf_code"
+    "ON p.bnf_code = s.bnf_code"
     ],
   "denominator_where": [
     "vpi.ing = 387517004"
