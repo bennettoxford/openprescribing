@@ -35,7 +35,7 @@
   "numerator_where": [
     "p.bnf_code IS NOT NULL"
   ],
-"numerator_bnf_codes_query" [
+"numerator_bnf_codes_query": [
     "SELECT DISTINCT count.bnf_code",
     "FROM dmd.vpi vpi",
     "INNER JOIN",
