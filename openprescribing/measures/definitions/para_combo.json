@@ -32,7 +32,9 @@
       ") s",
     "ON rx.bnf_code = para_strength.bnf_code"
     ],
-  "numerator_where": "1=1"
+  "numerator_where": [
+    "vpi.ing = 387517004"
+  ],
  "denominator_type": "custom",
  "denominator_columns": "SUM(p.quantity*s.unit_dose ELSE 0 END) AS denominator",
  "denominator_from": [
@@ -49,7 +51,9 @@
       ") s",
     "ON rx.bnf_code = para_strength.bnf_code"
     ],
-  "denominator_where": "1=1"
+  "denominator_where": [
+    "vpi.ing = 387517004"
+  ],
   "authored_by": "",
   "checked_by": "",
   "date_reviewed": "",
