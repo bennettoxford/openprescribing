@@ -33,7 +33,7 @@
     "ON p.bnf_code = s.bnf_code"
     ],
   "numerator_where": [
-    "vpi.ing = 387517004"
+    "p.bnf_code IS NOT NULL"
   ],
  "denominator_type": "custom",
  "denominator_columns": "SUM(p.quantity*s.unit_dose ELSE 0 END) AS denominator",
@@ -52,7 +52,7 @@
     "ON p.bnf_code = s.bnf_code"
     ],
   "denominator_where": [
-    "vpi.ing = 387517004"
+    "p.bnf_code IS NOT NULL"
   ],
   "authored_by": "",
   "checked_by": "",
