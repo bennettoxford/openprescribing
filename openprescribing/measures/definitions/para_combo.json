@@ -43,7 +43,6 @@
       "SELECT ",
         "bnf_code,",
         "(CASE WHEN strnt_nmrtr_uom = 258682000 THEN strnt_nmrtr_val*1000 ELSE strnt_nmrtr_val END)/COALESCE(strnt_dnmtr_val,1) AS unit_dose,",
-        "CASE WHEN count.ing_count > 1 THEN 'combo' ELSE NULL END AS combo",
       "FROM {dmd}.vpi vpi",
       "INNER JOIN measures.vw__presentation_ingredient_count AS count ",
       "ON vpi.vmp = count.vmp ",
@@ -62,4 +61,3 @@
   "measure_type": "dmd",
   "radar_exclude": false
 }
-
