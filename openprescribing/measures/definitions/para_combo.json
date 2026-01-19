@@ -1,0 +1,58 @@
+{
+  "name": "Paracetamol combo",
+  "title": "Paracetamol combo",
+  "description": "Paracetamol combo.",
+  "numerator_short": "Paracetamol combo",
+  "denominator_short": "Paracetamol combo",
+  "y_label": "Paracetamol combo",
+  "why_it_matters": [
+    "tbc"
+  ],
+  "tags": [
+    "opioids",
+    "efficacy",
+  ],
+  "url": null,
+  "is_percentage": true,
+  "is_cost_based": false,
+  "low_is_good": true,
+  "numerator_type": "custom",
+  "numerator_columns": "SUM(CASE WHEN s.combo = 'combo' THEN p.quantity*s.unit_dose ELSE 0 END) AS numerator",
+   "numerator_from": [
+    "{hscic}.normalised_prescribing p ",
+    "INNER JOIN (",
+      "SELECT ",
+        "bnf_code,",
+        "(CASE WHEN strnt_nmrtr_uom = 258682000 THEN strnt_nmrtr_val*1000 ELSE strnt_nmrtr_val END)/COALESCE(strnt_dnmtr_val,1) AS unit_dose,",
+        "CASE WHEN count.ing_count > 1 THEN 'combo' ELSE NULL END AS combo",
+      "FROM {dmd}.vpi vpi",
+      "INNER JOIN measures.vw__presentation_ingredient_count AS count ",
+      "ON vpi.vmp = count.vmp ",
+      "WHERE vpi.ing = 387517004 ",
+      ") s",
+    "ON rx.bnf_code = para_strength.bnf_code"
+    ],
+ "denominator_type": "custom",
+ "denominator_columns": "SUM(p.quantity*s.unit_dose ELSE 0 END) AS denominator",
+ "denominator_from": [
+    "{hscic}.normalised_prescribing p ",
+    "INNER JOIN (",
+      "SELECT ",
+        "bnf_code,",
+        "(CASE WHEN strnt_nmrtr_uom = 258682000 THEN strnt_nmrtr_val*1000 ELSE strnt_nmrtr_val END)/COALESCE(strnt_dnmtr_val,1) AS unit_dose,",
+        "CASE WHEN count.ing_count > 1 THEN 'combo' ELSE NULL END AS combo",
+      "FROM {dmd}.vpi vpi",
+      "INNER JOIN measures.vw__presentation_ingredient_count AS count ",
+      "ON vpi.vmp = count.vmp ",
+      "WHERE vpi.ing = 387517004 ",
+      ") s",
+    "ON rx.bnf_code = para_strength.bnf_code"
+    ],
+  "authored_by": "",
+  "checked_by": "",
+  "date_reviewed": "",
+  "next_review": "",
+  "measure_complexity": "medium",
+  "measure_type": "dmd",
+  "radar_exclude": false
+}
