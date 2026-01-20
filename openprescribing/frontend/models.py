@@ -91,7 +91,7 @@ class RegionalTeam(models.Model):
 
 
 class STP(models.Model):
-    code = models.CharField(max_length=3, primary_key=True)
+    code = models.CharField(max_length=5, primary_key=True)
     name = models.CharField(max_length=200, null=True, blank=True)
     ons_code = models.CharField(max_length=9, null=True, blank=True)
 
