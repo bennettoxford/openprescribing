@@ -450,9 +450,9 @@ def run_all(year, month, under_test=False):
 
         You should now:
 
-        * ask tech-support to run `sudo systemctl restart app.openprescribing.*.service` to pick up the new data
+        * run `sudo systemctl restart app.openprescribing.*.service` to pick up the new data
         * check that nothing looks horribly wrong with the data (https://openprescribing.net/national/england/ gives a good overview)
-        * ask tech-support to send email notifications as described in https://github.com/ebmdatalab/openprescribing/wiki/Sending-monthly-email-alerts
+        * ask tech support to send email notifications as described in https://github.com/ebmdatalab/openprescribing/wiki/Sending-monthly-email-alerts
         * send a tweet as described in https://github.com/ebmdatalab/openprescribing/wiki/Clinical-Informatician-Process-for-Updating-Data
         """
     )
