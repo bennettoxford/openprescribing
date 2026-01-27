@@ -29,34 +29,23 @@
 "is_cost_based": false,
 "low_is_good": true,
 "numerator_type": "custom",
-"numerator_columns": "SUM(total_quantity) AS numerator",
-"numerator_from":[
-    "{hscic}.raw_prescribing_normalised p",
-    "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
-    "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n",
-    "INNER JOIN {dmd}.ont AS ont ON vmp.id = ont.vmp -- joins vmp to ont table to get formulation codes \n",
-    "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names \n"
+"numerator_columns": [
+"SUM(total_quantity) AS numerator"
 ],
+"numerator_from": "{hscic}.raw_prescribing_normalised",
 "numerator_where": [
-    "quantity_per_item>300",
-    "AND ",
-    "vpi.ing = 60886004 -- morphine ingredient",
-    "AND ",
-    "route.descr = ('solution.oral') -- oral solution formulations only"
+"quantity_per_item>300",
+"AND",
+"bnf_code LIKE '0407020Q0%CN' #morphine sulphate oral solution 10mg/5ml"
 ],
+"numerator_is_list_of_bnf_codes": false,
 "denominator_type": "custom",
-"denominator_columns": "SUM(total_quantity) AS denominator",
-"denominator_from":[
-    "{hscic}.raw_prescribing_normalised p",
-    "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
-    "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n",
-    "INNER JOIN {dmd}.ont AS ont ON vmp.id = ont.vmp -- joins vmp to ont table to get formulation codes \n",
-    "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names \n"
+"denominator_columns": [
+"SUM(total_quantity) AS denominator"
 ],
+"denominator_from": "{hscic}.raw_prescribing_normalised",
 "denominator_where": [
-    "vpi.ing = 60886004 -- morphine ingredient",
-    "AND ",
-    "route.descr = ('solution.oral') -- oral solution formulations only"
+"bnf_code LIKE '0407020Q0%CN' #morphine sulphate oral solution 10mg/5ml"
 ],
 "authored_by": "",
 "checked_by": "",
