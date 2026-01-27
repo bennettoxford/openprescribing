@@ -1,0 +1,75 @@
+{
+"name": "High quantity prescribing of morphine sulphate oral solution",
+"title": "High quantity prescribing of morphine sulphate oral solution",
+"description": "Total proportion of morphine sulphate oral solution with a quantity of >300ml",
+"numerator_short": "Morphine sulphate oral solution quantity with quantity of >300ml",
+"denominator_short": "Morphine sulphate oral solution quantity",
+"y_label": "Proportion of morphine sulphate oral solution with quantity of >300ml",
+"why_it_matters": [
+    "Oral liquid morphine has been implicated in a number of <a href='https://pharmaceutical-journal.com/article/feature/investigation-should-liquid-morphine-be-reclassified' target='_Blank'>drug-related deaths in the NHS</a>, including cases of unintentional overdose. ",
+    "A national <a href='https://www.hssib.org.uk/patient-safety-investigations/unintentional-overdose-of-morphine-sulfate-oral-solution/investigation-report/' target='_Blank'>patient safety investigation</a> has highlighted risks associated with morphine oral solution, including dosing errors and accidental overconsumption.</p>",
+    "<p>Particular concerns include the risk of patients 'swigging' morphine oral solution directly from the bottle rather than measuring individual doses, and the supply of large quantities over extended periods. ",
+    "The classification of oral morphine solution 10 mg in 5 mL as a Schedule 5 Controlled Drug, rather than a Schedule 2 like other morphine formulations, means it is subject to fewer controls. ",
+    "This may increase the likelihood of larger volumes being supplied and continued without the safeguards applied to other opioid formulations.</p>",
+    "<p>In addition, morphine oral solution contains high quantities of alcohol and sugar as excipients. ",
+    "For example, branded <a href='https://mhraproducts4853.blob.core.windows.net/docs/ded38835b171a612e33c82e0103d5482cd76d1a3' target='_Blank'>Oramorph</a> contains around 90 g of sugar and 24 g of ethanol, equivalent to three units of alcohol, in each 300 mL bottle. ",
+    "These factors should be considered alongside the opioid content when assessing clinical risk.</p>",
+    "<p>You can read more about the rationale behind this measure, and the wider considerations surrounding the use of oral liquid morphine, ",
+    "<a href='#' target='_Blank'>in our guest blog</a>.</p>"
+  ],
+"tags": [
+    "core",
+    "opioids",
+    "opportunities",
+    "pain",
+    "safety"
+],
+"url": null,
+"is_percentage": true,
+"is_cost_based": false,
+"low_is_good": true,
+"numerator_type": "custom",
+"numerator_columns": "SUM(total_quantity) AS numerator",
+"numerator_from":[
+    "{hscic}.normalised_prescribing p",
+    "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
+    "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n",
+    "INNER JOIN {dmd}.ont AS ont ON vmp.id = ont.vmp -- joins vmp to ont table to get formulation codes \n",
+    "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names \n"
+],
+"numerator_where": [
+    "quantity_per_item>300",
+    "AND ",
+    "vpi.ing = 60886004 -- morphine ingredient",
+    "AND ",
+    "route.descr = ('solution.oral') -- oral solution formulations only"
+],
+"denominator_type": "custom",
+"denominator_columns": "SUM(total_quantity) AS denominator",
+"denominator_from":[
+    "{hscic}.normalised_prescribing p",
+    "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
+    "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n",
+    "INNER JOIN {dmd}.ont AS ont ON vmp.id = ont.vmp -- joins vmp to ont table to get formulation codes \n",
+    "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names \n"
+],
+"denominator_where": [
+    "quantity_per_item>300",
+    "AND ",
+    "vpi.ing = 60886004 -- morphine ingredient",
+    "AND ",
+    "route.descr = ('solution.oral') -- oral solution formulations only"
+],
+"authored_by": "",
+"checked_by": "",
+"date_reviewed": "",
+"next_review": "",
+"measure_complexity": "medium",
+"measure_type": "dmd",
+"radar_exclude": false,
+"testing_measure": true,
+"testing_type": "custom",
+"testing_comments": "Simple test to identify new morphine products. The measure relies on dm+d codes/route so this test might over identify products.",
+"testing_include": ["0407020Q0%"],
+"testing_exclude": []
+}
