@@ -15,14 +15,14 @@ SELECT
 FROM
   {project}.{measures}.practice_data_lpdosulepin
 
-UNION ALL
-SELECT
-  TIMESTAMP(month) AS month,
-  practice_id AS practice,
-  numerator,
-  denominator
-FROM
-  {project}.{measures}.practice_data_lpdoxazosin
+#UNION ALL
+#SELECT
+#  TIMESTAMP(month) AS month,
+#  practice_id AS practice,
+#  numerator,
+#  denominator
+#FROM
+#  {project}.{measures}.practice_data_lpdoxazosin
 
 UNION ALL
 SELECT
