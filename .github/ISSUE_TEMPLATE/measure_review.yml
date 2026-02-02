@@ -1,19 +1,5 @@
-name: Measure
-description: Template for creating a new measure
-title: "[Measure Review]: "
-labels: ["measure"]
-body:
-  - type: input
-    id: measure_title
-    attributes:
-      label: Measure Title
-      description: The full title of the measure
-      placeholder: e.g., "Direct Oral Anticoagulants (DOACs) not prescribed as rivaroxaban or apixaban tablets"
-    validations:
-      required: true
-
 name: "Measure Review Template"
-description: "Use this form to review clinical measures. Please provide links, rationale and any actions needed."
+description: "Use this form to review OpenPrescribing measures."
 title: "Measure review: {{measure_title}}"
 labels: ["measure-review"]
 body:
@@ -21,8 +7,8 @@ body:
     id: measure_title
     attributes:
       label: "Measure Title"
-      description: "Enter the short, human-readable title of the measure."
-      placeholder: "e.g. Influenza vaccination coverage (age 65+)"
+      description: "The full title of the measure"
+      placeholder: e.g., "Direct Oral Anticoagulants (DOACs) not prescribed as rivaroxaban or apixaban tablets"
     validations:
       required: true
 
