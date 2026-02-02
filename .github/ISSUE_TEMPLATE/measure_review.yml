@@ -1,6 +1,6 @@
 name: Measure
 description: Template for creating a new measure
-title: "[Measure]: "
+title: "[Measure Review]: "
 labels: ["measure"]
 body:
   - type: input
@@ -12,64 +12,103 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: short_description
+name: "Measure Review Template"
+description: "Use this form to review clinical measures. Please provide links, rationale and any actions needed."
+title: "Measure review: {{measure_title}}"
+labels: ["measure-review"]
+body:
+  - type: input
+    id: measure_title
     attributes:
-      label: What is this measure?
-      description: A brief overview of what this measure captures
-      placeholder: e.g. "Percentage of DOACs that are not rivaroxaban or apixaban tablets."
+      label: "Measure Title"
+      description: "Enter the short, human-readable title of the measure."
+      placeholder: "e.g. Influenza vaccination coverage (age 65+)"
     validations:
       required: true
 
   - type: input
-    id: tags
+    id: measure_link
     attributes:
-      label: Tags
-      description: One or more tags for this measure
-      placeholder: e.g., "Safety, Value"
+      label: "Link to measure"
+      description: "Provide a URL (link to the measure definition, spec, dashboard or source)."
+      placeholder: "https://..."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: measure_type
+    attributes:
+      label: "Type of measure"
+      description: "Select classification type of measure."
+      options:
+        - label: "Never. Events that should never occur."
+          value: "never"
+        - label: "Rare. Events that should rarely occur, with weak influence from casemix and demographics."
+          value: "rare"
+        - label: "Information. Events that are heavily influenced by casemix and demographics."
+          value: "info"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: clinical_relevance
+    attributes:
+      label: "Clinical relevance today"
+      description: "Choose current clinical relevance."
+      options:
+        - label: "High"
+          value: "high"
+        - label: "Medium"
+          value: "medium"
+        - label: "Low"
+          value: "low"
     validations:
       required: true
 
   - type: textarea
-    id: why_it_matters
+    id: clinical_rationale
     attributes:
-      label: Why does it matter?
-      description: Explain why this measure is important, including any relevant national guidance or standards
-      placeholder: |
-        - Why is this measure important?
-        - What national guidance or standards does it relate to?
+      label: "Rationale (guidelines / room for improvement)"
+      description: |
+        Explain why you selected the clinical relevance above. Mention changes in guidelines, evidence, or whether there are still opportunities for improvement.
     validations:
-      required: true
+      required: false
+
+  - type: checkboxes
+    id: code_structures
+    attributes:
+      label: "Code structure(s) used for search logic"
+      description: "Tick all code libraries used when building the search logic."
+      options:
+        - label: "dm+d"
+          value: "dm+d"
+        - label: "BNF"
+          value: "bnf"
 
   - type: textarea
-    id: calculation
+    id: outstanding_queries
     attributes:
-      label: How is it calculated?
-      description: Provide details about the calculation methodology
-      placeholder: |
-        - What products are included in the numerator and how are they identified?
-        - What products are included in the denominator and how are they identified?
-        - What quantity measure does it use (e.g. SCMD quantity, unit dose quantity, ingredient quantity)?
+      label: "Outstanding queries / notable user feedback"
+      description: |
+        List any outstanding questions, issues or notable user feedback.
+        Example:
+        - Query about denominator definition...
+        - User reported missing codes in dm+d...
+      placeholder: "- "
     validations:
-      required: true
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ### Actions needed
+        In the free-text box below, please add each action as a checklist item using GitHub task-list markdown. This makes it easy to track completion directly in the issue.
 
   - type: textarea
-    id: what_good_looks_like
+    id: actions_needed
     attributes:
-      label: What does good look like?
-      description: We are often able to make a value judgement - based on guidance, evidence or national priorities underpinning the measure - to determine what represents “better” practice. For consistency, we usually represent lower values as “better”.
-      placeholder: Is a low value good?
+      label: "Actions needed (add checklist items)"
+      description: "Add each action on its own line as a markdown task item (e.g. `- [ ] Update denominator definition`)."
+      placeholder: "- [ ] Action 1\n- [ ] Action 2"
     validations:
-      required: true
-
-  - type: textarea
-    id: caveats
-    attributes:
-      label: Caveats
-      description: Important limitations, potential misinterpretations, or things to be aware of when using this measure
-      placeholder: |
-        - Could this measure be misinterpreted?
-        - What are the limitations of this measure?
-        - What context is needed to properly interpret results?
-    validations:
-      required: true
+      required: false
