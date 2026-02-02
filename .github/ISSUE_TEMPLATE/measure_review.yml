@@ -8,7 +8,7 @@ body:
     attributes:
       label: "Measure Title"
       description: "The full title of the measure"
-      placeholder: e.g., "Direct Oral Anticoagulants (DOACs) not prescribed as rivaroxaban or apixaban tablets"
+      placeholder: "e.g. Direct Oral Anticoagulants (DOACs) not prescribed as rivaroxaban or apixaban tablets"
     validations:
       required: true
 
