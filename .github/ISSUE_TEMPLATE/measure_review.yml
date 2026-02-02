@@ -1,0 +1,100 @@
+name: "Measure Review Template"
+description: "Use this form to review OpenPrescribing measures."
+title: "Measure review: {{measure_title}}"
+labels: ["measure-review"]
+body:
+  - type: input
+    id: measure_title
+    attributes:
+      label: "Measure Title"
+      description: "The full title of the measure"
+      placeholder: e.g., "Direct Oral Anticoagulants (DOACs) not prescribed as rivaroxaban or apixaban tablets"
+    validations:
+      required: true
+
+  - type: input
+    id: measure_link
+    attributes:
+      label: "Link to measure"
+      description: "Provide a URL (link to the measure definition, spec, dashboard or source)."
+      placeholder: "https://..."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: measure_type
+    attributes:
+      label: "Type of measure"
+      description: "Select classification type of measure."
+      options:
+        - label: "Never. Events that should never occur."
+          value: "never"
+        - label: "Rare. Events that should rarely occur, with weak influence from casemix and demographics."
+          value: "rare"
+        - label: "Information. Events that are heavily influenced by casemix and demographics."
+          value: "info"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: clinical_relevance
+    attributes:
+      label: "Clinical relevance today"
+      description: "Choose current clinical relevance."
+      options:
+        - label: "High"
+          value: "high"
+        - label: "Medium"
+          value: "medium"
+        - label: "Low"
+          value: "low"
+    validations:
+      required: true
+
+  - type: textarea
+    id: clinical_rationale
+    attributes:
+      label: "Rationale (guidelines / room for improvement)"
+      description: |
+        Explain why you selected the clinical relevance above. Mention changes in guidelines, evidence, or whether there are still opportunities for improvement.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: code_structures
+    attributes:
+      label: "Code structure(s) used for search logic"
+      description: "Tick all code libraries used when building the search logic."
+      options:
+        - label: "dm+d"
+          value: "dm+d"
+        - label: "BNF"
+          value: "bnf"
+
+  - type: textarea
+    id: outstanding_queries
+    attributes:
+      label: "Outstanding queries / notable user feedback"
+      description: |
+        List any outstanding questions, issues or notable user feedback.
+        Example:
+        - Query about denominator definition...
+        - User reported missing codes in dm+d...
+      placeholder: "- "
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ### Actions needed
+        In the free-text box below, please add each action as a checklist item using GitHub task-list markdown. This makes it easy to track completion directly in the issue.
+
+  - type: textarea
+    id: actions_needed
+    attributes:
+      label: "Actions needed (add checklist items)"
+      description: "Add each action on its own line as a markdown task item (e.g. `- [ ] Update denominator definition`)."
+      placeholder: "- [ ] Action 1\n- [ ] Action 2"
+    validations:
+      required: false

@@ -1,0 +1,75 @@
+name: Measure
+description: Template for creating a new measure
+title: "[Measure]: "
+labels: ["measure"]
+body:
+  - type: input
+    id: measure_title
+    attributes:
+      label: Measure Title
+      description: The full title of the measure
+      placeholder: e.g., "Direct Oral Anticoagulants (DOACs) not prescribed as rivaroxaban or apixaban tablets"
+    validations:
+      required: true
+
+  - type: textarea
+    id: short_description
+    attributes:
+      label: What is this measure?
+      description: A brief overview of what this measure captures
+      placeholder: e.g. "Percentage of DOACs that are not rivaroxaban or apixaban tablets."
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: One or more tags for this measure
+      placeholder: e.g., "Safety, Value"
+    validations:
+      required: true
+
+  - type: textarea
+    id: why_it_matters
+    attributes:
+      label: Why does it matter?
+      description: Explain why this measure is important, including any relevant national guidance or standards
+      placeholder: |
+        - Why is this measure important?
+        - What national guidance or standards does it relate to?
+    validations:
+      required: true
+
+  - type: textarea
+    id: calculation
+    attributes:
+      label: How is it calculated?
+      description: Provide details about the calculation methodology
+      placeholder: |
+        - What products are included in the numerator and how are they identified?
+        - What products are included in the denominator and how are they identified?
+        - What quantity measure does it use (e.g. SCMD quantity, unit dose quantity, ingredient quantity)?
+    validations:
+      required: true
+
+  - type: textarea
+    id: what_good_looks_like
+    attributes:
+      label: What does good look like?
+      description: We are often able to make a value judgement - based on guidance, evidence or national priorities underpinning the measure - to determine what represents “better” practice. For consistency, we usually represent lower values as “better”.
+      placeholder: Is a low value good?
+    validations:
+      required: true
+
+  - type: textarea
+    id: caveats
+    attributes:
+      label: Caveats
+      description: Important limitations, potential misinterpretations, or things to be aware of when using this measure
+      placeholder: |
+        - Could this measure be misinterpreted?
+        - What are the limitations of this measure?
+        - What context is needed to properly interpret results?
+    validations:
+      required: true
