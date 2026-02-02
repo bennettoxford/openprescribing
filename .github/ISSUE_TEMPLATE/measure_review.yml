@@ -66,8 +66,8 @@ body:
       label: "Code structure(s) used for search logic"
       description: "Tick all code libraries used when building the search logic."
       options:
-        - "dm+d"
-        - "BNF"
+        - label: "dm+d"
+        - label: "BNF"
 
   - type: textarea
     id: outstanding_queries
