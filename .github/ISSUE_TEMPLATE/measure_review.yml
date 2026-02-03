@@ -1,7 +1,7 @@
 name: "Measure Review Template"
 description: "Use this form to review OpenPrescribing measures."
 title: "Measure review: {measure_title}"
-labels: ["measure-review"]
+labels: ["review-measure"]
 body:
   - type: input
     id: measure_title
