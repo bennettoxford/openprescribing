@@ -25,11 +25,11 @@ body:
     id: measure_type
     attributes:
       label: "Type of measure"
-      description: "Select classification type of measure."
+      description: "Classify the type of measure."
       options:
-        - label: "Never. Events that should never occur."
-        - label: "Rare. Events that should rarely occur, with weak influence from casemix and demographics."
-        - label: "Information. Events that are heavily influenced by casemix and demographics."
+        - "Never. Events that should never occur."
+        - "Rare. Events that should rarely occur, with weak influence from casemix and demographics."
+        - "Information. Events that are heavily influenced by casemix and demographics."
     validations:
       required: false
 
@@ -39,9 +39,9 @@ body:
       label: "Clinical relevance today"
       description: "Indicate current clinical relevance."
       options:
-        - label: "High"
-        - label: "Medium"
-        - label: "Low"
+        - "High"
+        - "Medium"
+        - "Low"
     validations:
       required: false
 
@@ -75,7 +75,7 @@ body:
     id: actions_needed
     attributes:
       label: "Actions needed"
-      description: "Add each action on its own line as a checkbox item (e.g. `- [ ] Update denominator definition`)."
+      description: "Add any actions_needed on separate lines as checkbox items."
       placeholder: "- [ ] Action 1\n- [ ] Action 2"
     validations:
       required: false
