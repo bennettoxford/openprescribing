@@ -27,12 +27,9 @@ body:
       label: "Type of measure"
       description: "Classify the type of measure."
       options:
-        - label: "Never. Events that should never occur."
-          value: "Never. Events that should never occur."
-        - label: "Rare. Events that should rarely occur, with weak influence from casemix and demographics."
-          value: "Rare. Events that should rarely occur, with weak influence from casemix and demographics."
-        - label: "Information. Events that are heavily influenced by casemix and demographics."
-          value: "Information. Events that are heavily influenced by casemix and demographics."
+        - "Never. Events that should never occur."
+        - "Rare. Events that should rarely occur, with weak influence from casemix and demographics."
+        - "Information. Events that are heavily influenced by casemix and demographics."
     validations:
       required: false
 
@@ -42,12 +39,9 @@ body:
       label: "Clinical relevance today"
       description: "Indicate current clinical relevance."
       options:
-        - label: "High"
-          value: "High"
-        - label: "Medium"
-          value: "Medium"
-        - label: "Low"
-          value: "Low"
+        - "High"
+        - "Medium"
+        - "Low"
     validations:
       required: false
 
