@@ -444,8 +444,7 @@ def run_all(year, month, under_test=False):
         year=year, month=month, task_name="fetch_and_import", status=TaskLog.SUCCESSFUL
     )
 
-    msg = textwrap.dedent(
-        f"""\
+    msg = textwrap.dedent(f"""\
         Importing data for {year}_{month} complete!'
 
         You should now:
@@ -454,8 +453,7 @@ def run_all(year, month, under_test=False):
         * check that nothing looks horribly wrong with the data (https://openprescribing.net/national/england/ gives a good overview)
         * ask tech support to send email notifications as described in https://github.com/ebmdatalab/openprescribing/wiki/Sending-monthly-email-alerts
         * send a tweet as described in https://github.com/ebmdatalab/openprescribing/wiki/Clinical-Informatician-Process-for-Updating-Data
-        """
-    )
+        """)
 
     if not under_test:
         # Notify the openprescribing slack channel

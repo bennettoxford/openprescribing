@@ -38,8 +38,7 @@ class TitleCaseTests(SimpleTestCase):
 
 
 def _cluster_count(cursor):
-    cursor.execute(
-        """
+    cursor.execute("""
         SELECT
           count(*)
         FROM
@@ -51,8 +50,7 @@ def _cluster_count(cursor):
         WHERE
           idx.indisclustered
           AND idx.indrelid::regclass = 'tofu'::regclass;
-    """
-    )
+    """)
     return cursor.fetchone()[0]
 
 
@@ -61,14 +59,12 @@ class FunctionalTests(TestCase):
         with connection.cursor() as cursor:
             # Set up a table
             cursor.execute("CREATE TABLE firmness (id integer PRIMARY KEY)")
-            cursor.execute(
-                """
+            cursor.execute("""
                 CREATE TABLE tofu (
                   id integer PRIMARY KEY,
                   brand varchar,
                   firmness_id integer REFERENCES firmness (id))
-            """
-            )
+            """)
             cursor.execute("CLUSTER tofu USING tofu_pkey")
             cursor.execute("CREATE INDEX ON tofu (brand)")
             with constraint_and_index_reconstructor("tofu"):
@@ -84,14 +80,12 @@ class FunctionalTests(TestCase):
         with connection.cursor() as cursor:
             # Set up a table
             cursor.execute("CREATE TABLE firmness (id integer PRIMARY KEY)")
-            cursor.execute(
-                """
+            cursor.execute("""
                 CREATE TABLE tofu (
                   id integer PRIMARY KEY,
                   brand varchar,
                   firmness_id integer REFERENCES firmness (id))
-            """
-            )
+            """)
             cursor.execute("CLUSTER tofu USING tofu_pkey")
             cursor.execute("CREATE INDEX ON tofu (brand)")
 

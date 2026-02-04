@@ -132,8 +132,7 @@ def _get_practice_code_to_region_map(cursor, regions, clip_boundary):
     # We match practices to regions using the original, unclipped boundary.
     # This allows us to handle the case that a practice lies just outside its
     # clipped boundary due to imprecision in the geographic data.
-    cursor_execute(
-        """
+    cursor_execute("""
         SELECT
           p.code,
           r.clipped
@@ -143,8 +142,7 @@ def _get_practice_code_to_region_map(cursor, regions, clip_boundary):
           {regions} AS r
         ON
           ST_Contains(r.original, p.location)
-        """
-    )
+        """)
     return dict(cursor.fetchall())
 
 
@@ -175,12 +173,10 @@ def update_national_boundary_file():
         org_type="CCG", close_date__isnull=True, boundary__isnull=True
     )
     if ccgs_without_boundary.exists():
-        raise RuntimeError(
-            """
+        raise RuntimeError("""
             Some active Sub-ICB Locations missing boundary data, meaning we can't reliably
             synthesize a national boundary by aggregating Sub-ICB Locations
-            """
-        )
+            """)
     boundary = PCT.objects.filter(boundary__isnull=False).aggregate(
         boundary=Union("boundary")
     )["boundary"]
