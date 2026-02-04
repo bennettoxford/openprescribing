@@ -147,8 +147,7 @@ def constraint_and_index_reconstructor(table_name):
                 # UNIQUE constraints actuall create indexes, so
                 # we mustn't attempt to handle them twice
                 indexes[name] = definition
-        cursor.execute(
-            """
+        cursor.execute("""
             SELECT
               i.relname AS index_for_cluster
             FROM
@@ -160,9 +159,7 @@ def constraint_and_index_reconstructor(table_name):
             WHERE
               idx.indisclustered
               AND idx.indrelid::regclass = '%s'::regclass;
-        """
-            % table_name
-        )
+        """ % table_name)
         row = cursor.fetchone()
         if row:
             cluster = row[0]

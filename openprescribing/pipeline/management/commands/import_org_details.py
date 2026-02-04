@@ -1,7 +1,8 @@
 import json
-from frontend.models import PCN, PCT, Practice, RegionalTeam, STP
+
 from django.core.management import BaseCommand
 from django.db import transaction
+from frontend.models import PCN, PCT, STP, Practice, RegionalTeam
 
 
 class Command(BaseCommand):

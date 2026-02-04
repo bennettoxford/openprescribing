@@ -254,8 +254,7 @@ class Command(BaseCommand):
         with open(paths[0]) as f:
             doc = etree.parse(f)
 
-        xslt = etree.fromstring(
-            """
+        xslt = etree.fromstring("""
             <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
                 <xsl:output method="xml" indent="yes"/>
 
@@ -276,8 +275,7 @@ class Command(BaseCommand):
                     </GTIN>
                 </xsl:template>
             </xsl:stylesheet>
-        """
-        )
+        """)
         transform = etree.XSLT(xslt)
 
         return list(transform(doc).getroot())
