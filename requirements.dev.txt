@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements.dev.in
 #
-black==25.12.0
+black==26.1.0
     # via -r requirements.dev.in
 click==8.3.1
     # via black
@@ -16,9 +16,9 @@ mccabe==0.7.0
     # via flake8
 mypy-extensions==1.1.0
     # via black
-packaging==25.0
+packaging==26.0
     # via black
-pathspec==1.0.3
+pathspec==1.0.4
     # via black
 platformdirs==4.5.1
     # via black
@@ -26,7 +26,7 @@ pycodestyle==2.14.0
     # via flake8
 pyflakes==3.4.0
     # via flake8
-pytokens==0.3.0
+pytokens==0.4.1
     # via black
 
 # The following packages are considered to be unsafe in a requirements file:
