@@ -68,7 +68,7 @@
     "moment": "^2.10.3",
     "npm-run-all": "^4.1.2",
     "uglify-js": "^3.2.2",
-    "uglifyify": "^4.0.5",
+    "uglifyify": "^5.0.2",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
