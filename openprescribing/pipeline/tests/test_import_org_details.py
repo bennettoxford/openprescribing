@@ -1,7 +1,8 @@
 import datetime
+
 from django.forms.models import model_to_dict
 from django.test import TestCase
-from frontend.models import PCN, PCT, Practice, RegionalTeam, STP
+from frontend.models import PCN, PCT, STP, Practice, RegionalTeam
 from pipeline.management.commands.import_org_details import import_all, import_sicbls
 
 

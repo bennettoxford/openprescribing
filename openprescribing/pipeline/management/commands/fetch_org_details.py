@@ -1,9 +1,11 @@
-from datetime import datetime
 import json
 import os
+from datetime import datetime
+
 import requests
 from django.conf import settings
 from django.core.management import BaseCommand
+
 from openprescribing.utils import mkdir_p
 
 
