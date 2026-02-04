@@ -17,6 +17,7 @@
     "<p>NICE guidance on hypertension recognises that doxazosin should be used in treatment but does not identify any benefits of prolonged release over immediate release.</p>",
     "<p>NICE guidance recommends doxazosin as an option in men with moderate to severe lower urinary tract symptoms. It does not identify benefits of prolonged release over ",
     "immediate release.</p>",
+      "<p><em>Note: Currently doxazosin 8 mg immediate release is more expensive than doxazosin MR 8mg.</em></p>",
     "<p>Due to the significant extra cost of prolonged-release doxazosin and the availability of once daily immediate-release doxazosin, the joint clinical working group ",
     "considered prolonged-release doxazosin suitable for inclusion in this guidance.</p></i>",
     "<p><b>For guidance on when prescribing may be appropriate in some exceptional circumstances, please see the ",
@@ -29,8 +30,8 @@
   ],
   "url": null,
   "is_percentage": false,
-  "is_cost_based": true,
-  "low_is_good": true,
+  "is_cost_based": false,
+  "low_is_good": false,
   "numerator_type": "bnf_cost",
   "numerator_bnf_codes_filter": [
     "0205040D0%AQ # Doxazosin Mesil_Tab 4mg M/R (brands and generic)",
