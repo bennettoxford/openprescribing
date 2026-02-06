@@ -15,6 +15,7 @@ SELECT
 FROM
   {project}.{measures}.practice_data_lpdosulepin
 
+#Removed from omnibus measure as MR currently cheaper than IR
 #UNION ALL
 #SELECT
 #  TIMESTAMP(month) AS month,
