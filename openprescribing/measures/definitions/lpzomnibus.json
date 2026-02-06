@@ -30,14 +30,14 @@
   "numerator_is_list_of_bnf_codes": false,
   "denominator_type": "custom",
   "denominator_columns": [
-    "SUM(denominator)/24 AS denominator"
+    "SUM(denominator)/23 AS denominator"
   ],
   "denominator_from": "{measures}.vw__practice_data_all_low_priority ",
   "denominator_where": "1 = 1",
   "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "victoria.speed@phc.ox.ac.uk",
-  "date_reviewed": "2023-11-20",
-  "next_review": "2025-11-20",
+  "checked_by": "christopher.wood@phc.ox.ac.uk",
+  "date_reviewed": "2026-02-01",
+  "next_review": "2026-07-01",
   "measure_complexity": "low",
   "measure_type": "view",
   "radar_exclude": false
