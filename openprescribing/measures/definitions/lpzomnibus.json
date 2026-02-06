@@ -35,7 +35,7 @@
   "denominator_from": "{measures}.vw__practice_data_all_low_priority ",
   "denominator_where": "1 = 1",
   "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "",
+  "checked_by": "christopher.wood@phc.ox.ac.uk",
   "date_reviewed": "2026-02-01",
   "next_review": "2026-07-01",
   "measure_complexity": "low",
