@@ -21,6 +21,22 @@ body:
     validations:
       required: false
 
+  - type: input
+    id: 30dviews
+    attributes:
+      label: "30 day view count"
+      description: "Counts can be found on the measures tracker."
+    validations:
+      required: false
+
+  - type: input
+    id: 12mviews
+    attributes:
+      label: "12 months view count"
+      description: "Counts can be found on the measures tracker."
+    validations:
+      required: false
+      
   - type: dropdown
     id: measure_type
     attributes:
