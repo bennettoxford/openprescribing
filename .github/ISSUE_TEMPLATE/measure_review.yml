@@ -95,8 +95,7 @@ body:
       placeholder: "https://..."
     validations:
       required: false
-  
-        
+          
   - type: dropdown
     id: change_code_system
     attributes:
@@ -112,10 +111,26 @@ body:
     id: code_system_text
     attributes:
       label: "Describe any limitations of moving to dm+d coding system"
-      description: "Any add thoughts or limitations on moving to dm+d coding, where not current."
     validations:
       required: false
-         
+        
+  - type: dropdown
+    id: oph_candidate
+    attributes:
+      label: "If this measure a candidate for OP Hospitals?"
+      description: "Select yes/no."
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: false
+      
+  - type: textarea
+    id: oph_candidiate_text
+    attributes:
+      label: "If candidate for OP Hospitals, describe any limitations or things for consideration"
+    validations:
+      required: false         
   - type: textarea
     id: outstanding_queries
     attributes:
