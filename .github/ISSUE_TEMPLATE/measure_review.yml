@@ -84,8 +84,8 @@ body:
       label: "Does the measure currently use a view?"
       description: "Select yes/no."
       options:
-        - label: "Yes"
-        - label: No"
+        - "Yes"
+        - "No"
 
   - type: input
     id: view_link
@@ -103,8 +103,8 @@ body:
       label: "If currently using BNF codes, can this be considered for dm+d instead?"
       description: "Select yes/no."
       options:
-        - label: "Yes"
-        - label: No"
+        - "Yes"
+        - "No"
     validations:
       required: false
       
