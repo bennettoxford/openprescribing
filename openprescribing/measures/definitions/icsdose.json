@@ -67,7 +67,7 @@
   "AND descr IN ('pressurizedinhalation.inhalation','powderinhalation.inhalation')"
   ],
   "authored_by": "christopher.wood@phc.ox.ac.uk",
-  "checked_by": "richard.croker@phc.ox.ac.uk",
+  "checked_by": "",
   "date_reviewed": "2026-02-09",
   "next_review": "2026-02-09",
   "measure_complexity": "high",
