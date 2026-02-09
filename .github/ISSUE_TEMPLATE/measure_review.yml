@@ -21,6 +21,22 @@ body:
     validations:
       required: false
 
+  - type: input
+    id: 30dviews
+    attributes:
+      label: "30 day view count"
+      description: "Counts can be found on the measures tracker."
+    validations:
+      required: false
+
+  - type: input
+    id: 12mviews
+    attributes:
+      label: "12 months view count"
+      description: "Counts can be found on the measures tracker."
+    validations:
+      required: false
+      
   - type: dropdown
     id: measure_type
     attributes:
@@ -62,6 +78,44 @@ body:
         - label: "dm+d"
         - label: "BNF"
 
+  - type: dropdown
+    id: view_type
+    attributes:
+      label: "Does the measure currently use a view?"
+      description: "Select yes/no."
+      options:
+        - "Yes"
+        - "No"
+
+  - type: input
+    id: view_link
+    attributes:
+      label: "If above is yes, provide link to view SQL"
+      description: "Provide a URL link to the SQL."
+      placeholder: "https://..."
+    validations:
+      required: false
+  
+        
+  - type: dropdown
+    id: change_code_system
+    attributes:
+      label: "If currently using BNF codes, can this be considered for dm+d instead?"
+      description: "Select yes/no."
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: false
+      
+  - type: textarea
+    id: code_system_text
+    attributes:
+      label: "Describe any limitations of moving to dm+d coding system"
+      description: "Any add thoughts or limitations on moving to dm+d coding, where not current."
+    validations:
+      required: false
+         
   - type: textarea
     id: outstanding_queries
     attributes:
