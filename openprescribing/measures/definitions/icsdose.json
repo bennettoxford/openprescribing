@@ -38,9 +38,12 @@
   ],
   "numerator_where": [
   "(vpi.ing = 116575004 AND descr IN ('pressurizedinhalation.inhalation', 'powderinhalation.inhalation') -- 116575004 - Beclometasone dipropionate \n",
-  "AND ((strnt_nmrtr_val>=250)",
-  "OR (strnt_nmrtr_val>=200 AND (p.bnf_code LIKE '0302000C0%CA' OR p.bnf_code LIKE '0302000C0%BZ')) -- beclometasone (extrafine)/formeterol - 0302000C0%CA 200/6 DPI, 0302000C0%BZ 200/6 MDI \n",
-  "OR (strnt_nmrtr_val>=172 AND (p.bnf_code LIKE '0301011AB%AB')))) -- 0301011AB%AB beclometasone (extrafine)/formeterol/glycopyrronium 200mcg beclometasone delivered) \n",
+  " AND (",
+  " (strnt_nmrtr_val>=250)",
+  " OR (strnt_nmrtr_val >= 200 AND (vmp.vtm = 12913411000001108)) -- 12913411000001108 - VTM for beclometasone/formeterol - assumes all VMPs are extrafine beclometasone \n",
+  " OR (strnt_nmrtr_val >= 172 AND (vmp.vtm = 34855311000001107)) -- 34855311000001107 - VTM for beclometasone/formeterol/glycopyrronium  - assumes all VMPs are extrafine \n",
+  " )",
+  ")",
   "OR (vpi.ing = 395726003 AND descr IN ('pressurizedinhalation.inhalation','powderinhalation.inhalation') AND strnt_nmrtr_val>=320) -- 395726003 - Budesonide \n",
   "OR (vpi.ing = 417420004 AND descr IN ('pressurizedinhalation.inhalation','powderinhalation.inhalation') AND strnt_nmrtr_val>=160) -- 417420004 - Ciclesonide \n",
   "OR (vpi.ing = 426409006 AND descr IN ('pressurizedinhalation.inhalation','powderinhalation.inhalation') AND strnt_nmrtr_val>=184) -- 426409006 - Fluticasone furoate \n",
@@ -65,9 +68,29 @@
   ],
   "authored_by": "christopher.wood@phc.ox.ac.uk",
   "checked_by": "richard.croker@phc.ox.ac.uk",
-  "date_reviewed": "2024-07-16",
-  "next_review": "2025-07-16",
+  "date_reviewed": "2026-02-09",
+  "next_review": "2026-02-09",
   "measure_complexity": "high",
   "measure_type": "custom",
-  "radar_exclude": false
+  "radar_exclude": false,
+  "change_log": [
+    {
+      "date": "2016-12-05",
+      "description": "Created measure.",
+      "action_by": "richard.croker@phc.ox.ac.uk",
+      "checked_by": "sebastian.bacon@phc.ox.ac.uk"
+    },
+    {
+      "date": "2024-07-16",
+      "description": "Reviewed measure - code logic tidied, text and links updated.",
+      "action_by": "christopher.wood@phc.ox.ac.uk",
+      "checked_by": "andrew.brown@phc.ox.ac.uk"
+    },
+    {
+      "date": "2026-02-09",
+      "description": "Fix to capture products with BNF code changes.",
+      "action_by": "christopher.wood@phc.ox.ac.uk",
+      "checked_by": ""
+    }
+  ]
 }
