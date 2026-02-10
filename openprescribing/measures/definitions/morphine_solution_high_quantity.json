@@ -1,21 +1,20 @@
 {
-"name": "High quantity prescribing of morphine sulphate oral solution",
-"title": "High quantity prescribing of morphine sulphate oral solution",
-"description": "Total proportion of morphine sulphate oral solution with a quantity of >300ml",
-"numerator_short": "Morphine sulphate oral solution quantity with quantity of >300ml",
+"name": "Prescribing of morphine sulphate oral solution in quantities over 300 ml",
+"title": "Prescribing of morphine sulphate oral solution in quantities over 300 ml",
+"description": "Total proportion of morphine sulphate oral solution with a quantity over 300ml",
+"numerator_short": "Morphine sulphate oral solution quantity with quantity over 300ml",
 "denominator_short": "Morphine sulphate oral solution quantity",
-"y_label": "Proportion of morphine sulphate oral solution with quantity of >300ml",
+"y_label": "Proportion of morphine sulphate oral solution with quantity of over 300ml",
 "why_it_matters": [
-    "Oral liquid morphine has been implicated in a number of <a href='https://pharmaceutical-journal.com/article/feature/investigation-should-liquid-morphine-be-reclassified' target='_Blank'>drug-related deaths in the NHS</a>, including cases of unintentional overdose. ",
-    "A national <a href='https://www.hssib.org.uk/patient-safety-investigations/unintentional-overdose-of-morphine-sulfate-oral-solution/investigation-report/' target='_Blank'>patient safety investigation</a> has highlighted risks associated with morphine oral solution, including dosing errors and accidental overconsumption.</p>",
+    "A national <a href='https://www.hssib.org.uk/patient-safety-investigations/unintentional-overdose-of-morphine-sulfate-oral-solution/investigation-report/' target='_Blank'>patient safety investigation</a> has highlighted risks associated with morphine oral solution, including dosing errors and accidental overconsumption.",
+    "It has been implicated in a number of <a href='https://www.england.nhs.uk/south/wp-content/uploads/sites/6/2016/08/cd-newsletter.pdf' target='_Blank'>drug-related deaths in the NHS</a>, including cases of unintentional overdose.</p>",
     "<p>Particular concerns include the risk of patients 'swigging' morphine oral solution directly from the bottle rather than measuring individual doses, and the supply of large quantities over extended periods. ",
-    "The classification of oral morphine solution 10 mg in 5 mL as a Schedule 5 Controlled Drug, rather than a Schedule 2 like other morphine formulations, means it is subject to fewer controls. ",
+    "Oral morphine solution 10mg/5ml is a Schedule 5 Controlled Drug with fewer controls than other morphine formulations, which are Schedule 2. ",
     "This may increase the likelihood of larger volumes being supplied and continued without the safeguards applied to other opioid formulations.</p>",
-    "<p>In addition, morphine oral solution contains high quantities of alcohol and sugar as excipients. ",
-    "For example, branded <a href='https://mhraproducts4853.blob.core.windows.net/docs/ded38835b171a612e33c82e0103d5482cd76d1a3' target='_Blank'>Oramorph</a> contains around 90 g of sugar and 24 g of ethanol, equivalent to three units of alcohol, in each 300 mL bottle. ",
+    "<p>Morphine oral solution also contains high quantities of alcohol and sugar. ",
+    "For example branded <a href='https://mhraproducts4853.blob.core.windows.net/docs/ded38835b171a612e33c82e0103d5482cd76d1a3' target='_Blank'>Oramorph</a> contains around 90g of sugar and 24g of ethanol, equivalent to three units of alcohol, in each 300ml bottle. ",
     "These factors should be considered alongside the opioid content when assessing clinical risk.</p>",
-    "<p>You can read more about the rationale behind this measure, and the wider considerations surrounding the use of oral liquid morphine, ",
-    "<a href='#' target='_Blank'>in our guest blog</a>.</p>"
+    "<p>You can read more about the rationale behind this measure, and the wider considerations surrounding the use of oral liquid morphine, <a href='https://www.bennett.ox.ac.uk/blog/2026/02/oral-morphine-liquid-a-new-openprescribing-measure/' target='_Blank'>in our guest blog</a>.</p>"
   ],
 "tags": [
     "core",
@@ -47,13 +46,21 @@
 "denominator_where": [
 "bnf_code LIKE '0407020Q0%CN' #morphine sulphate oral solution 10mg/5ml"
 ],
-"authored_by": "",
-"checked_by": "",
-"date_reviewed": "",
-"next_review": "",
+"authored_by": "richard.croker@phc.ox.ac.uk",
+"checked_by": "christopher.wood@phc.ox.ac.uk",
+"date_reviewed": "2026-02-10",
+"next_review": "2028-02-10",
 "measure_complexity": "medium",
 "measure_type": "dmd",
 "radar_exclude": false,
+"change_log": [
+{
+    "date": "2026-02-09",
+    "description": "Created measure.",
+    "action_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": "christopher.wood@phc.ox.ac.uk"
+}
+],
 "testing_measure": true,
 "testing_type": "custom",
 "testing_comments": "Simple test to identify new morphine products. The measure relies on dm+d codes/route so this test might over identify products.",
