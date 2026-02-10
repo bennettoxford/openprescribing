@@ -15,9 +15,9 @@ SQL = """
 WITH
   codes AS (
   SELECT
-    BNF_CODE AS bnf_code,
-    IEEE_DIVIDE(ADQUSAGE, TOTAL_QUANTITY) AS adq_per_quantity,
-    ROW_NUMBER() OVER (PARTITION BY BNF_CODE) AS row_number
+    BNF_PRESENTATION_CODE AS bnf_code,
+    IEEE_DIVIDE(ADQ_USAGE, TOTAL_QUANTITY) AS adq_per_quantity,
+    ROW_NUMBER() OVER (PARTITION BY BNF_PRESENTATION_CODE) AS row_number
   FROM
     {detailed_raw_data_table})
 SELECT DISTINCT

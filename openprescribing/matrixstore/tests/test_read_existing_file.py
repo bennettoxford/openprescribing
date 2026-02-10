@@ -90,12 +90,10 @@ class TestReadExistingFile(SimpleTestCase):
         if os.path.exists(temp_db_path):
             os.unlink(temp_db_path)
         connection = sqlite3.connect(temp_db_path)
-        connection.executescript(
-            """
+        connection.executescript("""
             CREATE TABLE data (key TEXT, value BLOB);
             CREATE TABLE environment_metadata (key TEXT, value TEXT);
-            """
-        )
+            """)
         json_data = {}
         for key, value in cls.generate_test_values():
             json_value = value

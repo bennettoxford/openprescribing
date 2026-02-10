@@ -1,0 +1,135 @@
+Antibiotic,atc_route,vtm_nm,vtm_id,aware_2019,aware_2024
+Amikacin,,Amikacin liposomal,782421008,Watch,Watch
+Amikacin,,Amikacin,774534000,Watch,Watch
+Amoxicillin,,Amoxicillin,774586009,Access,Access
+Ampicillin,,Ampicillin,774590006,Access,Access
+Ampicillin + Flucloxacillin,,Ampicillin + Flucloxacillin,774592003,Other,Other
+Azithromycin,,Azithromycin,774722005,Watch,Watch
+Aztreonam,,Aztreonam + Avibactam,43796711000001109,Reserve,Reserve
+Aztreonam,,Aztreonam,774725007,Reserve,Reserve
+Benzathine benzylpenicillin,,Benzathine benzylpenicillin,1234764000,Access,Access
+Benzylpenicillin,,Benzylpenicillin,774826003,Access,Access
+Cefaclor,,Cefaclor,775086009,Watch,Watch
+Cefadroxil,,Cefadroxil,775087000,Watch,Access
+Cefalexin,,Cefalexin,775088005,Watch,Access
+Cefamandole,,Cefamandole,775090006,Watch,Watch
+Cefazolin,,Cefazolin,775092003,Watch,Access
+Cefepime,,Cefepime,775095001,Watch,Watch
+Cefepime + Enmetazobactam,,Cefepime + Enmetazobactam,42894211000001100,NR,NR
+Cefiderocol,,Cefiderocol,830205006,Reserve,Reserve
+Cefixime,,Cefixime,775097009,Watch,Watch
+Cefotaxime,,Cefotaxime,775103002,Watch,Watch
+Cefoxitin,,Cefoxitin,775107001,Watch,Watch
+Cefpirome,,Cefpirome,775108006,Watch,Reserve
+Cefpodoxime,,Cefpodoxime,775109003,Watch,Watch
+Cefprozil,,Cefprozil,775110008,Watch,Watch
+Cefradine,,Cefradine,775112000,Watch,Access
+Ceftaroline fosamil,,Ceftaroline fosamil,21387311000001104,Reserve,Reserve
+Ceftazidime,,Ceftazidime,775115003,Watch,Watch
+Ceftazidime + Avibactam,,Ceftazidime + Avibactam,781300005,Reserve,Reserve
+Ceftobiprole,,Ceftobiprole,1287090001,Reserve,Reserve
+Ceftolozane + Tazobactam,,Ceftolozane + Tazobactam,775119009,Reserve,Reserve
+Ceftriaxone,,Ceftriaxone,775120003,Watch,Watch
+Cefuroxime,,Cefuroxime,775121004,Watch,Watch
+Chloramphenicol,,Chloramphenicol,775160002,Watch,Watch
+Cilastatin + Imipenem + Relebactam,,Cilastatin + Imipenem + Relebactam,789074009,Reserve,Reserve
+Ciprofloxacin,,Ciprofloxacin + Dexamethasone,775262002,Watch,Watch
+Ciprofloxacin,,Ciprofloxacin + Fluocinolone acetonide,35873111000001100,Watch,Watch
+Ciprofloxacin,,Ciprofloxacin,775261009,Watch,Watch
+Clarithromycin,,Clarithromycin,775277005,Watch,Watch
+Clindamycin,,Clindamycin,775288004,Watch,Watch
+Clindamycin,,Clindamycin + Hydrocortisone,22207511000001102,Watch,Watch
+Clindamycin,,Clindamycin + Tretinoin,775289007,Watch,Watch
+Clindamycin,,Benzoyl peroxide + Clindamycin,774812007,Watch,Watch
+Co-amoxiclav,,Co-amoxiclav,774587000,Watch,Watch
+Co-fluampicil,,Co-fluampicil,44310211000001102,Other,Other
+Co-trimoxazole,,Co-trimoxazole,18037511000001105,Access,Access
+Colistin,O,Colistin,775373006,Reserve,Reserve
+Colistin,P,Colistin,775373006,Reserve,Reserve
+Dalbavancin,,Dalbavancin,775437000,Reserve,Reserve
+Daptomycin,,Daptomycin,775451000,Reserve,Reserve
+Delafloxacin,,Delafloxacin,775469009,Watch,Watch
+Demeclocycline,,Demeclocycline,775476004,Watch,Other
+Doripenem,,Doripenem,775689001,Reserve,Reserve
+Doxycycline,,Betamethasone + Doxycycline + Nystatin,40588811000001101,Access,Access
+Doxycycline,,Doxycycline,775698003,Access,Access
+Eravacycline,,Eravacycline,775807004,Reserve,Reserve
+Ertapenem,,Ertapenem,775820001,Reserve,Reserve
+Erythromycin,,Erythromycin,775822009,Watch,Watch
+Erythromycin,,Erythromycin stearate,36408611000001103,Watch,Watch
+Erythromycin,,Erythromycin + Zinc acetate,775827003,Watch,Watch
+Erythromycin,,Isotretinoin + Erythromycin,775823004,Watch,Watch
+Erythromycin,,Erythromycin ethyl succinate,36408511000001102,Watch,Watch
+Erythromycin,,Tretinoin + Erythromycin,775825006,Watch,Watch
+Erythromycin,,Erythromycin lactobionate,36409511000001108,Watch,Watch
+Erythromycin,,Benzoyl peroxide + Erythromycin,774813002,Watch,Watch
+Fidaxomicin,,Fidaxomicin,775961002,Watch,Watch
+Flucloxacillin,,Flucloxacillin,775979003,Access,Access
+Fosfomycin,P,Fosfomycin,776041001,Reserve,Reserve
+Fosfomycin,O,Fosfomycin,776041001,Access,Access
+Fusidic acid,,Fusidic acid,776058006,Access,Watch
+Fusidic acid,,Betamethasone + Fusidic acid,774843000,Access,Watch
+Fusidic acid,,Hydrocortisone + Fusidic acid,776059003,Access,Watch
+Gentamicin,,Gentamicin,776094005,Access,Access
+Gentamicin,,Gentamicin + Hydrocortisone,776095006,Access,Access
+Imipenem + Cilastatin,,Imipenem + Cilastatin,775245007,Reserve,Reserve
+Levofloxacin,,Levofloxacin,776517005,Watch,Watch
+Levofloxacin,,Dexamethasone + Levofloxacin,1286887000,Watch,Watch
+Linezolid,,Linezolid,776544000,Reserve,Reserve
+Lymecycline,,Lymecycline,776593005,Watch,Watch
+Meropenem,,Meropenem,776694006,Reserve,Reserve
+Meropenem + Vaborbactam,,Meropenem + Vaborbactam,776695007,Reserve,Reserve
+Methenamine,,Methenamine,776725009,Other,Other
+Metronidazole,,Metronidazole,776774005,Access,Access
+Minocycline,O,Minocycline,776800005,Watch,Watch
+Moxifloxacin,,Moxifloxacin,776831003,Watch,Watch
+Nalidixic acid,,Nalidixic acid,776859002,Other,Other
+Neomycin,,Dexamethasone + Neomycin + Acetic acid,45012511000001108,Watch,Watch
+Neomycin,,Betamethasone + Neomycin,774844006,Watch,Watch
+Neomycin,,Neomycin + Gramicidin,776145007,Watch,Watch
+Neomycin,,Neomycin + Chlorhexidine,775170000,Watch,Watch
+Neomycin,,Fluocinolone acetonide + Neomycin,22636911000001100,Watch,Watch
+Neomycin,,Neomycin + Prednisolone,776889009,Watch,Watch
+Neomycin,,Neomycin,776885003,Watch,Watch
+Neomycin,,Neomycin + Triamcinolone,776890000,Watch,Watch
+Neomycin,,Clobetasol + Neomycin + Nystatin,775296009,Watch,Watch
+Neomycin,,Hydrocortisone + Neomycin,776254002,Watch,Watch
+Netilmicin,,Netilmicin + Dexamethasone,40637211000001101,Watch,Other
+Netilmicin,,Netilmicin,776895005,Watch,Other
+Nitrofurantoin,,Nitrofurantoin,776927008,Access,Access
+Norfloxacin,,Norfloxacin,776943001,Watch,Watch
+Ofloxacin,,Ofloxacin,776973005,Watch,Watch
+Oritavancin,,Oritavancin,777001001,Reserve,Reserve
+Oxytetracycline,,Oxytetracycline,777035003,Watch,Watch
+Oxytetracycline,,Oxytetracycline + Hydrocortisone,776257009,Watch,Watch
+Oxytetracycline,,Clobetasone + Oxytetracycline + Nystatin,775299002,Watch,Watch
+Phenoxymethylpenicillin,,Phenoxymethylpenicillin,777175009,Access,Access
+Piperacillin + Tazobactam,,Piperacillin + Tazobactam,777212006,Watch,Watch
+Pivmecillinam,,Pivmecillinam,777227006,Access,Access
+Pristinamycin,,Pristinamycin,16251011000001105,Watch,Other
+Procaine benzylpenicillin,,Procaine benzylpenicillin,1234762001,Access,Access
+Quinupristin + Dalfopristin,,Quinupristin + Dalfopristin,775439002,Reserve,Reserve
+Roxithromycin,,Roxithromycin,777473006,Watch,Other
+Sodium fusidate,,Sodium fusidate,13292201000001107,Watch,Watch
+Sodium fusidate,,Hydrocortisone + Sodium fusidate,13298401000001108,Watch,Watch
+Spectinomycin,,Spectinomycin,777600004,Other,Other
+Spiramycin,,Spiramycin,777602007,Other,Other
+Streptomycin,P,Streptomycin,777614004,Other,Other
+Sulfadiazine,,Sulfadiazine silver,864008004,Other,Other
+Sulfadiazine,,Sulfadiazine,777532008,Other,Other
+Sulfadiazine,,Cerium nitrate + Sulfadiazine silver,42779111000001100,Other,Other
+Sulfamethoxypyridazine,,Sulfamethoxypyridazine,777643007,Other,Other
+Sulfapyridine,,Sulfapyridine,15465811000001106,Other,Other
+Tedizolid,,Tedizolid,777686007,Reserve,Reserve
+Teicoplanin,,Teicoplanin,777691008,Watch,Watch
+Telavancin,,Telavancin,777693006,Reserve,Reserve
+Temocillin,,Temocillin,777700006,Watch,Watch
+Tetracycline,,Tetracycline,777730003,Access,Access
+Ticarcillin + Clavulanic acid,,Ticarcillin + Clavulanic acid,775279008,Other,Other
+Tigecycline,,Tigecycline,777769009,Reserve,Reserve
+Tinidazole,,Tinidazole,777775000,Other,Access
+Tobramycin,,Dexamethasone + Tobramycin,775502001,Watch,Watch
+Tobramycin,,Tobramycin,777791002,Watch,Watch
+Trimethoprim,,Polymyxin B + Trimethoprim,777247003,Access,Access
+Trimethoprim,,Trimethoprim,777858001,Access,Access
+Vancomycin,,Vancomycin,777914002,Watch,Watch

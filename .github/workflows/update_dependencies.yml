@@ -3,7 +3,7 @@ name: Update python dependencies
 on:
   workflow_dispatch:
   schedule:
-    - cron:  "5 3 * * MON"
+    - cron:  "5 3 * * WED"
 
 jobs:
   update-dependencies:
@@ -14,18 +14,30 @@ jobs:
       with:
         python-version: '3.12'
 
-    - uses: actions/create-github-app-token@v1
+    - uses: actions/create-github-app-token@v2
       id: generate-token
       with:
         app-id: ${{ vars.CREATE_PR_APP_ID }}
         private-key: ${{ secrets.CREATE_PR_APP_PRIVATE_KEY }}
 
     - uses: bennettoxford/update-dependencies-action@v1
+      id: update
       with:
         token: ${{ steps.generate-token.outputs.token }}
         automerge: false
         pr_title: "Update python dependencies"
         update_command: |
+          pip install pip==25.2 && \
           pip install pip-tools && \
           pip-compile -U requirements.dev.in && \
           pip-compile -U requirements.in
+
+    - name: Notify slack of PR
+      if: ${{ steps.update.outputs.pull-request-operation != 'none' }}
+      uses: slackapi/slack-github-action@91efab103c0de0a537f72a35f6b8cda0ee76bf0a  # v2.1.1
+      with:
+        method: chat.postMessage
+        token: ${{ secrets.BENNETTBOT_SLACK_BOT_TOKEN }}
+        payload: |
+          channel: "C0A5WSK8L75"
+          text: "Update dependencies\n${{ steps.update.outputs.pull-request-url }}"

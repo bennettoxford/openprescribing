@@ -33,7 +33,8 @@
   "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names "
   ],
   "numerator_where": [
-  "route.descr IN ('capsule.oral','tablet.oral','tabletchewable.oral','tabletmodified-release.oral') -- selects only solid dose form oral formulations \n",
+  "route.descr LIKE '%.oral' -- selects only oral formulations \n",
+  "AND (LOWER(route.descr) LIKE '%tablet%' OR LOWER(route.descr) LIKE '%capsule%') -- selects only solid dose form oral formulations \n",
   "AND ((vpi.ing = 725658002 AND strnt_nmrtr_val/((COALESCE(strnt_dnmtr_val,1))) <20) --Atorvastatin calcium trihydrate (strengths lower than 20mg) (ing code) \n",
   "OR (vpi.ing = 406435003 AND strnt_nmrtr_val/((COALESCE(strnt_dnmtr_val,1)))<10) --Rosuvastatin calcium (strengths lower than 10mg) (ing code) \n", 
   "OR (vpi.ing = 387584000 AND strnt_nmrtr_val/((COALESCE(strnt_dnmtr_val,1))) <80) --Simvastatin (strengths lower than 80mg) (ing code) \n",
@@ -51,7 +52,8 @@
   "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names "
   ],
   "denominator_where": [
-  "route.descr IN ('capsule.oral','tablet.oral','tabletchewable.oral','tabletmodified-release.oral') -- selects only solid dose form oral formulations \n",
+  "route.descr LIKE '%.oral' -- selects only oral formulations \n",
+  "AND (LOWER(route.descr) LIKE '%tablet%' OR LOWER(route.descr) LIKE '%capsule%') -- selects only solid dose form oral formulations \n",  
   "AND (vpi.ing = 725658002 --Atorvastatin calcium trihydrate (all strengths) (ing code) \n",
   "OR vpi.ing = 406435003 --Rosuvastatin calcium (all strengths) (ing code) \n", 
   "OR vpi.ing = 387584000 --Simvastatin (all strengths) (ing code) \n",
@@ -59,10 +61,10 @@
   "OR vpi.ing = 412392009 --Fluvastatin sodium (all strengths) (ing code) \n", 
   "OR vpi.ing = 96306007) --Pravastatin sodium (all strengths) (ing code)"
   ],
-  "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "andrew.brown@phc.ox.ac.uk",
-  "date_reviewed": "2024-02-12",
-  "next_review": "2025-02-12",
+  "authored_by": "christopher.wood@phc.ox.ac.uk",
+  "checked_by": "richard.croker@phc.ox.ac.uk",
+  "date_reviewed": "2025-07-29",
+  "next_review": "2026-07-29",
   "measure_complexity": "medium",
   "measure_type": "dmd",
   "radar_exclude": false

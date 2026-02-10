@@ -10,6 +10,7 @@ fetch a string giving the formulation of each presentation.
 
 import functools
 import hashlib
+import time
 from pathlib import Path
 
 from django.db import connection
@@ -68,7 +69,7 @@ def cache_until_dmd_import(fn):
     Cache the results of `fn` until the next dm+d import
     """
 
-    cache = {"key": None}
+    cache = {"key": None, "time": 0.0}
 
     @functools.wraps(fn)
     def wrapper():
@@ -76,12 +77,22 @@ def cache_until_dmd_import(fn):
         # is fast to check and, as far as I can tell, pretty much guaranteed to change
         # when we import new data. I'd rather check this than be forced to rely on the
         # ImportLog table.
+
+        # Although the check is fast in relative terms it still involves a db roundtrip
+        # and we sometimes end up calling this is rapid succession so we only check the
+        # db once a minute.
+        now = time.monotonic()
+        if cache["key"] is not None and (now - cache["time"]) < 60:
+            return cache["value"]
+
         new_key = PriceInfo.objects.aggregate(Max("id", default=0))
         if cache["key"] == new_key:
+            cache["time"] = now
             return cache["value"]
         else:
             cache["value"] = fn()
             cache["key"] = new_key
+            cache["time"] = now
             return cache["value"]
 
     # Provide the same API as the old `@memoize` decorator so tests can use it
@@ -161,6 +172,7 @@ def get_substitution_sets_by_presentation():
     """
     index = {}
     for substitution_set in get_substitution_sets().values():
+        index[substitution_set.id] = substitution_set
         for presentation in substitution_set.presentations:
             index[presentation] = substitution_set
     return index

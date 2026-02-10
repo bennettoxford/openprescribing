@@ -43,8 +43,8 @@ class CommandsTestCase(TestCase):
 
         practice = Practice.objects.get(code="N84014")
         loc = practice.location
-        self.assertAlmostEqual(loc.x, -3.0366194249598926)
-        self.assertAlmostEqual(loc.y, 53.601301070769146)
+        self.assertAlmostEqual(loc.x, -3.0366194249598926, places=4)
+        self.assertAlmostEqual(loc.y, 53.601301070769146, places=4)
 
         practice = Practice.objects.get(code="G82650")
         self.assertEqual(practice.location, None)

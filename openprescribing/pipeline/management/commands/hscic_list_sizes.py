@@ -24,8 +24,9 @@ class Command(BaseCommand):
         date = datetime.date(kwargs["year"], kwargs["month"], 1)
         datestamp = date.strftime("%Y_%m")
 
+        # See https://github.com/bennettoxford/nhsd-proxy/ for details.
         url = date.strftime(
-            "https://digital.nhs.uk/data-and-information/publications/statistical/patients-registered-at-a-gp-practice/%B-%Y"
+            "http://nhsd-proxy.openprescribing.net:8080/data-and-information/publications/statistical/patients-registered-at-a-gp-practice/%B-%Y"
         ).lower()
 
         rsp = requests.get(url)

@@ -57,6 +57,11 @@ class Command(BaseCommand):
                 # reported to us via Slack, so if we pull out some nonsense here we
                 # *should* notice.
                 year = re.match(r"\d+", year).group()
+
+                # Fix typo
+                if year == "20251":
+                    year = "2025"
+
                 if len(year) == 2:
                     year = "20" + year
 
@@ -69,6 +74,13 @@ class Command(BaseCommand):
                 continue
 
             csv_url = urljoin(url, a.attrs["href"])
+
+            # Fix broken link
+            csv_url = csv_url.replace(
+                "Part%20VIIIA%20December%2020251.xls_0.csv",
+                "Part%20VIIIA%20December%2020251.xls.csv",
+            )
+
             csv_data = requests.get(csv_url).text
             rows = csv.reader(StringIO(csv_data))
 
@@ -111,7 +123,7 @@ def import_month(rows, date):
 
     with transaction.atomic():
         for row in rows:
-            if all(v is None for v in row):
+            if all(v == "" for v in row):
                 continue
 
             d = {k: row[n] for k, n in headers.items()}

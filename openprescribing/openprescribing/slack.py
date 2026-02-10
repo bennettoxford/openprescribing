@@ -13,15 +13,14 @@ def notify_slack(message, is_error=False, channel="default"):
     webhooks = {
         "default": settings.SLACK_TECHNOISE_POST_KEY,
         "op": settings.SLACK_OP_POST_KEY,
-        "dev_team": settings.SLACK_TEAM_POST_KEY,
     }
     webhook_url = webhooks.get(channel, webhooks["default"])
     slack_data = {"text": message}
 
     response = requests.post(webhook_url, json=slack_data)
-    if is_error:
-        # Also post error messages to relevant team channel
-        response = requests.post(webhooks["dev_team"], json=slack_data)
+    if is_error and channel != "op":
+        # Also post error messages to OP channel
+        response = requests.post(webhooks["op"], json=slack_data)
 
     if response.status_code != 200:
         raise ValueError(

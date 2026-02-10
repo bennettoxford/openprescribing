@@ -1,0 +1,150 @@
+name: "Measure Review Template"
+description: "Use this form to review OpenPrescribing measures."
+title: "Measure review: {measure_title}"
+labels: ["review-measure"]
+body:
+  - type: input
+    id: measure_title
+    attributes:
+      label: "Measure Title"
+      description: "The full title of the measure"
+      placeholder: "e.g. Direct Oral Anticoagulants (DOACs) not prescribed as rivaroxaban or apixaban tablets"
+    validations:
+      required: false
+
+  - type: input
+    id: measure_link
+    attributes:
+      label: "Link to measure"
+      description: "Provide a URL link to the measure."
+      placeholder: "https://..."
+    validations:
+      required: false
+
+  - type: input
+    id: 30dviews
+    attributes:
+      label: "30 day view count"
+      description: "Counts can be found on the measures tracker."
+    validations:
+      required: false
+
+  - type: input
+    id: 12mviews
+    attributes:
+      label: "12 months view count"
+      description: "Counts can be found on the measures tracker."
+    validations:
+      required: false
+      
+  - type: dropdown
+    id: measure_type
+    attributes:
+      label: "Type of measure"
+      description: "Classify the type of measure."
+      options:
+        - "Never. Events that should never occur."
+        - "Rare. Events that should rarely occur, with weak influence from casemix and demographics."
+        - "Information. Events that are heavily influenced by casemix and demographics."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: clinical_relevance
+    attributes:
+      label: "Clinical relevance today"
+      description: "Indicate current clinical relevance."
+      options:
+        - "High"
+        - "Medium"
+        - "Low"
+    validations:
+      required: false
+
+  - type: textarea
+    id: clinical_rationale
+    attributes:
+      label: "Rationale for clinical relevance"
+      description: "Explain why you selected the clinical relevance above, e.g. changes in guidelines, evidence, or whether there are still opportunities for improvement."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: code_structures
+    attributes:
+      label: "Code structure(s) used for search logic"
+      description: "Tick all code libraries used in the search logic."
+      options:
+        - label: "dm+d"
+        - label: "BNF"
+
+  - type: dropdown
+    id: view_type
+    attributes:
+      label: "Does the measure currently use a view?"
+      description: "Select yes/no."
+      options:
+        - "Yes"
+        - "No"
+
+  - type: input
+    id: view_link
+    attributes:
+      label: "If above is yes, provide link to view SQL"
+      description: "Provide a URL link to the SQL."
+      placeholder: "https://..."
+    validations:
+      required: false
+          
+  - type: dropdown
+    id: change_code_system
+    attributes:
+      label: "If currently using BNF codes, can this be considered for dm+d instead?"
+      description: "Select yes/no."
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: false
+      
+  - type: textarea
+    id: code_system_text
+    attributes:
+      label: "Describe any limitations of moving to dm+d coding system"
+    validations:
+      required: false
+        
+  - type: dropdown
+    id: oph_candidate
+    attributes:
+      label: "If this measure a candidate for OP Hospitals?"
+      description: "Select yes/no."
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: false
+      
+  - type: textarea
+    id: oph_candidiate_text
+    attributes:
+      label: "If candidate for OP Hospitals, describe any limitations or things for consideration"
+    validations:
+      required: false         
+  - type: textarea
+    id: outstanding_queries
+    attributes:
+      label: "Outstanding queries / notable user feedback"
+      description: "List any outstanding questions, issues or notable user feedback."
+      placeholder: "- Query 1\n- Query 2"
+    validations:
+      required: false
+
+  - type: textarea
+    id: actions_needed
+    attributes:
+      label: "Actions needed"
+      description: "Add any actions_needed on separate lines as checkbox items."
+      placeholder: "- [ ] Action 1\n- [ ] Action 2"
+    validations:
+      required: false

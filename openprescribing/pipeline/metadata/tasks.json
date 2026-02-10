@@ -1,7 +1,8 @@
 {
     "fetch_bnf_codes": {
-        "type": "manual_fetch",
-        "source_id": "bnf_codes"
+        "type": "auto_fetch",
+        "source_id": "bnf_codes",
+        "command": "fetch_bnf_codes"
     },
     "fetch_ccg_boundaries": {
         "type": "manual_fetch_skip_for_now",
@@ -21,25 +22,10 @@
         "source_id": "patient_list_size",
         "command": "hscic_list_sizes {year} {month}"
     },
-    "fetch_region_details": {
+    "fetch_org_details": {
         "type": "auto_fetch",
-        "source_id": "region_details",
-        "command": "org_codes --region"
-    },
-    "fetch_ccg_details": {
-        "type": "auto_fetch",
-        "source_id": "ccg_details",
-        "command": "org_codes --ccg"
-    },
-    "fetch_practice_details": {
-        "type": "auto_fetch",
-        "source_id": "practice_details",
-        "command": "org_codes --practice"
-    },
-    "fetch_pcn_details": {
-        "type": "auto_fetch",
-        "source_id": "pcn_details",
-        "command": "org_codes --pcn"
+        "source_id": "orgs",
+        "command": "fetch_org_details"
     },
     "fetch_nhs_postcode_file": {
         "type": "auto_fetch",
@@ -62,22 +48,12 @@
             "fetch_ccg_boundaries"
         ]
     },
-    "import_regional_team_details": {
+    "import_org_details": {
         "type": "import",
-        "source_id": "region_details",
-        "command": "import_regional_teams --filename eauth.csv",
+        "source_id": "orgs",
+        "command": "import_org_details --path org_details.json",
         "dependencies": [
-            "fetch_region_details"
-        ]
-    },
-    "import_ccg_details": {
-        "type": "import",
-        "source_id": "ccg_details",
-        "command": "import_ccgs --ccg eccg.csv",
-        "dependencies": [
-            "fetch_ccg_details",
-            "import_ccg_boundaries",
-            "import_regional_team_details"
+            "fetch_org_details"
         ]
     },
     "import_adqs": {
@@ -97,29 +73,11 @@
             "fetch_patient_list_weightings"
         ]
     },
-    "import_practice_details": {
-        "type": "import",
-        "source_id": "practice_details",
-        "command": "import_practices --epraccur epraccur.csv",
-        "dependencies": [
-            "fetch_practice_details",
-            "import_ccg_details"
-        ]
-    },
-    "import_pcn_details": {
-        "type": "import",
-        "source_id": "pcn_details",
-        "command": "import_pcns --filename ePCN.xlsx",
-        "dependencies": [
-            "import_practice_details",
-            "fetch_pcn_details"
-        ]
-    },
     "handle_orphan_practices": {
         "type": "post_process",
         "command": "handle_orphan_practices",
         "dependencies": [
-            "import_practice_details"
+            "import_org_details"
         ]
     },
     "import_nhs_postcode_file": {
@@ -128,7 +86,7 @@
         "command": "geocode_practices --filename gridall.csv",
         "dependencies": [
             "fetch_nhs_postcode_file",
-            "import_practice_details"
+            "import_org_details"
         ]
     },
     "convert_hscic_prescribing": {
@@ -144,7 +102,7 @@
         "source_id": "dispensing_practices",
         "command": "import_practice_dispensing_status --filename dispensing_practices*.csv",
         "dependencies": [
-            "import_practice_details"
+            "import_org_details"
         ]
     },
     "import_patient_list_size": {
@@ -153,7 +111,7 @@
         "command": "import_list_sizes --filename gp-reg-pat-prac-quin-age.csv",
         "dependencies": [
             "fetch_patient_list_size",
-            "import_practice_details",
+            "import_org_details",
             "import_patient_list_weightings"
         ]
     },
@@ -161,7 +119,7 @@
         "type": "post_process",
         "command": "infer_practice_boundaries",
         "dependencies": [
-            "import_practice_details",
+            "import_org_details",
             "import_nhs_postcode_file"
         ]
     },
@@ -171,8 +129,7 @@
         "dependencies": [
             "convert_hscic_prescribing",
             "import_patient_list_size",
-            "import_ccg_details",
-            "import_practice_details"
+            "import_org_details"
         ]
     },
     "create_bq_public_tables": {

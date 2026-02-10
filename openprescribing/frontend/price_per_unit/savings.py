@@ -1,4 +1,10 @@
 import numpy
+from django.db import connection
+from frontend.views.spending_utils import (
+    APPLIANCE_DISCOUNT_PERCENTAGE,
+    BRAND_DISCOUNT_PERCENTAGE,
+    GENERIC_DISCOUNT_PERCENTAGE,
+)
 from matrixstore.cachelib import memoize
 from matrixstore.db import get_db, get_row_grouper
 from matrixstore.matrix_ops import get_submatrix, zeros_like
@@ -46,15 +52,17 @@ def get_savings_for_orgs(generic_code, date, org_type, org_ids, min_saving=1):
     Get available savings for the given orgs within a particular class of
     substitutable presentations
     """
+    substitution_sets = get_substitution_sets()
     try:
-        substitution_set = get_substitution_sets()[generic_code]
+        substitution_set = substitution_sets[generic_code]
     # Gracefully handle being asked for the savings for a code with no
     # substitutions (to which the answer is always: no savings)
     except KeyError:
         return []
 
+    discounts = get_discounts_for_all_substitution_sets_at_date(substitution_sets, date)
     quantities, net_costs = get_quantities_and_net_costs_at_date(
-        get_db(), substitution_set, date
+        get_db(), substitution_set, date, discounts
     )
 
     group_by_org = get_row_grouper(org_type)
@@ -121,7 +129,7 @@ def get_total_savings_for_org(date, org_type, org_id):
 
 # Increment the version number if the logic of this function changes such that
 # the same inputs no longer produce the same outputs
-@memoize(version=1)
+@memoize(version=2)
 def get_total_savings_for_org_type(
     db,
     substitution_sets,
@@ -144,9 +152,10 @@ def get_total_savings_for_org_type(
     slightly convoluted call signature.
     """
     totals = None
+    discounts = get_discounts_for_all_substitution_sets_at_date(substitution_sets, date)
     for substitution_set in substitution_sets.values():
         quantities, net_costs = get_quantities_and_net_costs_at_date(
-            db, substitution_set, date
+            db, substitution_set, date, discounts
         )
         target_ppu = get_target_ppu(
             quantities,
@@ -191,8 +200,8 @@ def get_savings(quantities, net_costs, target_ppu):
 
 # Increment the version number if the logic of this function changes such that
 # the same inputs no longer produce the same outputs
-@memoize(version=1)
-def get_quantities_and_net_costs_at_date(db, substitution_set, date):
+@memoize(version=3)
+def get_quantities_and_net_costs_at_date(db, substitution_set, date, discounts):
     """
     Sum quantities and net costs over the supplied list of BNF codes for just
     the specified date.
@@ -204,20 +213,107 @@ def get_quantities_and_net_costs_at_date(db, substitution_set, date):
     results = db.query(
         """
         SELECT
-          quantity, net_cost
+          bnf_code, quantity, net_cost
         FROM
           presentation
         WHERE
           bnf_code IN ({})
-        """.format(
-            ",".join("?" * len(bnf_codes))
-        ),
+        """.format(",".join("?" * len(bnf_codes))),
         bnf_codes,
     )
 
     quantity_sum = MatrixSum()
     net_cost_sum = MatrixSum()
-    for quantity, net_cost in results:
+    for bnf_code, quantity, net_cost in results:
         quantity_sum.add(get_submatrix(quantity, cols=date_slice))
-        net_cost_sum.add(get_submatrix(net_cost, cols=date_slice))
+        net_cost_slice = get_submatrix(net_cost, cols=date_slice) * discounts[bnf_code]
+        net_cost_sum.add(net_cost_slice)
     return quantity_sum.value(), net_cost_sum.value()
+
+
+DISCOUNTS_FOR_CATEGORY = {
+    category_id: (100 - discount) / 100.0
+    for discount, categories in [
+        (GENERIC_DISCOUNT_PERCENTAGE, [1, 11]),
+        (APPLIANCE_DISCOUNT_PERCENTAGE, [5, 6, 7, 8, 10]),
+    ]
+    for category_id in categories
+}
+
+
+DEFAULT_DISCOUNT = (100 - BRAND_DISCOUNT_PERCENTAGE) / 100.0
+
+
+def get_discounts_at_date(bnf_codes, date):
+    """
+    Return a dictionary mapping BNF codes to the appropriate discount for that
+    presentation on the given date
+    """
+    category_ids = {}
+    concessions = {}
+    with connection.cursor() as cursor:
+        # Given a list of BNF codes find their corresponding drug tariff category and
+        # whether they have a price concession for this month. This query will only
+        # find BNF codes corresponding to VMPPs, not AMPPs, but that's fine because we
+        # don't need to know the category for AMPPs because they all have the default
+        # discount anyone. And, necessarily, AMPPs can't be part of a price concession
+        # so we don't need to worry about that either.
+        cursor.execute(
+            f"""
+            SELECT
+              vmpp.bnf_code AS bnf_code,
+              tariff.tariff_category_id AS category_id,
+              ncso.vmpp_id IS NOT NULL AS has_concession
+            FROM
+              dmd_vmpp AS vmpp
+            JOIN
+              frontend_tariffprice AS tariff
+            ON
+              vmpp.vppid = tariff.vmpp_id AND tariff.date = %s
+            LEFT JOIN
+              frontend_ncsoconcession AS ncso
+            ON
+              ncso.vmpp_id = vmpp.vppid AND ncso.date = %s
+            WHERE
+              vmpp.bnf_code IN ({", ".join(["%s"] * len(bnf_codes))})
+            """,
+            [date, date, *bnf_codes],
+        )
+        for bnf_code, category_id, has_concession in cursor.fetchall():
+            category_ids[bnf_code] = category_id
+            concessions[bnf_code] = has_concession
+    return {
+        bnf_code: (
+            # As above, we expect to frequently get missing keys here and they should
+            # all have the default discount applied
+            DISCOUNTS_FOR_CATEGORY.get(category_ids.get(bnf_code), DEFAULT_DISCOUNT)
+            if not concessions.get(bnf_code)
+            # If there's a price concession for this presentation in this month then we
+            # don't discount the price paid at all
+            else 1.0
+        )
+        for bnf_code in bnf_codes
+    }
+
+
+# We need an object that wraps the discounts dict but provides the `cache_key` attribute
+# required by the convoluted caching system past-me somehow thought was a good idea
+class DiscountLookupTable:
+    items = None
+    cache_key = None
+
+    def __getitem__(self, key):
+        return self.items[key]
+
+
+@memoize(version=1)
+def get_discounts_for_all_substitution_sets_at_date(substitution_sets, date):
+    # Get all BNF codes across all substitution sets
+    bnf_codes = sum((s.presentations for s in substitution_sets.values()), start=[])
+    # Determine their discounts on the supplied date
+    discounts = get_discounts_at_date(bnf_codes, date)
+    # Wrap the results up in a thing which plays nicely with the caching system
+    table = DiscountLookupTable()
+    table.items = discounts
+    table.cache_key = substitution_sets.cache_key + str(date).encode("ascii")
+    return table

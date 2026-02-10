@@ -27,8 +27,7 @@ class Command(BaseCommand):
             key = (c.drug.replace("\xa0", ""), c.pack_size, c.vmpp.vppid, c.vmpp.nm)
             rows[key] += 1
 
-        print(
-            """
+        print("""
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -40,8 +39,7 @@ class Command(BaseCommand):
         <th>NCSO pack size</th>
         <th>VMPP name</th>
         <th>Count</th>
-      </tr>"""
-        )
+      </tr>""")
 
         for row, count in sorted(rows.items()):
             print("  <tr>")
@@ -55,9 +53,7 @@ class Command(BaseCommand):
             print("    <td>{}</td>".format(count))
             print("  </tr>")
 
-        print(
-            """
+        print("""
     </table>
   </body>
-</html>"""
-        )
+</html>""")

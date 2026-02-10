@@ -1,7 +1,9 @@
 # coding=utf8
 
+import csv
 import datetime
 import logging
+import pathlib
 import re
 from collections import defaultdict
 
@@ -35,7 +37,11 @@ HEADING_DATE_RE = re.compile(
     r"""
     ^
     # Optional leading text
-    ( The \s+ following \s+ price \s+ concessions \s+ have \s+ been \s+ granted \s+ for \s+ )?
+    (
+        The \s+ following \s+ price \s+ concessions \s+
+        ((have \s+ been) | were)
+        \s+ granted \s+ for \s+
+    )?
     # Date in the form "March 2020"
     (?P<month>
         january | february | march | april | may | june | july | august |
@@ -54,12 +60,23 @@ NAME_FIXES = {
     "co-amoxiclav 250/125 tablets 21": "co-amoxiclav 250mg/125mg tablets 21",
 }
 
+MANUALLY_ADDED_CONCESSIONS_PATH = (
+    pathlib.Path(__file__).parent
+    / "supplementary_files"
+    / "fetch_and_import_ncso_concessions"
+    / "manually_added_concessions.csv"
+)
+
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         # Fetch and parse the concession data
         response = requests.get(PRICE_CONCESSIONS_URL, headers=DEFAULT_HEADERS)
         items = parse_concessions(response.content)
+
+        # Insert manually added concessions
+        items = list(items)
+        items.extend(read_concessions_csv(MANUALLY_ADDED_CONCESSIONS_PATH))
 
         # Find matching VMPPs for each concession, where possible
         vmpp_id_to_name = get_vmpp_id_to_name_map()
@@ -85,6 +102,8 @@ def parse_concessions(html):
         if (td.text or "").strip().lower() == "pack size"
     ]
     for table in tables:
+        if is_rollover_table(table):
+            continue
         date = get_date_for_table(table)
         rows = rows_from_table(table)
 
@@ -92,17 +111,19 @@ def parse_concessions(html):
         headers = next(rows)
         assert headers[0].lower() in ("drug", "drug name"), headers[0]
         assert headers[1].lower() == "pack size", headers[1]
-        assert headers[2].lower() in (
-            "price concession",
-            "price concessions",
-            "price",
+        assert re.match(
+            # Match things like "March 2020 Price Concessions"
+            r"(\w+ 20\d\d )?(price concession|price concessions|price)",
+            headers[2].lower(),
         ), headers[2]
         assert len(headers) == 3, headers
 
         for row in rows:
             yield {
                 "date": date,
-                "drug": row[0],
+                # Strip trailing asterisks which are sometimes used to indicate rolled over
+                # concessions
+                "drug": row[0].strip("*"),
                 "pack_size": row[1],
                 "price_pence": parse_price(row[2]),
             }
@@ -123,6 +144,11 @@ def get_date_for_table(table):
             assert False, f"Unhandled table intro: {intro!r}"
     else:
         assert False, f"Unhandled section heading: {heading!r}"
+
+
+def is_rollover_table(table):
+    heading = get_section_heading(table)
+    return bool(re.search(r"\bRolled over price concessions\b", heading, re.IGNORECASE))
 
 
 def get_section_heading(table):
@@ -172,6 +198,9 @@ def parse_price(price_str):
         ( \d+ )
         # Optional pence digits (.N or .NN)
         ( \. (\d) (\d)? ) ?
+        # Optional asterisk
+        \s*
+        \*?
         # Optional previous price in parentheses
         \s*
         ( \( previously \s+ [£\d\.]+ \) ) ?
@@ -214,6 +243,24 @@ def match_concession_vmpp_ids(items, vmpp_id_to_name):
         matched.append(item)
 
     return matched
+
+
+def read_concessions_csv(path):
+    with open(path, newline="") as f:
+        reader = csv.DictReader(f)
+        return [convert_concessions_csv_row(row) for row in reader]
+
+
+def convert_concessions_csv_row(row):
+    date = datetime.datetime.fromisoformat(row["Date"]).date()
+    assert date.day == 1, f"{date} is not the first of the month"
+    return {
+        "date": date,
+        "drug": row["Name"],
+        "pack_size": row["Pack Size"],
+        "price_pence": int(row["Price Pence"]),
+        "manually_added": True,
+    }
 
 
 def get_vmpp_id_to_name_map():
@@ -331,19 +378,23 @@ def insert_or_update(items):
 
 
 def format_message(inserted):
-    created = [i for i in inserted if i["created"]]
+    num_manually_added = sum(1 for i in inserted if i.get("manually_added"))
+    num_created = sum(1 for i in inserted if i["created"])
     unmatched = [i for i in inserted if i["vmpp_id"] is None]
 
-    msg = f"Fetched {len(inserted)} concessions. "
+    msg = (
+        f"Fetched {len(inserted)} concessions, "
+        f"including {num_manually_added} manually added concessions. "
+    )
 
-    if not created:
+    if num_created == 0:
         msg += "Found no new concessions to import."
     else:
-        msg += f"Imported {len(created)} new concessions."
+        msg += f"Imported {num_created} new concessions."
 
     # Warn about cases where we couldn't match the drug name and pack size to a VMPP
     if unmatched:
-        msg += "\n\n" "The following concessions will need to be manually matched:\n"
+        msg += "\n\nThe following concessions will need to be manually matched:\n"
         for item in unmatched:
             msg += f"Name: {item['drug']} {item['pack_size']}\n"
 

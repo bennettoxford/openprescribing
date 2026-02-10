@@ -91,7 +91,7 @@ class RegionalTeam(models.Model):
 
 
 class STP(models.Model):
-    code = models.CharField(max_length=3, primary_key=True)
+    code = models.CharField(max_length=5, primary_key=True)
     name = models.CharField(max_length=200, null=True, blank=True)
     ons_code = models.CharField(max_length=9, null=True, blank=True)
 
@@ -235,17 +235,20 @@ class Practice(models.Model):
         (25, "Prison"),
     )
 
+    STATUS_UNKNOWN = "U"
+    STATUS_ACTIVE = "A"
     STATUS_RETIRED = "B"
     STATUS_CLOSED = "C"
     STATUS_DORMANT = "D"
+    STATUS_PROPOSED = "P"
 
     STATUS_SETTINGS = (
-        ("U", "Unknown"),
-        ("A", "Active"),
+        (STATUS_UNKNOWN, "Unknown"),
+        (STATUS_ACTIVE, "Active"),
         (STATUS_RETIRED, "Retired"),
         (STATUS_CLOSED, "Closed"),
         (STATUS_DORMANT, "Dormant"),
-        ("P", "Proposed"),
+        (STATUS_PROPOSED, "Proposed"),
     )
     ccg = models.ForeignKey(PCT, null=True, blank=True, on_delete=models.PROTECT)
     pcn = models.ForeignKey(PCN, null=True, blank=True, on_delete=models.PROTECT)

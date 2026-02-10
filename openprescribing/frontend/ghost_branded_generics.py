@@ -216,7 +216,7 @@ def infer_tariff_price_for_presentations(db, bnf_codes, date):
         # which we use elsewhere) because this matches the behaviour of
         # Postgres's PERCENTILE_DISC function on which this calculation was
         # originally based
-        median_ppu = numpy.nanpercentile(ppu, axis=0, q=50, interpolation="lower")[0]
+        median_ppu = numpy.nanpercentile(ppu, axis=0, q=50, method="lower")[0]
         prices[bnf_code] = median_ppu
     # Restore numpy warnings
     numpy.seterr(**numpy_err)
@@ -257,9 +257,7 @@ def get_prescribing(db, bnf_codes, date):
     results = db.query(
         """
         SELECT bnf_code, quantity, net_cost FROM presentation WHERE bnf_code IN ({})
-        """.format(
-            ",".join("?" * len(bnf_codes))
-        ),
+        """.format(",".join("?" * len(bnf_codes))),
         bnf_codes,
     )
     for bnf_code, quantity, net_cost in results:

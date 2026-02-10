@@ -13,8 +13,8 @@ from django.core.exceptions import ImproperlyConfigured
 # this is an experiment for now this is a quick and non-invasive way of trying
 # it out. Longer term we can change our own code to import pysqlite3 directly
 # and do some more targetted monkey patching for DiskCache.
-__import__("pysqlite3")
-sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
+__import__("sqlean")
+sys.modules["sqlite3"] = sys.modules.pop("sqlean")
 
 # PATH CONFIGURATION
 # Absolute filesystem path to the Django project directory:
@@ -344,7 +344,6 @@ GRAB_HOST = "https://openprescribing.net"
 # Webhook URLs for posting to different channels can be configured at
 # https://api.slack.com/apps/A03UM1N45JN/incoming-webhooks
 SLACK_TECHNOISE_POST_KEY = utils.get_env_setting("SLACK_TECHNOISE_POST_KEY", default="")
-SLACK_TEAM_POST_KEY = utils.get_env_setting("SLACK_TEAM_POST_KEY", default="")
 SLACK_OP_POST_KEY = utils.get_env_setting("SLACK_OP_POST_KEY", default="")
 SLACK_SENDING_ACTIVE = True
 
@@ -434,8 +433,7 @@ if sentry_raven_dsn and not SHELL:
 
 
 # For downloading data from TRUD
-TRUD_USERNAME = utils.get_env_setting("TRUD_USERNAME", default="")
-TRUD_PASSWORD = utils.get_env_setting("TRUD_PASSWORD", default="")
+TRUD_API_KEY = utils.get_env_setting("TRUD_API_KEY", default="")
 
 # check_numbers.py will write copies of scraped pages here.  By writing to a
 # location in /tmp/, we benefit from tmpreaper, which is run by cron to delete

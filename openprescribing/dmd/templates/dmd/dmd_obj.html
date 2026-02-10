@@ -9,7 +9,7 @@
       | <a href="{% url 'analyse' %}#numIds={{ obj.bnf_code }},denom=total_list_size=">Analyse prescribing for this drug</a>
       | <a href="{% url 'all_england_price_per_unit_by_presentation' obj.bnf_code %}">See prices paid for this drug and its variants</a>
     {% else %}
-      | This {{ obj_type }} cannot be matched against our prescribing data.
+      | This {{ obj_type }} cannot be matched against GP prescribing data.
     {% endif %}
 
     {% if has_dt %}

@@ -35,6 +35,9 @@ https://github.com/ebmdatalab/openprescribing/pull/3286
 This should be enough to get a dev sandbox running; some brief notes
 about production environment follow.
 
+If you are using MacOS, a more concise set of local setup instructions
+are available in [DEVELOPERS.md](./DEVELOPERS.md)
+
 ### Set up a virtualenv
 
 If you're using [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/):
@@ -52,7 +55,6 @@ Install library dependencies (current as of Debian Jessie):
 Ensure pip and setuptools are up to date:
 
     pip install -U pip
-    pip install setuptools==49.6.0
 
 Install Python dependencies:
 

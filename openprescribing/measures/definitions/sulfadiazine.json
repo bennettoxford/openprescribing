@@ -13,6 +13,7 @@
         "<p>Any prescribing on this measure could prompt investigation to ascertain if sulfadiazine was prescribed in error.</p>"
     ],
     "tags": [
+        "core",
         "safety"
     ],
     "url": null,

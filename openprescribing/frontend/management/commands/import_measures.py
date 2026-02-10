@@ -458,9 +458,7 @@ def build_bnf_codes_query(base_query, filter_):
         SELECT bnf_code
         FROM subquery
         WHERE {}
-        """.format(
-            base_query, where_clause
-        )
+        """.format(base_query, where_clause)
 
     return query
 
@@ -471,7 +469,10 @@ def build_bnf_codes_query_where(filter_):
 
     for element in filter_:
         element = element.split("#")[0].strip()
-        if element[0] == "~":
+        if not element:
+            # Ignore codes which are completely commented out
+            pass
+        elif element[0] == "~":
             excludes.append(build_bnf_codes_query_fragment(element[1:]))
         else:
             includes.append(build_bnf_codes_query_fragment(element))

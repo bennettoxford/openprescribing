@@ -136,5 +136,8 @@
             "2018": "http://geoportal.statistics.gov.uk/datasets/clinical-commissioning-group-to-stps-april-2018-lookup-in-england-version-2"
         },
         "core_data": true
+    },
+    "orgs": {
+        "title": "Data about practices and the organisations they belong to"
     }
 }

@@ -1,0 +1,41 @@
+{
+  "name": "Items which should not routinely be prescribed in primary care - doxazosin modified release",
+  "title": "Doxazosin modified release cost per 1000 patients",
+  "description": "Cost of doxazosin modified release per 1000 patients",
+  "numerator_short": "Doxazosin modified release cost (£)",
+  "denominator_short": "1000 patients",
+  "y_label": "Doxazosin modified release cost (£) per 1000 patients",
+  "why_it_matters": [
+    "<p><a href='https://www.england.nhs.uk/long-read/items-which-should-not-routinely-be-prescribed-in-primary-care-policy-guidance/",
+    "#doxazosin-prolonged-release-also-known-as-doxazosin-modified-release-2017' target='_blank'>",
+    "NHS England guidance states</a>:</p>",
+    "<p><i>Doxazosin is an alpha-adrenoceptor blocking drug that can be used to treat hypertension and benign prostatic hyperplasia. There are two oral forms of the ",
+    "medication (immediate release and prolonged release) and both are taken once daily.</i></p>",
+    "<p>Prolonged-release doxazosin <a href='https://openprescribing.net/tariff/?codes=0205040D0AAAAAA&codes=0205040D0AAABAB&codes=0205040D0AAAQAQ&codes=0205040D0AAACAC&",
+    "codes=0205040D0AAARAR&codes=0205040D0AABBBB' target='_blank'>",
+    "has historically cost much more than the immediate-release formulation</a>. <b>However as of January 2026 the 4mg immediate-release formulation is significantly more expensive than the prolonged-release formulation.</b> ",
+    "As the NHS England guidance is still in place we are continuing to show this measure, but have removed the cost differences from the overall low-priority measure, and will continue to review the appropriateness.</p>"
+  ],
+  "tags": [
+    "cardiovascular",
+    "cost",
+    "lowpriority"
+  ],
+  "url": null,
+  "is_percentage": false,
+  "is_cost_based": false,
+  "low_is_good": false,
+  "numerator_type": "bnf_cost",
+  "numerator_bnf_codes_filter": [
+    "0205040D0%AQ # Doxazosin Mesil_Tab 4mg M/R (brands and generic)",
+    "0205040D0%AR # Doxazosin Mesil_Tab 8mg M/R (brands and generic)"
+  ],
+  "denominator_type": "list_size",
+  "authored_by": "richard.croker@phc.ox.ac.uk",
+  "checked_by": "christopher.wood@phc.ox.ac.uk",
+  "date_reviewed": "2026-02-01",
+  "next_review": "2026-07-01",
+  "measure_complexity": "low",
+  "measure_type": "bnf_code",
+  "radar_exclude": false
+}

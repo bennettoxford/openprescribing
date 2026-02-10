@@ -1,5 +1,5 @@
 [flake8]
-exclude = *migrations*,*settings*,tmp/
+exclude = *migrations*,*settings*,tmp,.venv/
 ignore =
     # whitespace before ',' (black inserts a space after `print` when targetting 2.7)
     E203

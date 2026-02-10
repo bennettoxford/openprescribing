@@ -84,6 +84,8 @@ class Task(object):
     def filename_pattern(self):
         """Return pattern that matches the part of the task's command that
         should be substituted for the task's input filename."""
+
+        # This is a list of names of parameters to commands that take a filename.
         filename_flags = [
             "filename",
             "ccg",
@@ -92,6 +94,7 @@ class Task(object):
             "hscic_address",
             "month_from_prescribing_filename",
             "zip_path",
+            "path",
         ]
 
         cmd_parts = shlex.split(self.command)
@@ -353,6 +356,8 @@ def upload_task_input_files(task):
     bucket = storage_client.get_bucket()
 
     for path in task.input_paths():
+        if re.search(r"epd_\d{6}_full.csv", path):
+            continue
         assert path[0] == "/"
         assert settings.PIPELINE_DATA_BASEDIR[-1] == "/"
         name = "hscic" + path.replace(settings.PIPELINE_DATA_BASEDIR, "/")
@@ -439,18 +444,16 @@ def run_all(year, month, under_test=False):
         year=year, month=month, task_name="fetch_and_import", status=TaskLog.SUCCESSFUL
     )
 
-    msg = textwrap.dedent(
-        f"""\
+    msg = textwrap.dedent(f"""\
         Importing data for {year}_{month} complete!'
 
         You should now:
 
-        * ask tech-support to run `sudo systemctl restart app.openprescribing.*.service` to pick up the new data
+        * run `sudo systemctl restart app.openprescribing.*.service` to pick up the new data
         * check that nothing looks horribly wrong with the data (https://openprescribing.net/national/england/ gives a good overview)
-        * ask tech-support to send email notifications as described in https://github.com/ebmdatalab/openprescribing/wiki/Sending-monthly-email-alerts
+        * ask tech support to send email notifications as described in https://github.com/ebmdatalab/openprescribing/wiki/Sending-monthly-email-alerts
         * send a tweet as described in https://github.com/ebmdatalab/openprescribing/wiki/Clinical-Informatician-Process-for-Updating-Data
-        """
-    )
+        """)
 
     if not under_test:
         # Notify the openprescribing slack channel

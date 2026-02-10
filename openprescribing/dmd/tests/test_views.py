@@ -83,9 +83,7 @@ class TestDMDObjView(TestCase):
             """,
             html=True,
         )
-        self.assertContains(
-            rsp, "This AMPP cannot be matched against our prescribing data"
-        )
+        self.assertContains(rsp, "This AMPP cannot be matched")
 
 
 @copy_fixtures_to_matrixstore
