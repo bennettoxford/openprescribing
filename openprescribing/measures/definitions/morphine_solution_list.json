@@ -1,0 +1,63 @@
+{
+"name": "Volume of immediate release oral morphine liquid prescribed",
+"title": "Volume of immediate release oral morphine liquid prescribed",
+"description": "Milligrams of immediate release oral morphine liquid per 1000 patients",
+"numerator_short": "mg of liquid oral morphine formulations",
+"denominator_short": "1000 patients",
+"y_label": "Milligrams per 1000 patients",
+"why_it_matters": [
+    "A national <a href='https://www.hssib.org.uk/patient-safety-investigations/unintentional-overdose-of-morphine-sulfate-oral-solution/investigation-report/' target='_Blank'>patient safety investigation</a> has highlighted risks associated with morphine oral solution, including dosing errors and accidental overconsumption.",
+    "It has been implicated in a number of <a href='https://www.england.nhs.uk/south/wp-content/uploads/sites/6/2016/08/cd-newsletter.pdf' target='_Blank'>drug-related deaths in the NHS</a>, including cases of unintentional overdose.</p>",
+    "<p>Particular concerns include the risk of patients 'swigging' morphine oral solution directly from the bottle rather than measuring individual doses, and the supply of large quantities over extended periods. ",
+    "Oral morphine solution 10mg/5ml is a Schedule 5 Controlled Drug with fewer controls than other morphine formulations, which are Schedule 2. ",
+    "This may increase the likelihood of larger volumes being supplied and continued without the safeguards applied to other opioid formulations.</p>",
+    "<p>Morphine oral solution also contains high quantities of alcohol and sugar. ",
+    "For example branded <a href='https://mhraproducts4853.blob.core.windows.net/docs/ded38835b171a612e33c82e0103d5482cd76d1a3' target='_Blank'>Oramorph</a> contains around 90g of sugar and 24g of ethanol, equivalent to three units of alcohol, in each 300ml bottle. ",
+    "These factors should be considered alongside the opioid content when assessing clinical risk.</p>",
+    "<p>You can read more about the rationale behind this measure, and the wider considerations surrounding the use of oral liquid morphine, <a href='https://www.bennett.ox.ac.uk/blog/2026/02/oral-morphine-liquid-a-new-openprescribing-measure/' target='_Blank'>in our guest blog</a>.</p>"
+  ],
+"tags": [
+    "core",
+    "opioids",
+    "opportunities",
+    "pain",
+    "safety"
+],
+"url": null,
+"is_percentage": false,
+"is_cost_based": false,
+"low_is_good": true,
+"numerator_type": "custom",
+"numerator_columns": "SUM(quantity * (strnt_nmrtr_val/COALESCE(strnt_dnmtr_val,1))) AS numerator",
+"numerator_from":[
+    "{hscic}.normalised_prescribing p",
+    "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
+    "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n",
+    "INNER JOIN {dmd}.ont AS ont ON vmp.id = ont.vmp -- joins vmp to ont table to get formulation codes \n",
+    "INNER JOIN {dmd}.ontformroute AS route ON ont.form = route.cd -- joins ont table to ontform table to get formulation names \n"
+],
+"numerator_where": [
+    "vpi.ing = 60886004 AND route.descr = ('solution.oral') -- morphine oral solution preparations"
+],
+"denominator_type": "list_size",
+"authored_by": "richard.croker@phc.ox.ac.uk",
+"checked_by": "christopher.wood@phc.ox.ac.uk",
+"date_reviewed": "2026-02-09",
+"next_review": "2028-02-09",
+"measure_complexity": "medium",
+"measure_type": "dmd",
+"radar_exclude": false,
+"change_log": [
+{
+    "date": "2026-02-09",
+    "description": "Created measure.",
+    "action_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": "christopher.wood@phc.ox.ac.uk"
+}
+],
+"testing_measure": true,
+"testing_type": "custom",
+"testing_comments": "Simple test to identify new morphine products. The measure relies on dm+d codes/route so this test might over identify products.",
+"testing_include": ["0407020Q0%"],
+"testing_exclude": []
+}
