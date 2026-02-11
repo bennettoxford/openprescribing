@@ -24,7 +24,7 @@
     "<ul>",
     "<li>Do not initiate.</li>",
     "<li>Deprescribe in patients currently prescribed this medicine.</li></ul></p>",
-    "<p>The average cost per item is <b>£488</b> (November 2024), which is an increase of <b>£223</b> since 2022."
+    "<p>The average cost per item is now <b>£660</b> (November 2025), which is an increase of <b>£395</b> since 2022."
   ],
   "tags": [
     "cost",
@@ -43,8 +43,8 @@
   "denominator_type": "list_size",
   "authored_by": "richard.croker@phc.ox.ac.uk",
   "checked_by": "christopher.wood@phc.ox.ac.uk",
-  "date_reviewed": "2025-02-18",
-  "next_review": "2027-02-18",
+  "date_reviewed": "2026-02-10",
+  "next_review": "2028-02-10",
   "measure_complexity": "low",
   "measure_type": "bnf_code",
   "radar_exclude": false
