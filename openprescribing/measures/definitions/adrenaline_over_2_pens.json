@@ -32,7 +32,8 @@
     "35895211000001103, -- VMP ID for Adrenaline (base) 300micrograms/0.3ml (1 in 1,000) solution for injection pre-filled disposable devices\n",
     "23471611000001105 -- VMP ID for Adrenaline (base) 500micrograms/0.5ml (1 in 1,000) solution for injection pre-filled disposable devices\n",
     ")"
-    ],    
+    ],
+    "numerator_is_list_of_bnf_codes": false,
     "denominator_type": "custom",
     "denominator_columns": "SUM(items) AS denominator",
     "denominator_from": [
