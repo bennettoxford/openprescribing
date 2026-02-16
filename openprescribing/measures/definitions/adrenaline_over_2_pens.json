@@ -1,0 +1,56 @@
+{
+    "name": "Adrenaline autoinjector prescriptions with quantity of more than 2 pens",
+    "title": "Adrenaline autoinjector prescriptions with quantity of more than 2 pens",
+    "description": "Proportion of prescription items of adrenaline autoinjector with quantity greater than 2 pens",
+    "numerator_short": "Adrenaline autoinjector items with quantity >2 pens",
+    "denominator_short": "Adrenaline autoinjector items",
+    "y_label": "Percentage of adrenaline autoinjector items with quantity >2 pens",
+    "why_it_matters": [
+      "<p>Adrenaline autoinjectors are life-saving treatments used in the emergency treatment of anaphylaxis. ",
+      "National guidance from the <a href='https://www.gov.uk/drug-safety-update/adrenaline-auto-injectors-aais-new-guidance-and-resources-for-safe-use#advice-for-healthcare-professionals' target='_blank'>MHRA</a> and the <a href='https://www.bsaci.org/wp-content/uploads/2023/06/BSACI-AAI-Guidance-June-2023.pdf' target='_blank'>British Society for Allergy and Clinical Immunology (BSACI)</a> recommends that two devices are prescribed as standard so that patients always have a second dose available, for example where a severe reaction requires more than one dose of adrenaline before emergency services arrive, or in case of device failure or incorrect use.</p>",
+      "<p>In addition, BSACI guidance advises that for children, parents may request four devices, typically two for school and two for other settings; this may be appropriate while a child is unable to carry and self-administer their own injectors, with prescribing usually reduced back to two once the child can carry and use them independently. ",
+      "Requests for more than two devices, or more than four in children, should generally be discouraged, as the key principle is that patients should carry their autoinjectors at all times rather than storing multiple devices in different locations, supporting both patient safety and responsible prescribing.</p>"
+    ],
+    "tags": [
+      "core"
+    ],
+    "url": null,
+    "is_percentage": true,
+    "is_cost_based": false,
+    "low_is_good": true,
+    "numerator_type": "custom",
+    "numerator_columns": "SUM(items) AS numerator",
+    "numerator_from": [
+      "{hscic}.raw_prescribing_normalised p ",
+      "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code",
+      ],
+    "numerator_where": [
+    "quantity_per_item > 2 ",
+    "AND ",
+    "vmp.id IN (",
+    "18289911000001105, -- VMP ID for Adrenaline (base) 150micrograms/0.15ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
+    "35895211000001103, -- VMP ID for Adrenaline (base) 300micrograms/0.3ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
+    "23471611000001105 -- VMP ID for Adrenaline (base) 500micrograms/0.5ml (1 in 1,000) solution for injection pre-filled disposable devices",
+    ")"
+    ],    
+    "denominator_type": "custom",
+    "denominator_columns": "SUM(items) AS denominator",
+    "denominator_from": [
+      "{hscic}.raw_prescribing_normalised p ",
+      "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code",
+      ],
+    "denominator_where": [
+    "vmp.id IN (",
+    "18289911000001105, -- VMP ID for Adrenaline (base) 150micrograms/0.15ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
+    "35895211000001103, -- VMP ID for Adrenaline (base) 300micrograms/0.3ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
+    "23471611000001105 -- VMP ID for Adrenaline (base) 500micrograms/0.5ml (1 in 1,000) solution for injection pre-filled disposable devices",
+    ")"
+    ], 
+    "no_analyse_url": true,
+    "authored_by": "christopher.wood@phc.ox.ac.uk",
+    "checked_by": "",
+    "date_reviewed": "2026-02-16",
+    "next_review": "2028-02-16",
+    "measure_complexity": "low"
+  }
+  
