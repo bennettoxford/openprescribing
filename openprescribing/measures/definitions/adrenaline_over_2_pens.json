@@ -30,7 +30,7 @@
     "vmp.id IN (",
     "18289911000001105, -- VMP ID for Adrenaline (base) 150micrograms/0.15ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
     "35895211000001103, -- VMP ID for Adrenaline (base) 300micrograms/0.3ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
-    "23471611000001105 -- VMP ID for Adrenaline (base) 500micrograms/0.5ml (1 in 1,000) solution for injection pre-filled disposable devices",
+    "23471611000001105 -- VMP ID for Adrenaline (base) 500micrograms/0.5ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
     ")"
     ],    
     "denominator_type": "custom",
@@ -43,7 +43,7 @@
     "vmp.id IN (",
     "18289911000001105, -- VMP ID for Adrenaline (base) 150micrograms/0.15ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
     "35895211000001103, -- VMP ID for Adrenaline (base) 300micrograms/0.3ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
-    "23471611000001105 -- VMP ID for Adrenaline (base) 500micrograms/0.5ml (1 in 1,000) solution for injection pre-filled disposable devices",
+    "23471611000001105 -- VMP ID for Adrenaline (base) 500micrograms/0.5ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
     ")"
     ], 
     "no_analyse_url": true,
