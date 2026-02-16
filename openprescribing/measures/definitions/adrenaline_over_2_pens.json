@@ -23,7 +23,7 @@
     "numerator_from": [
       "{hscic}.raw_prescribing_normalised p ",
       "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code"
-      ],
+    ],
     "numerator_where": [
     "quantity_per_item > 2 ",
     "AND ",
@@ -38,7 +38,7 @@
     "denominator_from": [
       "{hscic}.raw_prescribing_normalised p ",
       "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code"
-      ],
+    ],
     "denominator_where": [
     "vmp.id IN (",
     "18289911000001105, -- VMP ID for Adrenaline (base) 150micrograms/0.15ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
