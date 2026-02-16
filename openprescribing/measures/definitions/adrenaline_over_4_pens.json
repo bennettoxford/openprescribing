@@ -1,10 +1,10 @@
 {
-    "name": "Adrenaline autoinjector prescriptions with quantity of more than 2 pens",
-    "title": "Adrenaline autoinjector prescriptions with quantity of more than 2 pens",
-    "description": "Proportion of prescription items of adrenaline autoinjector with quantity greater than 2 pens",
-    "numerator_short": "Adrenaline autoinjector items with quantity >2 pens",
+    "name": "Adrenaline autoinjector prescriptions with quantity of more than 4 pens",
+    "title": "Adrenaline autoinjector prescriptions with quantity of more than 4 pens",
+    "description": "Proportion of prescription items of adrenaline autoinjector with quantity greater than 4 pens",
+    "numerator_short": "Adrenaline autoinjector items with quantity >4 pens",
     "denominator_short": "Adrenaline autoinjector items",
-    "y_label": "Percentage of adrenaline autoinjector items with quantity >2 pens",
+    "y_label": "Percentage of adrenaline autoinjector items with quantity >4 pens",
     "why_it_matters": [
       "<p>Adrenaline autoinjectors are life-saving treatments used in the emergency treatment of anaphylaxis. ",
       "National guidance from the <a href='https://www.gov.uk/drug-safety-update/adrenaline-auto-injectors-aais-new-guidance-and-resources-for-safe-use#advice-for-healthcare-professionals' target='_blank'>MHRA</a> and the <a href='https://www.bsaci.org/wp-content/uploads/2023/06/BSACI-AAI-Guidance-June-2023.pdf' target='_blank'>British Society for Allergy and Clinical Immunology (BSACI)</a> recommends that two devices are prescribed as standard so that patients always have a second dose available, for example where a severe reaction requires more than one dose of adrenaline before emergency services arrive, or in case of device failure or incorrect use.</p>",
@@ -22,28 +22,29 @@
     "numerator_columns": "SUM(items) AS numerator",
     "numerator_from": [
       "{hscic}.raw_prescribing_normalised p ",
-      "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code",
-      ],
+      "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code"
+    ],
     "numerator_where": [
     "quantity_per_item > 4 ",
     "AND ",
     "vmp.id IN (",
-    "18289911000001105, -- VMP ID for Adrenaline (base) 150micrograms/0.15ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
-    "35895211000001103, -- VMP ID for Adrenaline (base) 300micrograms/0.3ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
-    "23471611000001105 -- VMP ID for Adrenaline (base) 500micrograms/0.5ml (1 in 1,000) solution for injection pre-filled disposable devices",
+    "18289911000001105, -- VMP ID for Adrenaline (base) 150micrograms/0.15ml (1 in 1,000) solution for injection pre-filled disposable devices\n",
+    "35895211000001103, -- VMP ID for Adrenaline (base) 300micrograms/0.3ml (1 in 1,000) solution for injection pre-filled disposable devices\n",
+    "23471611000001105 -- VMP ID for Adrenaline (base) 500micrograms/0.5ml (1 in 1,000) solution for injection pre-filled disposable devices\n",
     ")"
-    ],    
+    ],
+    "numerator_is_list_of_bnf_codes": false,
     "denominator_type": "custom",
     "denominator_columns": "SUM(items) AS denominator",
     "denominator_from": [
       "{hscic}.raw_prescribing_normalised p ",
-      "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code",
-      ],
+      "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code"
+    ],
     "denominator_where": [
     "vmp.id IN (",
-    "18289911000001105, -- VMP ID for Adrenaline (base) 150micrograms/0.15ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
-    "35895211000001103, -- VMP ID for Adrenaline (base) 300micrograms/0.3ml (1 in 1,000) solution for injection pre-filled disposable devices \n",
-    "23471611000001105 -- VMP ID for Adrenaline (base) 500micrograms/0.5ml (1 in 1,000) solution for injection pre-filled disposable devices",
+    "18289911000001105, -- VMP ID for Adrenaline (base) 150micrograms/0.15ml (1 in 1,000) solution for injection pre-filled disposable devices\n",
+    "35895211000001103, -- VMP ID for Adrenaline (base) 300micrograms/0.3ml (1 in 1,000) solution for injection pre-filled disposable devices\n",
+    "23471611000001105 -- VMP ID for Adrenaline (base) 500micrograms/0.5ml (1 in 1,000) solution for injection pre-filled disposable devices\n",
     ")"
     ], 
     "no_analyse_url": true,
