@@ -48,7 +48,10 @@
   "p.bnf_code NOT LIKE '0301011R0%' --Salbutamol \n",
   ")"
   ],
-    "denominator_type": "custom",
+  "denominator_type": "custom",
+  "denominator_columns": [
+  "SUM(p.items) AS denominator"
+  ],
   "denominator_from": [
   "{hscic}.normalised_prescribing p ",
   "INNER JOIN {measures}.vw__dmd_objs_with_form_route route ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = route.bnf_code -- joins prescribing data to route table using generic BNF code \n"
