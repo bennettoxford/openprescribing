@@ -46,8 +46,7 @@
   " AND (",
   "p.bnf_code LIKE '03%' AND  #Respiratory \n",
   "p.bnf_code NOT LIKE '0301011R0%' --Salbutamol \n",
-  " )",
-  ")",
+  ")"
   ],
     "denominator_type": "custom",
   "denominator_from": [
@@ -59,7 +58,6 @@
   " AND (",
   "p.bnf_code LIKE '03%' AND  #Respiratory \n",
   "p.bnf_code NOT LIKE '0301011R0%' --Salbutamol \n",
-  " )",
   ")"
   ],
   "authored_by": "richard.croker@phc.ox.ac.uk",
