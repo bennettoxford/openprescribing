@@ -30,7 +30,7 @@
   "numerator_type": "custom",
   "numerator_columns": "SUM(p.quantity/adj.qtyadj) AS numerator",
   "numerator_from": [
-    "{hscic}.normalised_prescribing p ",
+    "{hscic}.normalised_prescribing_tmp_bnf_fix p ",
     "INNER JOIN {measures}.vw__inhaler_quantity_adjustment as adj ON p.bnf_code = adj.bnf_code AND p.month = adj.date -- joins prescribing data to view for form_route and adjustment where quantity = puffs not inhalers  \n",
     "INNER JOIN {measures}.vw__presentation_ingredient_count as count ON p.bnf_code = count.bnf_code  -- joins prescribing data to ingredient count, so we can limit triple therapy inhalers \n"
     ],
@@ -45,7 +45,7 @@
   "denominator_type": "custom",
   "denominator_columns": "SUM(p.quantity/adj.qtyadj) AS denominator",
   "denominator_from": [
-    "{hscic}.normalised_prescribing p ",
+    "{hscic}.normalised_prescribing_tmp_bnf_fix p ",
     "INNER JOIN {measures}.vw__inhaler_quantity_adjustment as adj ON p.bnf_code = adj.bnf_code AND p.month = adj.date -- joins prescribing data to view for form_route and adjustment where quantity = puffs not inhalers  \n",
     "INNER JOIN {measures}.vw__presentation_ingredient_count as count ON p.bnf_code = count.bnf_code  -- joins prescribing data to ingredient count, so we can limit triple therapy inhalers \n"
     ],
