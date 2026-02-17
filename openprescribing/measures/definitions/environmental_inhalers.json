@@ -34,8 +34,8 @@
   "is_cost_based": false,
   "low_is_good": true,
   "numerator_type": "custom",
-  "numerator_columns": [
-    "SUM(p.items) AS numerator"
+  "denominator_columns": [
+    "SUM(p.items) AS denominator"
   ],
   "numerator_from": [
   "{hscic}.normalised_prescribing p ",
