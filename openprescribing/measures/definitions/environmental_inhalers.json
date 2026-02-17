@@ -48,6 +48,9 @@
   "p.bnf_code NOT LIKE '0301011R0%' --Salbutamol \n",
   ")"
   ],
+  "numerator_bnf_codes_query": [
+  "SELECT DISTINCT bnf_code FROM measures.vw__dmd_objs_with_form_route WHERE form_route = 'pressurizedinhalation.inhalation' AND (bnf_code LIKE '03%' AND bnf_code NOT LIKE '0301011R0%')"
+  ],
   "denominator_type": "custom",
   "denominator_columns": [
   "SUM(p.items) AS denominator"
