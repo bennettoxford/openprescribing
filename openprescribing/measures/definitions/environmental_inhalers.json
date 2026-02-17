@@ -39,7 +39,7 @@
   ],
   "numerator_from": [
   "{hscic}.normalised_prescribing p ",
-  "INNER JOIN {measures}.vw__dmd_objs_with_form_route route ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = route.bnf_code -- joins prescribing data to route table using generic BNF code \n"
+  "INNER JOIN (SELECT DISTINCT bnf_code, form_route FROM {measures}.vw__dmd_objs_with_form_route) AS route ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = route.bnf_code -- joins prescribing data to route table using generic BNF code \n"
   ],
   "numerator_where": [
   "form_route = 'pressurizedinhalation.inhalation' \n",
@@ -54,7 +54,7 @@
   ],
   "denominator_from": [
   "{hscic}.normalised_prescribing p ",
-  "INNER JOIN {measures}.vw__dmd_objs_with_form_route route ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = route.bnf_code -- joins prescribing data to route table using generic BNF code \n"
+  "INNER JOIN (SELECT DISTINCT bnf_code, form_route FROM {measures}.vw__dmd_objs_with_form_route) AS route ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = route.bnf_code -- joins prescribing data to route table using generic BNF code \n"
   ],
   "denominator_where": [
   "form_route IN ('pressurizedinhalation.inhalation', 'powderinhalation.inhalation', 'inhalationsolution.inhalation') \n",
