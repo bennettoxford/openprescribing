@@ -33,32 +33,47 @@
   "is_percentage": true,
   "is_cost_based": false,
   "low_is_good": true,
-  "numerator_type": "bnf_items",
+  "numerator_type": "custom",
+  "numerator_columns": [
+    "SUM(p.items) AS numerator"
+  ],
+  "numerator_from": [
+  "{hscic}.normalised_prescribing p ",
+  "INNER JOIN (SELECT DISTINCT bnf_code, form_route FROM {measures}.vw__dmd_objs_with_form_route) AS route ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = route.bnf_code -- joins prescribing data to route table using generic BNF code \n"
+  ],
+  "numerator_where": [
+  "form_route = 'pressurizedinhalation.inhalation' \n",
+  " AND (",
+  "p.bnf_code LIKE '03%' AND  #Respiratory \n",
+  "p.bnf_code NOT LIKE '0301011R0%' --Salbutamol \n",
+  ")"
+  ],
   "numerator_bnf_codes_query": [
-    "SELECT DISTINCT(bnf_code)",
-    "FROM {measures}.vw__dmd_objs_with_form_route",
-    "WHERE form_route = 'pressurizedinhalation.inhalation'"
+  "SELECT DISTINCT bnf_code FROM measures.vw__dmd_objs_with_form_route WHERE form_route = 'pressurizedinhalation.inhalation' AND (bnf_code LIKE '03%' AND bnf_code NOT LIKE '0301011R0%')"
   ],
-  "numerator_bnf_codes_filter": [
-    "03 #Respiratory",
-    "~0301011R0 #Salbutamol"
+  "numerator_is_list_of_bnf_codes": false,
+  "denominator_type": "custom",
+  "denominator_columns": [
+  "SUM(p.items) AS denominator"
   ],
-  "denominator_type": "bnf_items",
-  "denominator_bnf_codes_query": [
-    "SELECT DISTINCT(bnf_code)",
-    "FROM {measures}.vw__dmd_objs_with_form_route",
-    "WHERE form_route IN ('pressurizedinhalation.inhalation', 'powderinhalation.inhalation', 'inhalationsolution.inhalation')"
+  "denominator_from": [
+  "{hscic}.normalised_prescribing p ",
+  "INNER JOIN (SELECT DISTINCT bnf_code, form_route FROM {measures}.vw__dmd_objs_with_form_route) AS route ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = route.bnf_code -- joins prescribing data to route table using generic BNF code \n"
   ],
-  "denominator_bnf_codes_filter": [
-    "03 #Respiratory",
-    "~0301011R0 #Salbutamol"
+  "denominator_where": [
+  "form_route IN ('pressurizedinhalation.inhalation', 'powderinhalation.inhalation', 'inhalationsolution.inhalation') \n",
+  " AND (",
+  "p.bnf_code LIKE '03%' AND  #Respiratory \n",
+  "p.bnf_code NOT LIKE '0301011R0%' --Salbutamol \n",
+  ")"
   ],
   "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "andrew.brown@phc.ox.ac.uk",
-  "date_reviewed": "2024-12-03",
-  "next_review": "2026-12-03",
+  "checked_by": "christopher.wood@phc.ox.ac.uk",
+  "date_reviewed": "2026-02-17",
+  "next_review": "2028-02-17",
   "measure_notebook_url":"https://github.com/ebmdatalab/jupyter-notebooks/blob/master/new_measures/Drafts/Enviromental%20Inhalers/Environmental%20Inhalers.ipynb",
   "measure_complexity": "medium",
   "measure_type": "dmd",
   "radar_exclude": false
 }
+
