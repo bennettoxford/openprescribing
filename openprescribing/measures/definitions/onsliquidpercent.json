@@ -1,0 +1,29 @@
+{
+  "name": "Oral Nutritional Supplementation (ONS) prescribed as ready to serve liquid",
+  "title": "Oral Nutritional Supplementation (ONS) prescribed as ready to serve liquid",
+  "description": "Percentage of standard Oral Nutritional Supplementation (ONS) prescribed as ready to serve liquid",
+  "numerator_short": "Items for liquid standard ONS",
+  "denominator_short": "Items for standard ONS",
+  "why_it_matters": [
+    ""
+  ],
+  "tags": [
+    "core",
+    "nutrition"
+  ],
+  "url": null,
+  "is_percentage": true,
+  "is_cost_based": false,
+  "low_is_good": true,
+  "numerator_type": "custom",
+  "numerator_columns": "SUM(items) AS numerator",
+  "numerator_from": "{hscic}.normalised_prescribing p LEFT JOIN {hscic}.bnf r ON p.bnf_code = r.presentation_code",
+  "numerator_where": [
+    "p.bnf_code LIKE '091301%' AND --ONS Standard \n",
+    "(LOWER(r.chemical) LIKE '%rts%' OR LOWER(r.chemical) LIKE '%ready to serve%')  -- items with ready to serve or rts in chemical substance \n"
+  ],
+  "denominator_type": "custom",
+  "denominator_columns": "SUM(items) AS denominator",
+  "denominator_from": "{hscic}.normalised_prescribing p ",
+  "denominator_where": "p.bnf_code LIKE '091301%' --ONS Standard"
+}
