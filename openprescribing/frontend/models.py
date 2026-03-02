@@ -1074,6 +1074,7 @@ class TariffPrice(models.Model):
     vmpp = models.ForeignKey("dmd.VMPP", on_delete=models.DO_NOTHING)
     # 1: Category A
     # 3: Category C
+    # 15: Category H
     # 11: Category M
     tariff_category = models.ForeignKey(
         "dmd.DtPaymentCategory", on_delete=models.DO_NOTHING
