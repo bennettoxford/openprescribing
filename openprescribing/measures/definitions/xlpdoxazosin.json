@@ -23,7 +23,7 @@
   "url": null,
   "is_percentage": false,
   "is_cost_based": false,
-  "low_is_good": false,
+  "low_is_good": true,
   "numerator_type": "bnf_cost",
   "numerator_bnf_codes_filter": [
     "0205040D0%AQ # Doxazosin Mesil_Tab 4mg M/R (brands and generic)",
