@@ -146,10 +146,13 @@ def import_month(rows, date):
 
 
 def get_tariff_cat_id(cat):
+    # These IDs come from the dmd.DtPaymentCategory model.
     if "Category A" in cat:
         return 1
     elif "Category C" in cat:
         return 3
+    elif "Category H" in cat:
+        return 15
     elif "Category M" in cat:
         return 11
     else:

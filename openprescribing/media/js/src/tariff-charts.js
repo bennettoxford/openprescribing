@@ -92,6 +92,9 @@ var tariffChart = {
     if (_this.anySeriesHasDashStyle(data, 'dot')) {
       data.push({name: 'Category C', data: [], color: '#fff'});
     }
+    if (_this.anySeriesHasDashStyle(data, 'long-dash-dot-dot')) {
+      data.push({name: 'Category H', data: [], color: '#fff'});
+    }
     if (_this.anySeriesHasDashStyle(data, 'dash')) {
       data.push({name: 'Category M', data: [], color: '#fff'});
     }
@@ -117,6 +120,9 @@ var tariffChart = {
           break;
         case 'Part VIIIA Category C':
           dashStyle = 'dot';
+          break;
+        case 'Part VIIIA Category H':
+          dashStyle = 'long-dash-dot-dot';
           break;
         case 'Part VIIIA Category M':
           dashStyle = 'dash';
@@ -205,6 +211,8 @@ var tariffChart = {
           str += stroke + 'none" /></svg>';
         } else if (this.name === 'Category C') {
           str += stroke + '2,6" /></svg>';
+        } else if (this.name === 'Category H') {
+          str += stroke + '8,3,1,3,1,3" /></svg>';
         } else if (this.name === 'Category M') {
           str += stroke + '8,6" /></svg>';
         }
