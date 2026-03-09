@@ -208,6 +208,12 @@ class DataFactory(object):
             kwargs["pct"] = org
         elif isinstance(org, Practice):
             kwargs["practice"] = org
+        elif isinstance(org, PCN):
+            kwargs["pcn"] = org
+        elif isinstance(org, STP):
+            kwargs["stp"] = org
+        elif isinstance(org, RegionalTeam):
+            kwargs["regional_team"] = org
         else:
             assert False
 

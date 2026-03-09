@@ -261,6 +261,9 @@ def get_all_bookmarks():
     ).prefetch_related(
         "pct",
         "practice",
+        "pcn",
+        "stp",
+        "regional_team",
     )
     for bookmark in ncso_bookmarks:
         yield "price_concessions", bookmark
