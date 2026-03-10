@@ -754,6 +754,21 @@ def make_ncso_concession_email(bookmark, tag=None):
         concessions_kwargs = {"entity_code": bookmark.entity.code}
         dashboard_view_name = "practice_home_page"
         dashboard_kwargs = {"practice_code": bookmark.entity.code}
+    elif bookmark.entity_type == "pcn":
+        concessions_view_name = "spending_for_one_pcn"
+        concessions_kwargs = {"entity_code": bookmark.entity.code}
+        dashboard_view_name = "pcn_home_page"
+        dashboard_kwargs = {"pcn_code": bookmark.entity.code}
+    elif bookmark.entity_type == "stp":
+        concessions_view_name = "spending_for_one_stp"
+        concessions_kwargs = {"entity_code": bookmark.entity.code}
+        dashboard_view_name = "stp_home_page"
+        dashboard_kwargs = {"stp_code": bookmark.entity.code}
+    elif bookmark.entity_type == "regional_team":
+        concessions_view_name = "spending_for_one_regional_team"
+        concessions_kwargs = {"entity_code": bookmark.entity.code}
+        dashboard_view_name = "regional_team_home_page"
+        dashboard_kwargs = {"regional_team_code": bookmark.entity.code}
     elif bookmark.entity_type == "all_england":
         concessions_view_name = "spending_for_all_england"
         concessions_kwargs = {}

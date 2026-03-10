@@ -682,14 +682,22 @@ class TestNCSOConcessions(TestCase):
         # Our NCSO and tariff data extends further than our prescribing data by
         # a couple of months
         cls.prescribing_months = cls.months[:-2]
+        # Create some high level orgs
+        cls.regional_team = factory.create_regional_team()
+        cls.stp = factory.create_stp()
+        # Create a PCN (one will do)
+        cls.pcn = factory.create_pcn()
         # Create some CCGs (we need more than one so we can test aggregation
         # across CCGs at the All England level)
-        cls.ccgs = [factory.create_ccg() for _ in range(2)]
+        cls.ccgs = [
+            factory.create_ccg(stp=cls.stp, regional_team=cls.regional_team)
+            for _ in range(2)
+        ]
         # Populate those CCGs with practices
         cls.practices = []
         for ccg in cls.ccgs:
             for _ in range(2):
-                cls.practices.append(factory.create_practice(ccg=ccg))
+                cls.practices.append(factory.create_practice(ccg=ccg, pcn=cls.pcn))
         # Create some presentations
         cls.presentations = factory.create_presentations(6)
         # Create drug tariff and price concessions costs for these presentations
@@ -715,10 +723,13 @@ class TestNCSOConcessions(TestCase):
         msg = bookmark_utils.make_ncso_concession_email(bookmark)
 
         self.assertEqual(
-            msg.subject, "Your update about Price Concessions for Practice 2"
+            msg.subject,
+            "Your update about Price Concessions for {}".format(
+                self.practice.cased_name
+            ),
         )
         self.assertIn("published for **July 2018**", msg.body)
-        self.assertIn("at Practice 2", msg.body)
+        self.assertIn("at {}".format(self.practice.cased_name), msg.body)
         additional_cost = round(
             ncso_spending_for_entity(self.practice, "practice", 1)[0]["additional_cost"]
         )
@@ -732,7 +743,10 @@ class TestNCSOConcessions(TestCase):
 
         msg = bookmark_utils.make_ncso_concession_email(bookmark)
 
-        self.assertEqual(msg.subject, "Your update about Price Concessions for CCG 0")
+        self.assertEqual(
+            msg.subject,
+            "Your update about Price Concessions for {}".format(self.ccg.cased_name),
+        )
         self.assertIn("published for **July 2018**", msg.body)
         additional_cost = round(
             ncso_spending_for_entity(self.ccg, "ccg", 1)[0]["additional_cost"]
@@ -753,6 +767,66 @@ class TestNCSOConcessions(TestCase):
         self.assertIn("published for **July 2018**", msg.body)
         additional_cost = round(
             ncso_spending_for_entity(None, "all_england", 1)[0]["additional_cost"]
+        )
+        self.assertIn("**\xa3{:,}**".format(additional_cost), msg.body)
+
+        html = msg.alternatives[0][0]
+        self.assertInHTML("<b>July 2018</b>", html)
+
+    def test_make_ncso_concessions_email_for_pcn(self, attach_image):
+        bookmark = NCSOConcessionBookmark.objects.create(user=self.user, pcn=self.pcn)
+
+        msg = bookmark_utils.make_ncso_concession_email(bookmark)
+
+        self.assertEqual(
+            msg.subject,
+            "Your update about Price Concessions for {}".format(self.pcn.cased_name),
+        )
+        self.assertIn("published for **July 2018**", msg.body)
+        additional_cost = round(
+            ncso_spending_for_entity(self.pcn, "pcn", 1)[0]["additional_cost"]
+        )
+        self.assertIn("**\xa3{:,}**".format(additional_cost), msg.body)
+
+        html = msg.alternatives[0][0]
+        self.assertInHTML("<b>July 2018</b>", html)
+
+    def test_make_ncso_concessions_email_for_stp(self, attach_image):
+        bookmark = NCSOConcessionBookmark.objects.create(user=self.user, stp=self.stp)
+
+        msg = bookmark_utils.make_ncso_concession_email(bookmark)
+
+        self.assertEqual(
+            msg.subject,
+            "Your update about Price Concessions for {}".format(self.stp.cased_name),
+        )
+        self.assertIn("published for **July 2018**", msg.body)
+        additional_cost = round(
+            ncso_spending_for_entity(self.stp, "stp", 1)[0]["additional_cost"]
+        )
+        self.assertIn("**\xa3{:,}**".format(additional_cost), msg.body)
+
+        html = msg.alternatives[0][0]
+        self.assertInHTML("<b>July 2018</b>", html)
+
+    def test_make_ncso_concessions_email_for_regional_team(self, attach_image):
+        bookmark = NCSOConcessionBookmark.objects.create(
+            user=self.user, regional_team=self.regional_team
+        )
+
+        msg = bookmark_utils.make_ncso_concession_email(bookmark)
+
+        self.assertEqual(
+            msg.subject,
+            "Your update about Price Concessions for {}".format(
+                self.regional_team.cased_name
+            ),
+        )
+        self.assertIn("published for **July 2018**", msg.body)
+        additional_cost = round(
+            ncso_spending_for_entity(self.regional_team, "regional_team", 1)[0][
+                "additional_cost"
+            ]
         )
         self.assertIn("**\xa3{:,}**".format(additional_cost), msg.body)
 

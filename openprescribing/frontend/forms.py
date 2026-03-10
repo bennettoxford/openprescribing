@@ -97,3 +97,6 @@ class NCSOConcessionBookmarkForm(forms.Form):
     )
     pct_id = forms.CharField(widget=forms.HiddenInput(), required=False)
     practice_id = forms.CharField(widget=forms.HiddenInput(), required=False)
+    pcn_id = forms.CharField(widget=forms.HiddenInput(), required=False)
+    stp_id = forms.CharField(widget=forms.HiddenInput(), required=False)
+    regional_team_id = forms.CharField(widget=forms.HiddenInput(), required=False)

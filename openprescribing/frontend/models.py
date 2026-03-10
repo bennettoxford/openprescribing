@@ -901,6 +901,11 @@ class NCSOConcessionBookmark(models.Model):
     practice = models.ForeignKey(
         Practice, null=True, blank=True, on_delete=models.PROTECT
     )
+    pcn = models.ForeignKey(PCN, null=True, blank=True, on_delete=models.PROTECT)
+    stp = models.ForeignKey(STP, null=True, blank=True, on_delete=models.PROTECT)
+    regional_team = models.ForeignKey(
+        RegionalTeam, null=True, blank=True, on_delete=models.PROTECT
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     @property
@@ -912,6 +917,12 @@ class NCSOConcessionBookmark(models.Model):
             return self.pct
         elif self.practice is not None:
             return self.practice
+        elif self.pcn is not None:
+            return self.pcn
+        elif self.stp is not None:
+            return self.stp
+        elif self.regional_team is not None:
+            return self.regional_team
         else:
             # This is for all England
             return None
@@ -922,6 +933,12 @@ class NCSOConcessionBookmark(models.Model):
             return "CCG"
         elif self.practice is not None:
             return "practice"
+        elif self.pcn is not None:
+            return "pcn"
+        elif self.stp is not None:
+            return "stp"
+        elif self.regional_team is not None:
+            return "regional_team"
         else:
             return "all_england"
 
@@ -943,6 +960,15 @@ class NCSOConcessionBookmark(models.Model):
         elif self.entity_type == "practice":
             kwargs = {"entity_code": self.entity.code}
             return reverse("spending_for_one_practice", kwargs=kwargs)
+        elif self.entity_type == "pcn":
+            kwargs = {"entity_code": self.entity.code}
+            return reverse("spending_for_one_pcn", kwargs=kwargs)
+        elif self.entity_type == "stp":
+            kwargs = {"entity_code": self.entity.code}
+            return reverse("spending_for_one_stp", kwargs=kwargs)
+        elif self.entity_type == "regional_team":
+            kwargs = {"entity_code": self.entity.code}
+            return reverse("spending_for_one_regional_team", kwargs=kwargs)
         else:
             return reverse("spending_for_all_england")
 

@@ -1069,6 +1069,14 @@ def spending_for_one_entity(request, entity_code, entity_type):
         form = _build_bookmark_form(NCSOConcessionBookmark, {"practice_id": entity.pk})
     elif entity_type.lower() == "ccg":
         form = _build_bookmark_form(NCSOConcessionBookmark, {"pct_id": entity.pk})
+    elif entity_type == "pcn":
+        form = _build_bookmark_form(NCSOConcessionBookmark, {"pcn_id": entity.pk})
+    elif entity_type == "stp":
+        form = _build_bookmark_form(NCSOConcessionBookmark, {"stp_id": entity.pk})
+    elif entity_type == "regional_team":
+        form = _build_bookmark_form(
+            NCSOConcessionBookmark, {"regional_team_id": entity.pk}
+        )
     elif entity_type == "all_england":
         form = _build_bookmark_form(NCSOConcessionBookmark, {})
     else:
@@ -1251,8 +1259,8 @@ def _get_or_create_bookmark(request, bookmark_cls):
 
     Note that this will raise a ValidationError if the email address is invalid
     (which shouldn't happen because it should be validated by the browser) or
-    or an IntegrityError if the submitted pct_id/practice_id/pcn_id doesn't
-    correspond to an existing PCT/Practice/PCN (which shouldn't happen because
+    or an IntegrityError if the submitted org id doesn't correspond to an
+    existing organisation (which shouldn't happen because
     the entity id should be set in the initial form by _build_bookmark_form().)
     """
 

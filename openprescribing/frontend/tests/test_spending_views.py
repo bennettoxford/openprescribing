@@ -132,12 +132,54 @@ class TestSpendingViews(TestCase):
         url = "/practice/{}/concessions/".format(self.practice.code)
         data = {"email": "alice@example.com", "practice_id": self.practice.code}
         response = self.client.post(url, data, follow=True)
-        self.assertContains(response, "alerts about price concessions for Practice 5")
+        self.assertContains(
+            response,
+            "alerts about price concessions for {}".format(self.practice.cased_name),
+        )
 
         self.assertEqual(NCSOConcessionBookmark.objects.count(), 2)
         bookmark = NCSOConcessionBookmark.objects.last()
         self.assertEqual(bookmark.practice, self.practice)
         self.assertEqual(bookmark.user.email, "alice@example.com")
+
+    def test_alert_signup_for_other_org_types(self):
+        factory = DataFactory()
+        factory.create_user(email="alice@example.com")
+        factory.create_ncso_concessions_bookmark(None)
+
+        self.assertEqual(NCSOConcessionBookmark.objects.count(), 1)
+
+        cases = [
+            (
+                "/pcn/{}/concessions/".format(self.pcn.code),
+                {"email": "alice@example.com", "pcn_id": self.pcn.code},
+                "pcn",
+                self.pcn,
+            ),
+            (
+                "/icb/{}/concessions/".format(self.stp.code),
+                {"email": "alice@example.com", "stp_id": self.stp.code},
+                "stp",
+                self.stp,
+            ),
+            (
+                "/regional-team/{}/concessions/".format(self.regional_team.code),
+                {
+                    "email": "alice@example.com",
+                    "regional_team_id": self.regional_team.code,
+                },
+                "regional_team",
+                self.regional_team,
+            ),
+        ]
+        for url, data, field, org in cases:
+            with self.subTest(url=url):
+                response = self.client.post(url, data, follow=True)
+                self.assertContains(response, "alerts about price concessions for")
+                bookmark = NCSOConcessionBookmark.objects.order_by("id").last()
+                self.assertEqual(getattr(bookmark, field), org)
+
+        self.assertEqual(NCSOConcessionBookmark.objects.count(), 4)
 
     def test_all_england_alert_signup(self):
         factory = DataFactory()
@@ -157,6 +199,9 @@ class TestSpendingViews(TestCase):
         bookmark = NCSOConcessionBookmark.objects.order_by("id").last()
         self.assertEqual(bookmark.practice, None)
         self.assertEqual(bookmark.pct, None)
+        self.assertEqual(bookmark.pcn, None)
+        self.assertEqual(bookmark.stp, None)
+        self.assertEqual(bookmark.regional_team, None)
         self.assertEqual(bookmark.user.email, "alice@example.com")
 
     def test_alert_signup_form(self):
@@ -168,6 +213,17 @@ class TestSpendingViews(TestCase):
         url = "/national/england/concessions/"
         response = self.client.get(url)
         self.assertContains(response, "Get email updates")
+
+    def test_alert_signup_form_for_other_org_types(self):
+        urls = [
+            "/pcn/{}/concessions/".format(self.pcn.code),
+            "/icb/{}/concessions/".format(self.stp.code),
+            "/regional-team/{}/concessions/".format(self.regional_team.code),
+        ]
+        for url in urls:
+            with self.subTest(url=url):
+                response = self.client.get(url)
+                self.assertContains(response, "Get email updates")
 
 
 ##############################################################################
