@@ -317,7 +317,8 @@ BQ_SCMD_DATASET = "scmd"
 
 # Other BQ settings
 BQ_DEFAULT_TABLE_EXPIRATION_MS = None
-BQ_LOCATION = "EU"
+# This must match the location of the ebmdatalab bucket in the ebmdatalab project (see #5472)
+BQ_LOCATION = "europe-west2"
 
 # Use django-anymail through mailgun for sending emails
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
