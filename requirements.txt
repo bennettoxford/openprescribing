@@ -20,7 +20,7 @@ beautifulsoup4==4.14.3
     # via -r requirements.in
 build==1.4.0
     # via pip-tools
-cachetools==7.0.2
+cachetools==7.0.5
     # via premailer
 certifi==2026.2.25
     # via
@@ -28,7 +28,7 @@ certifi==2026.2.25
     #   selenium
 cffi==2.0.0
     # via cryptography
-charset-normalizer==3.4.4
+charset-normalizer==3.4.5
     # via requests
 click==8.3.1
     # via pip-tools
@@ -95,7 +95,7 @@ fab-classic==1.20.2
     # via -r requirements.in
 flake8==7.3.0
     # via -r requirements.in
-fonttools==4.61.1
+fonttools==4.62.0
     # via matplotlib
 google-api-core[grpc]==2.30.0
     # via
@@ -105,9 +105,9 @@ google-api-core[grpc]==2.30.0
     #   google-cloud-core
     #   google-cloud-storage
     #   pandas-gbq
-google-api-python-client==2.191.0
+google-api-python-client==2.192.0
     # via -r requirements.in
-google-auth==2.48.0
+google-auth==2.49.0
     # via
     #   google-api-core
     #   google-api-python-client
@@ -145,7 +145,7 @@ google-resumable-media==2.8.0
     # via
     #   google-cloud-bigquery
     #   google-cloud-storage
-googleapis-common-protos==1.72.0
+googleapis-common-protos==1.73.0
     # via
     #   google-api-core
     #   grpcio-status
@@ -177,7 +177,7 @@ idna==3.11
     #   trio
 jinja2==3.1.6
     # via -r requirements.in
-kiwisolver==1.4.9
+kiwisolver==1.5.0
     # via matplotlib
 lxml==6.0.2
     # via
@@ -200,7 +200,7 @@ more-itertools==10.8.0
     # via cssutils
 networkx==3.6.1
     # via -r requirements.in
-numpy==2.4.2
+numpy==2.4.3
     # via
     #   -r requirements.in
     #   contourpy
@@ -233,7 +233,7 @@ pandas==2.3.3
     #   db-dtypes
     #   pandas-gbq
     #   seaborn
-pandas-gbq==0.33.0
+pandas-gbq==0.34.0
     # via -r requirements.in
 paramiko-ng==2.9.0
     # via fab-classic
