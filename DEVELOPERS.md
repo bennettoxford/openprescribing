@@ -82,6 +82,11 @@ mv models.json ~/models.json
 Transfer the JSON file to your local machine, then use
 [`manage.py loaddata`](https://docs.djangoproject.com/en/5.1/ref/django-admin/#loaddata)
 to load the data into the Postgres database.
+Set the session replication role to replica to temporarily disable foreign key integrity constraints.
+
+```sh
+PGOPTIONS='-c session_replication_role=replica' ./manage.py loaddata models.json
+```
 
 Also copy the prescribing SQLite database onto the local machine. On the production
 server, the database is at `/mnt/database/matrixstore/matrixstore_live.sqlite`, and
