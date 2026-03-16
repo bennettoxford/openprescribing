@@ -70,19 +70,14 @@ run the local server.
 ### Copy data from the production server
 Log onto the production server, and use
 [`manage.py dumpdata`](https://docs.djangoproject.com/en/5.1/ref/django-admin/#dumpdata)
-to dump the following models into a JSON file:
-```python
-	frontend.Pratice 
-	frontend.PCT
-	frontend.PCN 
-	frontend.STP
-	frontend.RegionalTeam
-	frontend.Presentation
-	frontend.Chemical
-	frontend.Product
-	frontend.Section
-	frontend.NCSOConcession
-	frontend.TariffPrice
+to dump the necessary models into a JSON file.
+
+```sh
+cd /webapps/openprescribing/openprescribing
+sudo su hello
+./manage.py dumpdata -o models.json frontend.Practice frontend.PCT frontend.PCN frontend.STP frontend.RegionalTeam frontend.Presentation frontend.Chemical frontend.Product frontend.Section frontend.NCSOConcession frontend.TariffPrice
+exit
+mv models.json ~/models.json
 ```
 Transfer the JSON file to your local machine, then use
 [`manage.py loaddata`](https://docs.djangoproject.com/en/5.1/ref/django-admin/#loaddata)
