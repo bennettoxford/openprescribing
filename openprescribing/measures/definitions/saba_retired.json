@@ -17,9 +17,7 @@
     "<p>The <a href='https://www.england.nhs.uk/long-read/national-medicines-optimisation-opportunities-2023-24/#11-optimising-inhaler-use-to-improve-respiratory-outcomes-and-reduce-carbon-emissions' target='_Blank'>",
     "NHS England National Medicines Optimisation Opportunities for 2024/25</a> identify improving patient outcomes from the use of inhalers as an area for improvement.</p>"
   ],
-  "tags": [
-    "retired"
-  ],
+  "tags": "retired",
   "url": null, 
   "is_percentage": true,
   "is_cost_based": false,
