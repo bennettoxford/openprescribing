@@ -46,7 +46,7 @@
   ],
   "no_analyse_url": false,
   "authored_by": "christopher.wood@phc.ox.ac.uk",
-  "checked_by": "",
+  "checked_by": "andrew.brown@phc.ox.ac.uk",
   "date_reviewed": "2026-03-23",
   "next_review": "2028-03-23",
   "measure_complexity": "low",
@@ -69,7 +69,7 @@
       "date": "2026-03-23",
       "description": "Exclude methenamine from the numerator as it is considered a urinary antiseptic not an antibiotic.",
       "action_by": "christopher.wood@phc.ox.ac.uk",
-      "checked_by": ""
+      "checked_by": "andrew.brown@phc.ox.ac.uk"
     }
   ]
 }
