@@ -61,7 +61,7 @@
     "domready": "^1.0.8",
     "downloadjs": "^1.4.7",
     "factor-bundle": "^2.5.0",
-    "handlebars": "4.7.7",
+    "handlebars": "4.7.9",
     "humanize": "^0.0.9",
     "jquery": "^1.11.3",
     "mapbox.js": "^2.4.0",
