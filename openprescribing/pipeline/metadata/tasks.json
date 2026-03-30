@@ -35,7 +35,7 @@
     "import_bnf_codes": {
         "type": "import",
         "source_id": "bnf_codes",
-        "command": "import_bnf_codes --filename bnf_codes.csv",
+        "command": "import_bnf_codes --filename bnf_code*.csv",
         "dependencies": [
             "fetch_bnf_codes"
         ]
