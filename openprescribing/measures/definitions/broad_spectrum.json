@@ -1,6 +1,6 @@
 {
   "name": "Antibiotic stewardship: co-amoxiclav, cephalosporins & quinolones",
-  "title": "Pprescription items for co-amoxiclav, cephalosporins and quinolones as a percentage of the total prescription items for oral antibiotics (excluding antituberculosis drugs and antileprotic drugs)",
+  "title": "Prescription items for co-amoxiclav, cephalosporins and quinolones as a percentage of the total prescription items for oral antibiotics (excluding antituberculosis drugs and antileprotic drugs)",
   "description": "Prescription items for co-amoxiclav, cephalosporins and quinolones as a percentage of total prescription items for oral antibiotics (excluding antituberculosis drugs and antileprotic drugs).",
   "numerator_short": "Co-amoxiclav, cephalosporins and quinolones items",
   "denominator_short": "All oral antibiotic items",
@@ -41,14 +41,35 @@
   "denominator_bnf_codes_filter": [
     "0501 #Antibacterial drugs",
     "~050109 #Exclude antituberculosis drugs",
-    "~050110 #Exclude antileprotic drugs"
+    "~050110 #Exclude antileprotic drugs",
+    "~0501130H0 #Exclude methenamine as this is a urinary antiseptic"
   ],
   "no_analyse_url": false,
   "authored_by": "christopher.wood@phc.ox.ac.uk",
-  "checked_by": "richard.croker@phc.ox.ac.uk",
-  "date_reviewed": "2024-08-05",
-  "next_review": "2026-08-05",
+  "checked_by": "andrew.brown@phc.ox.ac.uk",
+  "date_reviewed": "2026-03-23",
+  "next_review": "2028-03-23",
   "measure_complexity": "low",
   "measure_type": "dmd",
-  "radar_exclude": false
+  "radar_exclude": false,
+  "change_log": [
+    {
+      "date": "2016-03-21",
+      "description": "Measure created.",
+      "action_by": "",
+      "checked_by": ""
+    },
+    {
+      "date": "2024-08-06",
+      "description": "Comprehensive update - rename measure, restrict to only oral antibiotics, exclude antituberculosis and antileprotic drugs.",
+      "action_by": "christopher.wood@phc.ox.ac.uk",
+      "checked_by": "richard.croker@phc.ox.ac.uk"
+    },
+    {
+      "date": "2026-03-23",
+      "description": "Exclude methenamine from the numerator as it is considered a urinary antiseptic not an antibiotic.",
+      "action_by": "christopher.wood@phc.ox.ac.uk",
+      "checked_by": "andrew.brown@phc.ox.ac.uk"
+    }
+  ]
 }
