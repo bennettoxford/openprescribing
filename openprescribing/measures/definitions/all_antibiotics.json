@@ -7,10 +7,9 @@
   "denominator_short": "1000 patients",
   "y_label": "Oral antibiotic items per 1000 patients",
   "why_it_matters": [
-    "Antibiotics play a critical role in modern medicines, as both a treatment of common infections and ",
-    "for the prevention of infections, for example in patients undergoing surgery or chemotherapy.  ",
-    "<a href='https://www.england.nhs.uk/ourwork/prevention/antimicrobial-resistance-amr/' target='_Blank'>Antimicrobial resistance</a> therefore poses a significant threat to public health. ",
-    "To help slow the development of resistance it is important that antiobiotics aren't overused."
+    "Antibiotics play a critical role in modern medicine, both in treating common infections and in preventing infections associated with procedures such as surgery and chemotherapy.",
+    "<p><a href='https://www.england.nhs.uk/ourwork/prevention/antimicrobial-resistance-amr/' target='_blank'>Antimicrobial resistance (AMR)</a> occurs when microorganisms that cause disease are no longer affected by antimicrobial medicines. The development of resistance can be accelerated by factors such as the inappropriate use of antibiotics, making infections more difficult to treat and increasing the risk of complications.</p>",
+    "<p>The <a href='https://www.gov.uk/government/publications/uk-5-year-action-plan-for-antimicrobial-resistance-2024-to-2029' target='_blank'>UK 5-year action plan for AMR</a> includes ambitions to reduce unnecessary antibiotic use. This measure shows the volume of oral antibiotic prescribing relative to practice population size. Higher prescribing rates may indicate potential overuse and opportunities to improve antimicrobial stewardship.</p>"
   ],
   "tags": [
     "antimicrobial",
@@ -31,15 +30,36 @@
   "numerator_bnf_codes_filter": [
     "0501 #Antibacterial drugs",
     "~050109 #Exclude antituberculosis drugs",
-    "~050110 #Exclude antileprotic drugs"
+    "~050110 #Exclude antileprotic drugs",
+    "~0501130H0 #Exclude methenamine as this is a urinary antiseptic"
   ],
   "denominator_type": "list_size",
   "no_analyse_url": false,
   "authored_by": "christopher.wood@phc.ox.ac.uk",
-  "checked_by": "richard.croker@phc.ox.ac.uk",
-  "date_reviewed": "2024-08-05",
-  "next_review": "2026-08-05",
+  "checked_by": "",
+  "date_reviewed": "2026-03-23",
+  "next_review": "2028-03-23",
   "measure_complexity": "low",
   "measure_type": "dmd",
-  "radar_exclude": false
+  "radar_exclude": false,
+  "change_log": [
+    {
+      "date": "2016-03-21",
+      "description": "Measure created.",
+      "action_by": "",
+      "checked_by": ""
+    },
+    {
+      "date": "2024-08-06",
+      "description": "Comprehensive update - rename measure, move to list size as denominator, restrict to only oral antibiotics, exclude antituberculosis and antileprotic drugs.",
+      "action_by": "christopher.wood@phc.ox.ac.uk",
+      "checked_by": "richard.croker@phc.ox.ac.uk"
+    },
+    {
+      "date": "2026-03-23",
+      "description": "Exclude methenamine from the numerator as it is considered a urinary antiseptic not an antibiotic. Update text.",
+      "action_by": "christopher.wood@phc.ox.ac.uk",
+      "checked_by": ""
+    }
+  ]
 }
