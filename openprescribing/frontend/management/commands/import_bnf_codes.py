@@ -27,6 +27,9 @@ class Command(BaseCommand):
             for row in reader:
                 # Add to sections list.
                 c_id = row["BNF_CHAPTER_CODE"]
+                if c_id == "":
+                    # We should ignore blank rows
+                    continue
                 if c_id not in sections:
                     sections[c_id] = {"id": c_id, "name": row["BNF_CHAPTER"]}
                 s_id = row["BNF_SECTION_CODE"]
