@@ -67,7 +67,7 @@ django==4.2.30
     #   django-debug-toolbar-template-timings
     #   django-extensions
     #   djangorestframework
-django-anymail[mailgun]==14.0
+django-anymail==14.0
     # via -r requirements.in
 django-cors-headers==4.9.0
     # via -r requirements.in
@@ -99,7 +99,7 @@ flake8==7.3.0
     # via -r requirements.in
 fonttools==4.62.1
     # via matplotlib
-google-api-core[grpc]==2.30.3
+google-api-core==2.30.3
     # via
     #   google-api-python-client
     #   google-cloud-bigquery
@@ -183,7 +183,7 @@ jinja2==3.1.6
     # via -r requirements.in
 kiwisolver==1.5.0
     # via matplotlib
-lxml==6.0.4
+lxml==6.1.0
     # via
     #   -r requirements.in
     #   premailer
@@ -243,6 +243,8 @@ paramiko==4.0.0
     # via fab-classic
 pillow==12.2.0
     # via matplotlib
+pip==26.0.1
+    # via pip-tools
 pip-tools==7.5.3
     # via -r requirements.in
 premailer==3.10.0
@@ -306,7 +308,7 @@ pyvirtualdisplay==3.0
     # via -r requirements.in
 raven==6.10.0
     # via -r requirements.in
-requests[security]==2.33.1
+requests==2.33.1
     # via
     #   -r requirements.in
     #   django-anymail
@@ -326,6 +328,11 @@ seaborn==0.13.2
     # via -r requirements.in
 selenium==4.43.0
     # via -r requirements.in
+setuptools==82.0.1
+    # via
+    #   pandas-gbq
+    #   pip-tools
+    #   pydata-google-auth
 six==1.17.0
     # via
     #   html5lib
@@ -359,7 +366,7 @@ tzdata==2026.1
     # via pandas
 uritemplate==4.2.0
     # via google-api-python-client
-urllib3[socks]==2.6.3
+urllib3==2.6.3
     # via
     #   django-anymail
     #   requests
@@ -378,7 +385,3 @@ wsproto==1.3.2
     # via trio-websocket
 xlrd==2.0.2
     # via -r requirements.in
-
-# The following packages are considered to be unsafe in a requirements file:
-# pip
-# setuptools
