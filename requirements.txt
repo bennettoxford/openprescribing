@@ -20,7 +20,7 @@ beautifulsoup4==4.14.3
     # via -r requirements.in
 build==1.4.3
     # via pip-tools
-cachetools==7.0.5
+cachetools==7.0.6
     # via premailer
 certifi==2026.2.25
     # via
@@ -49,7 +49,9 @@ cssselect==1.4.0
     #   premailer
     #   pyquery
 cssutils==2.11.1
-    # via premailer
+    # via
+    #   -r requirements.in
+    #   premailer
 cycler==0.12.1
     # via matplotlib
 db-dtypes==1.5.1
@@ -172,7 +174,7 @@ httplib2==0.31.2
     # via
     #   google-api-python-client
     #   google-auth-httplib2
-idna==3.11
+idna==3.12
     # via
     #   django-anymail
     #   requests
@@ -183,7 +185,7 @@ jinja2==3.1.6
     # via -r requirements.in
 kiwisolver==1.5.0
     # via matplotlib
-lxml==6.0.4
+lxml==6.1.0
     # via
     #   -r requirements.in
     #   premailer
@@ -260,9 +262,9 @@ protobuf==6.33.6
     #   proto-plus
 psutil==7.2.2
     # via pandas-gbq
-psycopg2-binary==2.9.11
+psycopg2-binary==2.9.12
     # via -r requirements.in
-pyarrow==23.0.1
+pyarrow==24.0.0
     # via
     #   db-dtypes
     #   pandas-gbq
