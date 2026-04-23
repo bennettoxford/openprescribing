@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Retrieve Google Cloud credentials
         run: ./.github/scripts/decrypt_secret.sh
         env:
@@ -55,7 +55,7 @@ jobs:
           local-testing: start
           local-identifier: random
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Retrieve Google Cloud credentials
         run: ./.github/scripts/decrypt_secret.sh
         env:
@@ -85,7 +85,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
