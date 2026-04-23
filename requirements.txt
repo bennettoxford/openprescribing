@@ -30,8 +30,6 @@ cffi==2.0.0
     # via
     #   cryptography
     #   pynacl
-chardet==7.4.3
-    # via encutils
 charset-normalizer==3.4.7
     # via requests
 click==8.3.2
@@ -50,8 +48,10 @@ cssselect==1.4.0
     # via
     #   premailer
     #   pyquery
-cssutils==2.14.0
-    # via premailer
+cssutils==2.11.1
+    # via
+    #   -r requirements.in
+    #   premailer
 cycler==0.12.1
     # via matplotlib
 db-dtypes==1.5.1
@@ -93,8 +93,6 @@ djangorestframework==3.17.1
     #   djangorestframework-csv
 djangorestframework-csv==3.0.2
     # via -r requirements.in
-encutils==1.0.0
-    # via cssutils
 et-xmlfile==2.0.0
     # via openpyxl
 fab-classic==1.21.0
