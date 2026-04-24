@@ -63,7 +63,7 @@
     "factor-bundle": "^2.5.0",
     "handlebars": "4.7.7",
     "humanize": "^0.0.9",
-    "jquery": "^1.11.3",
+    "jquery": "^4.0.0",
     "mapbox.js": "^2.4.0",
     "moment": "^2.10.3",
     "npm-run-all": "^4.1.2",
