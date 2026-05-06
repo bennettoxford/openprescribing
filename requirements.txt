@@ -18,9 +18,9 @@ bcrypt==5.0.0
     # via paramiko
 beautifulsoup4==4.14.3
     # via -r requirements.in
-build==1.4.4
+build==1.5.0
     # via pip-tools
-cachetools==7.0.6
+cachetools==7.1.1
     # via premailer
 certifi==2026.4.22
     # via
@@ -40,7 +40,7 @@ coverage==7.13.5
     # via -r requirements.in
 crispy-bootstrap3==2024.1
     # via -r requirements.in
-cryptography==47.0.0
+cryptography==48.0.0
     # via
     #   google-auth
     #   paramiko
@@ -109,9 +109,9 @@ google-api-core[grpc]==2.30.3
     #   google-cloud-core
     #   google-cloud-storage
     #   pandas-gbq
-google-api-python-client==2.194.0
+google-api-python-client==2.195.0
     # via -r requirements.in
-google-auth==2.49.2
+google-auth==2.50.0
     # via
     #   google-api-core
     #   google-api-python-client
@@ -162,7 +162,7 @@ grpcio==1.80.0
     #   grpcio-status
 grpcio-status==1.80.0
     # via google-api-core
-gunicorn==25.3.0
+gunicorn==26.0.0
     # via -r requirements.in
 h11==0.16.0
     # via wsproto
@@ -300,7 +300,7 @@ python-dateutil==2.9.0.post0
     #   google-cloud-bigquery
     #   matplotlib
     #   pandas
-pytz==2026.1.post1
+pytz==2026.2
     # via
     #   -r requirements.in
     #   pandas
