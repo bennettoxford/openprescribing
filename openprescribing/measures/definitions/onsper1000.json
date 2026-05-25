@@ -1,0 +1,21 @@
+{
+  "name": "Cost of oral nutritional supplementation (ONS) per 1000 patients",
+  "title": "Cost of oral nutritional supplementation (ONS) per 1000 patients",
+  "description": "Cost of oral nutritional supplementation (ONS) per 1000 patients",
+  "numerator_short": "Cost of ONS (£)",
+  "denominator_short": "1000 patients",
+  "why_it_matters":"tbc",
+  "tags": [
+    "core",
+    "nutrition"
+  ],
+  "url": null,
+  "is_percentage": false,
+  "is_cost_based": true,
+  "low_is_good": true,
+  "numerator_type": "bnf_cost",
+  "numerator_bnf_codes_filter": [
+    "091301 # ONSStandard"
+  ],
+  "denominator_type": "list_size"
+ }
