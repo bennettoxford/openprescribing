@@ -4,9 +4,9 @@
 #
 #    pip-compile requirements.dev.in
 #
-black==26.3.1
+black==26.5.1
     # via -r requirements.dev.in
-click==8.3.3
+click==8.4.0
     # via black
 flake8==7.3.0
     # via -r requirements.dev.in
