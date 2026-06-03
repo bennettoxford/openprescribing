@@ -68,7 +68,8 @@ cmd="gunicorn openprescribing.wsgi:application \
   --log-level=$GUNICORN_LOG_LEVEL \
   --log-file=$LOGFILE \
   --access-logfile=$ACCESS_LOGFILE \
-  --limit-request-line=8190"
+  --limit-request-line=8190 \
+  --no-control-socket"
 
 if [[ ! -z $CHECK_CONFIG ]]; then
     cmd="$cmd --check-config"
