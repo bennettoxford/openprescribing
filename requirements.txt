@@ -109,7 +109,7 @@ google-api-core[grpc]==2.30.3
     #   google-cloud-core
     #   google-cloud-storage
     #   pandas-gbq
-google-api-python-client==2.196.0
+google-api-python-client==2.197.0
     # via -r requirements.in
 google-auth==2.53.0
     # via
@@ -155,12 +155,12 @@ googleapis-common-protos==1.75.0
     #   grpcio-status
 graphviz==0.21
     # via -r requirements.in
-grpcio==1.80.0
+grpcio==1.81.0
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
     #   grpcio-status
-grpcio-status==1.80.0
+grpcio-status==1.81.0
     # via google-api-core
 gunicorn==26.0.0
     # via -r requirements.in
@@ -174,7 +174,7 @@ httplib2==0.31.2
     # via
     #   google-api-python-client
     #   google-auth-httplib2
-idna==3.16
+idna==3.18
     # via
     #   django-anymail
     #   requests
@@ -253,7 +253,7 @@ proto-plus==1.28.0
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
-protobuf==6.33.6
+protobuf==7.35.0
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
