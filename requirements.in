@@ -34,7 +34,7 @@ networkx
 numpy
 openpyxl
 pandas-gbq
-pandas
+pandas<3
 premailer
 psycopg2-binary
 python-dateutil
