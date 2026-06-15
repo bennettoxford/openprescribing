@@ -4,7 +4,7 @@
   "description": "Proportion of prescription items of clarithromycin 500mg tablets with quantity greater than 10 tablets",
   "numerator_short": "clarithromycin 500mg tablets items for greater than 10 tablets",
   "denominator_short": "clarithromycin 500mg tablet items",
-  "y_label": clarithromycin 500mg tablets items with quantity >10",
+  "y_label": "clarithromycin 500mg tablets items with quantity >10",
   "why_it_matters": [
     "tbc"
   ],
