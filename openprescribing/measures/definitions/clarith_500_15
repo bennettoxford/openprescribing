@@ -1,0 +1,37 @@
+{
+  "name": "Antibiotic stewardship: courses for clarithromycin 500mg greater than 20 tablets",
+  "title": "Antibiotic stewardship: courses for clarithromycin 500mg greater than 20 tablets",
+  "description": "Proportion of prescription items of clarithromycin 500mg tablets with quantity greater than 20 tablets",
+  "numerator_short": "clarithromycin 500mg tablets items for greater than 20 tablets",
+  "denominator_short": "clarithromycin 500mg tablet items",
+  "y_label": clarithromycin 500mg tablets items with quantity >15",
+  "why_it_matters": [
+    "tbc"
+  ],
+  "tags": [
+    "antimicrobial",
+    "core",
+    "infections",
+    "nice",
+    "opportunities"
+  ],
+  "url": null,
+  "is_percentage": true,
+  "is_cost_based": false,
+  "low_is_good": true,
+  "numerator_type": "custom",
+  "numerator_columns": "SUM(items) AS numerator",
+  "numerator_from": "{hscic}.raw_prescribing_normalised",
+  "numerator_where": "bnf_code LIKE '0501050B0%AD' AND quantity_per_item > 20 --Clarithromycin 500mg tablets (brands and generic)",
+  "denominator_type": "custom",
+  "denominator_columns": "SUM(items) AS denominator",
+  "denominator_from": "{hscic}.raw_prescribing_normalised",
+  "denominator_where": "bnf_code LIKE '0501050B0%AD' --Clarithromycin 500mg tablets (brands and generic)",
+  "no_analyse_url": true,
+  "authored_by": "",
+  "checked_by": "",
+  "date_reviewed": "",
+  "next_review": "",
+  "measure_complexity": "low",
+  "radar_exclude": false
+}
