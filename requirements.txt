@@ -40,10 +40,11 @@ coverage==7.14.1
     # via -r requirements.in
 crispy-bootstrap3==2024.1
     # via -r requirements.in
-cryptography==48.0.1
+cryptography==49.0.0
     # via
     #   google-auth
     #   paramiko
+    #   pyopenssl
 cssselect==1.4.0
     # via
     #   premailer
@@ -111,7 +112,7 @@ google-api-core[grpc]==2.31.0
     #   pandas-gbq
 google-api-python-client==2.197.0
     # via -r requirements.in
-google-auth==2.53.0
+google-auth[pyopenssl]==2.55.0
     # via
     #   google-api-core
     #   google-api-python-client
@@ -129,7 +130,7 @@ google-auth-oauthlib==1.4.0
     # via
     #   pandas-gbq
     #   pydata-google-auth
-google-cloud-bigquery==3.41.0
+google-cloud-bigquery==3.42.0
     # via
     #   -r requirements.in
     #   pandas-gbq
@@ -139,7 +140,7 @@ google-cloud-core==2.6.0
     # via
     #   google-cloud-bigquery
     #   google-cloud-storage
-google-cloud-storage==3.11.0
+google-cloud-storage==3.12.0
     # via -r requirements.in
 google-crc32c==1.8.0
     # via
@@ -155,12 +156,12 @@ googleapis-common-protos==1.75.0
     #   grpcio-status
 graphviz==0.21
     # via -r requirements.in
-grpcio==1.81.0
+grpcio==1.81.1
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
     #   grpcio-status
-grpcio-status==1.81.0
+grpcio-status==1.81.1
     # via google-api-core
 gunicorn==26.0.0
     # via -r requirements.in
@@ -194,7 +195,7 @@ lz4==4.4.5
     # via -r requirements.in
 markupsafe==3.0.3
     # via jinja2
-matplotlib==3.10.9
+matplotlib==3.11.0
     # via
     #   -r requirements.in
     #   seaborn
@@ -253,7 +254,7 @@ proto-plus==1.28.0
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
-protobuf==7.35.0
+protobuf==7.35.1
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
@@ -282,6 +283,8 @@ pyflakes==3.4.0
     # via flake8
 pynacl==1.6.2
     # via paramiko
+pyopenssl==26.3.0
+    # via google-auth
 pyparsing==3.3.2
     # via
     #   httplib2
@@ -326,7 +329,7 @@ scipy==1.17.1
     # via -r requirements.in
 seaborn==0.13.2
     # via -r requirements.in
-selenium==4.44.0
+selenium==4.45.0
     # via -r requirements.in
 six==1.17.0
     # via
@@ -356,6 +359,7 @@ typing-extensions==4.15.0
     # via
     #   beautifulsoup4
     #   grpcio
+    #   pyopenssl
     #   selenium
 tzdata==2026.2
     # via pandas
