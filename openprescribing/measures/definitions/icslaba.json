@@ -31,7 +31,7 @@
     "AND \n",
     "p.bnf_code LIKE '0302%' -- Corticosteroids (Respiratory) \n",
     "AND \n",
-    "vpi.ing IN ('414289007', '129490002', '447213002') -- only includes inhalers containing formoterol as an ingredient \n",
+    "vpi.ing IN (414289007, 129490002, 447213002) -- only includes inhalers containing formoterol as an ingredient \n",
     "AND \n",
     "count.ing_count = 2 --only includes inhalers with exactly 2 ingredients, removing triple therapy (usually used in COPD)"
   ],
