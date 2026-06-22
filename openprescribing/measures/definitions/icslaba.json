@@ -30,7 +30,7 @@
     "AND \n",
     "p.bnf_code LIKE '0302%' -- Corticosteroids (Respiratory) \n",
     "AND \n",
-    "ing.nm LIKE 'Formoterol%' -- only includes formoterol containing inhalers",
+    "ing.nm LIKE 'Formoterol%' -- only includes formoterol containing inhalers \n",
     "AND \n",
     "count.ing_count = 2 --only includes inhalers with exactly 2 ingredients, removing triple therapy (usually used in COPD)"
   ],
