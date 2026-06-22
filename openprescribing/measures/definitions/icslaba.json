@@ -1,0 +1,69 @@
+{
+  "name": "MART/AIR inhalers",
+  "title": "MART/AIR inhalers",
+  "description": "Percentage of inhalers suitable for MART/AIR therapy",
+  "numerator_short": "AIR/MART inhalers quantity",
+  "denominator_short": "ICS and SABA quantity",
+  "y_label": "Percentage of inhalers (ICS and SABA) prescribed as SABA",
+  "why_it_matters": [
+    "To be completed"
+  ],
+  "tags": [
+    "core",
+    "respiratory"
+  ],
+  "url": null, 
+  "is_percentage": true,
+  "is_cost_based": false,
+  "low_is_good": true,
+  "numerator_type": "custom",
+  "numerator_columns": "SUM(p.quantity/adj.qtyadj) AS numerator",
+  "numerator_from": [
+    "{hscic}.normalised_prescribing p ",
+    "INNER JOIN {measures}.vw__inhaler_quantity_adjustment as adj ON p.bnf_code = adj.bnf_code AND p.month = adj.date -- joins prescribing data to view for form_route and adjustment where quantity = puffs not inhalers  \n",
+    "INNER JOIN {measures}.vw__presentation_ingredient_count as count ON p.bnf_code = count.bnf_code  -- joins prescribing data to ingredient count, so we can limit triple therapy inhalers \n",
+    "INNER JOIN {dmd}.vpi vpi ON p.bnf_code = vpi.bnf_code -- joins prescribing data to view for ingredient, so we can limit to only LABA suitable for MART \n",
+    "INNER JOIN {dmd}.ing ing ON vpi.ing = ing.id -- joins prescribing data to view for ingredient, so we can limit to only LABA suitable for MART \n"
+    ],
+  "numerator_where": [
+    "adj.form_route IN ('pressurizedinhalation.inhalation', 'powderinhalation.inhalation', 'inhalationsolution.inhalation')",
+    "AND \n",
+    "p.bnf_code LIKE '0302%' -- Corticosteroids (Respiratory) \n",
+    "AND \n",
+    "ing.nm LIKE 'Formoterol%' -- only includes formoterol containing inhalers",
+    "AND \n",
+    "count.ing_count = 2 --only includes inhalers with exactly 2 ingredients, removing triple therapy (usually used in COPD)"
+  ],
+  "denominator_type": "custom",
+  "denominator_columns": "SUM(p.quantity/adj.qtyadj) AS denominator",
+  "denominator_from": [
+    "{hscic}.normalised_prescribing p ",
+    "INNER JOIN {measures}.vw__inhaler_quantity_adjustment as adj ON p.bnf_code = adj.bnf_code AND p.month = adj.date -- joins prescribing data to view for form_route and adjustment where quantity = puffs not inhalers  \n",
+    "INNER JOIN {measures}.vw__presentation_ingredient_count as count ON p.bnf_code = count.bnf_code  -- joins prescribing data to ingredient count, so we can limit triple therapy inhalers \n"
+    ],
+  "denominator_where": [
+    "adj.form_route IN ('pressurizedinhalation.inhalation', 'powderinhalation.inhalation', 'inhalationsolution.inhalation')",
+    "AND ( \n",
+    "p.bnf_code LIKE '0301011R0%' -- Salbutamol \n",
+    "OR p.bnf_code LIKE '0301011V0%' -- Terbutaline \n" ,
+    "OR p.bnf_code LIKE '0302%') -- Corticosteroids (Respiratory) \n",
+    "AND \n",
+    "count.ing_count <3 --only includes inhalers with fewer than 3 ingredients, removing triple therapy (usually used in COPD)"
+  ],
+
+  "authored_by": "christopher.wood@phc.ox.ac.uk",
+  "checked_by": "TBC",
+  "date_reviewed": "2026-06-22",
+  "next_review": "2027-06-22",
+  "measure_complexity": "medium",
+  "measure_type": "dmd",
+  "radar_exclude": false,
+  "change_log": [
+    {
+      "date": "2026-06-22",
+      "description": "Created measure.",
+      "action_by": "christopher.wood@phc.ox.ac.uk",
+      "checked_by": ""
+    }
+  ]
+}
