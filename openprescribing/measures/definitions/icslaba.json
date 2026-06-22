@@ -1,10 +1,10 @@
 {
-  "name": "MART/AIR inhalers",
-  "title": "MART/AIR inhalers",
+  "name": "AIR/MART inhalers",
+  "title": "AIR/MART inhalers",
   "description": "Percentage of inhalers suitable for MART/AIR therapy",
   "numerator_short": "AIR/MART inhalers quantity",
   "denominator_short": "ICS and SABA quantity",
-  "y_label": "Percentage of inhalers (ICS and SABA) prescribed as SABA",
+  "y_label": "Percentage of inhalers suitable for MART/AIR therapy",
   "why_it_matters": [
     "To be completed"
   ],
@@ -20,17 +20,18 @@
   "numerator_columns": "SUM(p.quantity/adj.qtyadj) AS numerator",
   "numerator_from": [
     "{hscic}.normalised_prescribing p ",
+    "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
+    "INNER JOIN {dmd}.vpi AS vpi ON vmp.id = vpi.vmp -- joins vmp to vpi table to get ingredient strengths (strnt_nmrtr_val) \n",
     "INNER JOIN {measures}.vw__inhaler_quantity_adjustment as adj ON p.bnf_code = adj.bnf_code AND p.month = adj.date -- joins prescribing data to view for form_route and adjustment where quantity = puffs not inhalers  \n",
-    "INNER JOIN {measures}.vw__presentation_ingredient_count as count ON p.bnf_code = count.bnf_code  -- joins prescribing data to ingredient count, so we can limit triple therapy inhalers \n",
-    "INNER JOIN {dmd}.vpi vpi ON p.bnf_code = vpi.bnf_code -- joins prescribing data to view for ingredient, so we can limit to only LABA suitable for MART \n",
-    "INNER JOIN {dmd}.ing ing ON vpi.ing = ing.id -- joins prescribing data to view for ingredient, so we can limit to only LABA suitable for MART \n"
+    "INNER JOIN {measures}.vw__presentation_ingredient_count as count ON p.bnf_code = count.bnf_code  -- joins prescribing data to ingredient count, so we can limit triple therapy inhalers \n"
+    
     ],
   "numerator_where": [
     "adj.form_route IN ('pressurizedinhalation.inhalation', 'powderinhalation.inhalation', 'inhalationsolution.inhalation')",
     "AND \n",
     "p.bnf_code LIKE '0302%' -- Corticosteroids (Respiratory) \n",
     "AND \n",
-    "ing.nm LIKE 'Formoterol%' -- only includes formoterol containing inhalers \n",
+    "vpi.ing IN ('414289007', '129490002', '447213002') -- only includes inhalers containing formoterol as an ingredient \n",
     "AND \n",
     "count.ing_count = 2 --only includes inhalers with exactly 2 ingredients, removing triple therapy (usually used in COPD)"
   ],
