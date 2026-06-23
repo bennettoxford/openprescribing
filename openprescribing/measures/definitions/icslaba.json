@@ -1,12 +1,17 @@
 {
   "name": "AIR/MART inhalers",
   "title": "AIR/MART inhalers",
-  "description": "Percentage of inhalers not suitable for MART/AIR therapy",
+  "description": "Percentage of inhalers not licensed for MART/AIR therapy",
   "numerator_short": "Non-AIR/MART inhalers quantity",
   "denominator_short": "AIR/MART inhalers quantity",
-  "y_label": "Percentage of inhalers suitable for MART/AIR therapy",
+  "y_label": "Percentage of inhalers not licensed for MART/AIR therapy",
   "why_it_matters": [
-    "To be completed"
+    "A <a href='https://www.nice.org.uk/guidance/ng245' target='_blank'>joint asthma guideline</a> from NICE, BTS and SIGN published in November 2024 made significant changes to asthma management. ",
+    "For the majority of patients, it recommends use of a combined inhaled corticosteroid (ICS) and formoterol under an AIR (as-needed ICS/formoterol) or MART (maintenance and reliever therapy) regimen. ",
+    "It marks a significant move away from prescribing short-acting beta2 agonists (SABAs) without an inhaled corticosteroid to anyone diagnosed with asthma.</p>",
+    "<p>This measure tracks prescribing of SABA and ICS inhalers that are not licensed for AIR/MART, as a proportion of all SABA and ICS inhaler prescribing. ",
+    "A lower value indicates a greater proportion of prescribing consistent with the updated guideline recommendation.</p>",
+    "<p>Triple therapy inhalers (those containing three active ingredients), which are typically used in COPD rather than asthma, are excluded from both numerator and denominator.</p>"
   ],
   "tags": [
     "core",
@@ -20,7 +25,7 @@
   "numerator_columns": "SUM(p.quantity/adj.qtyadj) AS numerator",
   "numerator_from": [
     "{hscic}.normalised_prescribing p ",
-    "INNER JOIN {dmd}.vmp vmp_tbl ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp_tbl.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
+    "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
     "INNER JOIN {measures}.vw__inhaler_quantity_adjustment as adj ON p.bnf_code = adj.bnf_code AND p.month = adj.date -- joins prescribing data to view for form_route and adjustment where quantity = puffs not inhalers  \n",
     "INNER JOIN {measures}.vw__presentation_ingredient_count as count ON p.bnf_code = count.bnf_code  -- joins prescribing data to ingredient count, so we can limit triple therapy inhalers \n"
     ],
@@ -32,11 +37,14 @@
     "OR p.bnf_code LIKE '0302%') -- Corticosteroids (Respiratory) \n",
     "AND \n",
     "count.ing_count <3 --only includes inhalers with fewer than 3 ingredients, removing triple therapy (usually used in COPD) \n",
-    "AND NOT EXISTS ( \n",
-    "SELECT 1 FROM {dmd}.vpi vpi WHERE vmp_tbl.id = vpi.vmp \n",
-    "AND vpi.ing IN (414289007, 129490002, 447213002) -- formoterol-containing \n",
-    "AND count.ing_count = 2 -- paired with formoterol check: excludes 2-ingredient ICS/LABA combos \n",
-    ") \n"
+    "AND vmp.id NOT IN ( \n",
+    "26148711000001101, -- Beclometasone 100micrograms-dose Formoterol 6micrograms-dose dry powder inhaler \n",
+    "12911011000001100, -- Beclometasone 100micrograms-dose  Formoterol 6micrograms-dose inhaler CFC free \n",
+    "39133611000001108, -- Budesonide 100micrograms-dose Formoterol 3micrograms-dose inhaler CFC free \n",
+    "35912011000001109, -- Budesonide 100micrograms-dose Formoterol 6micrograms-dose dry powder inhaler \n",
+    "38896811000001103, -- Budesonide 200micrograms-dose Formoterol 6micrograms-dose dry powder inhaler \n",
+    "32960711000001105 -- Budesonide 200micrograms-dose Formoterol 6micrograms-dose inhaler CFC free \n",
+    ") -- exclude VMPs which have products licensed for AIR or MART thearpy\n"
   ],
   "denominator_type": "custom",
   "denominator_columns": "SUM(p.quantity/adj.qtyadj) AS denominator",
