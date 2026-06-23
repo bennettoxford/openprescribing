@@ -28,13 +28,17 @@ class Command(BaseCommand):
         url = date.strftime(
             "http://nhsd-proxy.openprescribing.net:8080/data-and-information/publications/statistical/patients-registered-at-a-gp-practice/%B-%Y"
         ).lower()
-
         rsp = requests.get(url)
 
         if rsp.status_code != 200:
             raise CommandError("Could not find any data for %s" % datestamp)
 
-        filename = "gp-reg-pat-prac-quin-age.zip"
+        # data was re-released in April 2026
+        filename = (
+            "gp-reg-pat-prac-quin-age_V2.zip"
+            if datestamp == "2026_04"
+            else "gp-reg-pat-prac-quin-age.zip"
+        )
         tree = html.fromstring(rsp.content)
         source_url = tree.xpath(f"//a[contains(@href, '{filename}')]/@href")[0]
 
