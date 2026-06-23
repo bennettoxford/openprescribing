@@ -32,7 +32,7 @@
     "OR p.bnf_code LIKE '0301011V0%' -- Terbutaline \n" ,
     "OR p.bnf_code LIKE '0302%') -- Corticosteroids (Respiratory) \n",
     "AND \n",
-    "count.ing_count <3 --only includes inhalers with fewer than 3 ingredients, removing triple therapy (usually used in COPD)",
+    "count.ing_count <3 --only includes inhalers with fewer than 3 ingredients, removing triple therapy (usually used in COPD) \n",
     "AND NOT \n",
     "( \n",
     "vpi.ing IN (414289007, 129490002, 447213002) -- only includes inhalers containing formoterol as an ingredient \n",
