@@ -7,8 +7,8 @@
   "y_label": "Percentage of inhalers not licensed for MART/AIR therapy",
   "why_it_matters": [
     "A <a href='https://www.nice.org.uk/guidance/ng245' target='_blank'>joint asthma guideline</a> from NICE, BTS and SIGN published in November 2024 made significant changes to asthma management. ",
-    "For the majority of patients, it recommends use of a combined inhaled corticosteroid (ICS) and formoterol under an AIR (as-needed ICS/formoterol) or MART (maintenance and reliever therapy) regimen. ",
-    "It marks a significant move away from prescribing short-acting beta2 agonists (SABAs) without an inhaled corticosteroid to anyone diagnosed with asthma.</p>",
+    "It represents a move away from prescribing short-acting beta2 agonists (SABAs) without an inhaled corticosteroid to anyone diagnosed with asthma. ",
+    "For the majority of patients, it recommends use of a combined inhaled corticosteroid (ICS) and formoterol under an AIR (as-needed ICS/formoterol) or MART (maintenance and reliever therapy) regimen.</p>",
     "<p>This measure tracks prescribing of SABA and ICS inhalers that are not licensed for AIR/MART, as a proportion of all SABA and ICS inhaler prescribing. ",
     "A lower value indicates a greater proportion of prescribing consistent with the updated guideline recommendation.</p>",
     "<p>Triple therapy inhalers (those containing three active ingredients), which are typically used in COPD rather than asthma, are excluded from both numerator and denominator.</p>"
