@@ -1,22 +1,20 @@
 {
   "name": "AIR/MART inhalers",
   "title": "AIR/MART inhalers",
-  "description": "Percentage of inhalers not licensed for MART/AIR therapy",
-  "numerator_short": "Non-AIR/MART inhalers quantity",
-  "denominator_short": "ICS and SABA quantity",
-  "y_label": "Percentage of inhalers not licensed for MART/AIR therapy",
+  "description": "Percentage of corticosteroid containing inhaler doses that are for inhalers not licensed for MART/AIR therapy",
+  "numerator_short": "Non-AIR/MART corticosteroid containing inhaler quantity",
+  "denominator_short": "Corticosteroid-containing inhaler quantity",
+  "y_label": "Percentage of corticosteroid containing inhaler doses not licensed for MART/AIR therapy",
   "why_it_matters": [
-    "The <a href='https://www.nice.org.uk/guidance/ng245/2024'  target='_Blank'>BTS/NICE/SIGN guidance</a> published in November 2024 made significant changes recommendations to asthma management. ",
-    "It states <a href='https://www.nice.org.uk/guidance/ng245/chapter/Recommendations#principles-of-pharmacological-treatment' target='_blank'><i>do not prescribe short-acting beta<sub>2</sub> agonists (SABAs) to people of any age ",
-    "with asthma without a concomitant prescription of an inhaled corticosteroid (ICS)</i></a>. ",
-    "For the majority of patients, it recommends use of a combined ICS and formoterol under an AIR (as-needed ICS/formoterol) or MART (maintenance and reliever therapy) regimen.</p>",
-    "<p>This measure tracks prescribing of SABA and ICS inhalers that are not licensed for AIR/MART, as a proportion of all SABA and ICS inhaler prescribing. ",
-    "A lower value indicates a greater proportion of prescribing consistent with the updated guideline recommendation.</p>",
+    "The <a href='https://www.nice.org.uk/guidance/ng245/2024'  target='_Blank'>BTS/NICE/SIGN guidance</a> published in November 2024 made significant changes to recommendations on asthma management. ",
+    "For the majority of patients, <a href='https://www.nice.org.uk/guidance/ng245/chapter/Recommendations#principles-of-pharmacological-treatment' target='_blank'>it recommends</a> use of a combined ICS and formoterol ",
+    "under an AIR (as-needed ICS/formoterol) or MART (maintenance and reliever therapy) regimen.</p>",
     "<p><b>Please note:</b> we have excluded triple therapy inhalers from this measure, as they are more commonly used in COPD.</p>"
   ],  
   "tags": [
     "core",
-    "respiratory"
+    "respiratory",
+    "nice"
   ],
   "url": null, 
   "is_percentage": true,
