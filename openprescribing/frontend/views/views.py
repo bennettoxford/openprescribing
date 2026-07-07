@@ -303,7 +303,7 @@ def ccg_home_page(request, ccg_code):
 
 
 def all_stps(request):
-    stps = STP.objects.order_by("name")
+    stps = STP.objects.exclude(pct=None).order_by("name")
     context = {"stps": stps}
     return render(request, "all_stps.html", context)
 
