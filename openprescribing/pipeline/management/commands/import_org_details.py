@@ -31,6 +31,8 @@ def import_all(records):
     import_pcns(records)
     import_practices(records)
 
+    update_closed_practices()
+
 
 def import_regions(records):
     for r in records:
@@ -121,3 +123,26 @@ def import_practices(records):
                 "pcn_id": r["isPartnerToCode"][0] if r["isPartnerToCode"] else None,
             },
         )
+
+
+def update_closed_practices():
+    # These long-closed practices belonged to NHS Frimley, which was dissolved in April 2026.
+    # However, they are still shown in the ODS data as belonging to Frimley.  This
+    # caused problems with the analyse page.
+    #
+    # Open Frimley practices were moved to one of several other CCGs, and we have
+    # guessed which CCG each of these practices would have moved to by looking at dots
+    # on a map.
+    #
+    # See https://github.com/bennettoxford/openprescribing/issues/5534.
+
+    for practice_code, ccg_id in [
+        ("J82135", "D9Y0V"),
+        ("K81089", "U2G6B"),
+        ("H81097", "92A"),
+        ("K81039", "U2G6B"),
+        ("K81059", "U2G6B"),
+        ("K81006", "D9Y0V"),
+        ("K81005", "U2G6B"),
+    ]:
+        Practice.objects.filter(code=practice_code).update(ccg_id=ccg_id)

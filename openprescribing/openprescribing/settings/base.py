@@ -273,7 +273,6 @@ CONN_MAX_AGE = 1200
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": (
         "rest_framework.renderers.JSONRenderer",
-        "rest_framework.renderers.BrowsableAPIRenderer",
         "rest_framework_csv.renderers.CSVRenderer",
     ),
     "DEFAULT_CONTENT_NEGOTIATION_CLASS": "frontend.negotiation.IgnoreAcceptsContentNegotiation",
