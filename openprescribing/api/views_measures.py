@@ -5,7 +5,7 @@ from frontend.models import Measure, MeasureGlobal, MeasureValue, Presentation
 from matrixstore.db import get_db, get_row_grouper
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.exceptions import APIException
-from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
+from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework_csv.renderers import CSVRenderer
 
@@ -220,31 +220,31 @@ class MeasureValueCSVRenderer(CSVRenderer):
 
 
 @api_view(["GET"])
-@renderer_classes([JSONRenderer, BrowsableAPIRenderer, MeasureValueCSVRenderer])
+@renderer_classes([JSONRenderer, MeasureValueCSVRenderer])
 def measure_by_regional_team(request, format=None):
     return _measure_by_org(request, "regional_team")
 
 
 @api_view(["GET"])
-@renderer_classes([JSONRenderer, BrowsableAPIRenderer, MeasureValueCSVRenderer])
+@renderer_classes([JSONRenderer, MeasureValueCSVRenderer])
 def measure_by_stp(request, format=None):
     return _measure_by_org(request, "stp")
 
 
 @api_view(["GET"])
-@renderer_classes([JSONRenderer, BrowsableAPIRenderer, MeasureValueCSVRenderer])
+@renderer_classes([JSONRenderer, MeasureValueCSVRenderer])
 def measure_by_ccg(request, format=None):
     return _measure_by_org(request, "ccg")
 
 
 @api_view(["GET"])
-@renderer_classes([JSONRenderer, BrowsableAPIRenderer, MeasureValueCSVRenderer])
+@renderer_classes([JSONRenderer, MeasureValueCSVRenderer])
 def measure_by_pcn(request, format=None):
     return _measure_by_org(request, "pcn")
 
 
 @api_view(["GET"])
-@renderer_classes([JSONRenderer, BrowsableAPIRenderer, MeasureValueCSVRenderer])
+@renderer_classes([JSONRenderer, MeasureValueCSVRenderer])
 def measure_by_practice(request, format=None):
     return _measure_by_org(request, "practice")
 
