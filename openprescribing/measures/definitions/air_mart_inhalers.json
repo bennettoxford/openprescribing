@@ -6,7 +6,7 @@
   "denominator_short": "Corticosteroid-containing inhaler quantity",
   "y_label": "Percentage of corticosteroid containing inhaler doses not licensed for MART/AIR therapy",
   "why_it_matters": [
-    "The <a href='https://www.nice.org.uk/guidance/ng245/2024'  target='_Blank'>BTS/NICE/SIGN guidance</a> published in November 2024 made significant changes to recommendations on asthma management. ",
+    "The <a href='https://www.nice.org.uk/guidance/ng245/'  target='_Blank'>BTS/NICE/SIGN guidance</a> published in November 2024 made significant changes to recommendations on asthma management. ",
     "For the majority of patients, <a href='https://www.nice.org.uk/guidance/ng245/chapter/Recommendations#principles-of-pharmacological-treatment' target='_blank'>it recommends</a> use of a combined ICS and formoterol ",
     "under an AIR (as-needed ICS/formoterol) or MART (maintenance and reliever therapy) regimen.</p>",
     "<p><b>Please note:</b> we have excluded triple therapy inhalers from this measure, as they are more commonly used in COPD.</p>"
