@@ -14,7 +14,7 @@ check:
 devenv:
     uv pip sync requirements.txt requirements.dev.txt
 
-manage *args:
+manage *args: db
     uv run openprescribing/manage.py "$@"
 
 migrate *args:
@@ -23,7 +23,7 @@ migrate *args:
 run *args:
     {{ just_executable() }} manage runserver "$@"
 
-test *args:
+test *args: db
     #!/usr/bin/env bash
     set -euxo pipefail
 
@@ -81,7 +81,8 @@ db:
     docker compose up --detach --wait {{ db_service }}
 
 db-clean:
+    # need not depend on db, because a down without a previous up is a no-op
     docker compose down --volumes {{ db_service }}
 
-db-shell:
+db-shell: db
     docker compose exec {{ db_service }} psql --username user openprescribing-test
