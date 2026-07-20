@@ -3,6 +3,8 @@ services:
   db-test:
     image: postgis/postgis:16-3.4
     env_file: environment-docker
+    ports:
+      - "5432:5432"
   test:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
     command: /bin/bash -c './scripts/docker_setup.sh test && cd openprescribing && make test'
