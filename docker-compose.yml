@@ -5,6 +5,8 @@ services:
     env_file: environment-docker
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
   test:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
     command: /bin/bash -c './scripts/docker_setup.sh test && cd openprescribing && make test'
@@ -75,3 +77,5 @@ services:
       - .:/code
     depends_on:
       - db-dev
+volumes:
+  postgres_data:
