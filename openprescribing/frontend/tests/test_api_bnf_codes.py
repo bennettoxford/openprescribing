@@ -30,11 +30,11 @@ class TestAPIBNFCodeViews(ApiTestBase):
 
         url = "%s/bnf_code?q=lor" % self.api_prefix
         response = self.client.get(url, follow=True)
-        self.assertNotJson(response.content)
+        self.assertJson(response.content)
 
         url = "%s/bnf_code?q=lor" % self.api_prefix
         response = self.client.get(url, {}, follow=True, HTTP_ACCEPT="application/json")
-        self.assertNotJson(response.content)
+        self.assertJson(response.content)
 
     def test_api_view_bnf_chemical(self):
         url = "%s/bnf_code?q=lor&format=json" % self.api_prefix
