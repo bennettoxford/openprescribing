@@ -45,7 +45,8 @@
     "'0601060D0CUACA0',  -- GlucoRx HCT Glucose testing strips (GlucoRx Ltd) CURRENT\n",
     "'0601060D0CUAAA0',  -- GlucoRx Q testing strips (GlucoRx Ltd) CURRENT\n",
     "'0601060X0BBAAA0',  -- KEYA Smart testing strips (Inside-Biometrics Ltd) CURRENT\n",
-    "'0601060D0EUAAA0'   -- On Call Extra testing strips (Connect2Pharma Ltd) CURRENT\n",
+    "'0601060D0EUAAA0',  -- On Call Extra testing strips (Connect2Pharma Ltd) CURRENT\n",
+    "'0601060D0EJAAA0'   -- True Metrix testing strips (Trividia Health UK Ltd) CURRENT\n",
     ")",
     "AND ",
     "-- version 4 published 2025-06-25\n",
@@ -73,6 +74,7 @@
     ")",
     ")"
    ],
+  "numerator_is_list_of_bnf_codes": false,
   "denominator_type": "bnf_items",
   "denominator_bnf_codes_filter": [
     "0601060X0 # Glucose and ketone blood testing reagents",
@@ -80,8 +82,8 @@
   ],
   "authored_by": "richard.croker@phc.ox.ac.uk",
   "checked_by": "christopher.wood@phc.ox.ac.uk",
-  "date_reviewed": "2025-12-22",
-  "next_review": "2026-12-22",
+  "date_reviewed": "2026-07-21",
+  "next_review": "2027-07-21",
   "measure_complexity": "medium",
   "measure_type": "bnf_code",
   "radar_exclude": false,
@@ -92,19 +94,25 @@
   "change_log": [
     {
       "date": "2023-05-22",
-      "description": "Created measure.<br/>Action by: richard.croker@phc.ox.ac.uk<br/>Checked by: christopher.wood@phc.ox.ac.uk",
+      "description": "Created measure.",
       "action_by": "richard.croker@phc.ox.ac.uk",
       "checked_by": "christopher.wood@phc.ox.ac.uk"
     },
     {
       "date": "2025-08-08",
-      "description": "Updated following publication of June 2025 version of recommendations.<br/>Action by: richard.croker@phc.ox.ac.uk<br/>Checked by: christopher.wood@phc.ox.ac.uk",
+      "description": "Updated following publication of June 2025 version of recommendations.",
       "action_by": "richard.croker@phc.ox.ac.uk",
       "checked_by": "christopher.wood@phc.ox.ac.uk"
     },
     {
       "date": "2025-12-22",
-      "description": "Updated following publication of September 2025 version of recommendations. Move to variable date inclusion to match changing guidelines.<br/>Action by: christopher.wood@phc.ox.ac.uk<br/>Checked by: richard.croker@phc.ox.ac.uk",
+      "description": "Updated following publication of September 2025 version of recommendations. Move to variable date inclusion to match changing guidelines.",
+      "action_by": "christopher.wood@phc.ox.ac.uk",
+      "checked_by": "richard.croker@phc.ox.ac.uk"
+    }
+    {
+      "date": "2026-07-21",
+      "description": "Added back in True Metrix testing strips (omitted in error). Hide presentation table.",
       "action_by": "christopher.wood@phc.ox.ac.uk",
       "checked_by": "richard.croker@phc.ox.ac.uk"
     }
