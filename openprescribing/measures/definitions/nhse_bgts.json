@@ -109,7 +109,7 @@
       "description": "Updated following publication of September 2025 version of recommendations. Move to variable date inclusion to match changing guidelines.",
       "action_by": "christopher.wood@phc.ox.ac.uk",
       "checked_by": "richard.croker@phc.ox.ac.uk"
-    }
+    },
     {
       "date": "2026-07-21",
       "description": "Added back in True Metrix testing strips (omitted in error). Hide presentation table.",
