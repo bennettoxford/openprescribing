@@ -3,6 +3,17 @@ services:
   db-test:
     image: postgis/postgis:16-3.4
     env_file: environment-docker
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready; exit $(( $? != 0 ))" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+      start_interval: 5s
   test:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
     command: /bin/bash -c './scripts/docker_setup.sh test && cd openprescribing && make test'
@@ -73,3 +84,5 @@ services:
       - .:/code
     depends_on:
       - db-dev
+volumes:
+  postgres_data:

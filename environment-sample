@@ -51,3 +51,13 @@ CF_API_KEY=cf_api_key
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 TRUD_API_KEY=
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Required for running the functional tests with BrowserStack locally
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+BROWSERSTACK_ACCESS_KEY=
+BROWSERSTACK_USERNAME=
+BROWSERSTACK_BUILD_NAME=openprescribing
+BROWSERSTACK_LOCAL_IDENTIFIER=openprescribing
+BROWSERSTACK_PROJECT_NAME=openprescribing
