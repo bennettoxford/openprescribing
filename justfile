@@ -62,7 +62,11 @@ test-docker:
     cp environment environment.bak
     trap 'mv environment.bak environment' EXIT INT TERM
 
-    docker compose run --rm {{ app_service }}
+    # Unlike `up`, `run` doesn't create the ports that are specified by
+    # docker-compose.yml by default. These ports are needed for running the functional
+    # tests with the BrowserStack local agent, so we pass `--service-ports` to create
+    # them.
+    docker compose run --rm --service-ports {{ app_service }}
 
 test-docker-functional:
     TEST_SUITE=functional {{ just_executable() }} test-docker
