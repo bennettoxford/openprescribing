@@ -80,6 +80,7 @@
     "'21012600211', -- Apollo Tri-Plus safety lancets 1.3mm/1.8mm/2.3mm/28gauge (Apollo Medical Technologies Ltd) ADDED VERSION 4\n",
     "'21010900678', -- Mylife Safety lancets 0.36mm/28gauge (Pikdare S.p.A.) ADDED VERSION 4\n",
     "'21010900890' -- Mylife Safety Comfort lancets 0.32mm/30gauge (Pikdare S.p.A.) ADDED VERSION 4\n",
+    "'21012600343' -- ALLY lancets 0.31mm/30gauge (AgaMatrix Europe Ltd) ADDED VERSION 4\n",
     ")",
     ")",
     "AND ",
@@ -91,14 +92,15 @@
     " -- version 5 published 2025-09-19\n",
     " -- No changes from version 4\n"
   ],
+  "numerator_is_list_of_bnf_codes": false,
   "denominator_type": "custom",
   "denominator_columns": "SUM(items) AS denominator",
   "denominator_from": "{hscic}.normalised_prescribing ",
   "denominator_where": "LOWER(bnf_name) LIKE '%lancets%' # All lancets \n",
   "authored_by": "richard.croker@phc.ox.ac.uk",
   "checked_by": "christopher.wood@phc.ox.ac.uk",
-  "date_reviewed": "2025-12-23",
-  "next_review": "2025-12-23",
+  "date_reviewed": "2026-07-27",
+  "next_review": "2027-07-27",
   "measure_complexity": "medium",
   "measure_type": "bnf_code",
   "change_log": [
@@ -111,6 +113,12 @@
     {
       "date": "2025-12-23",
       "description": "Updated following publication of September 2025 version of recommendations. Move to variable date inclusion to match changing guidelines.<br/>Action by: christopher.wood@phc.ox.ac.uk<br/>Checked by: richard.croker@phc.ox.ac.uk",
+      "action_by": "christopher.wood@phc.ox.ac.uk",
+      "checked_by": "richard.croker@phc.ox.ac.uk"
+    },
+    {
+      "date": "2026-07-27",
+      "description": "Hide presentation table as showing incorrect products.",
       "action_by": "christopher.wood@phc.ox.ac.uk",
       "checked_by": "richard.croker@phc.ox.ac.uk"
     }
