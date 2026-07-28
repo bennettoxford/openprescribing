@@ -48,7 +48,10 @@ test-nonfunctional *args:
     TEST_SUITE=nonfunctional {{ just_executable() }} test "$@"
 
 start-browserstacklocal:
-    BrowserStackLocal --daemon start --key "$BROWSERSTACK_ACCESS_KEY" --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
+    BrowserStackLocal \
+    --daemon start \
+    --key "$BROWSERSTACK_ACCESS_KEY" \
+    --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
 stop-browserstacklocal:
     BrowserStackLocal --daemon stop --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
