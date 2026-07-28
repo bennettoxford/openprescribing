@@ -65,10 +65,10 @@ _BROWSER:
         exit 1
     fi
 
-test-browserstack-functional *args: _BROWSER
+test-browserstack-functional *args: _BROWSER start-browserstacklocal && stop-browserstacklocal
     USE_BROWSERSTACK=1 {{ just_executable() }} test-functional "$@"
 
-test-docker-browserstack-functional: _BROWSER
+test-docker-browserstack-functional: _BROWSER start-browserstacklocal && stop-browserstacklocal
     # USE_BROWSERSTACK isn't passed to the service, but GITHUB_ACTIONS is. Either is
     # used to determine whether the functional tests are run with the BrowserStack local
     # agent (openprescribing.frontend.tests.functional.selenium_base.use_browserstack).
