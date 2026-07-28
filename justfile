@@ -54,6 +54,12 @@ _BROWSER:
 test-browserstack-functional *args: _BROWSER
     USE_BROWSERSTACK=1 {{ just_executable() }} test-functional "$@"
 
+test-docker-browserstack-functional: _BROWSER
+    # USE_BROWSERSTACK isn't passed to the service, but GITHUB_ACTIONS is. Either is
+    # used to determine whether the functional tests are run with the BrowserStack local
+    # agent (openprescribing.frontend.tests.functional.selenium_base.use_browserstack).
+    GITHUB_ACTIONS=1 {{ just_executable() }} test-docker-functional
+
 test-docker:
     #!/usr/bin/env bash
     set -euxo pipefail
