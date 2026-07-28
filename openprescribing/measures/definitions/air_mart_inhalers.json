@@ -58,14 +58,14 @@
   ],
   "authored_by": "christopher.wood@phc.ox.ac.uk",
   "checked_by": "TBC",
-  "date_reviewed": "2026-06-22",
-  "next_review": "2027-06-22",
+  "date_reviewed": "2026-07-28",
+  "next_review": "2027-07-28",
   "measure_complexity": "medium",
   "measure_type": "dmd",
   "radar_exclude": false,
   "change_log": [
     {
-      "date": "2026-06-22",
+      "date": "2026-07-28",
       "description": "Created measure.",
       "action_by": "christopher.wood@phc.ox.ac.uk",
       "checked_by": ""
