@@ -50,6 +50,9 @@ test-nonfunctional *args:
 start-browserstacklocal:
     BrowserStackLocal --daemon start --key "$BROWSERSTACK_ACCESS_KEY" --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
+stop-browserstacklocal:
+    BrowserStackLocal --daemon stop --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
+
 _BROWSER:
     #!/usr/bin/env bash
     set -euxo pipefail
