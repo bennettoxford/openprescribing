@@ -31,6 +31,17 @@ test *args: db
     SKIP_NPM_BUILD=1 uv run coverage run manage.py test "$@"
 
 test-functional *args:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+
+    check_status() {
+        if [[ $? -ne 0 ]]; then
+            echo 'See TESTING.md for information about why this recipe might have failed.'
+        fi
+    }
+    # Run check_status, even though we set -e (if a command fails, then exit Bash).
+    trap 'check_status' EXIT INT TERM
+
     TEST_SUITE=functional {{ just_executable() }} test "$@"
 
 test-nonfunctional *args:
