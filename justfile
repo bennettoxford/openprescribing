@@ -31,15 +31,36 @@ test *args: db
     SKIP_NPM_BUILD=1 uv run coverage run manage.py test "$@"
 
 test-functional *args:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+
+    check_status() {
+        if [[ $? -ne 0 ]]; then
+            echo 'See TESTING.md for information about why this recipe might have failed.'
+        fi
+    }
+    # Run check_status, even though we set -e (if a command fails, then exit Bash).
+    trap 'check_status' EXIT INT TERM
+
     TEST_SUITE=functional {{ just_executable() }} test "$@"
 
 test-nonfunctional *args:
     TEST_SUITE=nonfunctional {{ just_executable() }} test "$@"
 
 start-browserstacklocal:
-    BrowserStackLocal --key "$BROWSERSTACK_ACCESS_KEY" --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
+    # The force flag kills other instances of the BrowserStackLocal daemon with the same
+    # local-identifier. At most, one instance should exist if a previous BrowserStack
+    # recipe failed.
+    BrowserStackLocal \
+    --daemon start \
+    --force
+    --key "$BROWSERSTACK_ACCESS_KEY" \
+    --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
-test-browserstack-functional *args:
+stop-browserstacklocal:
+    BrowserStackLocal --daemon stop --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
+
+_BROWSER:
     #!/usr/bin/env bash
     set -euxo pipefail
 
@@ -51,7 +72,14 @@ test-browserstack-functional *args:
         exit 1
     fi
 
+test-browserstack-functional *args: _BROWSER start-browserstacklocal && stop-browserstacklocal
     USE_BROWSERSTACK=1 {{ just_executable() }} test-functional "$@"
+
+test-docker-browserstack-functional: _BROWSER start-browserstacklocal && stop-browserstacklocal
+    # USE_BROWSERSTACK isn't passed to the service, but GITHUB_ACTIONS is. Either is
+    # used to determine whether the functional tests are run with the BrowserStack local
+    # agent (openprescribing.frontend.tests.functional.selenium_base.use_browserstack).
+    GITHUB_ACTIONS=1 {{ just_executable() }} test-docker-functional
 
 test-docker:
     #!/usr/bin/env bash
