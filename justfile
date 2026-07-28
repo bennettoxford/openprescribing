@@ -48,8 +48,12 @@ test-nonfunctional *args:
     TEST_SUITE=nonfunctional {{ just_executable() }} test "$@"
 
 start-browserstacklocal:
+    # The force flag kills other instances of the BrowserStackLocal daemon with the same
+    # local-identifier. At most, one instance should exist if a previous BrowserStack
+    # recipe failed.
     BrowserStackLocal \
     --daemon start \
+    --force
     --key "$BROWSERSTACK_ACCESS_KEY" \
     --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
