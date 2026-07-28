@@ -39,7 +39,7 @@ test-nonfunctional *args:
 start-browserstacklocal:
     BrowserStackLocal --key "$BROWSERSTACK_ACCESS_KEY" --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
-test-browserstack-functional *args:
+_BROWSER:
     #!/usr/bin/env bash
     set -euxo pipefail
 
@@ -51,6 +51,7 @@ test-browserstack-functional *args:
         exit 1
     fi
 
+test-browserstack-functional *args: _BROWSER
     USE_BROWSERSTACK=1 {{ just_executable() }} test-functional "$@"
 
 test-docker:
