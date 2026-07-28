@@ -48,7 +48,7 @@ test-nonfunctional *args:
     TEST_SUITE=nonfunctional {{ just_executable() }} test "$@"
 
 start-browserstacklocal:
-    BrowserStackLocal --key "$BROWSERSTACK_ACCESS_KEY" --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
+    BrowserStackLocal --daemon start --key "$BROWSERSTACK_ACCESS_KEY" --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
 _BROWSER:
     #!/usr/bin/env bash
