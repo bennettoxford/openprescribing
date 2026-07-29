@@ -36,7 +36,7 @@ test-functional *args:
 
     check_status() {
         if [[ $? -ne 0 ]]; then
-            echo 'See TESTING.md for information about why this recipe might have failed.'
+            echo 'Error: See TESTING.md for information about why this recipe might have failed.'
         fi
     }
     # Run check_status, even though we set -e (if a command fails, then exit Bash).
@@ -68,7 +68,7 @@ _check-browser-env-var:
     # the first element in args would replace it. This behaviour is counter-intuitive,
     # and may be a bug: there are examples in other justfiles where we don't expect it.
     if [[ -z "${BROWSER:-}" ]]; then
-        echo "Error: BROWSER is not set or is empty" >&2
+        echo "Error: BROWSER is not set or is empty." >&2
         exit 1
     fi
 
