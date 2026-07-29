@@ -20,7 +20,7 @@ beautifulsoup4==4.15.0
     # via -r requirements.in
 build==1.5.0
     # via pip-tools
-cachetools==7.1.4
+cachetools==7.1.6
     # via premailer
 certifi==2026.7.22
     # via
@@ -44,7 +44,7 @@ cryptography==49.0.0
     # via
     #   google-auth
     #   paramiko
-cssselect==1.4.0
+cssselect==1.5.0
     # via
     #   premailer
     #   pyquery
@@ -101,7 +101,7 @@ flake8==7.3.0
     # via -r requirements.in
 fonttools==4.63.0
     # via matplotlib
-google-api-core[grpc]==2.32.0
+google-api-core[grpc]==2.33.0
     # via
     #   google-api-python-client
     #   google-cloud-bigquery
@@ -155,12 +155,12 @@ googleapis-common-protos==1.75.0
     #   grpcio-status
 graphviz==0.21
     # via -r requirements.in
-grpcio==1.82.1
+grpcio==1.83.0
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
     #   grpcio-status
-grpcio-status==1.82.1
+grpcio-status==1.83.0
     # via google-api-core
 gunicorn==26.0.0
     # via -r requirements.in
@@ -249,7 +249,7 @@ pip-tools==7.6.0
     # via -r requirements.in
 premailer==3.10.0
     # via -r requirements.in
-proto-plus==1.28.1
+proto-plus==1.28.2
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
@@ -290,7 +290,7 @@ pyproject-hooks==1.2.0
     # via
     #   build
     #   pip-tools
-pyquery==2.0.1
+pyquery==2.1.0
     # via -r requirements.in
 pysocks==1.7.1
     # via urllib3
@@ -300,7 +300,7 @@ python-dateutil==2.9.0.post0
     #   google-cloud-bigquery
     #   matplotlib
     #   pandas
-pytz==2026.2
+pytz==2026.3.post1
     # via
     #   -r requirements.in
     #   pandas
