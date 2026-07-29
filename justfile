@@ -47,7 +47,17 @@ test-functional *args:
 test-nonfunctional *args:
     TEST_SUITE=nonfunctional {{ just_executable() }} test "$@"
 
-start-browserstacklocal:
+_check-browserstacklocal-binary:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+
+    if ! command -v BrowserStackLocal --version >/dev/null 2>&1; then
+        echo 'Error: BrowserStackLocal was not found on your PATH.'
+        echo 'You can download it from https://www.browserstack.com/docs/local-testing/releases-and-downloads'
+        exit 1
+    fi
+
+start-browserstacklocal: _check-browserstacklocal-binary
     # The force flag kills other instances of the BrowserStackLocal daemon with the same
     # local-identifier. At most, one instance should exist if a previous BrowserStack
     # recipe failed.
@@ -57,7 +67,7 @@ start-browserstacklocal:
     --key "$BROWSERSTACK_ACCESS_KEY" \
     --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
-stop-browserstacklocal:
+stop-browserstacklocal: _check-browserstacklocal-binary
     BrowserStackLocal --daemon stop --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
 _check-browser-env-var:
