@@ -57,11 +57,11 @@ _check-browserstacklocal-binary:
         exit 1
     fi
 
-start-browserstacklocal: _check-browserstacklocal-binary
+@start-browserstacklocal: _check-browserstacklocal-binary
     # The force flag kills other instances of the BrowserStackLocal daemon with the same
     # local-identifier. At most, one instance should exist if a previous BrowserStack
     # recipe failed.
-    BrowserStackLocal \
+    @BrowserStackLocal \
     --daemon start \
     --force \
     --key "$BROWSERSTACK_ACCESS_KEY" \
