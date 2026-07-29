@@ -25,14 +25,14 @@ run *args:
 
 test *args: db
     #!/usr/bin/env bash
-    set -euxo pipefail
+    set -euo pipefail
 
     cd openprescribing
     SKIP_NPM_BUILD=1 uv run coverage run manage.py test "$@"
 
 test-functional *args:
     #!/usr/bin/env bash
-    set -euxo pipefail
+    set -euo pipefail
 
     check_status() {
         if [[ $? -ne 0 ]]; then
@@ -49,7 +49,7 @@ test-nonfunctional *args:
 
 _check-browserstacklocal-binary:
     #!/usr/bin/env bash
-    set -euxo pipefail
+    set -euo pipefail
 
     if ! command -v BrowserStackLocal --version >/dev/null 2>&1; then
         echo 'Error: BrowserStackLocal was not found on your PATH.'
@@ -72,7 +72,7 @@ stop-browserstacklocal: _check-browserstacklocal-binary
 
 _check-browser-env-var:
     #!/usr/bin/env bash
-    set -euxo pipefail
+    set -euo pipefail
 
     # We can't pass BROWSER as a parameter with a default value, unfortunately, because
     # the first element in args would replace it. This behaviour is counter-intuitive,
@@ -93,7 +93,7 @@ test-docker-browserstack-functional: _check-browser-env-var start-browserstacklo
 
 test-docker:
     #!/usr/bin/env bash
-    set -euxo pipefail
+    set -euo pipefail
 
     # Running the service will replace environment with environment-test, so we backup
     # and rotate environment.
@@ -114,7 +114,7 @@ test-docker-nonfunctional:
 
 assets-build:
     #!/usr/bin/env bash
-    set -euxo pipefail
+    set -euo pipefail
 
     cd openprescribing/media/js
     npm run build
