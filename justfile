@@ -53,7 +53,7 @@ start-browserstacklocal:
     # recipe failed.
     BrowserStackLocal \
     --daemon start \
-    --force
+    --force \
     --key "$BROWSERSTACK_ACCESS_KEY" \
     --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
