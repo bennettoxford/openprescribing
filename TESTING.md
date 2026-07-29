@@ -31,6 +31,12 @@ Of these, the "in a container with BrowserStackLocal" case is how functional tes
 [BrowserStackLocal][] is BrowserStack's local agent.
 It sits between a Django live server and BrowserStackCloud.
 
+To run the functional tests with BrowserStackLocal:
+
+* sign in to <https://www.browserstack.com/> with Google;
+* copy your local testing username and access key from the [Settings] page;
+* and paste these values into the `environment` file.
+
 ### Django live server and `0.0.0.0`
 
 The functional tests use `SeleniumTestCase`, which inherits from `LiveServerTestCase`.
