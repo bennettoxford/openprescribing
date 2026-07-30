@@ -118,3 +118,36 @@ db-clean:
 
 db-shell: db
     docker compose exec {{ db_service }} psql --username user openprescribing-test
+
+# Build the base and test images
+[confirm("This will remove the existing base and test images. Do you wish to continue? (y/n)")]
+build-images:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+
+    base_image=ghcr.io/bennettoxford/openprescribing-py312-base:latest
+    test_image=ghcr.io/bennettoxford/openprescribing-py312-test:latest
+
+    # First, remove the existing images, if they exist. We want to be sure that we're
+    # building the new test image on the new base image, and not on the old base image.
+    for image in "$base_image" "$test_image"; do
+        if docker image inspect "$image" >/dev/null 2>&1; then
+            docker image rm "$image"
+        fi
+    done
+
+    # Now, build the images. We use `buildx build` rather than `compose build`, because
+    # the services are missing build configurations. The dot sets the build context to
+    # the current directory.
+
+    # Build the new base image. This corresponds to the test-production service.
+    docker buildx build --file Dockerfile --tag "$base_image" .
+
+    # Build the new test image. This corresponds to the test service.
+    docker buildx build --file Dockerfile-test --tag "$test_image" .
+
+# Push the base and test images to GHCR
+[confirm("This will push the base and test images to GHCR. Do you wish to continue? (y/n)")]
+push-images:
+    docker image push ghcr.io/bennettoxford/openprescribing-py312-base:latest
+    docker image push ghcr.io/bennettoxford/openprescribing-py312-test:latest
