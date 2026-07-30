@@ -25,18 +25,18 @@ run *args:
 
 test *args: db
     #!/usr/bin/env bash
-    set -euxo pipefail
+    set -euo pipefail
 
     cd openprescribing
     SKIP_NPM_BUILD=1 uv run coverage run manage.py test "$@"
 
 test-functional *args:
     #!/usr/bin/env bash
-    set -euxo pipefail
+    set -euo pipefail
 
     check_status() {
         if [[ $? -ne 0 ]]; then
-            echo 'See TESTING.md for information about why this recipe might have failed.'
+            echo 'Error: See TESTING.md for information about why this recipe might have failed.'
         fi
     }
     # Run check_status, even though we set -e (if a command fails, then exit Bash).
@@ -47,35 +47,45 @@ test-functional *args:
 test-nonfunctional *args:
     TEST_SUITE=nonfunctional {{ just_executable() }} test "$@"
 
-start-browserstacklocal:
+_check-browserstacklocal-binary:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    if ! command -v BrowserStackLocal --version >/dev/null 2>&1; then
+        echo 'Error: BrowserStackLocal was not found on your PATH.'
+        echo 'You can download it from https://www.browserstack.com/docs/local-testing/releases-and-downloads'
+        exit 1
+    fi
+
+@start-browserstacklocal: _check-browserstacklocal-binary
     # The force flag kills other instances of the BrowserStackLocal daemon with the same
     # local-identifier. At most, one instance should exist if a previous BrowserStack
     # recipe failed.
-    BrowserStackLocal \
+    @BrowserStackLocal \
     --daemon start \
-    --force
+    --force \
     --key "$BROWSERSTACK_ACCESS_KEY" \
     --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
-stop-browserstacklocal:
+stop-browserstacklocal: _check-browserstacklocal-binary
     BrowserStackLocal --daemon stop --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
-_BROWSER:
+_check-browser-env-var:
     #!/usr/bin/env bash
-    set -euxo pipefail
+    set -euo pipefail
 
     # We can't pass BROWSER as a parameter with a default value, unfortunately, because
     # the first element in args would replace it. This behaviour is counter-intuitive,
     # and may be a bug: there are examples in other justfiles where we don't expect it.
     if [[ -z "${BROWSER:-}" ]]; then
-        echo "Error: BROWSER is not set or is empty" >&2
+        echo "Error: BROWSER is not set or is empty." >&2
         exit 1
     fi
 
-test-browserstack-functional *args: _BROWSER start-browserstacklocal && stop-browserstacklocal
+test-browserstack-functional *args: _check-browser-env-var start-browserstacklocal && stop-browserstacklocal
     USE_BROWSERSTACK=1 {{ just_executable() }} test-functional "$@"
 
-test-docker-browserstack-functional: _BROWSER start-browserstacklocal && stop-browserstacklocal
+test-docker-browserstack-functional: _check-browser-env-var start-browserstacklocal && stop-browserstacklocal
     # USE_BROWSERSTACK isn't passed to the service, but GITHUB_ACTIONS is. Either is
     # used to determine whether the functional tests are run with the BrowserStack local
     # agent (openprescribing.frontend.tests.functional.selenium_base.use_browserstack).
@@ -83,7 +93,7 @@ test-docker-browserstack-functional: _BROWSER start-browserstacklocal && stop-br
 
 test-docker:
     #!/usr/bin/env bash
-    set -euxo pipefail
+    set -euo pipefail
 
     # Running the service will replace environment with environment-test, so we backup
     # and rotate environment.
@@ -104,7 +114,7 @@ test-docker-nonfunctional:
 
 assets-build:
     #!/usr/bin/env bash
-    set -euxo pipefail
+    set -euo pipefail
 
     cd openprescribing/media/js
     npm run build
