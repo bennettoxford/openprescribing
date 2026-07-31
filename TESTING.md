@@ -22,7 +22,7 @@ For example:
 * `'Firefox:latest:OS X:Catalina'`
 
 See the "[Select browsers and devices][]" page in the BrowserStack documentation for values.
-See `.github/workflows/main.yml` of values used in CI.
+See `.github/workflows/main.yml` for values used in CI.
 
 Of these, the "in a container with BrowserStackLocal" case is how functional tests are run in CI.
 
@@ -34,7 +34,7 @@ It sits between a Django live server and BrowserStackCloud.
 To run the functional tests with BrowserStackLocal:
 
 * sign in to <https://www.browserstack.com/> with Google;
-* copy your local testing username and access key from the [Settings] page;
+* copy your local testing username and access key from the Settings page;
 * and paste these values into the `environment` file.
 
 ### Django live server and `0.0.0.0`
