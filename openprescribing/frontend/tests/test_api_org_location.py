@@ -1,7 +1,5 @@
 import datetime
 import json
-import os
-import unittest
 
 from django.test import TestCase
 from frontend.models import PCT
@@ -41,10 +39,6 @@ class TestAPIOrgLocationViews(TestCase):
         self.assertAlmostEqual(coord[0], -117.00000000000003)
         self.assertAlmostEqual(coord[1], 33.97943076318428)
 
-    @unittest.skipIf(
-        "TRAVIS" in os.environ and os.environ["TRAVIS"],
-        "Skipping this test on Travis CI.",
-    )
     def test_api_view_org_location_practice_by_code(self):
         url = "%s/org_location?org_type=practice&q=03Q&format=json" % self.api_prefix
         response = self.client.get(url, follow=True)

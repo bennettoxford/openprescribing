@@ -130,8 +130,7 @@ database configuration, you'll need to blow away the volume with:
     docker-compose rm -f all
 
 Any time you change the npm or pip dependencies, you should rebuild
-the docker image used by the tests to improve runtime performance of
-travis.
+the docker image used by the tests.
 
     # Base docker image, for production
     docker build -t ebmdatalab/openprescribing-py3-base .
