@@ -20,14 +20,8 @@ services:
     env_file: environment-docker
     environment:
       - DJANGO_SETTINGS_MODULE=openprescribing.settings.test
-      - TRAVIS=${TRAVIS}
       - BROWSER=${BROWSER}
       - TEST_SUITE=${TEST_SUITE}
-      - TRAVIS_JOB_NUMBER=${TRAVIS_JOB_NUMBER}
-      - TRAVIS_BUILD_NUMBER=${TRAVIS_BUILD_NUMBER}
-      - TRAVIS_BRANCH=${TRAVIS_BRANCH}
-      - TRAVIS_PULL_REQUEST=${TRAVIS_PULL_REQUEST}
-      - TRAVIS_JOB_ID=${TRAVIS_JOB_ID}
       - COVERALLS_REPO_TOKEN=${COVERALLS_REPO_TOKEN}
       - COVERALLS_PARALLEL=true
       - GOOGLE_APPLICATION_CREDENTIALS=/code/google-credentials.json
@@ -50,14 +44,8 @@ services:
     command: /bin/bash -c './scripts/docker_setup.sh production && cd openprescribing && python manage.py check --deploy --settings openprescribing.settings.production'
     env_file: environment-docker
     environment:
-      - TRAVIS=${TRAVIS}
       - TEST_SUITE=${TEST_SUITE}
       - BROWSER=${BROWSER}
-      - TRAVIS_JOB_NUMBER=${TRAVIS_JOB_NUMBER}
-      - TRAVIS_BUILD_NUMBER=${TRAVIS_BUILD_NUMBER}
-      - TRAVIS_BRANCH=${TRAVIS_BRANCH}
-      - TRAVIS_PULL_REQUEST=${TRAVIS_PULL_REQUEST}
-      - TRAVIS_JOB_ID=${TRAVIS_JOB_ID}
       - COVERALLS_REPO_TOKEN=${COVERALLS_REPO_TOKEN}
       - COVERALLS_PARALLEL=true
       - GOOGLE_APPLICATION_CREDENTIALS=/code/google-credentials.json
