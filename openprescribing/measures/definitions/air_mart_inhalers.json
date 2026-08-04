@@ -7,7 +7,7 @@
   "y_label": "Percentage of corticosteroid containing inhaler doses not licensed for MART/AIR therapy",
   "why_it_matters": [
     "The <a href='https://www.nice.org.uk/guidance/ng245/' target='_blank'>BTS/NICE/SIGN guidance</a> published in November 2024 made significant changes to recommendations on asthma management.",
-    "For the majority of patients, <a href='https://www.nice.org.uk/guidance/ng245/chapter/Recommendations#principles-of-pharmacological-treatment' target='_blank'>it recommends</a> use of a combined ICS and formoterol under an AIR (anti-inflammatory reliever) or MART (maintenance and reliever therapy) regimen.</p>",
+    "For the majority of patients, <a href='https://www.nice.org.uk/guidance/ng245/chapter/Recommendations#principles-of-pharmacological-treatment' target='_blank'>it recommends</a> use of a combined inhaled corticosteroid (ICS) and formoterol under an AIR (anti-inflammatory reliever) or MART (maintenance and reliever therapy) regimen.</p>",
     "<p><b>Please note:</b> This measure is based on inhalers licensed for AIR and/or MART. The non-AIR/MART group includes all non-formoterol ICS/LABA combination inhalers and high-dose ICS/formoterol inhalers, which are licensed for maintenance therapy only. Some inhalers may be used off-label for AIR/MART in clinical practice; however, for the purposes of this measure, they are included in the non-AIR/MART group. Triple therapy inhalers are excluded, as they are more commonly used in COPD.</p>"
   ],
   "tags": [
