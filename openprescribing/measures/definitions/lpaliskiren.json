@@ -41,7 +41,6 @@
   "measure_complexity": "low",
   "measure_type": "bnf_code",
   "radar_exclude": false,
-    "radar_exclude": false,
   "change_log": [
    {
      "date": "2016-11-28",
