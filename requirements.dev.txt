@@ -16,7 +16,7 @@ mccabe==0.7.0
     # via flake8
 mypy-extensions==1.1.0
     # via black
-packaging==26.2
+packaging==26.3
     # via black
 pathspec==1.1.1
     # via black
