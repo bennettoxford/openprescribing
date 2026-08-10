@@ -33,7 +33,7 @@
   ],
   "denominator_type": "list_size",
   "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "",
+  "checked_by": "christopher.wood@phc.ox.ac.uk",
   "date_reviewed": "2026-08-04",
   "next_review": "2028-08-04",
   "measure_complexity": "low",
@@ -50,7 +50,7 @@
     "date": "2026-08-04",
     "description": "Checked measure, including URLs and guidance.  No changes.",
     "action_by": "richard.croker@phc.ox.ac.uk",
-    "checked_by": ""
+    "checked_by": "christopher.wood@phc.ox.ac.uk"
   }
   ]
 }
