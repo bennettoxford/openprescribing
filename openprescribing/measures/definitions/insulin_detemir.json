@@ -20,7 +20,7 @@
   "low_is_good": true,
   "numerator_type": "bnf_items",
   "numerator_bnf_codes_filter": [
-    "0601012X0% # Insulin detemir"
+    "0601012X0 # Insulin detemir"
   ],
   "denominator_type": "list_size",
   "authored_by": "richard.croker@phc.ox.ac.uk",
