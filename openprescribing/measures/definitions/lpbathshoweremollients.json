@@ -51,6 +51,7 @@
        "AND",
          "(",
            "LOWER(presentation) NOT LIKE '%wash cap%' AND # exclude wash caps \n",
+           "LOWER(presentation) NOT LIKE '%washcloth%' AND # exclude washcloth \n",    
            "LOWER(presentation) NOT LIKE '%wash mitts%' AND # exclude wash mitts \n",
            "LOWER(presentation) NOT LIKE '%antimicrobial%'AND  # exclude formulations with antimicrobial in name \n",
            "LOWER(presentation) NOT LIKE '%feminine%' # exclude formulations with feminine in name \n",
