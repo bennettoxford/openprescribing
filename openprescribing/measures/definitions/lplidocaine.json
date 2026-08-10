@@ -10,7 +10,7 @@
     "NHS England guidance states</a>:</p>",
     "<p><i>Lidocaine plasters are licensed for symptomatic relief of neuropathic pain associated with previous herpes zoster infection (PHN) in adults.",
     "<p>NICE guidance on chronic pain does not recommend lidocaine plasters for treating neuropathic pain.</p>",
-    "<p>The joint clinical working group also considered a <a href='https://www.prescqipp.info/-lidocaine-plasters/send/54-lidocaine-plasters/852-bulletin-51-lidocaine-plasters' target='_blank'>PrescQIPP CIC review</a>, ",
+    "<p>The joint clinical working group also considered a <a href='https://www.prescqipp.info/our-resources/bulletins/bulletin-350-lidocaine-plasters/' target='_blank'>PrescQIPP CIC review</a>, ",
     "and during the consultation more evidence was provided and an up to date evidence summary was deemed necessary and prepared by the ",
     "<a href='https://www.england.nhs.uk/publication/items-which-should-not-be-routinely-prescribed-in-primary-care-evidence-reviews/' target='_blank'>",
     "Specialist Pharmacy Service</a> to inform the joint clinical working group’s recommendations. Based on this review, lidocaine plasters can be prescribed only for patients who are intolerant of first-line ",
@@ -36,10 +36,24 @@
   ],
   "denominator_type": "list_size",
   "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "christopher.wood@phc.ox.ac.uk",
-  "date_reviewed": "2024-03-05",
-  "next_review": "2026-03-05",
+  "checked_by": "caroline.acuda@phc.ox.ac.uk",
+  "date_reviewed": "2026-08-04",
+  "next_review": "2028-08-04",
   "measure_complexity": "low",
   "measure_type": "bnf_code",
-  "radar_exclude": false
+  "radar_exclude": false,
+  "change_log": [
+  {
+    "date": "2016-11-28",
+    "description": "Created measure.",
+    "action_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": "sebastian.bacon@phc.ox.ac.uk"
+  },
+  {
+    "date": "2026-08-04",
+    "description": "Checked measure, including URLs and guidance.  Amended PrescQIPP URL.",
+    "action_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": "caroline.acuda@phc.ox.ac.uk"
+  }
+  ]
 }
