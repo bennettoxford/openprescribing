@@ -29,7 +29,7 @@
     "SELECT",
     "presentation_code FROM {hscic}.bnf",
     "WHERE",
-      "LOWER(presentation) NOT LIKE '% shampoo%' #exclude all shampoos \n",
+      "LOWER(presentation) NOT LIKE '%shampoo%' #exclude all shampoos \n",
       "AND",
       "(",
        "presentation_code LIKE '1302011%' AND # include all Emollient Bath & Shower Preparation \n",
@@ -51,6 +51,7 @@
        "AND",
          "(",
            "LOWER(presentation) NOT LIKE '%wash cap%' AND # exclude wash caps \n",
+           "LOWER(presentation) NOT LIKE '%washcloth%' AND # exclude washcloth \n",    
            "LOWER(presentation) NOT LIKE '%wash mitts%' AND # exclude wash mitts \n",
            "LOWER(presentation) NOT LIKE '%antimicrobial%'AND  # exclude formulations with antimicrobial in name \n",
            "LOWER(presentation) NOT LIKE '%feminine%' # exclude formulations with feminine in name \n",
@@ -61,10 +62,24 @@
   ],
   "denominator_type": "list_size",
   "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "andrew.brown@phc.ox.ac.uk",
-  "date_reviewed": "2024-03-05",
-  "next_review": "2026-03-05",
+  "checked_by": "christopher.wood@phc.ox.ac.uk",
+  "date_reviewed": "2026-08-04",
+  "next_review": "2028-08-04",
   "measure_complexity": "medium",
   "measure_type": "bnf_code",
-  "radar_exclude": false
+  "radar_exclude": false,
+  "change_log": [
+   {
+     "date": "2016-11-28",
+     "description": "Created measure.",
+     "action_by": "richard.croker@phc.ox.ac.uk",
+     "checked_by": "sebastian.bacon@phc.ox.ac.uk"
+   },
+   {
+     "date": "2026-08-04",
+     "description": "Checked measure, including URLs and guidance.  Decided not to update to dm+d due to form_route complications.  Single typo fixed.",
+     "action_by": "richard.croker@phc.ox.ac.uk",
+     "checked_by": "christopher.wood@phc.ox.ac.uk"
+   }
+  ]
 }
