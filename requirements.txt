@@ -36,7 +36,7 @@ click==8.4.2
     # via pip-tools
 contourpy==1.3.3
     # via matplotlib
-coverage==7.15.3
+coverage==7.15.4
     # via -r requirements.in
 crispy-bootstrap3==2024.1
     # via -r requirements.in
@@ -87,7 +87,7 @@ django-dotenv==1.4.2
     # via -r requirements.in
 django-extensions==4.1
     # via -r requirements.in
-djangorestframework==3.17.1
+djangorestframework==3.17.2
     # via
     #   -r requirements.in
     #   djangorestframework-csv
@@ -101,7 +101,7 @@ flake8==7.3.0
     # via -r requirements.in
 fonttools==4.63.0
     # via matplotlib
-google-api-core[grpc]==2.33.0
+google-api-core[grpc]==2.34.0
     # via
     #   google-api-python-client
     #   google-cloud-bigquery
@@ -111,7 +111,7 @@ google-api-core[grpc]==2.33.0
     #   pandas-gbq
 google-api-python-client==2.198.0
     # via -r requirements.in
-google-auth[pyopenssl]==2.56.2
+google-auth[pyopenssl]==2.56.3
     # via
     #   google-api-core
     #   google-api-python-client
@@ -123,33 +123,33 @@ google-auth[pyopenssl]==2.56.2
     #   google-cloud-storage
     #   pandas-gbq
     #   pydata-google-auth
-google-auth-httplib2==0.4.0
+google-auth-httplib2==0.4.1
     # via google-api-python-client
 google-auth-oauthlib==1.4.0
     # via
     #   pandas-gbq
     #   pydata-google-auth
-google-cloud-bigquery==3.42.3
+google-cloud-bigquery==3.43.0
     # via
     #   -r requirements.in
     #   pandas-gbq
-google-cloud-bigquery-storage==2.39.0
+google-cloud-bigquery-storage==2.40.0
     # via -r requirements.in
-google-cloud-core==2.6.0
+google-cloud-core==2.6.1
     # via
     #   google-cloud-bigquery
     #   google-cloud-storage
-google-cloud-storage==3.13.0
+google-cloud-storage==3.13.1
     # via -r requirements.in
 google-crc32c==1.8.0
     # via
     #   google-cloud-storage
     #   google-resumable-media
-google-resumable-media==2.10.0
+google-resumable-media==2.10.1
     # via
     #   google-cloud-bigquery
     #   google-cloud-storage
-googleapis-common-protos==1.75.0
+googleapis-common-protos==1.75.1
     # via
     #   google-api-core
     #   grpcio-status
@@ -206,7 +206,7 @@ more-itertools==11.1.0
     # via cssutils
 networkx==3.6.1
     # via -r requirements.in
-numpy==2.5.1
+numpy==2.5.2
     # via
     #   -r requirements.in
     #   contourpy
@@ -239,17 +239,17 @@ pandas==2.3.3
     #   db-dtypes
     #   pandas-gbq
     #   seaborn
-pandas-gbq==0.35.0
+pandas-gbq==0.35.1
     # via -r requirements.in
 paramiko==5.0.0
     # via fab-classic
 pillow==12.3.0
     # via matplotlib
-pip-tools==7.6.0
+pip-tools==7.6.1
     # via -r requirements.in
 premailer==3.10.0
     # via -r requirements.in
-proto-plus==1.28.2
+proto-plus==1.28.3
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
@@ -264,7 +264,7 @@ psutil==7.2.2
     # via pandas-gbq
 psycopg2-binary==2.9.12
     # via -r requirements.in
-pyarrow==25.0.0
+pyarrow==25.0.1
     # via
     #   db-dtypes
     #   pandas-gbq
@@ -326,7 +326,7 @@ scipy==1.18.0
     # via -r requirements.in
 seaborn==0.13.2
     # via -r requirements.in
-selenium==4.46.0
+selenium==4.47.0
     # via -r requirements.in
 six==1.17.0
     # via
@@ -336,7 +336,7 @@ sniffio==1.3.1
     # via trio
 sortedcontainers==2.4.0
     # via trio
-soupsieve==2.9.1
+soupsieve==2.9.2
     # via beautifulsoup4
 sqlean-py==3.50.4.5
     # via -r requirements.in
@@ -346,7 +346,7 @@ sqlparse==0.5.5
     #   django-debug-toolbar
 titlecase==0.12.0
     # via -r requirements.in
-trio==0.33.0
+trio==0.34.0
     # via
     #   selenium
     #   trio-websocket
@@ -372,7 +372,7 @@ webencodings==0.5.1
     # via html5lib
 websocket-client==1.9.0
     # via selenium
-wheel==0.47.0
+wheel==0.48.0
     # via pip-tools
 when-changed==0.3.0
     # via -r requirements.in
