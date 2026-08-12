@@ -1,0 +1,45 @@
+{
+  "name": "High-cost histamine-2 receptor antagonists (H2RAs)",
+  "title": "Spend on high-cost histamine-2 receptor antagonists per 1000 patients",
+  "description": "Spend on high-cost histamine-2 receptor antagonists per 1000 patients",
+  "numerator_short": "Spend on high-cost histamine-2 receptor antagonists (£)",
+  "denominator_short": "1000 patients",
+  "y_label": "Spend on high-cost H2RAs per 1000 pts",
+  "why_it_matters": [
+    "To be writte"
+  ],
+  "tags": [
+    "core",
+    "cost"
+  ],
+  "url": null,
+  "is_percentage": false,
+  "is_cost_based": true,
+  "low_is_good": true,
+  "numerator_type": "bnf_cost",
+  "numerator_bnf_codes_query": [
+    "SELECT bnf_code FROM {hscic}.presentation",
+    "WHERE bnf_code like '20%' --Dressings \n",
+    "  AND (name LIKE '%Silv%' OR name LIKE '% Ag %') --dressings with either Silv or Ag in the name"
+
+    "SELECT bnf_code",
+    "FROM {dmd}.tariffprice tariffprice",
+    "LEFT JOIN {dmd}.vmpp vmpp ON tariffprice.vmpp = vmpp.id",
+    "WHERE vmpp.bnf_code LIKE '0103010%'",
+    "  AND tariffprice.date = (",
+    "   SELECT MAX(date)",
+    "   FROM {dmd}.tariffprice tariffprice",
+    "   LEFT JOIN {dmd}.vmpp vmpp ON tariffprice.vmpp = vmpp.id",
+    "   WHERE vmpp.bnf_code LIKE '0103010%'",
+    ")",
+    "AND tariffprice.price_pence > 5000"
+  ], 
+  "denominator_type": "list_size",
+  "authored_by": "christopher.wood@phc.ox.ac.uk",
+  "checked_by": "",
+  "date_reviewed": "2026-08-11",
+  "next_review": "2028-08-11",
+  "measure_complexity": "low",
+  "measure_type": "bnf_code",
+  "radar_exclude": false
+}
