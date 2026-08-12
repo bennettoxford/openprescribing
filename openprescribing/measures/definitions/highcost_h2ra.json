@@ -18,10 +18,6 @@
   "low_is_good": true,
   "numerator_type": "bnf_cost",
   "numerator_bnf_codes_query": [
-    "SELECT bnf_code FROM {hscic}.presentation",
-    "WHERE bnf_code like '20%' --Dressings \n",
-    "  AND (name LIKE '%Silv%' OR name LIKE '% Ag %') --dressings with either Silv or Ag in the name"
-
     "SELECT bnf_code",
     "FROM {dmd}.tariffprice tariffprice",
     "LEFT JOIN {dmd}.vmpp vmpp ON tariffprice.vmpp = vmpp.id",
