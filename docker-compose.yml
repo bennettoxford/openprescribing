@@ -45,8 +45,6 @@ services:
       - TEST_SUITE=${TEST_SUITE}
       - BROWSER=${BROWSER}
       - GOOGLE_APPLICATION_CREDENTIALS=/code/google-credentials.json
-    extra_hosts:
-      - "saucehost:${SAUCE_HOST-127.0.0.1}"
     ports:
       - "6080-6580:6080-6580"
       - "6060:6060"
