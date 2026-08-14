@@ -67,7 +67,7 @@ services:
     volumes:
       - .:/code
     depends_on:
-      - db-dev
+      - db-test
 
 volumes:
   postgres_data:
