@@ -1,7 +1,7 @@
 DB_NAME=openprescribing-test
 DB_USER=user
 DB_PASS=pass
-DB_HOST=db-test
+DB_HOST=postgis
 
 SECRET_KEY=secret_key
 MAILGUN_WEBHOOK_USER=mailgun_webhook_user

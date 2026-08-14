@@ -1,6 +1,6 @@
 services:
 
-  db-test:
+  postgis:
     image: postgis/postgis:16-3.4
     environment:
       - POSTGRES_PASSWORD=pass
@@ -38,7 +38,7 @@ services:
     volumes:
       - .:/code
     depends_on:
-      - db-test
+      - postgis
 
   test-production:
     image: ghcr.io/bennettoxford/openprescribing-py312-base:latest
@@ -53,7 +53,7 @@ services:
     volumes:
       - .:/code
     depends_on:
-      - db-test
+      - postgis
 
   dev:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
@@ -63,7 +63,7 @@ services:
     volumes:
       - .:/code
     depends_on:
-      - db-test
+      - postgis
 
 volumes:
   postgres_data:

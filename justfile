@@ -3,7 +3,7 @@ set dotenv-path := "environment"
 set positional-arguments
 
 app_service := "test"
-db_service := "db-test"
+db_service := "postgis"
 
 clean:
     uv venv --clear
