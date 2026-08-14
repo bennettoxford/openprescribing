@@ -2,7 +2,10 @@ services:
 
   db-test:
     image: postgis/postgis:16-3.4
-    env_file: environment-docker
+    environment:
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_USER=user
+      - POSTGRES_DB=openprescribing-test
     ports:
       - "5432:5432"
     volumes:
