@@ -9,7 +9,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - postgis_data:/var/lib/postgresql/data/
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready; exit $(( $? != 0 ))" ]
       interval: 30s
@@ -66,4 +66,4 @@ services:
       - postgis
 
 volumes:
-  postgres_data:
+  postgis_data:
