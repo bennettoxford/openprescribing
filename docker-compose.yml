@@ -42,8 +42,9 @@ services:
 
   test-production:
     image: ghcr.io/bennettoxford/openprescribing-py312-base:latest
-    command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && python manage.py check --deploy --settings openprescribing.settings.production'
+    command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && python manage.py check --deploy'
     environment:
+      - DJANGO_SETTINGS_MODULE=openprescribing.settings.production
       - TEST_SUITE=${TEST_SUITE}
       - BROWSER=${BROWSER}
       - GOOGLE_APPLICATION_CREDENTIALS=/code/google-credentials.json
