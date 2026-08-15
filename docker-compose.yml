@@ -20,7 +20,7 @@ services:
 
   test:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
-    command: /bin/bash -c './scripts/docker_setup.sh test && cd openprescribing && make test'
+    command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && make test'
     environment:
       - DJANGO_SETTINGS_MODULE=openprescribing.settings.test
       - BROWSER=${BROWSER}
@@ -42,7 +42,7 @@ services:
 
   test-production:
     image: ghcr.io/bennettoxford/openprescribing-py312-base:latest
-    command: /bin/bash -c './scripts/docker_setup.sh production && cd openprescribing && python manage.py check --deploy --settings openprescribing.settings.production'
+    command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && python manage.py check --deploy --settings openprescribing.settings.production'
     environment:
       - TEST_SUITE=${TEST_SUITE}
       - BROWSER=${BROWSER}
@@ -57,7 +57,7 @@ services:
 
   dev:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
-    command: /bin/bash -c './scripts/docker_setup.sh local &&  cd openprescribing && /bin/bash -l'
+    command: /bin/bash -c './scripts/docker_setup.sh &&  cd openprescribing && /bin/bash -l'
     ports:
       - "8000:8000"
     volumes:
