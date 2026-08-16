@@ -38,7 +38,8 @@ services:
     volumes:
       - .:/code
     depends_on:
-      - postgis
+      postgis:
+        condition: service_healthy
 
   test-production:
     image: ghcr.io/bennettoxford/openprescribing-py312-base:latest
@@ -51,7 +52,8 @@ services:
     volumes:
       - .:/code
     depends_on:
-      - postgis
+      postgis:
+        condition: service_healthy
 
   dev:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
@@ -61,7 +63,8 @@ services:
     volumes:
       - .:/code
     depends_on:
-      - postgis
+      postgis:
+        condition: service_healthy
 
 volumes:
   postgis_data:
