@@ -56,7 +56,7 @@ test *args: _environment db
     set -euo pipefail
 
     cd openprescribing
-    SKIP_NPM_BUILD=1 uv run coverage run manage.py test "$@"
+    uv run coverage run manage.py test "$@"
 
 test-functional *args:
     #!/usr/bin/env bash
