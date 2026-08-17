@@ -57,7 +57,7 @@
     "count.ing_count <3 --only includes inhalers with fewer than 3 ingredients, removing triple therapy (usually used in COPD)"
   ],
   "authored_by": "christopher.wood@phc.ox.ac.uk",
-  "checked_by": "TBC",
+  "checked_by": "victoria speed@phc.ox.ac.uk",
   "date_reviewed": "2026-08-17",
   "next_review": "2027-08-17",
   "measure_complexity": "medium",
