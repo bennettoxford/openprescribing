@@ -1,10 +1,10 @@
 {
   "name": "AIR/MART inhalers",
   "title": "AIR/MART inhalers",
-  "description": "Percentage of corticosteroid containing inhaler doses that are for inhalers not licensed for MART/AIR therapy",
+  "description": "Percentage of corticosteroid containing inhaler doses that are for inhalers not licensed for AIR/MART therapy",
   "numerator_short": "Non-AIR/MART corticosteroid containing inhaler quantity",
   "denominator_short": "Corticosteroid-containing inhaler quantity",
-  "y_label": "Percentage of corticosteroid containing inhaler doses not licensed for MART/AIR therapy",
+  "y_label": "Percentage of corticosteroid containing inhaler doses not licensed for AIR/MART therapy",
   "why_it_matters": [
     "The <a href='https://www.nice.org.uk/guidance/ng245/' target='_blank'>BTS/NICE/SIGN guidance</a> published in November 2024 made significant changes to recommendations on asthma management.",
     "For the majority of patients, <a href='https://www.nice.org.uk/guidance/ng245/chapter/Recommendations#principles-of-pharmacological-treatment' target='_blank'>it recommends</a> use of a combined inhaled corticosteroid (ICS) and formoterol under an AIR (anti-inflammatory reliever) or MART (maintenance and reliever therapy) regimen.</p>",
@@ -58,17 +58,17 @@
   ],
   "authored_by": "christopher.wood@phc.ox.ac.uk",
   "checked_by": "TBC",
-  "date_reviewed": "2026-07-28",
-  "next_review": "2027-07-28",
+  "date_reviewed": "2026-08-17",
+  "next_review": "2027-08-17",
   "measure_complexity": "medium",
   "measure_type": "dmd",
   "radar_exclude": false,
   "change_log": [
     {
-      "date": "2026-07-28",
+      "date": "2026-08-17",
       "description": "Created measure.",
       "action_by": "christopher.wood@phc.ox.ac.uk",
-      "checked_by": ""
+      "checked_by": "victoria.speed@phc.ox.ac.uk"
     }
   ]
 }
