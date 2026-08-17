@@ -8,8 +8,8 @@
   "why_it_matters": [
     "Continuous glucose monitoring devices (CGM) can significantly reduce the need for people with diabetes to conduct finger-prick testing.</p>",
     "<p>NICE guidance for <a href='https://www.nice.org.uk/guidance/ng17' target='_Blank'>Type 1 diabetes in adults</a>, <a href='https://www.nice.org.uk/guidance/ng28' target='_Blank'>",
-    "Type 2 diabetes in adults</a> and <a href='https://www.nice.org.uk/guidance/ng18' target='_Blank'>Type 1 and Type 2 diabetes in children and young people</a> were all ",
-    "updated in March 2022. The updates include recommendations that all patients with type 1 diabetes should be offered a choice of real-time continuous ",
+    "Type 2 diabetes in adults</a> and <a href='https://www.nice.org.uk/guidance/ng18' target='_Blank'>Type 1 and Type 2 diabetes in children and young people</a> ",
+    "include recommendations that all patients with type 1 diabetes should be offered a choice of real-time continuous ",
     "glucose monitoring (rtCGM) or intermittently scanned continuous glucose monitoring (isCGM) and that adults with type 2 diabetes on multiple daily ",
     "insulin injections should be offered GM where they meet specific clinical criteria."
   ],
@@ -39,5 +39,19 @@
   "next_review": "2025-08-05",
   "measure_complexity": "medium",
   "measure_type": "dmd",
-  "radar_exclude": true
+  "radar_exclude": true,
+  "change_log": [
+  {
+    "date": "2022-05-10",
+    "description": "Created measure from previous freestyle libre measure.",
+    "action_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": "christopher.wood@phc.ox.ac.uk"
+  },
+  {
+    "date": "2026-08-04",
+    "description": "Checked measure, including URLs and guidance.  Amended text for recommendation to remove --in 2022--.",
+    "action_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": ""
+  }
+  ]
 }
