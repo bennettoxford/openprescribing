@@ -3,7 +3,7 @@ set dotenv-path := "environment"
 set positional-arguments
 
 app_service := "test"
-db_service := "db-test"
+db_service := "postgis"
 
 clean:
     uv venv --clear
@@ -22,6 +22,24 @@ migrate *args:
 
 run *args:
     {{ just_executable() }} manage runserver "$@"
+
+run-docker:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    # Run the web app and database in containers for development. Commands correspond to
+    # those in the "Using Docker" section of README.md, with additional cleanup.
+
+    # Running the service will replace environment with environment-test, so we backup
+    # and rotate environment. We also remove all containers (including dependant
+    # containers) and volumes when this recipe exits to avoid accumulating them over
+    # time.
+    cleanup() {
+        mv environment.bak environment
+        docker compose down
+    }
+    trap 'cleanup' EXIT INT TERM
+    cp environment environment.bak
+    docker compose run --rm --service-ports dev
 
 test *args: db
     #!/usr/bin/env bash
