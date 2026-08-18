@@ -33,11 +33,10 @@ migrate *args:
 run *args:
     {{ just_executable() }} manage runserver "$@"
 
-run-docker:
+# Start the web app and database containers
+start-docker:
     #!/usr/bin/env bash
     set -euo pipefail
-    # Run the web app and database in containers for development. Commands correspond to
-    # those in the "Using Docker" section of README.md, with additional cleanup.
 
     # Running the service will replace environment with environment-test, so we backup
     # and rotate environment. We also remove all containers (including dependant
