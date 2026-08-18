@@ -2,8 +2,9 @@ set default-list
 set dotenv-path := "environment"
 set positional-arguments
 
-app_service := "test"
-db_service := "postgis"
+dev_service := "dev"
+postgis_service := "postgis"
+test_service := "test"
 
 _environment:
     #!/usr/bin/env bash
@@ -70,7 +71,7 @@ start-docker:
     # Unlike `up`, `run` doesn't create the ports that are specified by
     # docker-compose.yml by default. These ports are needed for connecting to the Django
     # development web server, so we pass `--service-ports` to create them.
-    docker compose run --rm --service-ports dev
+    docker compose run --rm --service-ports {{ dev_service }}
 
 # Run the tests (see TESTING.md)
 test *args: _environment _check-gdal-binary _check-phantomjs-binary db
@@ -161,7 +162,7 @@ test-docker: _environment
     # docker-compose.yml by default. These ports are needed for running the functional
     # tests with the BrowserStack local agent, so we pass `--service-ports` to create
     # them.
-    docker compose run --rm --service-ports {{ app_service }}
+    docker compose run --rm --service-ports {{ test_service }}
 
 # Run the functional tests in a container (see TESTING.md)
 test-docker-functional:
@@ -192,16 +193,16 @@ assets-build:
 
 # Start the database container
 db:
-    docker compose up --detach --wait {{ db_service }}
+    docker compose up --detach --wait {{ postgis_service }}
 
 # Remove an existing database container, and its associated network and volume
 @db-clean:
     # need not depend on db, because a down without a previous up is a no-op
-    @docker compose down --volumes {{ db_service }}
+    @docker compose down --volumes {{ postgis_service }}
 
 # Access a database shell running inside the database container
 db-shell: db
-    docker compose exec {{ db_service }} bash -c 'psql --username "$POSTGRES_USER" "$POSTGRES_DB"'
+    docker compose exec {{ postgis_service }} bash -c 'psql --username "$POSTGRES_USER" "$POSTGRES_DB"'
 
 # Build the base and test images
 [confirm("This will remove the existing base and test images. Do you wish to continue? (y/n)")]
