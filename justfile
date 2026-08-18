@@ -63,15 +63,13 @@ start-docker:
     set -euo pipefail
 
     # Running the service will replace environment with environment-test, so we backup
-    # and rotate environment. We also remove all containers (including dependant
-    # containers), networks, and volumes when this recipe exits to avoid accumulating
-    # them over time.
-    cleanup() {
-        mv environment.bak environment
-        docker compose down --volumes
-    }
-    trap 'cleanup' EXIT INT TERM
+    # and rotate environment.
     cp environment environment.bak
+    trap 'mv environment.bak environment' EXIT INT TERM
+
+    # Unlike `up`, `run` doesn't create the ports that are specified by
+    # docker-compose.yml by default. These ports are needed for connecting to the Django
+    # development web server, so we pass `--service-ports` to create them.
     docker compose run --rm --service-ports dev
 
 # Run the tests (see TESTING.md)
