@@ -40,11 +40,11 @@ start-docker:
 
     # Running the service will replace environment with environment-test, so we backup
     # and rotate environment. We also remove all containers (including dependant
-    # containers) and volumes when this recipe exits to avoid accumulating them over
-    # time.
+    # containers), networks, and volumes when this recipe exits to avoid accumulating
+    # them over time.
     cleanup() {
         mv environment.bak environment
-        docker compose down
+        docker compose down --volumes
     }
     trap 'cleanup' EXIT INT TERM
     cp environment environment.bak
