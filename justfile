@@ -5,6 +5,16 @@ set positional-arguments
 app_service := "test"
 db_service := "postgis"
 
+_environment:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    if [[ ! -f "environment" ]]; then
+        echo 'I did not find `environment`, so I will create it from `environment-sample`. Please edit `environment` and rerun the just recipe.'
+        cp environment-sample environment
+        exit 1
+    fi
+
 clean:
     uv venv --clear
 
@@ -41,7 +51,7 @@ run-docker:
     cp environment environment.bak
     docker compose run --rm --service-ports dev
 
-test *args: db
+test *args: _environment db
     #!/usr/bin/env bash
     set -euo pipefail
 
@@ -109,7 +119,7 @@ test-docker-browserstack-functional: _check-browser-env-var start-browserstacklo
     # agent (openprescribing.frontend.tests.functional.selenium_base.use_browserstack).
     GITHUB_ACTIONS=1 {{ just_executable() }} test-docker-functional
 
-test-docker:
+test-docker: _environment
     #!/usr/bin/env bash
     set -euo pipefail
 
