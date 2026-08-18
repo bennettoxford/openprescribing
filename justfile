@@ -160,9 +160,9 @@ assets-build:
 db:
     docker compose up --detach --wait {{ db_service }}
 
-db-clean:
+@db-clean:
     # need not depend on db, because a down without a previous up is a no-op
-    docker compose down --volumes {{ db_service }}
+    @docker compose down --volumes {{ db_service }}
 
 db-shell: db
     docker compose exec {{ db_service }} psql --username user openprescribing-test
