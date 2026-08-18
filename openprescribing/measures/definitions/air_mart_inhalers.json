@@ -1,0 +1,74 @@
+{
+  "name": "AIR/MART inhalers",
+  "title": "AIR/MART inhalers",
+  "description": "Percentage of corticosteroid containing inhaler doses that are for inhalers not licensed for AIR/MART therapy",
+  "numerator_short": "Non-AIR/MART corticosteroid containing inhaler quantity",
+  "denominator_short": "Corticosteroid-containing inhaler quantity",
+  "y_label": "Percentage of corticosteroid containing inhaler doses not licensed for AIR/MART therapy",
+  "why_it_matters": [
+    "The <a href='https://www.nice.org.uk/guidance/ng245/' target='_blank'>BTS/NICE/SIGN guidance</a> published in November 2024 made significant changes to recommendations on asthma management.",
+    "For the majority of patients, <a href='https://www.nice.org.uk/guidance/ng245/chapter/Recommendations#principles-of-pharmacological-treatment' target='_blank'>it recommends</a> use of a combined inhaled corticosteroid (ICS) and formoterol under an AIR (anti-inflammatory reliever) or MART (maintenance and reliever therapy) regimen.</p>",
+    "<p><b>Please note:</b> This measure is based on inhalers licensed for AIR and/or MART. The non-AIR/MART group includes all non-formoterol ICS/LABA combination inhalers and high-dose ICS/formoterol inhalers, which are licensed for maintenance therapy only. Some inhalers may be used off-label for AIR/MART in clinical practice; however, for the purposes of this measure, they are included in the non-AIR/MART group. Triple therapy inhalers are excluded, as they are more commonly used in COPD.</p>"
+  ],
+  "tags": [
+    "core",
+    "respiratory",
+    "nice"
+  ],
+  "url": null, 
+  "is_percentage": true,
+  "is_cost_based": false,
+  "low_is_good": true,
+  "numerator_type": "custom",
+  "numerator_columns": "SUM(p.quantity/adj.qtyadj) AS numerator",
+  "numerator_from": [
+    "{hscic}.normalised_prescribing p ",
+    "INNER JOIN {dmd}.vmp vmp ON CONCAT(SUBSTR(p.bnf_code,0,9),'AA', SUBSTR(p.bnf_code,-2), SUBSTR(p.bnf_code,-2)) = vmp.bnf_code -- joins prescribing data to vmp table using generic BNF code \n",
+    "INNER JOIN {measures}.vw__inhaler_quantity_adjustment as adj ON p.bnf_code = adj.bnf_code AND p.month = adj.date -- joins prescribing data to view for form_route and adjustment where quantity = puffs not inhalers  \n",
+    "INNER JOIN {measures}.vw__presentation_ingredient_count as count ON p.bnf_code = count.bnf_code  -- joins prescribing data to ingredient count, so we can limit triple therapy inhalers \n"
+    ],
+  "numerator_where": [
+    "adj.form_route IN ('pressurizedinhalation.inhalation', 'powderinhalation.inhalation', 'inhalationsolution.inhalation')",
+    "AND \n",
+    "p.bnf_code LIKE '0302%' -- Corticosteroids (Respiratory) \n",
+    "AND \n",
+    "count.ing_count <3 --only includes inhalers with fewer than 3 ingredients, removing triple therapy (usually used in COPD) \n",
+    "AND vmp.id NOT IN ( \n",
+    "26148711000001101, -- Beclometasone 100micrograms-dose Formoterol 6micrograms-dose dry powder inhaler \n",
+    "12911011000001100, -- Beclometasone 100micrograms-dose  Formoterol 6micrograms-dose inhaler CFC free \n",
+    "39133611000001108, -- Budesonide 100micrograms-dose Formoterol 3micrograms-dose inhaler CFC free \n",
+    "35912011000001109, -- Budesonide 100micrograms-dose Formoterol 6micrograms-dose dry powder inhaler \n",
+    "38896811000001103, -- Budesonide 200micrograms-dose Formoterol 6micrograms-dose dry powder inhaler \n",
+    "32960711000001105 -- Budesonide 200micrograms-dose Formoterol 6micrograms-dose inhaler CFC free \n",
+    ") -- exclude VMPs which have products licensed for AIR or MART thearpy\n"
+  ],
+  "denominator_type": "custom",
+  "denominator_columns": "SUM(p.quantity/adj.qtyadj) AS denominator",
+  "denominator_from": [
+    "{hscic}.normalised_prescribing p ",
+    "INNER JOIN {measures}.vw__inhaler_quantity_adjustment as adj ON p.bnf_code = adj.bnf_code AND p.month = adj.date -- joins prescribing data to view for form_route and adjustment where quantity = puffs not inhalers  \n",
+    "INNER JOIN {measures}.vw__presentation_ingredient_count as count ON p.bnf_code = count.bnf_code  -- joins prescribing data to ingredient count, so we can limit triple therapy inhalers \n"
+    ],
+  "denominator_where": [
+    "adj.form_route IN ('pressurizedinhalation.inhalation', 'powderinhalation.inhalation', 'inhalationsolution.inhalation')",
+    "AND \n",
+    "p.bnf_code LIKE '0302%' -- Corticosteroids (Respiratory) \n",
+    "AND \n",
+    "count.ing_count <3 --only includes inhalers with fewer than 3 ingredients, removing triple therapy (usually used in COPD)"
+  ],
+  "authored_by": "christopher.wood@phc.ox.ac.uk",
+  "checked_by": "victoria.speed@phc.ox.ac.uk",
+  "date_reviewed": "2026-08-17",
+  "next_review": "2027-08-17",
+  "measure_complexity": "medium",
+  "measure_type": "dmd",
+  "radar_exclude": false,
+  "change_log": [
+    {
+      "date": "2026-08-17",
+      "description": "Created measure.",
+      "action_by": "christopher.wood@phc.ox.ac.uk",
+      "checked_by": "victoria.speed@phc.ox.ac.uk"
+    }
+  ]
+}
