@@ -140,6 +140,16 @@ test-docker-functional:
 test-docker-nonfunctional:
     TEST_SUITE=nonfunctional {{ just_executable() }} test-docker
 
+assets-install:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    cd openprescribing/media/js
+    npm install -g browserify
+    npm install -g jshint
+    npm install -g less
+    npm install
+
 assets-build:
     #!/usr/bin/env bash
     set -euo pipefail
