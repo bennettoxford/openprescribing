@@ -2,8 +2,8 @@ set default-list
 set dotenv-path := "environment"
 set positional-arguments
 
-app_service := "test"
 postgis_service := "postgis"
+test_service := "test"
 
 _environment:
     #!/usr/bin/env bash
@@ -161,7 +161,7 @@ test-docker: _environment
     # docker-compose.yml by default. These ports are needed for running the functional
     # tests with the BrowserStack local agent, so we pass `--service-ports` to create
     # them.
-    docker compose run --rm --service-ports {{ app_service }}
+    docker compose run --rm --service-ports {{ test_service }}
 
 # Run the functional tests in a container (see TESTING.md)
 test-docker-functional:
