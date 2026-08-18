@@ -138,7 +138,7 @@ test-docker-browserstack-functional: _check-browser-env-var start-browserstacklo
     # USE_BROWSERSTACK isn't passed to the service, but GITHUB_ACTIONS is. Either is
     # used to determine whether the functional tests are run with the BrowserStack local
     # agent (openprescribing.frontend.tests.functional.selenium_base.use_browserstack).
-    GITHUB_ACTIONS=1 {{ just_executable() }} test-docker-functional
+    GITHUB_ACTIONS=true {{ just_executable() }} test-docker-functional
 
 # Run the tests in a container (see TESTING.md)
 test-docker: _environment
