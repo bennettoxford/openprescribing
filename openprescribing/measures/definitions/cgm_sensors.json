@@ -26,9 +26,9 @@
   "numerator_from": [
     "{hscic}.normalised_prescribing p -- joins prescribing data to subquery below, filtering list to BNF codes created in subquery \n",
     "INNER JOIN -- joins the prescribing data table to the subquery thereby filtering the prescribing data to only these codes \n",
-    "(SELECT bnf_code FROM {dmd}.vmp WHERE id = 34865511000001109 AND LOWER(nm) NOT LIKE '%transmitter%' -- selects bnf_codes from vmp table matching VMP id, excluding transmitters \n",
+    "(SELECT bnf_code FROM {dmd}.vmp WHERE id = 34865511000001109 AND LOWER(nm) NOT LIKE '%transmitter%' AND LOWER(nm) NOT LIKE '%receiver%' -- selects bnf_codes from vmp table matching VMP id, excluding transmitters and receivers \n",
     "UNION DISTINCT -- joins vmp and amp tables together \n",
-    "SELECT bnf_code FROM {dmd}.amp WHERE vmp = 34865511000001109 AND bnf_code IS NOT NULL AND LOWER(nm) NOT LIKE '%transmitter%') bnf -- selects bnf_codes from amp table matching VMP id where they exist, excluding transmitters \n",
+    "SELECT bnf_code FROM {dmd}.amp WHERE vmp = 34865511000001109 AND bnf_code IS NOT NULL AND LOWER(nm) NOT LIKE '%transmitter%' AND LOWER(nm) NOT LIKE '%receiver%') bnf -- selects bnf_codes from amp table matching VMP id where they exist, excluding transmitters and receivers \n",
     "ON p.bnf_code = bnf.bnf_code"
    ],
   "numerator_where": "1 = 1",
