@@ -2,6 +2,7 @@ set default-list
 set dotenv-path := "environment"
 set positional-arguments
 
+dev_service := "dev"
 postgis_service := "postgis"
 test_service := "test"
 
@@ -70,7 +71,7 @@ start-docker:
     # Unlike `up`, `run` doesn't create the ports that are specified by
     # docker-compose.yml by default. These ports are needed for connecting to the Django
     # development web server, so we pass `--service-ports` to create them.
-    docker compose run --rm --service-ports dev
+    docker compose run --rm --service-ports {{ dev_service }}
 
 # Run the tests (see TESTING.md)
 test *args: _environment _check-gdal-binary _check-phantomjs-binary db
