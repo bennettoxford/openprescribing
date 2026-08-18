@@ -24,21 +24,27 @@ _check-gdal-binary:
         exit 1
     fi
 
+# Remove an existing virtual environment
 clean:
     uv venv --clear
 
+# Run the code quality checks but don't modify any files
 check:
     ./scripts/lint.sh
 
+# Install development requirements into the virtual environment
 devenv:
     uv pip sync requirements.txt requirements.dev.txt
 
+# Run `manage.py`
 manage *args: db
     uv run openprescribing/manage.py "$@"
 
+# Run `manage.py migrate`
 migrate *args:
     {{ just_executable() }} manage migrate "$@"
 
+# Run `manage.py runserver`
 run *args:
     {{ just_executable() }} manage runserver "$@"
 
@@ -67,6 +73,7 @@ test *args: _environment _check-gdal-binary db
     cd openprescribing
     uv run coverage run manage.py test "$@"
 
+# Run the functional tests (see TESTING.md)
 test-functional *args:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -81,6 +88,7 @@ test-functional *args:
 
     TEST_SUITE=functional {{ just_executable() }} test "$@"
 
+# Run the non-functional tests (see TESTING.md)
 test-nonfunctional *args:
     TEST_SUITE=nonfunctional {{ just_executable() }} test "$@"
 
@@ -94,6 +102,7 @@ _check-browserstacklocal-binary:
         exit 1
     fi
 
+# Start BrowserStack's local agent (see TESTING.md)
 @start-browserstacklocal: _check-browserstacklocal-binary
     # The force flag kills other instances of the BrowserStackLocal daemon with the same
     # local-identifier. At most, one instance should exist if a previous BrowserStack
@@ -104,6 +113,7 @@ _check-browserstacklocal-binary:
     --key "$BROWSERSTACK_ACCESS_KEY" \
     --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
+# Stop BrowserStack's local agent (see TESTING.md)
 stop-browserstacklocal: _check-browserstacklocal-binary
     BrowserStackLocal --daemon stop --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
@@ -119,15 +129,18 @@ _check-browser-env-var:
         exit 1
     fi
 
+# Run the functional tests using BrowserStack's local agent (see TESTING.md)
 test-browserstack-functional *args: _check-browser-env-var start-browserstacklocal && stop-browserstacklocal
     USE_BROWSERSTACK=1 {{ just_executable() }} test-functional "$@"
 
+# Run the functional tests in a container using BrowserStack's local agent (see TESTING.md)
 test-docker-browserstack-functional: _check-browser-env-var start-browserstacklocal && stop-browserstacklocal
     # USE_BROWSERSTACK isn't passed to the service, but GITHUB_ACTIONS is. Either is
     # used to determine whether the functional tests are run with the BrowserStack local
     # agent (openprescribing.frontend.tests.functional.selenium_base.use_browserstack).
     GITHUB_ACTIONS=1 {{ just_executable() }} test-docker-functional
 
+# Run the tests in a container (see TESTING.md)
 test-docker: _environment
     #!/usr/bin/env bash
     set -euo pipefail
@@ -143,12 +156,15 @@ test-docker: _environment
     # them.
     docker compose run --rm --service-ports {{ app_service }}
 
+# Run the functional tests in a container (see TESTING.md)
 test-docker-functional:
     TEST_SUITE=functional {{ just_executable() }} test-docker
 
+# Run the non-functional tests in a container (see TESTING.md)
 test-docker-nonfunctional:
     TEST_SUITE=nonfunctional {{ just_executable() }} test-docker
 
+# Install the Node.js dependencies
 assets-install:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -159,6 +175,7 @@ assets-install:
     npm install -g less
     npm install
 
+# Build the Node.js assets
 assets-build:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -166,6 +183,7 @@ assets-build:
     cd openprescribing/media/js
     npm run build
 
+# Start the database container
 db:
     docker compose up --detach --wait {{ db_service }}
 
@@ -174,6 +192,7 @@ db:
     # need not depend on db, because a down without a previous up is a no-op
     @docker compose down --volumes {{ db_service }}
 
+# Access a database shell running inside the database container
 db-shell: db
     docker compose exec {{ db_service }} psql --username user openprescribing-test
 
