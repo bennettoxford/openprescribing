@@ -160,6 +160,7 @@ assets-build:
 db:
     docker compose up --detach --wait {{ db_service }}
 
+# Remove an existing database container, and its associated network and volume
 @db-clean:
     # need not depend on db, because a down without a previous up is a no-op
     @docker compose down --volumes {{ db_service }}
