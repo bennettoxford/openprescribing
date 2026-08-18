@@ -33,9 +33,9 @@
   "denominator_where": "bnf_code LIKE '0501013B0%AB' --Amoxicillin 500mg capsules (brands and generic)",
   "no_analyse_url": true,
   "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "",
+  "checked_by": "christopher.wood@phc.ox.ac.uk",
   "date_reviewed": "2026-08-17",
-  "next_review": "2025-09-12",
+  "next_review": "2028-08-17",
   "measure_complexity": "low",
   "radar_exclude": false,
   "change_log": [
@@ -55,7 +55,7 @@
     "date": "2026-08-17",
     "description": "Checked measure, including URLs and guidance.  Removed out of date NHSE ambition.",
     "action_by": "richard.croker@phc.ox.ac.uk",
-    "checked_by": ""
+    "checked_by": "christopher.wood@phc.ox.ac.uk"
   }
   ]
 }
