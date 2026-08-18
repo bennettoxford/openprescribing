@@ -3,7 +3,7 @@ set dotenv-path := "environment"
 set positional-arguments
 
 app_service := "test"
-db_service := "postgis"
+postgis_service := "postgis"
 
 _environment:
     #!/usr/bin/env bash
@@ -192,16 +192,16 @@ assets-build:
 
 # Start the database container
 db:
-    docker compose up --detach --wait {{ db_service }}
+    docker compose up --detach --wait {{ postgis_service }}
 
 # Remove an existing database container, and its associated network and volume
 @db-clean:
     # need not depend on db, because a down without a previous up is a no-op
-    @docker compose down --volumes {{ db_service }}
+    @docker compose down --volumes {{ postgis_service }}
 
 # Access a database shell running inside the database container
 db-shell: db
-    docker compose exec {{ db_service }} bash -c 'psql --username "$POSTGRES_USER" "$POSTGRES_DB"'
+    docker compose exec {{ postgis_service }} bash -c 'psql --username "$POSTGRES_USER" "$POSTGRES_DB"'
 
 # Build the base and test images
 [confirm("This will remove the existing base and test images. Do you wish to continue? (y/n)")]
