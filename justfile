@@ -194,7 +194,7 @@ db:
 
 # Access a database shell running inside the database container
 db-shell: db
-    docker compose exec {{ db_service }} psql --username user openprescribing-test
+    docker compose exec {{ db_service }} bash -c 'psql --username "$POSTGRES_USER" "$POSTGRES_DB"'
 
 # Build the base and test images
 [confirm("This will remove the existing base and test images. Do you wish to continue? (y/n)")]
