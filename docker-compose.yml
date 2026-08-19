@@ -26,7 +26,7 @@ services:
       - BROWSER=${BROWSER:-placeholder}
       - TEST_SUITE=${TEST_SUITE:-placeholder}
       - GOOGLE_APPLICATION_CREDENTIALS=/code/google-credentials.json
-      - GITHUB_ACTIONS=${GITHUB_ACTIONS:-false}
+      - GITHUB_ACTIONS=${GITHUB_ACTIONS:-}
       - BROWSERSTACK_USERNAME=${BROWSERSTACK_USERNAME:-placeholder}
       - BROWSERSTACK_ACCESS_KEY=${BROWSERSTACK_ACCESS_KEY:-placeholder}
       - BROWSERSTACK_PROJECT_NAME=${BROWSERSTACK_PROJECT_NAME:-placeholder}
