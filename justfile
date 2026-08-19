@@ -6,16 +6,6 @@ dev_service := "dev"
 postgis_service := "postgis"
 test_service := "test"
 
-_environment:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    if [[ ! -f "environment" ]]; then
-        echo 'I did not find `environment`, so I will create it from `environment-sample`. Please edit `environment` and rerun the just recipe.'
-        cp environment-sample environment
-        exit 1
-    fi
-
 _check-gdal-binary:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -69,7 +59,7 @@ start-docker:
     docker compose run --rm --service-ports {{ dev_service }}
 
 # Run the tests (see TESTING.md)
-test *args: _environment _check-gdal-binary _check-phantomjs-binary db
+test *args: _check-gdal-binary _check-phantomjs-binary db
     #!/usr/bin/env bash
     set -euo pipefail
 
@@ -133,7 +123,7 @@ test-docker-browserstack-functional: _check-browser-env-var start-browserstacklo
     GITHUB_ACTIONS=true {{ just_executable() }} test-docker-functional
 
 # Run the tests in a container (see TESTING.md)
-test-docker: _environment
+test-docker:
     #!/usr/bin/env bash
     set -euo pipefail
 
