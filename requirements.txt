@@ -30,7 +30,7 @@ cffi==2.1.1
     # via
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.9
+charset-normalizer==3.5.1
     # via requests
 click==8.4.2
     # via pip-tools
@@ -162,7 +162,7 @@ grpcio==1.83.0
     #   grpcio-status
 grpcio-status==1.83.0
     # via google-api-core
-gunicorn==26.0.0
+gunicorn==26.1.0
     # via -r requirements.in
 h11==0.16.0
     # via wsproto
@@ -174,7 +174,7 @@ httplib2==0.32.0
     # via
     #   google-api-python-client
     #   google-auth-httplib2
-idna==3.18
+idna==3.19
     # via
     #   django-anymail
     #   requests
@@ -229,7 +229,6 @@ packaging==26.3
     #   build
     #   db-dtypes
     #   google-cloud-bigquery
-    #   gunicorn
     #   matplotlib
     #   pandas-gbq
     #   wheel
@@ -340,7 +339,7 @@ soupsieve==2.9.2
     # via beautifulsoup4
 sqlean-py==3.50.4.5
     # via -r requirements.in
-sqlparse==0.5.5
+sqlparse==0.6.0
     # via
     #   django
     #   django-debug-toolbar
@@ -368,7 +367,7 @@ urllib3[socks]==2.7.0
     #   selenium
 watchdog==6.0.0
     # via when-changed
-webencodings==0.5.1
+webencodings==0.6.1
     # via html5lib
 websocket-client==1.9.0
     # via selenium
