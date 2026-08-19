@@ -74,6 +74,8 @@ test *args: _check-gdal-binary _check-phantomjs-binary db
     #!/usr/bin/env bash
     set -euo pipefail
 
+    export DJANGO_SETTINGS_MODULE=openprescribing.settings.test
+    export GOOGLE_APPLICATION_CREDENTIALS=google-credentials.json
     cd openprescribing
     uv run coverage run manage.py test "$@"
 
