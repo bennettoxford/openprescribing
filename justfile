@@ -78,17 +78,6 @@ test *args: _environment _check-gdal-binary _check-phantomjs-binary db
 
 # Run the functional tests (see TESTING.md)
 test-functional *args:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    check_status() {
-        if [[ $? -ne 0 ]]; then
-            echo 'Error: See TESTING.md for information about why this recipe might have failed.'
-        fi
-    }
-    # Run check_status, even though we set -e (if a command fails, then exit Bash).
-    trap 'check_status' EXIT INT TERM
-
     TEST_SUITE=functional {{ just_executable() }} test "$@"
 
 # Run the non-functional tests (see TESTING.md)
