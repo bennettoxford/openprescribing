@@ -1,10 +1,21 @@
 set default-list
-set dotenv-path := "environment"
 set positional-arguments
 
 dev_service := "dev"
 postgis_service := "postgis"
 test_service := "test"
+
+export BROWSERSTACK_BUILD_NAME := "openprescribing"
+export BROWSERSTACK_LOCAL_IDENTIFIER := "openprescribing"
+export BROWSERSTACK_PROJECT_NAME := "openprescribing"
+export DB_NAME := "openprescribing-test"
+export DB_PASS := "pass"
+export DB_USER := "user"
+export DJANGO_SETTINGS_MODULE := "openprescribing.settings.local"
+export MAILGUN_API_KEY := "mailgun_api_key"
+export MAILGUN_WEBHOOK_PASS := "mailgun_webhook_pass"
+export MAILGUN_WEBHOOK_USER := "mailgun_webhook_user"
+export SECRET_KEY := "secret_key"
 
 _check-gdal-binary:
     #!/usr/bin/env bash
