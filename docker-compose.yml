@@ -1,5 +1,14 @@
-services:
+x-shared-environment: &shared-environment
+  DB_HOST: postgis
+  DB_NAME: ${DB_NAME:-}
+  DB_PASS: ${DB_PASS:-}
+  DB_USER: ${DB_USER:-}
+  MAILGUN_API_KEY: ${MAILGUN_API_KEY:-}
+  MAILGUN_WEBHOOK_PASS: ${MAILGUN_WEBHOOK_PASS:-}
+  MAILGUN_WEBHOOK_USER: ${MAILGUN_WEBHOOK_USER:-}
+  SECRET_KEY: ${SECRET_KEY:-}
 
+services:
   postgis:
     image: postgis/postgis:16-3.4
     environment:
@@ -25,6 +34,7 @@ services:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
     command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && make test'
     environment:
+      <<: *shared-environment
       DJANGO_SETTINGS_MODULE: openprescribing.settings.test
       BROWSER: ${BROWSER:-}
       TEST_SUITE: ${TEST_SUITE:-}
@@ -48,6 +58,7 @@ services:
     image: ghcr.io/bennettoxford/openprescribing-py312-base:latest
     command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && python manage.py check --deploy'
     environment:
+      <<: *shared-environment
       DJANGO_SETTINGS_MODULE: openprescribing.settings.production
     ports:
       - "6080-6580:6080-6580"
@@ -62,6 +73,7 @@ services:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
     command: /bin/bash -c './scripts/docker_setup.sh &&  cd openprescribing && /bin/bash -l'
     environment:
+      <<: *shared-environment
       DJANGO_SETTINGS_MODULE: openprescribing.settings.local
     ports:
       - "8000:8000"
