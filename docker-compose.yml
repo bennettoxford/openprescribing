@@ -58,6 +58,8 @@ services:
   dev:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
     command: /bin/bash -c './scripts/docker_setup.sh &&  cd openprescribing && /bin/bash -l'
+    environment:
+      - DJANGO_SETTINGS_MODULE=openprescribing.settings.local
     ports:
       - "8000:8000"
     volumes:
