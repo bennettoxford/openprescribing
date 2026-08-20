@@ -6,9 +6,9 @@ services:
       # These values are defined here as well as in justfile (DB_PASS, DB_USER,
       # DB_NAME). We accept a small amount of redundancy in return for decoupling this
       # service from other services.
-      - POSTGRES_PASSWORD=pass
-      - POSTGRES_USER=user
-      - POSTGRES_DB=openprescribing-test
+      POSTGRES_PASSWORD: pass
+      POSTGRES_USER: user
+      POSTGRES_DB: openprescribing-test
     ports:
       - "5432:5432"
     volumes:
@@ -25,16 +25,16 @@ services:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
     command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && make test'
     environment:
-      - DJANGO_SETTINGS_MODULE=openprescribing.settings.test
-      - BROWSER=${BROWSER:-}
-      - TEST_SUITE=${TEST_SUITE:-}
-      - GOOGLE_APPLICATION_CREDENTIALS=/code/google-credentials.json
-      - GITHUB_ACTIONS=${GITHUB_ACTIONS:-}
-      - BROWSERSTACK_USERNAME=${BROWSERSTACK_USERNAME:-}
-      - BROWSERSTACK_ACCESS_KEY=${BROWSERSTACK_ACCESS_KEY:-}
-      - BROWSERSTACK_PROJECT_NAME=${BROWSERSTACK_PROJECT_NAME:-}
-      - BROWSERSTACK_BUILD_NAME=${BROWSERSTACK_BUILD_NAME:-}
-      - BROWSERSTACK_LOCAL_IDENTIFIER=${BROWSERSTACK_LOCAL_IDENTIFIER:-}
+      DJANGO_SETTINGS_MODULE: openprescribing.settings.test
+      BROWSER: ${BROWSER:-}
+      TEST_SUITE: ${TEST_SUITE:-}
+      GOOGLE_APPLICATION_CREDENTIALS: /code/google-credentials.json
+      GITHUB_ACTIONS: ${GITHUB_ACTIONS:-}
+      BROWSERSTACK_USERNAME: ${BROWSERSTACK_USERNAME:-}
+      BROWSERSTACK_ACCESS_KEY: ${BROWSERSTACK_ACCESS_KEY:-}
+      BROWSERSTACK_PROJECT_NAME: ${BROWSERSTACK_PROJECT_NAME:-}
+      BROWSERSTACK_BUILD_NAME: ${BROWSERSTACK_BUILD_NAME:-}
+      BROWSERSTACK_LOCAL_IDENTIFIER: ${BROWSERSTACK_LOCAL_IDENTIFIER:-}
     ports:
       - "6080-6580:6080-6580"
       - "6060:6060"
@@ -48,7 +48,7 @@ services:
     image: ghcr.io/bennettoxford/openprescribing-py312-base:latest
     command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && python manage.py check --deploy'
     environment:
-      - DJANGO_SETTINGS_MODULE=openprescribing.settings.production
+      DJANGO_SETTINGS_MODULE: openprescribing.settings.production
     ports:
       - "6080-6580:6080-6580"
       - "6060:6060"
@@ -62,7 +62,7 @@ services:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
     command: /bin/bash -c './scripts/docker_setup.sh &&  cd openprescribing && /bin/bash -l'
     environment:
-      - DJANGO_SETTINGS_MODULE=openprescribing.settings.local
+      DJANGO_SETTINGS_MODULE: openprescribing.settings.local
     ports:
       - "8000:8000"
     volumes:
