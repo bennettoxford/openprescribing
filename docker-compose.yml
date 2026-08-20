@@ -1,12 +1,14 @@
 x-shared-environment: &shared-environment
+  # We set default values only for GitHub Actions' benefit. When we replace calls to
+  # `docker compose run` with calls to `just`, then we can remove them.
   DB_HOST: postgis
-  DB_NAME: ${DB_NAME:-}
-  DB_PASS: ${DB_PASS:-}
-  DB_USER: ${DB_USER:-}
-  MAILGUN_API_KEY: ${MAILGUN_API_KEY:-}
-  MAILGUN_WEBHOOK_PASS: ${MAILGUN_WEBHOOK_PASS:-}
-  MAILGUN_WEBHOOK_USER: ${MAILGUN_WEBHOOK_USER:-}
-  SECRET_KEY: ${SECRET_KEY:-}
+  DB_NAME: ${DB_NAME:-openprescribing-test}
+  DB_PASS: ${DB_PASS:-pass}
+  DB_USER: ${DB_USER:-user}
+  MAILGUN_API_KEY: ${MAILGUN_API_KEY:-mailgun_api_key}
+  MAILGUN_WEBHOOK_PASS: ${MAILGUN_WEBHOOK_PASS:-mailgun_webhook_pass}
+  MAILGUN_WEBHOOK_USER: ${MAILGUN_WEBHOOK_USER:-mailgun_webhook_user}
+  SECRET_KEY: ${SECRET_KEY:-secret_key}
 
 services:
   postgis:
