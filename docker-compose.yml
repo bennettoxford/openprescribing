@@ -3,6 +3,9 @@ services:
   postgis:
     image: postgis/postgis:16-3.4
     environment:
+      # These values are defined here as well as in justfile (DB_PASS, DB_USER,
+      # DB_NAME). We accept a small amount of redundancy in return for decoupling this
+      # service from other services.
       - POSTGRES_PASSWORD=pass
       - POSTGRES_USER=user
       - POSTGRES_DB=openprescribing-test
