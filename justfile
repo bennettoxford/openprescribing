@@ -1,5 +1,4 @@
 set default-list
-set positional-arguments
 
 dev_service := "dev"
 postgis_service := "postgis"
@@ -34,15 +33,15 @@ devenv:
 
 # Run `manage.py`
 manage *args: db
-    uv run openprescribing/manage.py "$@"
+    uv run openprescribing/manage.py {{ args }}
 
 # Run `manage.py migrate`
 migrate *args:
-    {{ just_executable() }} manage migrate "$@"
+    {{ just_executable() }} manage migrate {{ args }}
 
 # Run `manage.py runserver`
 run *args:
-    {{ just_executable() }} manage runserver "$@"
+    {{ just_executable() }} manage runserver {{ args }}
 
 # Start the web app and database containers
 start-docker:
@@ -62,15 +61,15 @@ test *args: db
     export DJANGO_SETTINGS_MODULE=openprescribing.settings.test
     export GOOGLE_APPLICATION_CREDENTIALS=google-credentials.json
     cd openprescribing
-    uv run coverage run manage.py test "$@"
+    uv run coverage run manage.py test {{ args }}
 
 # Run the functional tests (see TESTING.md)
 test-functional *args:
-    TEST_SUITE=functional {{ just_executable() }} test "$@"
+    TEST_SUITE=functional {{ just_executable() }} test {{ args }}
 
 # Run the non-functional tests (see TESTING.md)
 test-nonfunctional *args:
-    TEST_SUITE=nonfunctional {{ just_executable() }} test "$@"
+    TEST_SUITE=nonfunctional {{ just_executable() }} test {{ args }}
 
 # Start BrowserStack's local agent (see TESTING.md)
 start-browserstacklocal:
@@ -89,7 +88,7 @@ stop-browserstacklocal:
 
 # Run the functional tests using BrowserStack's local agent (see TESTING.md)
 test-browserstack-functional $BROWSER *args: start-browserstacklocal && stop-browserstacklocal
-    USE_BROWSERSTACK=1 {{ just_executable() }} test-functional "$@"
+    USE_BROWSERSTACK=1 {{ just_executable() }} test-functional {{ args }}
 
 # Run the functional tests in a container using BrowserStack's local agent (see TESTING.md)
 test-docker-browserstack-functional $BROWSER: start-browserstacklocal && stop-browserstacklocal
