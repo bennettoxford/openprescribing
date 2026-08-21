@@ -1,20 +1,24 @@
 set default-list
-set dotenv-path := "environment"
 set positional-arguments
 
 dev_service := "dev"
 postgis_service := "postgis"
 test_service := "test"
 
-_environment:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    if [[ ! -f "environment" ]]; then
-        echo 'I did not find `environment`, so I will create it from `environment-sample`. Please edit `environment` and rerun the just recipe.'
-        cp environment-sample environment
-        exit 1
-    fi
+# These just variables are exported to recipes as environment variables. The values of
+# the DB_* just/environment variables come from the postgis service (see
+# docker-compose.yml).
+export BROWSERSTACK_BUILD_NAME := ""
+export BROWSERSTACK_LOCAL_IDENTIFIER := ""
+export BROWSERSTACK_PROJECT_NAME := ""
+export DB_NAME := "openprescribing-test"
+export DB_PASS := "pass"
+export DB_USER := "user"
+export DJANGO_SETTINGS_MODULE := "openprescribing.settings.local"
+export MAILGUN_API_KEY := "mailgun_api_key"
+export MAILGUN_WEBHOOK_PASS := "mailgun_webhook_pass"
+export MAILGUN_WEBHOOK_USER := "mailgun_webhook_user"
+export SECRET_KEY := "secret_key"
 
 # Remove an existing virtual environment
 clean:
@@ -51,7 +55,7 @@ start-docker:
     docker compose run --rm --service-ports {{ dev_service }}
 
 # Run the tests (see TESTING.md)
-test *args: _environment db
+test *args: db
     #!/usr/bin/env bash
     set -euo pipefail
 
@@ -95,15 +99,7 @@ test-docker-browserstack-functional $BROWSER: start-browserstacklocal && stop-br
     GITHUB_ACTIONS=true {{ just_executable() }} test-docker-functional
 
 # Run the tests in a container (see TESTING.md)
-test-docker: _environment
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    # Running the service will replace environment with environment-test, so we backup
-    # and rotate environment.
-    cp environment environment.bak
-    trap 'mv environment.bak environment' EXIT INT TERM
-
+test-docker:
     # Unlike `up`, `run` doesn't create the ports that are specified by
     # docker-compose.yml by default. These ports are needed for running the functional
     # tests with the BrowserStack local agent, so we pass `--service-ports` to create

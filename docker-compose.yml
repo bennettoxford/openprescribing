@@ -1,11 +1,25 @@
-services:
+x-shared-environment: &shared-environment
+  # We set default values only for GitHub Actions' benefit. When we replace calls to
+  # `docker compose run` with calls to `just`, then we can remove them.
+  DB_HOST: postgis
+  DB_NAME: ${DB_NAME:-openprescribing-test}
+  DB_PASS: ${DB_PASS:-pass}
+  DB_USER: ${DB_USER:-user}
+  MAILGUN_API_KEY: ${MAILGUN_API_KEY:-mailgun_api_key}
+  MAILGUN_WEBHOOK_PASS: ${MAILGUN_WEBHOOK_PASS:-mailgun_webhook_pass}
+  MAILGUN_WEBHOOK_USER: ${MAILGUN_WEBHOOK_USER:-mailgun_webhook_user}
+  SECRET_KEY: ${SECRET_KEY:-secret_key}
 
+services:
   postgis:
     image: postgis/postgis:16-3.4
     environment:
-      - POSTGRES_PASSWORD=pass
-      - POSTGRES_USER=user
-      - POSTGRES_DB=openprescribing-test
+      # These values are defined here as well as in justfile (DB_PASS, DB_USER,
+      # DB_NAME). We accept a small amount of redundancy in return for decoupling this
+      # service from other services.
+      POSTGRES_PASSWORD: pass
+      POSTGRES_USER: user
+      POSTGRES_DB: openprescribing-test
     ports:
       - "5432:5432"
     volumes:
@@ -22,16 +36,17 @@ services:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
     command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && make test'
     environment:
-      - DJANGO_SETTINGS_MODULE=openprescribing.settings.test
-      - BROWSER=${BROWSER:-}
-      - TEST_SUITE=${TEST_SUITE:-}
-      - GOOGLE_APPLICATION_CREDENTIALS=/code/google-credentials.json
-      - GITHUB_ACTIONS=${GITHUB_ACTIONS:-}
-      - BROWSERSTACK_USERNAME=${BROWSERSTACK_USERNAME:-}
-      - BROWSERSTACK_ACCESS_KEY=${BROWSERSTACK_ACCESS_KEY:-}
-      - BROWSERSTACK_PROJECT_NAME=${BROWSERSTACK_PROJECT_NAME:-}
-      - BROWSERSTACK_BUILD_NAME=${BROWSERSTACK_BUILD_NAME:-}
-      - BROWSERSTACK_LOCAL_IDENTIFIER=${BROWSERSTACK_LOCAL_IDENTIFIER:-}
+      <<: *shared-environment
+      DJANGO_SETTINGS_MODULE: openprescribing.settings.test
+      BROWSER: ${BROWSER:-}
+      TEST_SUITE: ${TEST_SUITE:-}
+      GOOGLE_APPLICATION_CREDENTIALS: /code/google-credentials.json
+      GITHUB_ACTIONS: ${GITHUB_ACTIONS:-}
+      BROWSERSTACK_USERNAME: ${BROWSERSTACK_USERNAME:-}
+      BROWSERSTACK_ACCESS_KEY: ${BROWSERSTACK_ACCESS_KEY:-}
+      BROWSERSTACK_PROJECT_NAME: ${BROWSERSTACK_PROJECT_NAME:-}
+      BROWSERSTACK_BUILD_NAME: ${BROWSERSTACK_BUILD_NAME:-}
+      BROWSERSTACK_LOCAL_IDENTIFIER: ${BROWSERSTACK_LOCAL_IDENTIFIER:-}
     ports:
       - "6080-6580:6080-6580"
       - "6060:6060"
@@ -45,7 +60,8 @@ services:
     image: ghcr.io/bennettoxford/openprescribing-py312-base:latest
     command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && python manage.py check --deploy'
     environment:
-      - DJANGO_SETTINGS_MODULE=openprescribing.settings.production
+      <<: *shared-environment
+      DJANGO_SETTINGS_MODULE: openprescribing.settings.production
     ports:
       - "6080-6580:6080-6580"
       - "6060:6060"
@@ -59,7 +75,8 @@ services:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
     command: /bin/bash -c './scripts/docker_setup.sh &&  cd openprescribing && /bin/bash -l'
     environment:
-      - DJANGO_SETTINGS_MODULE=openprescribing.settings.local
+      <<: *shared-environment
+      DJANGO_SETTINGS_MODULE: openprescribing.settings.local
     ports:
       - "8000:8000"
     volumes:
