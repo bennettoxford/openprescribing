@@ -83,24 +83,12 @@ start-browserstacklocal:
 stop-browserstacklocal:
     BrowserStackLocal --daemon stop --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
-_check-browser-env-var:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    # We can't pass BROWSER as a parameter with a default value, unfortunately, because
-    # the first element in args would replace it. This behaviour is counter-intuitive,
-    # and may be a bug: there are examples in other justfiles where we don't expect it.
-    if [[ -z "${BROWSER:-}" ]]; then
-        echo "Error: BROWSER is not set or is empty." >&2
-        exit 1
-    fi
-
 # Run the functional tests using BrowserStack's local agent (see TESTING.md)
-test-browserstack-functional *args: _check-browser-env-var start-browserstacklocal && stop-browserstacklocal
+test-browserstack-functional $BROWSER *args: start-browserstacklocal && stop-browserstacklocal
     USE_BROWSERSTACK=1 {{ just_executable() }} test-functional "$@"
 
 # Run the functional tests in a container using BrowserStack's local agent (see TESTING.md)
-test-docker-browserstack-functional: _check-browser-env-var start-browserstacklocal && stop-browserstacklocal
+test-docker-browserstack-functional $BROWSER: start-browserstacklocal && stop-browserstacklocal
     # USE_BROWSERSTACK isn't passed to the service, but GITHUB_ACTIONS is. Either is
     # used to determine whether the functional tests are run with the BrowserStack local
     # agent (openprescribing.frontend.tests.functional.selenium_base.use_browserstack).
