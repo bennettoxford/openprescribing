@@ -6,6 +6,12 @@ Website code for https://openprescribing.net - a Django application that provide
 
 Information about data sources used on OpenPrescribing can be found [here](https://openprescribing.net/about/).
 
+> [!NOTE]
+> If you're developing OpenPrescribing,
+> then start by running `just` and learning about the recipes.
+> Consider reading [TESTING.md](TESTING.md), too.
+> This information is dated, but it's retained because it's useful.
+
 # Set up the application
 
 You can install the application dependencies either on bare metal or
