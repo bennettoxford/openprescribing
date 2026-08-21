@@ -87,11 +87,11 @@ stop-browserstacklocal:
     BrowserStackLocal --daemon stop --local-identifier "$BROWSERSTACK_LOCAL_IDENTIFIER"
 
 # Run the functional tests using BrowserStack's local agent (see TESTING.md)
-test-browserstack-functional $BROWSER *args: start-browserstacklocal && stop-browserstacklocal
+test-browserstack-functional $BROWSER $BROWSERSTACK_ACCESS_KEY $BROWSERSTACK_USERNAME *args: start-browserstacklocal && stop-browserstacklocal
     USE_BROWSERSTACK=1 {{ just_executable() }} test-functional {{ args }}
 
 # Run the functional tests in a container using BrowserStack's local agent (see TESTING.md)
-test-docker-browserstack-functional $BROWSER: start-browserstacklocal && stop-browserstacklocal
+test-docker-browserstack-functional $BROWSER $BROWSERSTACK_ACCESS_KEY $BROWSERSTACK_USERNAME: start-browserstacklocal && stop-browserstacklocal
     # USE_BROWSERSTACK isn't passed to the service, but GITHUB_ACTIONS is. Either is
     # used to determine whether the functional tests are run with the BrowserStack local
     # agent (openprescribing.frontend.tests.functional.selenium_base.use_browserstack).

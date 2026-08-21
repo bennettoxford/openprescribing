@@ -10,8 +10,8 @@ with or without BrowserStackLocal (see below).
 Let's consider the four cases.
 Functional tests can be run:
 
-* locally with BrowserStackLocal: `BROWSER='...' just test-browserstack-functional`
-* in a container with BrowserStackLocal: `BROWSER='...' just test-docker-browserstack-functional`
+* locally with BrowserStackLocal: `$BROWSER='...' $BROWSERSTACK_ACCESS_KEY='...' $BROWSERSTACK_USERNAME='...' just test-browserstack-functional`
+* in a container with BrowserStackLocal: `$BROWSER='...' $BROWSERSTACK_ACCESS_KEY='...' $BROWSERSTACK_USERNAME='...' just test-docker-browserstack-functional`
 * locally without BrowserStackLocal: `just test-functional`
 * in a container without BrowserStackLocal: `just test-docker-functional`
 
