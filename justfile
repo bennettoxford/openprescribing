@@ -16,15 +16,6 @@ _environment:
         exit 1
     fi
 
-_check-gdal-binary:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    if ! command -v gdal --version >/dev/null 2>&1; then
-        echo 'Error: gdal was not found on your PATH.'
-        exit 1
-    fi
-
 # Remove an existing virtual environment
 clean:
     uv venv --clear
@@ -60,7 +51,7 @@ start-docker:
     docker compose run --rm --service-ports {{ dev_service }}
 
 # Run the tests (see TESTING.md)
-test *args: _environment _check-gdal-binary db
+test *args: _environment db
     #!/usr/bin/env bash
     set -euo pipefail
 
