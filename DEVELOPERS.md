@@ -1,3 +1,9 @@
+> [!NOTE]
+> If you're developing OpenPrescribing,
+> then start by running `just` and learning about the recipes.
+> Consider reading [TESTING.md](TESTING.md), too.
+> This information is dated, but it's retained because it's useful.
+
 This document describes the local setup process for developers.
 
 It is a work in progress and only has instructions for macOS for now.
