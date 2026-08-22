@@ -240,6 +240,8 @@ And the inverse is:
 
 ### Run the functional tests in BrowserStack
 
+This project is tested with BrowserStack.
+
 In our CI environment we use [BrowserStack](https://www.browserstack.com/) to run
 the functional tests in various browsers. If you are connected to the
 internet, you can run these tests using BrowserStack, refer to 
