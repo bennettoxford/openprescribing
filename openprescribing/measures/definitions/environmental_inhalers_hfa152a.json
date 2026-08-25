@@ -19,7 +19,7 @@
     "mist inhalers are less harmful to the environment than traditional metered dose inhalers (MDIs). </p>",
     "<p>MDI devices using the newer propellants HFO-1234ze and HFA-152a are considered lower GWP under this measure.  HFO-1234ze containing devices are considered to be ",
     "<a href='https://doi.org/10.1136/thorax-2022-BTSabstracts.66' target='_Blank'>similar to a DPI on a per-dose basis</a>, and HFA-152a has shown to have",
-    "a <a href='https://doi.org/10.1136/bmjresp-2025-004036' target='_Blank'>90% in GWP compared with HFA-134a containing devices</a>.  We will add further devices when their Summary of Product Characteristics ",
+    "a <a href='https://doi.org/10.1136/bmjresp-2025-004036' target='_Blank'>90% reduction in GWP compared with HFA-134a containing devices</a>.  We will add further devices when their Summary of Product Characteristics ",
     "list one of these propellants as an excipient.</p>",
     "<p><a href='https://www.nice.org.uk/guidance/ng245/resources/patient-decision-aid-on-asthma-inhalers-and-climate-change-bts-nice-sign-pdf-13558151917' target='_Blank'>NICE has ",
     "produced a inhaler decision aid</a> to facilitiate discussion about inhaler options.</p>"
@@ -60,7 +60,7 @@
   ],
   "numerator_bnf_codes_query": [
   "SELECT DISTINCT bnf_code FROM measures.vw__dmd_objs_with_form_route WHERE form_route = 'pressurizedinhalation.inhalation' AND (bnf_code LIKE '03%' AND (bnf_code NOT LIKE '0301011R0%' AND ",
-  "bnf_code NOT IN ('0302000Y0BBAAAA','0302000C0BPABBF','0302000C0BPACBV','0302000C0BPADBW','0302000C0BPAABE'))"
+  "bnf_code NOT IN ('0302000Y0BBAAAA','0302000C0BPABBF','0302000C0BPACBV','0302000C0BPADBW','0302000C0BPAABE')))"
   ],
   "numerator_is_list_of_bnf_codes": true,
   "denominator_type": "custom",
