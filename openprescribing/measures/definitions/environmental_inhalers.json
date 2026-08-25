@@ -18,7 +18,7 @@
     "including a shift to lower carbon inhalers. Dry powder inhalers (DPIs) and other newer types of inhalers like soft ",
     "mist inhalers are less harmful to the environment than traditional metered dose inhalers (MDIs). </p>",
     "<p>MDI devices using the newer propellant HFO-1234ze are considered low GWP under this measure, reflecting that the greenhouse gas emissions are considered to be ",
-    "<a hef='https://doi.org/10.1136/thorax-2022-BTSabstracts.66' target='_Blank'>similar to a DPI on a per-dose basis.</a></p>",
+    "<a href='https://doi.org/10.1136/thorax-2022-BTSabstracts.66' target='_Blank'>similar to a DPI on a per-dose basis.</a></p>",
     "<p><a href='https://www.nice.org.uk/guidance/ng245/resources/patient-decision-aid-on-asthma-inhalers-and-climate-change-bts-nice-sign-pdf-13558151917' target='_Blank'>NICE has ",
     "produced a inhaler decision aid</a> to facilitiate discussion about inhaler options.</p>"
   ],
@@ -51,7 +51,7 @@
   ")"
   ],
   "numerator_bnf_codes_query": [
-  "SELECT DISTINCT bnf_code FROM measures.vw__dmd_objs_with_form_route WHERE form_route = 'pressurizedinhalation.inhalation' AND (bnf_code LIKE '03%' AND (bnf_code NOT LIKE '0301011R0%' AND p.bnf_code != '0302000Y0BBAAAA'))"
+  "SELECT DISTINCT bnf_code FROM measures.vw__dmd_objs_with_form_route WHERE form_route = 'pressurizedinhalation.inhalation' AND (bnf_code LIKE '03%' AND (bnf_code NOT LIKE '0301011R0%' AND bnf_code != '0302000Y0BBAAAA'))"
   ],
   "numerator_is_list_of_bnf_codes": true,
   "denominator_type": "custom",
