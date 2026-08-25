@@ -1,10 +1,10 @@
 {
-  "name": "Environmental impact of inhalers - Prescribing of Metered Dose Inhaler (MDI) (excluding salbutamol)",
+  "name": "Environmental impact of inhalers - Prescribing of inhalers (excluding salbutamol) with low Global Warming Potential (GWP)",
   "title": "",
-  "description": "MDIs prescribed as a proportion of all inhalers in BNF Chapter 3, excluding salbutamol",
-  "numerator_short": "MDI inhalers (items)",
+  "description": "Inhalers with low Global Warming Potential (GWP) prescribed as a proportion of all inhalers in BNF Chapter 3, excluding salbutamol",
+  "numerator_short": "Non low GWP inhalers (items)",
   "denominator_short": "All inhalers (items)",
-  "y_label": "Percentage of non-salbutamol inhalers prescribed as MDI",
+  "y_label": "Percentage of non-salbutamol inhalers prescribed as higher GWP",
   "why_it_matters": [
     "<p>The updated <a href='https://www.nice.org.uk/guidance/ng245/chapter/Recommendations#principles-of-pharmacological-treatment' target='_Blank'>BTS/NICE/SIGN guidance on asthma management</a> recommends basing inhaler choice on:",
     "<i>",
@@ -17,8 +17,7 @@
     "<p>The NHS has <a href='https://www.england.nhs.uk/greenernhs/a-net-zero-nhs/' target='_Blank'> committed to reducing its carbon footprint by 80% by 2028 to 2032</a>, ",
     "including a shift to lower carbon inhalers. Dry powder inhalers (DPIs) and other newer types of inhalers like soft ",
     "mist inhalers are less harmful to the environment than traditional metered dose inhalers (MDIs). </p>",
-    "<p>The <a href='https://www.england.nhs.uk/long-read/national-medicines-optimisation-opportunities-2023-24/#11-optimising-inhaler-use-to-improve-respiratory-outcomes-and-reduce-carbon-emissions' target='_Blank'>",
-    "NHS England National Medicines Optimisation Opportunities for 2024/25</a> identify reducing carbon emissions from inhalers as an area for improvement.</p>",
+    "<p>MDI devices using the newer propellant HFO-1234ze are considered in this measure as having a low GWP, given its low GWP properties.</p>",
     "<p><a href='https://www.nice.org.uk/guidance/ng245/resources/patient-decision-aid-on-asthma-inhalers-and-climate-change-bts-nice-sign-pdf-13558151917' target='_Blank'>NICE has ",
     "produced a inhaler decision aid</a> to facilitiate discussion about inhaler options.</p>"
   ],
@@ -26,7 +25,6 @@
     "core",
     "greenernhs",
     "nice",
-    "opportunities",
     "respiratory"
   ],  
   "url": null,
@@ -45,11 +43,14 @@
   "form_route = 'pressurizedinhalation.inhalation' \n",
   " AND (",
   "p.bnf_code LIKE '03%' AND  #Respiratory \n",
-  "p.bnf_code NOT LIKE '0301011R0%' --Salbutamol \n",
+  "(p.bnf_code NOT LIKE '0301011R0%' --Salbutamol \n",
+  "AND",
+  "p.bnf_code != '0302000Y0BBAAAA'",
+  ")",
   ")"
   ],
   "numerator_bnf_codes_query": [
-  "SELECT DISTINCT bnf_code FROM measures.vw__dmd_objs_with_form_route WHERE form_route = 'pressurizedinhalation.inhalation' AND (bnf_code LIKE '03%' AND bnf_code NOT LIKE '0301011R0%')"
+  "SELECT DISTINCT bnf_code FROM measures.vw__dmd_objs_with_form_route WHERE form_route = 'pressurizedinhalation.inhalation' AND (bnf_code LIKE '03%' AND (bnf_code NOT LIKE '0301011R0%' AND p.bnf_code != '0302000Y0BBAAAA'))"
   ],
   "numerator_is_list_of_bnf_codes": false,
   "denominator_type": "custom",
@@ -68,10 +69,9 @@
   ")"
   ],
   "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "christopher.wood@phc.ox.ac.uk",
-  "date_reviewed": "2026-02-17",
-  "next_review": "2028-02-17",
-  "measure_notebook_url":"https://github.com/ebmdatalab/jupyter-notebooks/blob/master/new_measures/Drafts/Enviromental%20Inhalers/Environmental%20Inhalers.ipynb",
+  "checked_by": "",
+  "date_reviewed": "2026-08-25",
+  "next_review": "",
   "measure_complexity": "medium",
   "measure_type": "dmd",
   "radar_exclude": false
