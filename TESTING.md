@@ -35,7 +35,7 @@ To run the functional tests with BrowserStackLocal:
 
 * sign in to <https://www.browserstack.com/> with Google;
 * copy your username and access key from the Settings page;
-* pass your access key to BrowserStack's local agent: `start-browserstacklocal $BROWSERSTACK_ACCESS_KEY='...'`;
+* pass your access key to BrowserStack's local agent: `browserstacklocal $BROWSERSTACK_ACCESS_KEY='...'`;
 * and pass your username and access key to either `just test-functional` or `just test-docker-functional`.
 
 ### Django live server and `0.0.0.0`
