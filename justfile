@@ -74,7 +74,7 @@ test-nonfunctional *args:
 
 # Start BrowserStack's local agent (see TESTING.md)
 browserstacklocal:
-    BrowserStackLocal --key "$BROWSERSTACK_ACCESS_KEY"
+    {{ justfile_directory() }}/bin/BrowserStackLocal --key "$BROWSERSTACK_ACCESS_KEY"
 
 # Run the functional tests using BrowserStack's local agent (see TESTING.md)
 test-browserstack-functional *args:

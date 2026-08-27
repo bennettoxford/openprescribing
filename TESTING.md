@@ -7,6 +7,7 @@ There are two types of test: functional and non-functional.
 The functional tests use Selenium to make requests to a [Django live server][].
 They can be run locally (the host system) or in a container (the guest system),
 with or without BrowserStackLocal (see below).
+BrowserStackLocal is run locally.
 Let's consider the four cases.
 Functional tests can be run:
 
@@ -21,8 +22,12 @@ Of these, the "in a container with BrowserStackLocal" case is how functional tes
 
 [BrowserStackLocal][] is BrowserStack's local agent.
 It sits between a Django live server and BrowserStackCloud.
+For more information, including helpful diagrams, see the "[How local testing works][]" page.
 
-To run the functional tests with BrowserStackLocal:
+To run the functional tests with BrowserStackLocal,
+download the zipped binary for your operating system from the "[Releases and downloads][]" page.
+Unzip it and move it to the `bin` directory.
+Next:
 
 * sign in to <https://www.browserstack.com/> with Google;
 * register for the open source program at <https://www.browserstack.com/open-source>;
@@ -84,4 +89,6 @@ but not doing so means modifying the functional tests.
 
 [BrowserStackLocal]: https://www.browserstack.com/docs/automate/selenium/local-testing-introduction?fw-lang=python
 [Django live server]: https://docs.djangoproject.com/en/4.2/topics/testing/tools/#django.test.LiveServerTestCase
+[How local testing works]: https://www.browserstack.com/docs/local-testing/how-local-testing-works
+[Releases and downloads]: https://www.browserstack.com/docs/local-testing/releases-and-downloads
 [Select browsers and devices]: https://www.browserstack.com/docs/automate/selenium/select-browsers-and-devices
