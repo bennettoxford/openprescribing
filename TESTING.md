@@ -31,7 +31,7 @@ Next:
 
 * sign in to <https://www.browserstack.com/> with Google;
 * register for the open source program at <https://www.browserstack.com/open-source>;
-* copy your username and access key from the Settings page;
+* copy your username and access key from the settings page;
 * paste your username and access key into a `.env` file:
 
   ```sh
@@ -46,7 +46,7 @@ For example:
 * `'Edge:latest:Windows:10'`
 * `'Firefox:latest:OS X:Catalina'`
 
-See the "[Select browsers and devices][]" page in the BrowserStack documentation for values.
+See the "[Select browsers and devices][]" page for values.
 See `.github/workflows/main.yml` for values used in CI.
 
 Finally, start BrowserStackLocal: `just browserstacklocal`.
