@@ -10,8 +10,8 @@ with or without BrowserStackLocal (see below).
 Let's consider the four cases.
 Functional tests can be run:
 
-* locally with BrowserStackLocal: `$BROWSER='...' $BROWSERSTACK_ACCESS_KEY='...' $BROWSERSTACK_USERNAME='...' just test-browserstack-functional`
-* in a container with BrowserStackLocal: `$BROWSER='...' $BROWSERSTACK_ACCESS_KEY='...' $BROWSERSTACK_USERNAME='...' just test-docker-browserstack-functional`
+* locally with BrowserStackLocal: `just test-browserstack-functional`
+* in a container with BrowserStackLocal: `just test-docker-browserstack-functional`
 * locally without BrowserStackLocal: `just test-functional`
 * in a container without BrowserStackLocal: `just test-docker-functional`
 
@@ -35,7 +35,7 @@ To run the functional tests with BrowserStackLocal:
 
 * sign in to <https://www.browserstack.com/> with Google;
 * copy your username and access key from the Settings page;
-* pass your access key to BrowserStack's local agent: `browserstacklocal $BROWSERSTACK_ACCESS_KEY='...'`;
+* pass your access key to BrowserStack's local agent: `browserstacklocal`;
 * and pass your username and access key to either `just test-functional` or `just test-docker-functional`.
 
 ### Django live server and `0.0.0.0`

@@ -1,4 +1,5 @@
 set default-list
+set dotenv-load
 
 dev_service := "dev"
 postgis_service := "postgis"
@@ -72,15 +73,15 @@ test-nonfunctional *args:
     TEST_SUITE=nonfunctional {{ just_executable() }} test {{ args }}
 
 # Start BrowserStack's local agent (see TESTING.md)
-browserstacklocal $BROWSERSTACK_ACCESS_KEY:
+browserstacklocal:
     BrowserStackLocal --key "$BROWSERSTACK_ACCESS_KEY"
 
 # Run the functional tests using BrowserStack's local agent (see TESTING.md)
-test-browserstack-functional $BROWSER $BROWSERSTACK_ACCESS_KEY $BROWSERSTACK_USERNAME *args:
+test-browserstack-functional *args:
     USE_BROWSERSTACK=1 {{ just_executable() }} test-functional {{ args }}
 
 # Run the functional tests in a container using BrowserStack's local agent (see TESTING.md)
-test-docker-browserstack-functional $BROWSER $BROWSERSTACK_ACCESS_KEY $BROWSERSTACK_USERNAME:
+test-docker-browserstack-functional:
     # USE_BROWSERSTACK isn't passed to the service, but GITHUB_ACTIONS is. Either is
     # used to determine whether the functional tests are run with the BrowserStack local
     # agent (openprescribing.frontend.tests.functional.selenium_base.use_browserstack).
