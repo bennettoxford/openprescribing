@@ -20,6 +20,8 @@ from rest_framework.response import Response
 
 from . import view_utils as utils
 
+ALLOWED_TARIFF_QUERY_PARAMS = {"codes", "format"}
+
 
 class NotValid(APIException):
     status_code = 400
@@ -283,8 +285,22 @@ def ghost_generics(request, format=None):
     return response
 
 
+def _validate_tariff_query_params(query_params):
+    invalid_params = sorted(set(query_params) - ALLOWED_TARIFF_QUERY_PARAMS)
+    if not invalid_params:
+        return
+
+    if len(invalid_params) == 1:
+        detail = f"{invalid_params[0]} is not a valid query parameter"
+    else:
+        detail = f"{', '.join(invalid_params)} are not valid query parameters"
+    raise NotValid(detail)
+
+
 @api_view(["GET"])
 def tariff(request, format=None):
+    _validate_tariff_query_params(request.query_params)
+
     # This view uses raw SQL as we cannot produce the LEFT OUTER JOIN using the
     # ORM.
     codes = utils.param_to_list(request.query_params.get("codes", []))

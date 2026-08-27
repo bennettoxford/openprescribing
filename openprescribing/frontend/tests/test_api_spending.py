@@ -89,6 +89,34 @@ class TestAPISpendingViewsTariff(ApiTestBase):
         rows = self._rows_from_api(url)
         self.assertEqual(len(rows), 3)
 
+    def test_tariff_rejects_unknown_query_params(self):
+        for param in ("name", "code", "unexpected"):
+            with self.subTest(param=param):
+                url = self.api_prefix
+                url += f"/tariff?format=csv&{param}=Gabapentin"
+                response = self.client.get(url, follow=True)
+
+                self.assertEqual(response.status_code, 400)
+                rows = list(
+                    csv.DictReader(response.content.decode("utf8").splitlines())
+                )
+                self.assertEqual(
+                    rows[0]["detail"],
+                    f"{param} is not a valid query parameter",
+                )
+
+    def test_tariff_sorts_multiple_unknown_query_params(self):
+        url = self.api_prefix
+        url += "/tariff?format=csv&z=1&name=Gabapentin"
+        response = self.client.get(url, follow=True)
+
+        self.assertEqual(response.status_code, 400)
+        rows = list(csv.DictReader(response.content.decode("utf8").splitlines()))
+        self.assertEqual(
+            rows[0]["detail"],
+            "name, z are not valid query parameters",
+        )
+
 
 class TestSpending(ApiTestBase):
     def _get(self, params):
