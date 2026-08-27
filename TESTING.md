@@ -15,15 +15,6 @@ Functional tests can be run:
 * locally without BrowserStackLocal: `just test-functional`
 * in a container without BrowserStackLocal: `just test-docker-functional`
 
-Where `BROWSER` is of the form `<browser name>:<browser version>:<OS name>:<OS version>`.
-For example:
-
-* `'Edge:latest:Windows:10'`
-* `'Firefox:latest:OS X:Catalina'`
-
-See the "[Select browsers and devices][]" page in the BrowserStack documentation for values.
-See `.github/workflows/main.yml` for values used in CI.
-
 Of these, the "in a container with BrowserStackLocal" case is how functional tests are run in CI.
 
 ### BrowserStackLocal
@@ -34,9 +25,24 @@ It sits between a Django live server and BrowserStackCloud.
 To run the functional tests with BrowserStackLocal:
 
 * sign in to <https://www.browserstack.com/> with Google;
+* register for the open source program at <https://www.browserstack.com/open-source>;
 * copy your username and access key from the Settings page;
-* pass your access key to BrowserStack's local agent: `browserstacklocal`;
-* and pass your username and access key to either `just test-functional` or `just test-docker-functional`.
+* paste your username and access key into a `.env` file:
+
+  ```sh
+  BROWSERSTACK_USERNAME=
+  BROWSERSTACK_ACCESS_KEY=
+  ```
+
+You may wish to set `BROWSER` in the `.env` file,
+where `BROWSER` is of the form `<browser name>:<browser version>:<OS name>:<OS version>`.
+For example:
+
+* `'Edge:latest:Windows:10'`
+* `'Firefox:latest:OS X:Catalina'`
+
+See the "[Select browsers and devices][]" page in the BrowserStack documentation for values.
+See `.github/workflows/main.yml` for values used in CI.
 
 ### Django live server and `0.0.0.0`
 
