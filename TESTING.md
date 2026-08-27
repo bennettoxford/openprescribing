@@ -49,6 +49,8 @@ For example:
 See the "[Select browsers and devices][]" page in the BrowserStack documentation for values.
 See `.github/workflows/main.yml` for values used in CI.
 
+Finally, start BrowserStackLocal: `just browserstacklocal`.
+
 ### Django live server and `0.0.0.0`
 
 The functional tests use `SeleniumTestCase`, which inherits from `LiveServerTestCase`.
