@@ -7,6 +7,8 @@ from rest_framework.response import Response
 
 from . import view_utils as utils
 
+ALLOWED_QUERY_PARAMS = {"format", "keys", "org", "org_type"}
+
 STATS_COLUMN_WHITELIST = (
     "total_list_size",
     "astro_pu_items",
@@ -20,11 +22,17 @@ class KeysNotValid(APIException):
     default_detail = "The keys you provided are not supported"
 
 
+class QueryParamsNotValid(APIException):
+    status_code = 400
+    default_detail = "The query parameters you provided are not supported"
+
+
 @api_view(["GET"])
 def org_details(request, format=None):
     """
     Get list size and ASTRO-PU by month, for CCGs or practices.
     """
+    _validate_query_params(request.query_params)
     org_type = request.GET.get("org_type", None)
     org_type = utils.translate_org_type(org_type)
     keys = utils.param_to_list(request.query_params.get("keys", []))
@@ -34,6 +42,18 @@ def org_details(request, format=None):
     orgs = _get_orgs(org_type, org_codes)
     data = _get_practice_stats_entries(keys, org_type, orgs)
     return Response(list(data))
+
+
+def _validate_query_params(query_params):
+    invalid_params = sorted(set(query_params) - ALLOWED_QUERY_PARAMS)
+    if not invalid_params:
+        return
+
+    if len(invalid_params) == 1:
+        detail = f"{invalid_params[0]} is not a valid query parameter"
+    else:
+        detail = f"{', '.join(invalid_params)} are not valid query parameters"
+    raise QueryParamsNotValid(detail)
 
 
 def _get_orgs(org_type, org_codes):
