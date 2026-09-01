@@ -1,6 +1,7 @@
 set default-list
 set dotenv-load
 
+browserstacklocal_service := "browserstacklocal"
 dev_service := "dev"
 postgis_service := "postgis"
 test_service := "test"
@@ -74,10 +75,10 @@ test-nonfunctional *args:
 
 # Start BrowserStack's local agent (see TESTING.md)
 browserstacklocal:
-    BrowserStackLocal --key "$BROWSERSTACK_ACCESS_KEY"
+    docker compose up --detach --wait {{ browserstacklocal_service }}
 
 # Run the functional tests using BrowserStack's local agent (see TESTING.md)
-test-browserstack-functional *args:
+test-browserstack-functional *args: browserstacklocal
     USE_BROWSERSTACK=1 {{ just_executable() }} test-functional {{ args }}
 
 # Run the functional tests in a container using BrowserStack's local agent (see TESTING.md)
@@ -86,11 +87,7 @@ test-docker-browserstack-functional:
 
 # Run the tests in a container (see TESTING.md)
 test-docker:
-    # Unlike `up`, `run` doesn't create the ports that are specified by
-    # docker-compose.yml by default. These ports are needed for running the functional
-    # tests with the BrowserStack local agent, so we pass `--service-ports` to create
-    # them.
-    docker compose run --rm --service-ports {{ test_service }}
+    docker compose run --rm {{ test_service }}
 
 # Run the functional tests in a container (see TESTING.md)
 test-docker-functional:

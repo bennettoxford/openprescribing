@@ -10,6 +10,14 @@ x-shared-environment: &shared-environment
   MAILGUN_WEBHOOK_USER: ${MAILGUN_WEBHOOK_USER:-mailgun_webhook_user}
   SECRET_KEY: ${SECRET_KEY:-secret_key}
 
+x-browserstacklocal: &browserstacklocal
+  image: browserstack/local:latest
+  # We disable the dashboard because 1) It's not that useful; and 2) We might want
+  # browserstacklocal and browserstacklocal-test to run simultaneously (they have
+  # different network namespaces). However, only the container that started first would
+  # bind the dashboard to localhost; the container that started second would error.
+  command: ["--key", "${BROWSERSTACK_ACCESS_KEY:-}", "--disable-dashboard"]
+
 services:
   postgis:
     image: postgis/postgis:16-3.4
@@ -32,6 +40,13 @@ services:
       start_period: 30s
       start_interval: 5s
 
+  browserstacklocal:
+    <<: *browserstacklocal
+    network_mode: "host"
+
+  browserstacklocal-test:
+    <<: *browserstacklocal
+
   test:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
     command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && make test'
@@ -48,14 +63,14 @@ services:
       BROWSERSTACK_PROJECT_NAME: ${BROWSERSTACK_PROJECT_NAME:-}
       BROWSERSTACK_BUILD_NAME: ${BROWSERSTACK_BUILD_NAME:-}
       BROWSERSTACK_LOCAL_IDENTIFIER: ${BROWSERSTACK_LOCAL_IDENTIFIER:-}
-    ports:
-      - "6080-6580:6080-6580"
-      - "6060:6060"
+    network_mode: "service:browserstacklocal-test"
     volumes:
       - .:/code
     depends_on:
       postgis:
         condition: service_healthy
+      browserstacklocal-test:
+        condition: service_started
 
   test-production:
     image: ghcr.io/bennettoxford/openprescribing-py312-base:latest
