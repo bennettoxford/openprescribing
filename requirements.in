@@ -17,7 +17,7 @@ django-crispy-forms
 django-dotenv
 # Django 4.2 is the current LTS release. If you update this remember to update
 # the constraints in .github/dependabot.yml
-django>=4.2,<4.3
+django>=5.2.16,<5.3
 djangorestframework
 djangorestframework-csv
 google-api-python-client
