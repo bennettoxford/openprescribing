@@ -7,22 +7,14 @@ There are two types of test: functional and non-functional.
 The functional tests use Selenium to make requests to a [Django live server][].
 They can be run locally (the host system) or in a container (the guest system),
 with or without BrowserStackLocal (see below).
+BrowserStackLocal is run locally.
 Let's consider the four cases.
 Functional tests can be run:
 
-* locally with BrowserStackLocal: `$BROWSER='...' $BROWSERSTACK_ACCESS_KEY='...' $BROWSERSTACK_USERNAME='...' just test-browserstack-functional`
-* in a container with BrowserStackLocal: `$BROWSER='...' $BROWSERSTACK_ACCESS_KEY='...' $BROWSERSTACK_USERNAME='...' just test-docker-browserstack-functional`
+* locally with BrowserStackLocal: `just test-browserstack-functional`
+* in a container with BrowserStackLocal: `just test-docker-browserstack-functional`
 * locally without BrowserStackLocal: `just test-functional`
 * in a container without BrowserStackLocal: `just test-docker-functional`
-
-Where `BROWSER` is of the form `<browser name>:<browser version>:<OS name>:<OS version>`.
-For example:
-
-* `'Edge:latest:Windows:10'`
-* `'Firefox:latest:OS X:Catalina'`
-
-See the "[Select browsers and devices][]" page in the BrowserStack documentation for values.
-See `.github/workflows/main.yml` for values used in CI.
 
 Of these, the "in a container with BrowserStackLocal" case is how functional tests are run in CI.
 
@@ -30,13 +22,34 @@ Of these, the "in a container with BrowserStackLocal" case is how functional tes
 
 [BrowserStackLocal][] is BrowserStack's local agent.
 It sits between a Django live server and BrowserStackCloud.
+For more information, including helpful diagrams, see the "[How local testing works][]" page.
 
-To run the functional tests with BrowserStackLocal:
+To run the functional tests with BrowserStackLocal,
+download the zipped binary for your operating system from the "[Releases and downloads][]" page.
+Unzip it and move it to the `bin` directory.
+Next:
 
 * sign in to <https://www.browserstack.com/> with Google;
-* copy your username and access key from the Settings page;
-* pass your access key to BrowserStack's local agent: `start-browserstacklocal $BROWSERSTACK_ACCESS_KEY='...'`;
-* and pass your username and access key to either `just test-functional` or `just test-docker-functional`.
+* register for the open source program at <https://www.browserstack.com/open-source>;
+* copy your username and access key from the settings page;
+* paste your username and access key into a `.env` file:
+
+  ```sh
+  BROWSERSTACK_USERNAME=
+  BROWSERSTACK_ACCESS_KEY=
+  ```
+
+You may wish to set `BROWSER` in the `.env` file,
+where `BROWSER` is of the form `<browser name>:<browser version>:<OS name>:<OS version>`.
+For example:
+
+* `'Edge:latest:Windows:10'`
+* `'Firefox:latest:OS X:Catalina'`
+
+See the "[Select browsers and devices][]" page for values.
+See `.github/workflows/main.yml` for values used in CI.
+
+Finally, start BrowserStackLocal: `just browserstacklocal`.
 
 ### Django live server and `0.0.0.0`
 
@@ -78,4 +91,6 @@ but not doing so means modifying the functional tests.
 
 [BrowserStackLocal]: https://www.browserstack.com/docs/automate/selenium/local-testing-introduction?fw-lang=python
 [Django live server]: https://docs.djangoproject.com/en/4.2/topics/testing/tools/#django.test.LiveServerTestCase
+[How local testing works]: https://www.browserstack.com/docs/local-testing/how-local-testing-works
+[Releases and downloads]: https://www.browserstack.com/docs/local-testing/releases-and-downloads
 [Select browsers and devices]: https://www.browserstack.com/docs/automate/selenium/select-browsers-and-devices
