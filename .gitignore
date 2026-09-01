@@ -14,8 +14,6 @@ openprescribing/pipeline/test-data/log.json
 openprescribing/pipeline/e2e-test-data/data
 openprescribing/pipeline/e2e-test-data/log.json
 
-bin/BrowserStackLocal*
-
 # System files
 *.py[co]
 *.egg*

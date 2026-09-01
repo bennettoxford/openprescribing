@@ -22,9 +22,14 @@ jobs:
         env:
           GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE: ${{ secrets.GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE }}
       - name: Unit tests
-        run: docker compose run --service-ports test && docker compose run --service-ports test-production
+        run: docker compose run test && docker compose run --service-ports test-production
         env:
           TEST_SUITE: nonfunctional
+            # We set these because the test service depends on the
+            # browserstacklocal-test service for its network, and the latter won't start
+            # without them.
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
       - name: Notify slack failure
         if: failure()
         env:
@@ -42,18 +47,6 @@ jobs:
       matrix:
         browser: [ "Edge:latest:Windows:10", "Firefox:latest:OS X:Catalina" ]
     steps:
-      - name: 'BrowserStack Env Setup'
-        uses: 'browserstack/github-actions/setup-env@master'
-        with:
-          username:  ${{ secrets.BROWSERSTACK_USERNAME }}
-          access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-          build-name: BUILD_INFO
-          project-name: REPO_NAME
-      - name: 'BrowserStack Local Tunnel Setup'
-        uses: 'browserstack/github-actions/setup-local@master'
-        with:
-          local-testing: start
-          local-identifier: random
       - name: Checkout
         uses: actions/checkout@v7
       - name: Retrieve Google Cloud credentials
@@ -61,14 +54,12 @@ jobs:
         env:
           GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE: ${{ secrets.GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE }}
       - name: Functional tests
-        run: docker compose run --service-ports test
+        run: docker compose run test
         env:
           TEST_SUITE: functional
           BROWSER: ${{ matrix.browser }}
-      - name: 'BrowserStackLocal Stop'
-        uses: 'browserstack/github-actions/setup-local@master'
-        with:
-          local-testing: stop
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
       - name: Notify slack failure
         if: failure()
         env:
