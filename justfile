@@ -33,6 +33,12 @@ check:
 devenv:
     echo 'pip' | uv pip sync - requirements.txt requirements.dev.txt
 
+compile-requirements:
+    uv run pip-compile requirements.in
+
+compile-dev-requirements:
+    uv run pip-compile requirements.dev.in
+
 # Run `manage.py`
 manage *args: db
     uv run openprescribing/manage.py {{ args }}
