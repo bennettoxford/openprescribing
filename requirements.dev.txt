@@ -30,6 +30,3 @@ pyflakes==3.4.0
     # via flake8
 pytokens==0.4.1
     # via black
-
-# The following packages are considered to be unsafe in a requirements file:
-# pip
