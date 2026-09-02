@@ -27,10 +27,10 @@ jobs:
         automerge: false
         pr_title: "Update python dependencies"
         update_command: |
-          pip install pip==25.2 && \
+          pip install pip && \
           pip install pip-tools && \
-          pip-compile -U requirements.dev.in && \
-          pip-compile -U requirements.in
+          pip-compile --upgrade --no-header requirements.dev.in && \
+          pip-compile --upgrade --no-header requirements.in
 
     - name: Notify slack of PR
       if: ${{ steps.update.outputs.pull-request-operation != 'none' }}

@@ -31,7 +31,13 @@ check:
 
 # Install development requirements into the virtual environment
 devenv:
-    uv pip sync requirements.txt requirements.dev.txt
+    echo 'pip' | uv pip sync - requirements.txt requirements.dev.txt
+
+compile-requirements:
+    uv run pip-compile --upgrade --no-header requirements.in
+
+compile-dev-requirements:
+    uv run pip-compile --upgrade --no-header requirements.dev.in
 
 # Run `manage.py`
 manage *args: db
