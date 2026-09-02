@@ -31,7 +31,7 @@ check:
 
 # Install development requirements into the virtual environment
 devenv:
-    uv pip sync requirements.txt requirements.dev.txt
+    echo 'pip' | uv pip sync - requirements.txt requirements.dev.txt
 
 # Run `manage.py`
 manage *args: db
