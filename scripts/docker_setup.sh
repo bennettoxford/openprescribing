@@ -4,7 +4,7 @@
 # application session via docker-compose
 
 pip install -q -U pip
-pip install -q setuptools==49.6.0
+pip install -q setuptools
 pip install -q -r requirements.txt
 if ! [ -r openprescribing/media/js/node_modules ]; then
     ln -s /npm/node_modules openprescribing/media/js/
