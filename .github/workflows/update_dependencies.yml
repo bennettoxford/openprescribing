@@ -29,8 +29,8 @@ jobs:
         update_command: |
           pip install pip && \
           pip install pip-tools && \
-          pip-compile -U requirements.dev.in && \
-          pip-compile -U requirements.in
+          pip-compile -U --no-header requirements.dev.in && \
+          pip-compile -U --no-header requirements.in
 
     - name: Notify slack of PR
       if: ${{ steps.update.outputs.pull-request-operation != 'none' }}

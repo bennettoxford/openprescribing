@@ -34,10 +34,10 @@ devenv:
     echo 'pip' | uv pip sync - requirements.txt requirements.dev.txt
 
 compile-requirements:
-    uv run pip-compile requirements.in
+    uv run pip-compile --no-header requirements.in
 
 compile-dev-requirements:
-    uv run pip-compile requirements.dev.in
+    uv run pip-compile --no-header requirements.dev.in
 
 # Run `manage.py`
 manage *args: db
