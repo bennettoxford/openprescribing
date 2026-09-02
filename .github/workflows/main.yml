@@ -22,7 +22,7 @@ jobs:
         env:
           GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE: ${{ secrets.GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE }}
       - name: Unit tests
-        run: docker compose run test && docker compose run --service-ports test-production
+        run: docker compose run test && docker compose run test-production
         env:
           TEST_SUITE: nonfunctional
             # We set these because the test service depends on the

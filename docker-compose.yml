@@ -78,9 +78,6 @@ services:
     environment:
       <<: *shared-environment
       DJANGO_SETTINGS_MODULE: openprescribing.settings.production
-    ports:
-      - "6080-6580:6080-6580"
-      - "6060:6060"
     volumes:
       - .:/code
     depends_on:
