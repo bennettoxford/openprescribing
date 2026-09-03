@@ -16,7 +16,12 @@ x-browserstacklocal: &browserstacklocal
   # browserstacklocal and browserstacklocal-test to run simultaneously (they have
   # different network namespaces). However, only the container that started first would
   # bind the dashboard to localhost; the container that started second would error.
-  command: ["--key", "${BROWSERSTACK_ACCESS_KEY:-}", "--disable-dashboard"]
+  command:
+    - "--key"
+    - "${BROWSERSTACK_ACCESS_KEY:-}"
+    - "--local-identifier"
+    - "${BROWSERSTACK_LOCAL_IDENTIFIER:-}"
+    - "--disable-dashboard"
 
 services:
   postgis:

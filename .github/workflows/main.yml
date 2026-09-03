@@ -60,6 +60,7 @@ jobs:
           BROWSER: ${{ matrix.browser }}
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_LOCAL_IDENTIFIER: ${{ github.run_id }}-${{ strategy.job-index }}
       - name: Notify slack failure
         if: failure()
         env:
