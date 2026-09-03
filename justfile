@@ -26,8 +26,11 @@ clean:
     uv venv --clear
 
 # Run the code quality checks but don't modify any files
-check:
+check: _check-docker-compose
     ./scripts/lint.sh
+
+_check-docker-compose:
+    docker compose config --quiet
 
 # Install development requirements into the virtual environment
 devenv:
