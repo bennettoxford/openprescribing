@@ -17,14 +17,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+      - name: Install just
+        uses: ./.github/actions/install-just
       - name: Retrieve Google Cloud credentials
         run: ./.github/scripts/decrypt_secret.sh
         env:
           GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE: ${{ secrets.GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE }}
       - name: Unit tests
-        run: docker compose run test
+        run: just test-docker-nonfunctional
         env:
-          TEST_SUITE: nonfunctional
           # We set this because the test service depends on the browserstacklocal-test
           # service for its network, and the latter won't start without it.
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
