@@ -52,14 +52,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+      - name: Install just
+        uses: ./.github/actions/install-just
       - name: Retrieve Google Cloud credentials
         run: ./.github/scripts/decrypt_secret.sh
         env:
           GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE: ${{ secrets.GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE }}
       - name: Functional tests
-        run: docker compose run test
+        run: just test-docker-browserstack-functional
         env:
-          TEST_SUITE: functional
           BROWSER: ${{ matrix.browser }}
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
