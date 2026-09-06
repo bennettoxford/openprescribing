@@ -25,11 +25,9 @@ jobs:
         run: docker compose run test && docker compose run test-production
         env:
           TEST_SUITE: nonfunctional
-          # We set these because the test service depends on the
-          # browserstacklocal-test service for its network, and the latter won't start
-          # without them.
+          # We set this because the test service depends on the browserstacklocal-test
+          # service for its network, and the latter won't start without it.
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
       - name: Notify slack failure
         if: failure()
         env:
