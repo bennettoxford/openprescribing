@@ -3,41 +3,41 @@ name: Update python dependencies
 on:
   workflow_dispatch:
   schedule:
-    - cron:  "5 3 * * WED"
+    - cron: "5 3 * * WED"
 
 jobs:
   update-dependencies:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v7
-    - uses: actions/setup-python@v7
-      with:
-        python-version: '3.12'
+      - uses: actions/checkout@v7
+      - name: Install just
+        uses: ./.github/actions/install-just
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10
 
-    - uses: actions/create-github-app-token@v3
-      id: generate-token
-      with:
-        app-id: ${{ vars.CREATE_PR_APP_ID }}
-        private-key: ${{ secrets.CREATE_PR_APP_PRIVATE_KEY }}
+      - uses: actions/create-github-app-token@v3
+        id: generate-token
+        with:
+          app-id: ${{ vars.CREATE_PR_APP_ID }}
+          private-key: ${{ secrets.CREATE_PR_APP_PRIVATE_KEY }}
 
-    - uses: bennettoxford/update-dependencies-action@v1
-      id: update
-      with:
-        token: ${{ steps.generate-token.outputs.token }}
-        automerge: false
-        pr_title: "Update python dependencies"
-        update_command: |
-          pip install pip && \
-          pip install pip-tools && \
-          pip-compile --upgrade --no-header requirements.dev.in && \
-          pip-compile --upgrade --no-header requirements.in
+      - uses: bennettoxford/update-dependencies-action@v1
+        id: update
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          automerge: false
+          pr_title: "Update python dependencies"
+          update_command: just compile-requirements compile-dev-requirements
 
-    - name: Notify slack of PR
-      if: ${{ steps.update.outputs.pull-request-operation != 'none' }}
-      uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d  # v4.0.0
-      with:
-        method: chat.postMessage
-        token: ${{ secrets.BENNETTBOT_SLACK_BOT_TOKEN }}
-        payload: |
-          channel: "C0A5WSK8L75"
-          text: "Update dependencies\n${{ steps.update.outputs.pull-request-url }}"
+      - name: Notify slack of PR
+        if: ${{ steps.update.outputs.pull-request-operation != 'none' }}
+        uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d # v4.0.0
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.BENNETTBOT_SLACK_BOT_TOKEN }}
+          payload: |
+            channel: "C0A5WSK8L75"
+            text: "Update dependencies\n${{ steps.update.outputs.pull-request-url }}"
