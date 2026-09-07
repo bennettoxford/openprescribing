@@ -26,7 +26,7 @@ clean:
     uv venv --clear
 
 # Run the code quality checks but don't modify any files
-check: _check-docker-compose
+check: devenv _check-docker-compose
     ./scripts/lint.sh
 
 _check-docker-compose:
@@ -36,14 +36,14 @@ _check-docker-compose:
 devenv:
     echo 'pip' | uv pip sync - requirements.txt requirements.dev.txt
 
-compile-requirements:
+compile-requirements: devenv
     uv run pip-compile --upgrade --no-header requirements.in
 
-compile-dev-requirements:
+compile-dev-requirements: devenv
     uv run pip-compile --upgrade --no-header requirements.dev.in
 
 # Run `manage.py`
-manage *args: db
+manage *args: db devenv
     uv run openprescribing/manage.py {{ args }}
 
 # Run `manage.py migrate`
@@ -62,7 +62,7 @@ start-docker:
     docker compose run --rm --service-ports {{ dev_service }}
 
 # Run the tests (see TESTING.md)
-test *args: db
+test *args: db devenv
     #!/usr/bin/env bash
     set -euo pipefail
 
