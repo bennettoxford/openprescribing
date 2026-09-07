@@ -27,8 +27,7 @@ class Command(BaseCommand):
         ]
         with transaction.atomic():
             for model, field_name in classes:
-                for obj in model.objects.filter(is_current=False):
+                for obj in model.objects.filter():
                     prefix = getattr(obj, field_name)
-                    if prefix in all_bnf_prefixes:
-                        obj.is_current = True
-                        obj.save(update_fields=["is_current"])
+                    obj.is_current = prefix in all_bnf_prefixes
+                    obj.save(update_fields=["is_current"])

@@ -36,21 +36,25 @@ class TestCommand(TestCase):
             call_command("refresh_bnf_class_currency")
 
         self.assertTrue(Section.objects.get(bnf_id="01").is_current)
-        self.assertTrue(Section.objects.get(bnf_id="02").is_current)
+        self.assertFalse(Section.objects.get(bnf_id="02").is_current)
         self.assertTrue(Section.objects.get(bnf_id="03").is_current)
         self.assertFalse(Section.objects.get(bnf_id="04").is_current)
 
         self.assertTrue(Chemical.objects.get(bnf_code="010101001").is_current)
-        self.assertTrue(Chemical.objects.get(bnf_code="020101001").is_current)
+        self.assertFalse(Chemical.objects.get(bnf_code="020101001").is_current)
         self.assertTrue(Chemical.objects.get(bnf_code="030101001").is_current)
         self.assertFalse(Chemical.objects.get(bnf_code="040101001").is_current)
 
         self.assertTrue(Product.objects.get(bnf_code="010101001AA").is_current)
-        self.assertTrue(Product.objects.get(bnf_code="020101001AA").is_current)
+        self.assertFalse(Product.objects.get(bnf_code="020101001AA").is_current)
         self.assertTrue(Product.objects.get(bnf_code="030101001AA").is_current)
         self.assertFalse(Product.objects.get(bnf_code="040101001AA").is_current)
 
         self.assertTrue(Presentation.objects.get(bnf_code="010101001AAAAAA").is_current)
-        self.assertTrue(Presentation.objects.get(bnf_code="020101001AAAAAA").is_current)
+        self.assertFalse(
+            Presentation.objects.get(bnf_code="020101001AAAAAA").is_current
+        )
         self.assertTrue(Presentation.objects.get(bnf_code="030101001AAAAAA").is_current)
-        self.assertFalse(Presentation.objects.get(bnf_code="040101001AAAAAA").is_current)
+        self.assertFalse(
+            Presentation.objects.get(bnf_code="040101001AAAAAA").is_current
+        )
