@@ -28,6 +28,10 @@ jobs:
           # We set this because the test service depends on the browserstacklocal-test
           # service for its network, and the latter won't start without it.
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          # We set this for a similar reason. Without a local identifier, starting the
+          # browserstacklocal-test service would terminate existing connections to
+          # BrowserStack.
+          BROWSERSTACK_LOCAL_IDENTIFIER: ${{ github.run_id }}-${{ strategy.job-index }}
       - name: Notify slack failure
         if: failure()
         env:
