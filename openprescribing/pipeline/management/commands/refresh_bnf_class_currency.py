@@ -31,4 +31,4 @@ class Command(BaseCommand):
                     prefix = getattr(obj, field_name)
                     if prefix in all_bnf_prefixes:
                         obj.is_current = True
-                        obj.save()
+                        obj.save(update_fields=["is_current"])
