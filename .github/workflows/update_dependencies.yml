@@ -10,9 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - name: Install just
+        uses: ./.github/actions/install-just
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10
 
       - uses: actions/create-github-app-token@v3
         id: generate-token
@@ -26,11 +30,7 @@ jobs:
           token: ${{ steps.generate-token.outputs.token }}
           automerge: false
           pr_title: "Update python dependencies"
-          update_command: |
-            pip install pip && \
-            pip install pip-tools && \
-            pip-compile --upgrade --no-header requirements.dev.in && \
-            pip-compile --upgrade --no-header requirements.in
+          update_command: just compile-requirements compile-dev-requirements
 
       - name: Notify slack of PR
         if: ${{ steps.update.outputs.pull-request-operation != 'none' }}
