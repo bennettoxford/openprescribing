@@ -93,7 +93,7 @@ test-docker-browserstack-functional:
 
 # Run the tests in a container (see TESTING.md)
 test-docker:
-    docker compose run --rm {{ test_service }}
+    docker compose run --rm --quiet-pull {{ test_service }}
 
 # Run the functional tests in a container (see TESTING.md)
 test-docker-functional:
