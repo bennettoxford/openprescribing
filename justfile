@@ -10,7 +10,6 @@ test_service := "test"
 # the DB_* just/environment variables come from the postgis service (see
 # docker-compose.yml).
 export BROWSERSTACK_BUILD_NAME := ""
-export BROWSERSTACK_LOCAL_IDENTIFIER := ""
 export BROWSERSTACK_PROJECT_NAME := ""
 export DB_NAME := "openprescribing-test"
 export DB_PASS := "pass"
