@@ -15,6 +15,7 @@ export DB_NAME := "openprescribing-test"
 export DB_PASS := "pass"
 export DB_USER := "user"
 export DJANGO_SETTINGS_MODULE := "openprescribing.settings.local"
+export GOOGLE_APPLICATION_CREDENTIALS := "google-credentials.json"
 export MAILGUN_API_KEY := "mailgun_api_key"
 export MAILGUN_WEBHOOK_PASS := "mailgun_webhook_pass"
 export MAILGUN_WEBHOOK_USER := "mailgun_webhook_user"
@@ -66,7 +67,6 @@ test *args: db devenv
     set -euo pipefail
 
     export DJANGO_SETTINGS_MODULE=openprescribing.settings.test
-    export GOOGLE_APPLICATION_CREDENTIALS=google-credentials.json
     cd openprescribing
     uv run coverage run manage.py test {{ args }}
 
