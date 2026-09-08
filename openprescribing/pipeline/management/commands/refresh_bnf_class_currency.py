@@ -13,6 +13,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         all_bnf_codes = get_all_bnf_codes()
+        all_bnf_prefixes = {
+            bnf_code[:i]
+            for bnf_code in all_bnf_codes
+            for i in range(1, len(bnf_code) + 1)
+        }
 
         classes = [
             (Section, "bnf_id"),
@@ -22,8 +27,7 @@ class Command(BaseCommand):
         ]
         with transaction.atomic():
             for model, field_name in classes:
-                for obj in model.objects.filter(is_current=False):
+                for obj in model.objects.filter():
                     prefix = getattr(obj, field_name)
-                    if any(bnf_code.startswith(prefix) for bnf_code in all_bnf_codes):
-                        obj.is_current = True
-                        obj.save()
+                    obj.is_current = prefix in all_bnf_prefixes
+                    obj.save(update_fields=["is_current"])
