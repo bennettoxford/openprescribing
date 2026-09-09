@@ -15,6 +15,7 @@ export DB_NAME := "openprescribing-test"
 export DB_PASS := "pass"
 export DB_USER := "user"
 export DJANGO_SETTINGS_MODULE := "openprescribing.settings.local"
+export GOOGLE_APPLICATION_CREDENTIALS := "google-credentials.json"
 export MAILGUN_API_KEY := "mailgun_api_key"
 export MAILGUN_WEBHOOK_PASS := "mailgun_webhook_pass"
 export MAILGUN_WEBHOOK_USER := "mailgun_webhook_user"
@@ -61,46 +62,48 @@ start-docker:
     docker compose run --rm --service-ports {{ dev_service }}
 
 # Run the tests (see TESTING.md)
+[env("DJANGO_SETTINGS_MODULE", "openprescribing.settings.test")]
 test *args: db devenv
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    export DJANGO_SETTINGS_MODULE=openprescribing.settings.test
-    export GOOGLE_APPLICATION_CREDENTIALS=google-credentials.json
-    cd openprescribing
-    uv run coverage run manage.py test {{ args }}
+    cd openprescribing && uv run coverage run manage.py test {{ args }}
 
 # Run the functional tests (see TESTING.md)
+[env("TEST_SUITE", "functional")]
 test-functional *args:
-    TEST_SUITE=functional {{ just_executable() }} test {{ args }}
+    {{ just_executable() }} test {{ args }}
 
 # Run the non-functional tests (see TESTING.md)
+[env("TEST_SUITE", "nonfunctional")]
 test-nonfunctional *args:
-    TEST_SUITE=nonfunctional {{ just_executable() }} test {{ args }}
+    {{ just_executable() }} test {{ args }}
 
 # Start BrowserStack's local agent (see TESTING.md)
 browserstacklocal:
     docker compose up --detach --wait {{ browserstacklocal_service }}
 
 # Run the functional tests using BrowserStack's local agent (see TESTING.md)
+[env("USE_BROWSERSTACK", "1")]
 test-browserstack-functional *args: browserstacklocal
-    USE_BROWSERSTACK=1 {{ just_executable() }} test-functional {{ args }}
+    BROWSERSTACK_LOCAL_IDENTIFIER={{ env("BROWSERSTACK_LOCAL_IDENTIFIER", "") }} \
+    {{ just_executable() }} test-functional {{ args }}
 
 # Run the functional tests in a container using BrowserStack's local agent (see TESTING.md)
+[env("USE_BROWSERSTACK", "1")]
 test-docker-browserstack-functional:
-    USE_BROWSERSTACK=1 {{ just_executable() }} test-docker-functional
+    {{ just_executable() }} test-docker-functional
 
 # Run the tests in a container (see TESTING.md)
 test-docker:
     docker compose run --rm --quiet-pull {{ test_service }}
 
 # Run the functional tests in a container (see TESTING.md)
+[env("TEST_SUITE", "functional")]
 test-docker-functional:
-    TEST_SUITE=functional {{ just_executable() }} test-docker
+    {{ just_executable() }} test-docker
 
 # Run the non-functional tests in a container (see TESTING.md)
+[env("TEST_SUITE", "nonfunctional")]
 test-docker-nonfunctional:
-    TEST_SUITE=nonfunctional {{ just_executable() }} test-docker
+    {{ just_executable() }} test-docker
 
 # Install the Node.js dependencies
 assets-install:
