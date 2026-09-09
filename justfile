@@ -83,6 +83,7 @@ browserstacklocal:
 # Run the functional tests using BrowserStack's local agent (see TESTING.md)
 [env("USE_BROWSERSTACK", "1")]
 test-browserstack-functional *args: browserstacklocal
+    BROWSERSTACK_LOCAL_IDENTIFIER={{ env("BROWSERSTACK_LOCAL_IDENTIFIER", "") }} \
     {{ just_executable() }} test-functional {{ args }}
 
 # Run the functional tests in a container using BrowserStack's local agent (see TESTING.md)
