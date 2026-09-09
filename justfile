@@ -81,12 +81,14 @@ browserstacklocal:
     docker compose up --detach --wait {{ browserstacklocal_service }}
 
 # Run the functional tests using BrowserStack's local agent (see TESTING.md)
+[env("USE_BROWSERSTACK", "1")]
 test-browserstack-functional *args: browserstacklocal
-    USE_BROWSERSTACK=1 {{ just_executable() }} test-functional {{ args }}
+    {{ just_executable() }} test-functional {{ args }}
 
 # Run the functional tests in a container using BrowserStack's local agent (see TESTING.md)
+[env("USE_BROWSERSTACK", "1")]
 test-docker-browserstack-functional:
-    USE_BROWSERSTACK=1 {{ just_executable() }} test-docker-functional
+    {{ just_executable() }} test-docker-functional
 
 # Run the tests in a container (see TESTING.md)
 test-docker:
