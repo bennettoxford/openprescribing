@@ -67,12 +67,14 @@ test *args: db devenv
     cd openprescribing && uv run coverage run manage.py test {{ args }}
 
 # Run the functional tests (see TESTING.md)
+[env("TEST_SUITE", "functional")]
 test-functional *args:
-    TEST_SUITE=functional {{ just_executable() }} test {{ args }}
+    {{ just_executable() }} test {{ args }}
 
 # Run the non-functional tests (see TESTING.md)
+[env("TEST_SUITE", "nonfunctional")]
 test-nonfunctional *args:
-    TEST_SUITE=nonfunctional {{ just_executable() }} test {{ args }}
+    {{ just_executable() }} test {{ args }}
 
 # Start BrowserStack's local agent (see TESTING.md)
 browserstacklocal:
@@ -91,12 +93,14 @@ test-docker:
     docker compose run --rm --quiet-pull {{ test_service }}
 
 # Run the functional tests in a container (see TESTING.md)
+[env("TEST_SUITE", "functional")]
 test-docker-functional:
-    TEST_SUITE=functional {{ just_executable() }} test-docker
+    {{ just_executable() }} test-docker
 
 # Run the non-functional tests in a container (see TESTING.md)
+[env("TEST_SUITE", "nonfunctional")]
 test-docker-nonfunctional:
-    TEST_SUITE=nonfunctional {{ just_executable() }} test-docker
+    {{ just_executable() }} test-docker
 
 # Install the Node.js dependencies
 assets-install:
