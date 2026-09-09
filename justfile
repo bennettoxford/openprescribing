@@ -62,13 +62,9 @@ start-docker:
     docker compose run --rm --service-ports {{ dev_service }}
 
 # Run the tests (see TESTING.md)
+[env("DJANGO_SETTINGS_MODULE", "openprescribing.settings.test")]
 test *args: db devenv
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    export DJANGO_SETTINGS_MODULE=openprescribing.settings.test
-    cd openprescribing
-    uv run coverage run manage.py test {{ args }}
+    cd openprescribing && uv run coverage run manage.py test {{ args }}
 
 # Run the functional tests (see TESTING.md)
 test-functional *args:
