@@ -21,8 +21,8 @@ export MAILGUN_WEBHOOK_PASS := "mailgun_webhook_pass"
 export MAILGUN_WEBHOOK_USER := "mailgun_webhook_user"
 export SECRET_KEY := "secret_key"
 
-# Remove an existing virtual environment
-clean:
+# Clear an existing, or create a new, virtual environment
+clear:
     uv venv --clear
 
 # Run the code quality checks but don't modify any files
@@ -33,7 +33,7 @@ _check-docker-compose:
     docker compose config --quiet
 
 # Install development requirements into the virtual environment
-devenv:
+devenv: clear
     echo 'pip' | uv pip sync - requirements.txt requirements.dev.txt
 
 compile-requirements: devenv
