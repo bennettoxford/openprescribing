@@ -21,8 +21,8 @@ export MAILGUN_WEBHOOK_PASS := "mailgun_webhook_pass"
 export MAILGUN_WEBHOOK_USER := "mailgun_webhook_user"
 export SECRET_KEY := "secret_key"
 
-# Remove an existing virtual environment
-clean:
+# Clear an existing, or create a new, virtual environment
+clear:
     uv venv --clear
 
 # Run the code quality checks but don't modify any files
