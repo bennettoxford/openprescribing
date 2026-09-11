@@ -54,6 +54,17 @@ migrate *args:
 run *args:
     {{ just_executable() }} manage runserver {{ args }}
 
+# Run with Gunicorn for development and testing
+[env("DJANGO_SETTINGS_MODULE", "openprescribing.settings.production")]
+[env("GUNICORN_LOG_LEVEL", "info")]
+[env("GUNICORN_NUM_WORKERS", "1")]
+[env("GUNICORN_TIMEOUT", "30")]
+[env("OTEL_EXPORTER_OTLP_ENDPOINT", "https://api.honeycomb.io")]
+[env("PORT", "8000")]
+[env("VIRTUALENV_PATH", ".venv")]
+run-gunicorn: db
+    bin/gunicorn_start
+
 # Start the web app and database containers
 start-docker:
     # Unlike `up`, `run` doesn't create the ports that are specified by
