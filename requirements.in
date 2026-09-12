@@ -72,3 +72,8 @@ seaborn
 lxml
 numpy
 jinja2
+
+# OpenTelemetry
+opentelemetry-sdk
+opentelemetry-instrumentation-django
+opentelemetry-exporter-otlp-proto-http
