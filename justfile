@@ -34,7 +34,7 @@ _check-docker-compose:
 
 # Install development requirements into the virtual environment
 devenv: clear
-    echo 'pip' | uv pip sync - requirements.txt requirements.dev.txt
+    uv pip sync requirements.txt requirements.dev.txt
 
 compile-requirements:
     uv pip compile --upgrade --no-header --unsafe-package setuptools --no-strip-extras --output-file requirements.txt requirements.in
