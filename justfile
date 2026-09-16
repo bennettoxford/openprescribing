@@ -37,7 +37,12 @@ devenv: clear
     uv pip sync requirements.txt requirements.dev.txt
 
 _compile-requirements extension:
-    uv pip compile --upgrade --no-header --unsafe-package setuptools --no-strip-extras --output-file requirements{{ extension }}.txt requirements{{ extension }}.in
+    uv pip compile \
+      --upgrade \
+      --no-header \
+      --unsafe-package setuptools \
+      --no-strip-extras \
+      --output-file requirements{{ extension }}.txt requirements{{ extension }}.in
 
 compile-prod-requirements: (_compile-requirements "")
 
