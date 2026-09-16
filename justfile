@@ -36,7 +36,7 @@ _check-docker-compose:
 devenv: clear
     uv pip sync requirements.txt requirements.dev.txt
 
-compile-requirements:
+compile-prod-requirements:
     uv pip compile --upgrade --no-header --unsafe-package setuptools --no-strip-extras --output-file requirements.txt requirements.in
 
 compile-dev-requirements:
