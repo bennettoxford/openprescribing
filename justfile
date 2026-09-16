@@ -34,13 +34,13 @@ _check-docker-compose:
 
 # Install development requirements into the virtual environment
 devenv: clear
-    echo 'pip' | uv pip sync - requirements.txt requirements.dev.txt
+    uv pip sync requirements.txt requirements.dev.txt
 
-compile-requirements: devenv
-    uv run pip-compile --upgrade --no-header requirements.in
+compile-requirements:
+    uv pip compile --upgrade --no-header --unsafe-package setuptools --no-strip-extras --output-file requirements.txt requirements.in
 
-compile-dev-requirements: devenv
-    uv run pip-compile --upgrade --no-header requirements.dev.in
+compile-dev-requirements:
+    uv pip compile --upgrade --no-header --unsafe-package setuptools --no-strip-extras --output-file requirements.dev.txt requirements.dev.in
 
 # Run `manage.py`
 manage *args: db devenv

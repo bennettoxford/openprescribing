@@ -62,7 +62,6 @@ django-extensions
 fab-classic
 flake8
 graphviz
-pip-tools
 when-changed
 
 
