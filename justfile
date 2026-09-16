@@ -38,6 +38,7 @@ devenv: clear
 
 _compile-requirements extension:
     uv pip compile \
+      --quiet \
       --upgrade \
       --no-header \
       --unsafe-package setuptools \
