@@ -36,11 +36,20 @@ _check-docker-compose:
 devenv: clear
     uv pip sync requirements.txt requirements.dev.txt
 
-compile-requirements:
-    uv pip compile --upgrade --no-header --unsafe-package setuptools --no-strip-extras --output-file requirements.txt requirements.in
+_compile-requirements extension:
+    uv pip compile \
+      --quiet \
+      --upgrade \
+      --no-header \
+      --unsafe-package setuptools \
+      --no-strip-extras \
+      --output-file requirements{{ extension }}.txt requirements{{ extension }}.in
 
-compile-dev-requirements:
-    uv pip compile --upgrade --no-header --unsafe-package setuptools --no-strip-extras --output-file requirements.dev.txt requirements.dev.in
+# Compile (but don't install) requirements for the production environment
+compile-prod-requirements: (_compile-requirements "")
+
+# Compile (but don't install) requirements for the development environment
+compile-dev-requirements: (_compile-requirements ".dev")
 
 # Run `manage.py`
 manage *args: db devenv
