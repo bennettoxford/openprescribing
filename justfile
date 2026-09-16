@@ -45,8 +45,10 @@ _compile-requirements extension:
       --no-strip-extras \
       --output-file requirements{{ extension }}.txt requirements{{ extension }}.in
 
+# Compile (but don't install) requirements for the production environment
 compile-prod-requirements: (_compile-requirements "")
 
+# Compile (but don't install) requirements for the development environment
 compile-dev-requirements: (_compile-requirements ".dev")
 
 # Run `manage.py`
