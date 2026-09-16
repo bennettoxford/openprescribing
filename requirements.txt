@@ -389,7 +389,7 @@ tzdata==2026.4
     # via pandas
 uritemplate==4.2.0
     # via google-api-python-client
-urllib3[socks]==2.7.0
+urllib3[socks]==2.8.0
     # via
     #   django-anymail
     #   requests
