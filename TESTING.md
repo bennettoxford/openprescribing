@@ -5,11 +5,11 @@ There are two types of test: functional and non-functional.
 ## Functional tests
 
 The functional tests use Selenium to make requests to a [Django live server][].
-They can be run locally (the host system) or in a container (the guest system),
+They can be run locally or in a container,
 with or without BrowserStackLocal (see below).
 BrowserStackLocal is always run in a container.
 Let's consider the four cases.
-Functional tests can be run:
+The functional tests can be run:
 
 * locally with BrowserStackLocal: `just test-browserstack-functional`
   The functional tests are run against the web browser given by `BROWSER` (see below).
@@ -20,7 +20,7 @@ Functional tests can be run:
 * in a container without BrowserStackLocal: `just test-docker-functional`
   The functional tests are run against the container's Firefox web browser.
 
-Of these, the "in a container with BrowserStackLocal" case is how functional tests are run in CI.
+Of these, the "in a container with BrowserStackLocal" case is how the functional tests are run in CI.
 
 ### BrowserStackLocal
 
