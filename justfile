@@ -88,10 +88,6 @@ test-functional *args:
 test-nonfunctional *args:
     {{ just_executable() }} test {{ args }}
 
-# Start BrowserStack's local agent (see TESTING.md)
-browserstacklocal:
-    docker compose up --detach --wait {{ browserstacklocal_service }}
-
 # Run the functional tests using BrowserStack's local agent (see TESTING.md)
 [env("USE_BROWSERSTACK", "1")]
 test-browserstack-functional *args: browserstacklocal
@@ -102,6 +98,10 @@ test-browserstack-functional *args: browserstacklocal
 [env("USE_BROWSERSTACK", "1")]
 docker-test-browserstack-functional:
     {{ just_executable() }} docker-test-functional
+
+# Start BrowserStack's local agent (see TESTING.md)
+browserstacklocal:
+    docker compose up --detach --wait {{ browserstacklocal_service }}
 
 # Start the web app and database containers
 docker-start:
