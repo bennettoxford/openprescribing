@@ -78,26 +78,31 @@ run-gunicorn: db
 
 # Run the tests (see TESTING.md)
 [env("DJANGO_SETTINGS_MODULE", "openprescribing.settings.test")]
+[group("Testing")]
 test *args: db devenv
     cd openprescribing && uv run coverage run manage.py test {{ args }}
 
 # Run the functional tests (see TESTING.md)
 [env("TEST_SUITE", "functional")]
+[group("Testing")]
 test-functional *args:
     {{ just_executable() }} test {{ args }}
 
 # Run the non-functional tests (see TESTING.md)
 [env("TEST_SUITE", "nonfunctional")]
+[group("Testing")]
 test-nonfunctional *args:
     {{ just_executable() }} test {{ args }}
 
 # Run the functional tests using BrowserStack's local agent (see TESTING.md)
 [env("USE_BROWSERSTACK", "1")]
+[group("Testing")]
 test-browserstack-functional *args: browserstacklocal
     BROWSERSTACK_LOCAL_IDENTIFIER={{ env("BROWSERSTACK_LOCAL_IDENTIFIER", "") }} \
     {{ just_executable() }} test-functional {{ args }}
 
 # Install the Node.js dependencies
+[group("Assets")]
 assets-install:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -109,6 +114,7 @@ assets-install:
     npm install
 
 # Build the Node.js assets
+[group("Assets")]
 assets-build:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -120,30 +126,35 @@ assets-build:
 # --------------------------------------------------------------------------------------
 
 # Start the database container
+[group("Services")]
 db:
     docker compose up --detach --wait {{ postgis_service }}
 
-# Remove an existing database container, and its associated network and volume
+# Remove the existing database container, and its associated network and volume
+[group("Services")]
 @db-clean:
     # need not depend on db, because a down without a previous up is a no-op
     @docker compose down --volumes {{ postgis_service }}
 
 # Access a database shell running inside the database container
+[group("Services")]
 db-shell: db
     docker compose exec {{ postgis_service }} bash -c 'psql --username "$POSTGRES_USER" "$POSTGRES_DB"'
 
-# Start BrowserStack's local agent (see TESTING.md)
+# Start the BrowserStackLocal container (see TESTING.md)
+[group("Services")]
 browserstacklocal:
     docker compose up --detach --wait {{ browserstacklocal_service }}
 
-# Start the web app and database containers
-docker-start:
+# Start a development container
+docker-devenv:
     # Unlike `up`, `run` doesn't create the ports that are specified by
     # docker-compose.yml by default. These ports are needed for connecting to the Django
     # development web server, so we pass `--service-ports` to create them.
     docker compose run --rm --service-ports {{ dev_service }}
 
 # Run the tests in a container (see TESTING.md)
+[group("Testing")]
 docker-test:
     #!/usr/bin/env bash
     set -euxo pipefail
@@ -170,21 +181,25 @@ docker-test:
 
 # Run the functional tests in a container (see TESTING.md)
 [env("TEST_SUITE", "functional")]
+[group("Testing")]
 docker-test-functional:
     {{ just_executable() }} docker-test
 
 # Run the non-functional tests in a container (see TESTING.md)
 [env("TEST_SUITE", "nonfunctional")]
+[group("Testing")]
 docker-test-nonfunctional:
     {{ just_executable() }} docker-test
 
 # Run the functional tests in a container using BrowserStack's local agent (see TESTING.md)
 [env("USE_BROWSERSTACK", "1")]
+[group("Testing")]
 docker-test-browserstack-functional:
     {{ just_executable() }} docker-test-functional
 
 # Build the base and test images
 [confirm("This will remove the existing base and test images. Do you wish to continue? (y/n)")]
+[group("Images")]
 docker-build-images:
     #!/usr/bin/env bash
     set -euxo pipefail
@@ -212,6 +227,7 @@ docker-build-images:
 
 # Push the base and test images to GHCR
 [confirm("This will push the base and test images to GHCR. Do you wish to continue? (y/n)")]
+[group("Images")]
 docker-push-images:
     docker image push ghcr.io/bennettoxford/openprescribing-py312-base:latest
     docker image push ghcr.io/bennettoxford/openprescribing-py312-test:latest
