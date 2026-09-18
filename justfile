@@ -124,19 +124,23 @@ assets-build:
 # --------------------------------------------------------------------------------------
 
 # Start the database container
+[group("Services")]
 db:
     docker compose up --detach --wait {{ postgis_service }}
 
 # Remove an existing database container, and its associated network and volume
+[group("Services")]
 @db-clean:
     # need not depend on db, because a down without a previous up is a no-op
     @docker compose down --volumes {{ postgis_service }}
 
 # Access a database shell running inside the database container
+[group("Services")]
 db-shell: db
     docker compose exec {{ postgis_service }} bash -c 'psql --username "$POSTGRES_USER" "$POSTGRES_DB"'
 
 # Start BrowserStack's local agent (see TESTING.md)
+[group("Services")]
 browserstacklocal:
     docker compose up --detach --wait {{ browserstacklocal_service }}
 
