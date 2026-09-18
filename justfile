@@ -78,21 +78,25 @@ run-gunicorn: db
 
 # Run the tests (see TESTING.md)
 [env("DJANGO_SETTINGS_MODULE", "openprescribing.settings.test")]
+[group("Testing")]
 test *args: db devenv
     cd openprescribing && uv run coverage run manage.py test {{ args }}
 
 # Run the functional tests (see TESTING.md)
 [env("TEST_SUITE", "functional")]
+[group("Testing")]
 test-functional *args:
     {{ just_executable() }} test {{ args }}
 
 # Run the non-functional tests (see TESTING.md)
 [env("TEST_SUITE", "nonfunctional")]
+[group("Testing")]
 test-nonfunctional *args:
     {{ just_executable() }} test {{ args }}
 
 # Run the functional tests using BrowserStack's local agent (see TESTING.md)
 [env("USE_BROWSERSTACK", "1")]
+[group("Testing")]
 test-browserstack-functional *args: browserstacklocal
     BROWSERSTACK_LOCAL_IDENTIFIER={{ env("BROWSERSTACK_LOCAL_IDENTIFIER", "") }} \
     {{ just_executable() }} test-functional {{ args }}
@@ -144,6 +148,7 @@ docker-start:
     docker compose run --rm --service-ports {{ dev_service }}
 
 # Run the tests in a container (see TESTING.md)
+[group("Testing")]
 docker-test:
     #!/usr/bin/env bash
     set -euxo pipefail
@@ -170,16 +175,19 @@ docker-test:
 
 # Run the functional tests in a container (see TESTING.md)
 [env("TEST_SUITE", "functional")]
+[group("Testing")]
 docker-test-functional:
     {{ just_executable() }} docker-test
 
 # Run the non-functional tests in a container (see TESTING.md)
 [env("TEST_SUITE", "nonfunctional")]
+[group("Testing")]
 docker-test-nonfunctional:
     {{ just_executable() }} docker-test
 
 # Run the functional tests in a container using BrowserStack's local agent (see TESTING.md)
 [env("USE_BROWSERSTACK", "1")]
+[group("Testing")]
 docker-test-browserstack-functional:
     {{ just_executable() }} docker-test-functional
 
