@@ -141,7 +141,7 @@ db:
 db-shell: db
     docker compose exec {{ postgis_service }} bash -c 'psql --username "$POSTGRES_USER" "$POSTGRES_DB"'
 
-# Start BrowserStack's local agent (see TESTING.md)
+# Start the BrowserStackLocal container (see TESTING.md)
 [group("Services")]
 browserstacklocal:
     docker compose up --detach --wait {{ browserstacklocal_service }}
