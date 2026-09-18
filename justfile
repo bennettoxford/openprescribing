@@ -94,6 +94,25 @@ test-browserstack-functional *args: browserstacklocal
     BROWSERSTACK_LOCAL_IDENTIFIER={{ env("BROWSERSTACK_LOCAL_IDENTIFIER", "") }} \
     {{ just_executable() }} test-functional {{ args }}
 
+# Install the Node.js dependencies
+assets-install:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    cd openprescribing/media/js
+    npm install -g browserify
+    npm install -g jshint
+    npm install -g less
+    npm install
+
+# Build the Node.js assets
+assets-build:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    cd openprescribing/media/js
+    npm run build
+
 # Start BrowserStack's local agent (see TESTING.md)
 browserstacklocal:
     docker compose up --detach --wait {{ browserstacklocal_service }}
@@ -144,25 +163,6 @@ docker-test-nonfunctional:
 [env("USE_BROWSERSTACK", "1")]
 docker-test-browserstack-functional:
     {{ just_executable() }} docker-test-functional
-
-# Install the Node.js dependencies
-assets-install:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    cd openprescribing/media/js
-    npm install -g browserify
-    npm install -g jshint
-    npm install -g less
-    npm install
-
-# Build the Node.js assets
-assets-build:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    cd openprescribing/media/js
-    npm run build
 
 # Start the database container
 db:
