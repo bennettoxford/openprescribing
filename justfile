@@ -74,7 +74,7 @@ run-gunicorn: db
     bin/gunicorn_start
 
 # Start the web app and database containers
-start-docker:
+docker-start:
     # Unlike `up`, `run` doesn't create the ports that are specified by
     # docker-compose.yml by default. These ports are needed for connecting to the Django
     # development web server, so we pass `--service-ports` to create them.
@@ -107,11 +107,11 @@ test-browserstack-functional *args: browserstacklocal
 
 # Run the functional tests in a container using BrowserStack's local agent (see TESTING.md)
 [env("USE_BROWSERSTACK", "1")]
-test-docker-browserstack-functional:
-    {{ just_executable() }} test-docker-functional
+docker-test-browserstack-functional:
+    {{ just_executable() }} docker-test-functional
 
 # Run the tests in a container (see TESTING.md)
-test-docker:
+docker-test:
     #!/usr/bin/env bash
     set -euxo pipefail
 
@@ -137,13 +137,13 @@ test-docker:
 
 # Run the functional tests in a container (see TESTING.md)
 [env("TEST_SUITE", "functional")]
-test-docker-functional:
-    {{ just_executable() }} test-docker
+docker-test-functional:
+    {{ just_executable() }} docker-test
 
 # Run the non-functional tests in a container (see TESTING.md)
 [env("TEST_SUITE", "nonfunctional")]
-test-docker-nonfunctional:
-    {{ just_executable() }} test-docker
+docker-test-nonfunctional:
+    {{ just_executable() }} docker-test
 
 # Install the Node.js dependencies
 assets-install:
