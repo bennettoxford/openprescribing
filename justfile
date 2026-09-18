@@ -179,7 +179,7 @@ docker-test-browserstack-functional:
 
 # Build the base and test images
 [confirm("This will remove the existing base and test images. Do you wish to continue? (y/n)")]
-build-images:
+docker-build-images:
     #!/usr/bin/env bash
     set -euxo pipefail
 
