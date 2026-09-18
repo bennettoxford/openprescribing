@@ -206,6 +206,6 @@ docker-build-images:
 
 # Push the base and test images to GHCR
 [confirm("This will push the base and test images to GHCR. Do you wish to continue? (y/n)")]
-push-images:
+docker-push-images:
     docker image push ghcr.io/bennettoxford/openprescribing-py312-base:latest
     docker image push ghcr.io/bennettoxford/openprescribing-py312-test:latest
