@@ -113,6 +113,19 @@ assets-build:
     cd openprescribing/media/js
     npm run build
 
+# Start the database container
+db:
+    docker compose up --detach --wait {{ postgis_service }}
+
+# Remove an existing database container, and its associated network and volume
+@db-clean:
+    # need not depend on db, because a down without a previous up is a no-op
+    @docker compose down --volumes {{ postgis_service }}
+
+# Access a database shell running inside the database container
+db-shell: db
+    docker compose exec {{ postgis_service }} bash -c 'psql --username "$POSTGRES_USER" "$POSTGRES_DB"'
+
 # Start BrowserStack's local agent (see TESTING.md)
 browserstacklocal:
     docker compose up --detach --wait {{ browserstacklocal_service }}
@@ -163,19 +176,6 @@ docker-test-nonfunctional:
 [env("USE_BROWSERSTACK", "1")]
 docker-test-browserstack-functional:
     {{ just_executable() }} docker-test-functional
-
-# Start the database container
-db:
-    docker compose up --detach --wait {{ postgis_service }}
-
-# Remove an existing database container, and its associated network and volume
-@db-clean:
-    # need not depend on db, because a down without a previous up is a no-op
-    @docker compose down --volumes {{ postgis_service }}
-
-# Access a database shell running inside the database container
-db-shell: db
-    docker compose exec {{ postgis_service }} bash -c 'psql --username "$POSTGRES_USER" "$POSTGRES_DB"'
 
 # Build the base and test images
 [confirm("This will remove the existing base and test images. Do you wish to continue? (y/n)")]
