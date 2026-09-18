@@ -55,3 +55,25 @@ See `.github/workflows/main.yml` for values used in CI.
 [Django live server]: https://docs.djangoproject.com/en/4.2/topics/testing/tools/#django.test.LiveServerTestCase
 [How Local Testing works]: https://www.browserstack.com/docs/local-testing/how-local-testing-works
 [Select browsers and devices]: https://www.browserstack.com/docs/automate/selenium/select-browsers-and-devices
+
+## Non-functional tests
+
+The non-functional tests can be run locally or in a container:
+
+* locally: `test-nonfunctional`
+* in a container: `test-docker-nonfunctional`
+
+Of these, the "in a container" case is how the non-functional tests are run in CI.
+
+The non-functional tests are a mix of fast unit tests and slow integration tests.
+It isn't possible to run only the unit tests or only the integration tests,
+although it is possible to be more selective by passing any number of [test labels][] to `test-nonfunctional`.
+
+Several integration tests access BigQuery and Google Cloud Storage.
+To run them:
+
+* install the [Google Cloud Command Line Interface][] (gcloud CLI)
+* authenticate: `gcloud auth application-default login`
+
+[Google Cloud Command Line Interface]: https://cloud.google.com/cli
+[test labels]: https://docs.djangoproject.com/en/stable/topics/testing/overview/#running-tests
