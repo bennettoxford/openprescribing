@@ -102,6 +102,7 @@ test-browserstack-functional *args: browserstacklocal
     {{ just_executable() }} test-functional {{ args }}
 
 # Install the Node.js dependencies
+[group("Assets")]
 assets-install:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -113,6 +114,7 @@ assets-install:
     npm install
 
 # Build the Node.js assets
+[group("Assets")]
 assets-build:
     #!/usr/bin/env bash
     set -euo pipefail
