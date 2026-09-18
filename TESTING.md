@@ -13,11 +13,11 @@ The functional tests can be run:
 
 * locally with BrowserStackLocal: `just test-browserstack-functional`
   The functional tests are run against the web browser given by `BROWSER` (see below).
-* in a container with BrowserStackLocal: `just test-docker-browserstack-functional`
+* in a container with BrowserStackLocal: `just docker-test-browserstack-functional`
   The functional tests are run against the web browser given by `BROWSER` (see below).
 * locally without BrowserStackLocal: `just test-functional`
   The functional tests are run against the local Firefox web browser.
-* in a container without BrowserStackLocal: `just test-docker-functional`
+* in a container without BrowserStackLocal: `just docker-test-functional`
   The functional tests are run against the container's Firefox web browser.
 
 Of these, the "in a container with BrowserStackLocal" case is how the functional tests are run in CI.
@@ -61,7 +61,7 @@ See `.github/workflows/main.yml` for values used in CI.
 The non-functional tests can be run locally or in a container:
 
 * locally: `test-nonfunctional`
-* in a container: `test-docker-nonfunctional`
+* in a container: `docker-test-nonfunctional`
 
 Of these, the "in a container" case is how the non-functional tests are run in CI.
 
