@@ -20,6 +20,9 @@ export MAILGUN_WEBHOOK_PASS := "mailgun_webhook_pass"
 export MAILGUN_WEBHOOK_USER := "mailgun_webhook_user"
 export SECRET_KEY := "secret_key"
 
+# Local recipes
+# --------------------------------------------------------------------------------------
+
 # Clear an existing, or create a new, virtual environment
 clear:
     uv venv --clear
@@ -112,6 +115,9 @@ assets-build:
 
     cd openprescribing/media/js
     npm run build
+
+# Docker recipes
+# --------------------------------------------------------------------------------------
 
 # Start the database container
 db:
