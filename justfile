@@ -146,8 +146,8 @@ db-shell: db
 browserstacklocal:
     docker compose up --detach --wait {{ browserstacklocal_service }}
 
-# Start the web app and database containers
-docker-start:
+# Start a development container
+docker-devenv:
     # Unlike `up`, `run` doesn't create the ports that are specified by
     # docker-compose.yml by default. These ports are needed for connecting to the Django
     # development web server, so we pass `--service-ports` to create them.
