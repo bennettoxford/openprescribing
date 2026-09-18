@@ -130,7 +130,7 @@ assets-build:
 db:
     docker compose up --detach --wait {{ postgis_service }}
 
-# Remove an existing database container, and its associated network and volume
+# Remove the existing database container, and its associated network and volume
 [group("Services")]
 @db-clean:
     # need not depend on db, because a down without a previous up is a no-op
