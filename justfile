@@ -94,11 +94,6 @@ test-browserstack-functional *args: browserstacklocal
     BROWSERSTACK_LOCAL_IDENTIFIER={{ env("BROWSERSTACK_LOCAL_IDENTIFIER", "") }} \
     {{ just_executable() }} test-functional {{ args }}
 
-# Run the functional tests in a container using BrowserStack's local agent (see TESTING.md)
-[env("USE_BROWSERSTACK", "1")]
-docker-test-browserstack-functional:
-    {{ just_executable() }} docker-test-functional
-
 # Start BrowserStack's local agent (see TESTING.md)
 browserstacklocal:
     docker compose up --detach --wait {{ browserstacklocal_service }}
@@ -144,6 +139,11 @@ docker-test-functional:
 [env("TEST_SUITE", "nonfunctional")]
 docker-test-nonfunctional:
     {{ just_executable() }} docker-test
+
+# Run the functional tests in a container using BrowserStack's local agent (see TESTING.md)
+[env("USE_BROWSERSTACK", "1")]
+docker-test-browserstack-functional:
+    {{ just_executable() }} docker-test-functional
 
 # Install the Node.js dependencies
 assets-install:
