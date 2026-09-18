@@ -197,6 +197,7 @@ docker-test-browserstack-functional:
 
 # Build the base and test images
 [confirm("This will remove the existing base and test images. Do you wish to continue? (y/n)")]
+[group("Images")]
 docker-build-images:
     #!/usr/bin/env bash
     set -euxo pipefail
@@ -224,6 +225,7 @@ docker-build-images:
 
 # Push the base and test images to GHCR
 [confirm("This will push the base and test images to GHCR. Do you wish to continue? (y/n)")]
+[group("Images")]
 docker-push-images:
     docker image push ghcr.io/bennettoxford/openprescribing-py312-base:latest
     docker image push ghcr.io/bennettoxford/openprescribing-py312-test:latest
