@@ -73,13 +73,6 @@ run *args:
 run-gunicorn: db
     bin/gunicorn_start
 
-# Start the web app and database containers
-docker-start:
-    # Unlike `up`, `run` doesn't create the ports that are specified by
-    # docker-compose.yml by default. These ports are needed for connecting to the Django
-    # development web server, so we pass `--service-ports` to create them.
-    docker compose run --rm --service-ports {{ dev_service }}
-
 # Run the tests (see TESTING.md)
 [env("DJANGO_SETTINGS_MODULE", "openprescribing.settings.test")]
 test *args: db devenv
@@ -109,6 +102,13 @@ test-browserstack-functional *args: browserstacklocal
 [env("USE_BROWSERSTACK", "1")]
 docker-test-browserstack-functional:
     {{ just_executable() }} docker-test-functional
+
+# Start the web app and database containers
+docker-start:
+    # Unlike `up`, `run` doesn't create the ports that are specified by
+    # docker-compose.yml by default. These ports are needed for connecting to the Django
+    # development web server, so we pass `--service-ports` to create them.
+    docker compose run --rm --service-ports {{ dev_service }}
 
 # Run the tests in a container (see TESTING.md)
 docker-test:
