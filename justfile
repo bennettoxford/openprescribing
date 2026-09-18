@@ -112,6 +112,27 @@ test-docker-browserstack-functional:
 
 # Run the tests in a container (see TESTING.md)
 test-docker:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+
+    # The test service expects credentials for BigQuery/GCS to be in
+    # /code/google-credentials.json on the guest, which maps to google-credentials.json
+    # on the host. We're not going to change this, at least not now. When running
+    # locally, however, we don't want a user to copy credentials and we don't want
+    # google-credentials.json to remain on the host for longer than necessary, for fear
+    # of them ending up in Git or an image.
+    DST_ADC_PATH=google-credentials.json
+    if [[ -f "$DST_ADC_PATH" ]]; then
+        # We're probably running in CI.
+        echo "Using credentials in $DST_ADC_PATH"
+    else
+        # We're probably running locally.
+        SRC_ADC_PATH="$(gcloud info --format='value(config.paths.global_config_dir)')/application_default_credentials.json"
+        echo "Copying credentials from $SRC_ADC_PATH to $DST_ADC_PATH"
+        trap 'rm "$DST_ADC_PATH"' EXIT INT TERM
+        cp $SRC_ADC_PATH $DST_ADC_PATH
+    fi
+
     docker compose run --rm --quiet-pull {{ test_service }}
 
 # Run the functional tests in a container (see TESTING.md)
