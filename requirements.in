@@ -75,4 +75,5 @@ jinja2
 # OpenTelemetry
 opentelemetry-sdk
 opentelemetry-instrumentation-django
+opentelemetry-instrumentation-psycopg2
 opentelemetry-exporter-otlp-proto-http
