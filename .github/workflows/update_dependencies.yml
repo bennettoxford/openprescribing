@@ -21,7 +21,7 @@ jobs:
       - uses: actions/create-github-app-token@v3
         id: generate-token
         with:
-          app-id: ${{ vars.CREATE_PR_APP_ID }}
+          client-id: ${{ vars.CREATE_PR_APP_ID }}
           private-key: ${{ secrets.CREATE_PR_APP_PRIVATE_KEY }}
 
       - uses: bennettoxford/update-dependencies-action@v1
