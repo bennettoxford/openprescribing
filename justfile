@@ -35,7 +35,7 @@ _check-docker-compose:
     docker compose config --quiet
 
 # Install development requirements into the virtual environment
-devenv: clear
+devenv:
     uv pip sync requirements.txt requirements.dev.txt
 
 _compile-requirements extension:
