@@ -28,7 +28,7 @@ clear:
     uv venv --clear
 
 # Run the code quality checks but don't modify any files
-check: devenv _check-docker-compose
+check: _check-docker-compose
     ./scripts/lint.sh
 
 _check-docker-compose:
@@ -54,7 +54,7 @@ compile-prod-requirements: (_compile-requirements "")
 compile-dev-requirements: (_compile-requirements ".dev")
 
 # Run `manage.py`
-manage *args: db devenv
+manage *args: db
     uv run openprescribing/manage.py {{ args }}
 
 # Run `manage.py migrate`
@@ -79,7 +79,7 @@ run-gunicorn: db
 # Run the tests (see TESTING.md)
 [env("DJANGO_SETTINGS_MODULE", "openprescribing.settings.test")]
 [group("Testing")]
-test *args: db devenv
+test *args: db
     cd openprescribing && uv run coverage run manage.py test {{ args }}
 
 # Run the functional tests (see TESTING.md)
