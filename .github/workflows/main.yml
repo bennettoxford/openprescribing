@@ -24,7 +24,7 @@ jobs:
         env:
           GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE: ${{ secrets.GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE }}
       - name: Unit tests
-        run: just test-docker-nonfunctional
+        run: just docker-test-nonfunctional
         env:
           # We set this because the test service depends on the browserstacklocal-test
           # service for its network, and the latter won't start without it.
@@ -59,7 +59,7 @@ jobs:
         env:
           GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE: ${{ secrets.GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE }}
       - name: Functional tests
-        run: just test-docker-browserstack-functional
+        run: just docker-test-browserstack-functional
         env:
           BROWSER: ${{ matrix.browser }}
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}

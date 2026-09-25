@@ -62,7 +62,6 @@ django-extensions
 fab-classic
 flake8
 graphviz
-pip-tools
 when-changed
 
 
@@ -72,3 +71,9 @@ seaborn
 lxml
 numpy
 jinja2
+
+# OpenTelemetry
+opentelemetry-sdk
+opentelemetry-instrumentation-django
+opentelemetry-instrumentation-psycopg2
+opentelemetry-exporter-otlp-proto-http

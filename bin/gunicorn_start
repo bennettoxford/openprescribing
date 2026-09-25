@@ -62,6 +62,7 @@ if [[ -z "$PORT" && -z "$LISTEN_FDS" ]]; then
 fi
 
 cmd="gunicorn openprescribing.wsgi:application \
+  --config "$REPO_ROOT/openprescribing/openprescribing/settings/gunicorn.conf.py"
   --name $NAME \
   --workers $GUNICORN_NUM_WORKERS \
   --timeout $GUNICORN_TIMEOUT \
