@@ -38,20 +38,22 @@ _check-docker-compose:
 devenv:
     uv pip sync requirements.txt requirements.dev.txt
 
-_compile-requirements extension:
+_compile-requirements extension package:
     uv pip compile \
       --quiet \
-      --upgrade \
+      {{ if package == "all" { "--upgrade" } else { "--upgrade-package " + package } }} \
       --no-header \
       --unsafe-package setuptools \
       --no-strip-extras \
       --output-file requirements{{ extension }}.txt requirements{{ extension }}.in
 
 # Compile (but don't install) requirements for the production environment
-compile-prod-requirements: (_compile-requirements "")
+[arg("package", help="Upgrade only the given package")]
+compile-prod-requirements package="all": (_compile-requirements "" package)
 
 # Compile (but don't install) requirements for the development environment
-compile-dev-requirements: (_compile-requirements ".dev")
+[arg("package", help="Upgrade only the given package")]
+compile-dev-requirements package="all": (_compile-requirements ".dev" package)
 
 # Run `manage.py`
 manage *args: db
