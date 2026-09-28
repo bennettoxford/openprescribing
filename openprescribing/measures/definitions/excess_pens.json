@@ -27,31 +27,57 @@
 "numerator_columns": "SUM(total_quantity) AS numerator",
 "numerator_from": "{hscic}.raw_prescribing_normalised",
 "numerator_where": [
-	"quantity_per_item>3",
-	"AND",
-	"((bnf_code LIKE '0601023AW%' --Semaglutide \n",
-	"AND bnf_name LIKE '%inj%')",
-	"OR",
-	"(bnf_code LIKE '0601023AZ%' --Tirzepatide \n",
-	"AND bnf_name LIKE '%0.6ml%' --limit to 0.6ml pens as these are multidose Kwikpens \n",
-	"AND bnf_name LIKE '%inj%'))"
-],
+   "quantity_per_item > 3",
+    "AND",
+    "bnf_code IN (",
+    "SELECT DISTINCT(bnf_code)",
+    "FROM {measures}.vw__dmd_objs_with_form_route",
+    "WHERE form_route LIKE '%injection%'",
+    ")",
+    "AND",
+    "((bnf_code LIKE '0601023AW%' -- Semaglutide",
+    ")",
+    "OR",
+    "(bnf_code LIKE '0601023AZ%' -- Tirzepatide",
+    "AND bnf_name LIKE '%0.6ml%' -- limit to 0.6ml pens as these are multidose KwikPens",
+    "))"
+  ],
 "denominator_type": "custom",
 "denominator_columns": "SUM(total_quantity) AS denominator",
 "denominator_from": "{hscic}.raw_prescribing_normalised",
 "denominator_where": [
-	"(bnf_code LIKE '0601023AW%' --Semaglutide \n", 
-	"AND bnf_name LIKE '%inj%')",
-	"OR",
-	"(bnf_code LIKE '0601023AZ%' --Tirzepatide \n", 
-	"AND bnf_name LIKE '%inj%')"
-],
-"authored_by": "christopher.wood@phc.ox.ac.uk",
-"checked_by": "richard.croker@phc.ox.ac.uk",
-"date_reviewed": "2024-06-24",
-"next_review": "2026-06-24",
+    "bnf_code IN (",
+    "SELECT DISTINCT(bnf_code)",
+    "FROM {measures}.vw__dmd_objs_with_form_route",
+    "WHERE form_route LIKE '%injection%'",
+    ")",
+    "AND",
+    "((bnf_code LIKE '0601023AW%' -- Semaglutide",
+    ")",
+    "OR",
+    "(bnf_code LIKE '0601023AZ%' -- Tirzepatide",
+    "))"
+  ],
+"authored_by": "caroline.acuda@phc.ox.ac.uk",
+"checked_by": "christopher.wood@phc.ox.ac.uk",
+"date_reviewed": "2026-09-16",
+"next_review": "2028-09-16",
 "measure_complexity": "low",
-"measure_type": "bnf_code",
+"measure_type": "dmd",
 "radar_exclude": false,
-"measure_notebook_url": "https://github.com/ebmdatalab/jupyter-notebooks/blob/e9168900e2ecf08d80315d38fd155f1ce45a435f/measures_by_software/Draft%20ideas/Diabetes%20-%20Semaglutide/Semaglutide%20Quantity%20Draft.ipynb"
+"measure_notebook_url": "https://github.com/ebmdatalab/jupyter-notebooks/blob/e9168900e2ecf08d80315d38fd155f1ce45a435f/measures_by_software/Draft%20ideas/Diabetes%20-%20Semaglutide/Semaglutide%20Quantity%20Draft.ipynb",
+  "change_log": [
+	  {
+    "date": "2019-11-21",
+    "description": "Created measure.",
+    "action_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": "brian.mackenna@phc.ox.ac.uk"
+  },
+    {
+      "date": "2026-09-16",
+      "description": "Checked measure, URLs and converted to dm+d.",
+      "action_by": "caroline.acuda@phc.ox.ac.uk",
+      "checked_by": "christopher.wood@phc.ox.ac.uk"
+    }
+  ]
 }
