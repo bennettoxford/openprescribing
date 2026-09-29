@@ -60,8 +60,8 @@ See `.github/workflows/main.yml` for values used in CI.
 
 The non-functional tests can be run locally or in a container:
 
-* locally: `test-nonfunctional`
-* in a container: `docker-test-nonfunctional`
+* locally: `just test-nonfunctional`
+* in a container: `just docker-test-nonfunctional`
 
 Of these, the "in a container" case is how the non-functional tests are run in CI.
 
