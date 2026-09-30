@@ -24,13 +24,14 @@ import tempfile
 from collections import defaultdict
 
 import numpy
-from django.test import SimpleTestCase
+from django.test import SimpleTestCase, tag
 from matrixstore.serializer import deserialize
 from matrixstore.tests.data_factory import DataFactory
 from matrixstore.tests.import_test_data_fast import import_test_data_fast
 from matrixstore.tests.import_test_data_full import import_test_data_full
 
 
+@tag("integration")
 class TestMatrixStoreBuild(SimpleTestCase):
     """
     Runs a test of the MatrixStore build process entirely in memory

@@ -60,20 +60,33 @@ See `.github/workflows/main.yml` for values used in CI.
 
 The non-functional tests can be run locally or in a container:
 
-* locally: `test-nonfunctional`
-* in a container: `docker-test-nonfunctional`
+* locally: `just test-nonfunctional`
+* in a container: `just docker-test-nonfunctional`
 
 Of these, the "in a container" case is how the non-functional tests are run in CI.
 
-The non-functional tests are a mix of fast unit tests and slow integration tests.
-It isn't possible to run only the unit tests or only the integration tests,
-although it is possible to be more selective by passing any number of [test labels][] to `test-nonfunctional`.
+The non-functional tests are a mix of fast unit tests and slow integration tests,
+which access BigQuery and Google Cloud Storage.
 
-Several integration tests access BigQuery and Google Cloud Storage.
-To run them:
+To run the integration tests:
 
 * install the [Google Cloud Command Line Interface][] (gcloud CLI)
 * authenticate: `gcloud auth application-default login`
+* set the billing and quota project: `gcloud auth application-default set-quota-project ebmdatalab`
+
+To run only the unit tests:
+
+```sh
+just test-nonfunctional --exclude-tag integration
+```
+
+To run only the integration tests:
+
+```sh
+just test-nonfunctional --tag integration
+```
+
+It's possible to be more selective by passing any number of [test labels][] to `test-nonfunctional`.
 
 [Google Cloud Command Line Interface]: https://cloud.google.com/cli
 [test labels]: https://docs.djangoproject.com/en/stable/topics/testing/overview/#running-tests
