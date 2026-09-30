@@ -1,3 +1,9 @@
+[project]
+name = "OpenPrescribing"
+version = "1"
+requires-python = ">=3.12.1"
+dependencies = []
+
 [tool.black]
 extend-exclude = '/migrations/'
 
