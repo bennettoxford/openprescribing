@@ -1,13 +1,14 @@
 import os
 
 from django.core.management import call_command
-from django.test import TestCase
+from django.test import TestCase, tag
 from frontend.bq_schemas import PRESCRIBING_SCHEMA
 from gcutils.bigquery import Client as BQClient
 from gcutils.bigquery import NotFound, results_to_dicts
 from gcutils.storage import Client as StorageClient
 
 
+@tag("integration")
 class ConvertHscicPrescribingTests(TestCase):
     """Test that data in the "detailed" format is correctly aggregated to
     the level we currently use in the website.
