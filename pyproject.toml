@@ -5,8 +5,8 @@ requires-python = ">=3.12.1"
 dependencies = []
 
 [tool.black]
-extend-exclude = '/migrations/'
+extend-exclude = "/migrations/"
 
 [tool.isort]
 profile = "black"
-skip_glob = ['*/migrations/*']
+skip_glob = ["*/migrations/*"]
