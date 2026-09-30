@@ -5,6 +5,7 @@ requires-python = ">=3.12.1"
 dependencies = []
 
 [tool.black]
+target-version = ["py312"]
 extend-exclude = "/migrations/"
 
 [tool.isort]
