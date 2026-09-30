@@ -2,6 +2,7 @@
 import os
 import re
 import sys
+import warnings
 
 import dotenv
 
@@ -13,7 +14,9 @@ if __name__ == "__main__":
         os.path.dirname(os.path.realpath(__file__)), "..", "environment"
     )
 
-    dotenv.read_dotenv(env_path, override=True)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", UserWarning)
+        dotenv.read_dotenv(env_path, override=True)
 
     if len(sys.argv) > 1:
         if sys.argv[1] == "test" or re.match(r"generate_\w+_fixtures", sys.argv[1]):
