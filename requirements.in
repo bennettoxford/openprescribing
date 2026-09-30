@@ -44,8 +44,7 @@ requests-futures
 requests[security]
 scipy
 sqlean.py
-# Changes to the capitalisation rules in later versions break our tests
-titlecase==0.12.0
+titlecase
 xlrd
 
 # test requirements
