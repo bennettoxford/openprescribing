@@ -65,7 +65,7 @@
     "humanize": "^0.0.9",
     "jquery": "^1.11.3",
     "mapbox.js": "^2.4.0",
-    "moment": "^2.10.3",
+    "moment": "^2.31.0",
     "npm-run-all": "^4.1.2",
     "uglify-js": "^3.2.2",
     "uglifyify": "^4.0.5",
