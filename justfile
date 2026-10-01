@@ -60,12 +60,10 @@ manage *args: db
     uv run openprescribing/manage.py {{ args }}
 
 # Run `manage.py migrate`
-migrate *args:
-    {{ just_executable() }} manage migrate {{ args }}
+migrate *args: (manage "migrate" args)
 
 # Run `manage.py runserver`
-run *args:
-    {{ just_executable() }} manage runserver {{ args }}
+run *args: (manage "runserver" args)
 
 # Run with Gunicorn for development and testing
 [env("DJANGO_SETTINGS_MODULE", "openprescribing.settings.production")]
