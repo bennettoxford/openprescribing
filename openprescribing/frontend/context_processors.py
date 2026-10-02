@@ -31,7 +31,7 @@ def debug(request):
 def google_tracking_id(request):
     tracking_id = None
     container_id = None
-    if "PhantomJS" in request.META.get("HTTP_USER_AGENT", ""):
+    if "PhantomJS" in request.headers.get("user-agent", ""):
         # Google's JavaScript breaks the ancient JS engine in PhantomJS which we use for
         # taking screenshots of charts (plus I'm not sure we want analytics to be
         # running in this case anyway)

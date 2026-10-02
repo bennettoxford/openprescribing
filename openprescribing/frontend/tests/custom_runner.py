@@ -18,12 +18,10 @@ class AssetBuildingTestRunner(DiscoverRunner):
     # We must run the test server on a port supported by Browserstack
     os.environ["DJANGO_LIVE_TEST_SERVER_ADDRESS"] = "0.0.0.0:6080-6580"
 
-    def build_suite(self, test_labels, extra_tests=None, **kwargs):
+    def build_suite(self, test_labels, **kwargs):
         if os.environ.get("TEST_SUITE", "") == "functional" and len(test_labels) == 0:
             test_labels = ["frontend.tests.functional"]
-        return super(AssetBuildingTestRunner, self).build_suite(
-            test_labels, extra_tests, **kwargs
-        )
+        return super(AssetBuildingTestRunner, self).build_suite(test_labels, **kwargs)
 
     def setup_test_environment(self):
         # Get a free port for starting a mock API server
