@@ -38,7 +38,6 @@ pandas<3
 premailer
 psycopg2-binary
 python-dateutil
-pytz
 raven
 requests-futures
 requests[security]

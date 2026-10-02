@@ -339,9 +339,7 @@ python-dateutil==2.9.0.post0
     #   matplotlib
     #   pandas
 pytz==2026.3.post1
-    # via
-    #   -r requirements.in
-    #   pandas
+    # via pandas
 pyvirtualdisplay==3.0
     # via -r requirements.in
 raven==6.10.0
