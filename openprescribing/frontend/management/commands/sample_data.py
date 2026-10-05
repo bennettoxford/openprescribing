@@ -66,7 +66,7 @@ def dump_create_table(table, dest_dir):
         )
         cursor.execute(sql)
         fields = cursor.fetchall()
-        with open(dest, "wb") as f:
+        with open(dest, "w") as f:
             json.dump([x[0] for x in fields], f)
 
 
