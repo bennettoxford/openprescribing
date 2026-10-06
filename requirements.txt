@@ -48,7 +48,7 @@ db-dtypes==1.7.1
     # via pandas-gbq
 diskcache==5.6.3
     # via -r requirements.in
-django==4.2.30
+django==5.0
     # via
     #   -r requirements.in
     #   crispy-bootstrap3
@@ -339,9 +339,7 @@ python-dateutil==2.9.0.post0
     #   matplotlib
     #   pandas
 pytz==2026.3.post1
-    # via
-    #   -r requirements.in
-    #   pandas
+    # via pandas
 pyvirtualdisplay==3.0
     # via -r requirements.in
 raven==6.10.0

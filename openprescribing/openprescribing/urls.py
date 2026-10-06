@@ -1,9 +1,8 @@
 import functools
 
-from django.conf.urls import include
 from django.contrib import admin
 from django.http.response import HttpResponseRedirect
-from django.urls import path, reverse
+from django.urls import include, path, reverse
 from django.views.generic import RedirectView, TemplateView
 from frontend.views import views
 from outliers import views as outliers
