@@ -72,7 +72,7 @@ To run the integration tests:
 
 * install the [Google Cloud Command Line Interface][] (gcloud CLI)
 * authenticate: `gcloud auth application-default login`
-* set the billing and quota project: `gcloud auth application-default set-quota-project ebmdatalab`
+* set the billing and quota project: `gcloud auth application-default set-quota-project ebmdatalabtest`
 
 To run only the unit tests:
 
