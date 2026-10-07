@@ -141,6 +141,31 @@ db:
 db-shell: db
     docker compose exec {{ postgis_service }} bash -c 'psql --username "$POSTGRES_USER" "$POSTGRES_DB"'
 
+# Load a subset of the production database's tables into a new development database
+[confirm("This will remove the existing development database. Do you wish to continue? (y/n)")]
+[group("Services")]
+db-load:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    # Dump a subset of the production database's tables *before* removing the existing
+    # development database. If there's an issue, e.g. with connectivity, then we won't
+    # loose the existing development database.
+    dump_file=$(mktemp)
+    trap 'rm -f "$dump_file"' EXIT INT TERM
+
+    # Postgres 16.10 added the \restrict and \unrestrict meta commands (other major
+    # releases did, too). We run >= 16.10 in production, but 16.4 in development, so we
+    # have to remove these meta commands from the dump file. (Eventually, we will
+    # upgrade development, but right now postgis/postgis:16 targets 16.9.)
+    scripts/dump_table_data.sh | grep --extended-regexp --invert-match '^\\(restrict|unrestrict)' > "$dump_file"
+
+    {{ just_executable() }} db-clean
+    {{ just_executable() }} db
+    {{ just_executable() }} migrate
+
+    docker compose exec --no-tty {{ postgis_service }} bash -c 'psql --single-transaction --set=ON_ERROR_STOP=1 --username "$POSTGRES_USER" "$POSTGRES_DB"' < "$dump_file"
+
 # Start the BrowserStackLocal container (see TESTING.md)
 [group("Services")]
 browserstacklocal:
