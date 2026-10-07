@@ -177,22 +177,6 @@ Run migrations:
 
     python manage.py migrate
 
-## Sampling live data
-
-You can copy everything from the production server, if you want, but
-the full set of prescribing data is enormous. To get a sample of that,
-run the following on production:
-
-    mkdir /tmp/sample
-    ./manage.py sample_data dump --dir /tmp/sample
-
-Copy that to a local location (e.g. `/tmp/sample` again), then run:
-
-    ./manage.py sample_data load --dir /tmp/sample
-
-By default, the `dump` invocation extracts data relating to the CCG
-`09X`, but you can override that with the `--ccg` switch.
-
 # Run tests
 
 Run Django and JavaScript tests:
