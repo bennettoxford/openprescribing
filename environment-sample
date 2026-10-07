@@ -44,6 +44,9 @@ CF_API_KEY=cf_api_key
 
 OTEL_EXPORTER_OTLP_ENDPOINT=https://api.honeycomb.io
 OTEL_EXPORTER_OTLP_HEADERS='x-honeycomb-team=<your-api-key>'
+OTEL_PYTHON_DJANGO_EXCLUDED_URLS='ping'
+OTEL_TRACES_SAMPLER=parentbased_traceidratio
+OTEL_TRACES_SAMPLER_ARG=0.1
 
 # The path to a file containing your credentials for accessing Google Cloud
 # Platform services (eg BigQuery, Cloud Storage).
