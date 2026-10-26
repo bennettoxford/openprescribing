@@ -4,7 +4,6 @@
   "description": "Cost of non-ACBS probiotics per 1000 patients",
   "y_label": "Cost (£) per 1000 patients",
   "why_it_matters": [
-  "why_it_matters": [
     "<p>The Advisory Committee on Borderline Substances (ACBS) is responsible for assessing and recommending products applying for ",
     "listing in Part XV of the Drug Tariff. In 2018 the ACBS reviewed some products listed in Part XV to ensure they are still ",
     "clinically effective and appropriate to be listed. They considered the probiotics VSL#3 and Vivomixx and advised the Secretary ",
@@ -47,5 +46,14 @@
   "next_review": "2026-08-06",
   "measure_complexity": "low",
   "measure_type": "bnf_code",
-  "radar_exclude": false
+  "radar_exclude": false,
+      "change_log": [
+    {
+      "date": "2026-08-17",
+      "description": "Updated Why it matters.",
+      "action_by": "victoria.speed@phc.ox.ac.uk",
+      "checked_by": "TBC"
+    }
+  ]
+}
 }
