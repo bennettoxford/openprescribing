@@ -91,11 +91,16 @@
             <p>
               <em>{{ log.date }}</em>: {{ log.description }}
               {% if log.action_by or log.checked_by %}
-                <em>(
-                  {% if log.action_by %}Actioned by {{ log.action_by|username_from_email }}{% endif %}
-                  {% if log.action_by and log.checked_by %}, {% endif %}
-                  {% if log.checked_by %}checked by {{ log.checked_by|username_from_email }}{% endif %}
-                )</em>
+                <br>
+                <small>
+                  {% if log.action_by %}
+                    <b>Actioned by:</b> {{ log.action_by|username_from_email }}
+                  {% endif %}
+                  {% if log.action_by and log.checked_by %}<br>{% endif %}
+                  {% if log.checked_by %}
+                    <b>Checked by:</b> {{ log.checked_by|username_from_email }}
+                  {% endif %}
+                </small>
               {% endif %}
             </p>
           {% endfor %}
