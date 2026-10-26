@@ -1,17 +1,22 @@
 {
-	"name": "Prescribing of Amino Acid Formula (AAF) and Extensively Hydrolysed Formula (EHF))",
-	"title": "Amino acid formula (AAF) as proportion of AAF and extensively hydrolysed formula (EHF)",
-	"description": "Prescribing of amino acid formula (AAF) products as proportion of AAF and extensively hydrolysed formula (EHF)",
+	"name": "Prescribing of Amino Acid Formula (AAF) and Extensively Hydrolysed Formula (eHF))",
+	"title": "Amino acid formula (AAF) as proportion of AAF and extensively hydrolysed formula (eHF)",
+	"description": "Prescribing of amino acid formula (AAF) products as proportion of AAF and extensively hydrolysed formula (eHF)",
 	"numerator_short": "AAF quantity (grams)",
-	"denominator_short": "AAF and EHF quantity (grams)",
-	"y_label": "Percentage of CMPA products (EHF + AAF) prescribed as AAF",
-	"why_it_matters": [
-		"These products are prescribed for a number of allergy indications, and are most commonly prescribed for Cow's Milk Protein Allergy ",
-		"(CMPA).  Amino acid formula (AAF) products are almost three times more expensive than EHF and it is believed that only a small ",
-		"proportion of infants ",
-		"(<a href='https://doi.org/10.1016/j.jaip.2017.09.003'>thought to be around 10%</a>) ",
-		"need to be started on AAF for CMPA in primary care."
-	],
+	"denominator_short": "AAF and eHF quantity (grams)",
+	"y_label": "Percentage of CMPA products (eHF + AAF) prescribed as AAF",
+"why_it_matters": [
+  "These products are prescribed for a number of allergy indications, and are most commonly prescribed for Cow's Milk Protein Allergy ",
+  "(CMPA). The <a href='https://cks.nice.org.uk/topics/cows-milk-allergy-in-children/management/suspected-cows-milk-allergy/#hypoallergenic-infant-formulas' target='_blank'>",
+  "NICE Clinical Knowledge Summary for Cows' Milk Allergy in children</a> outlines the use of hypoallergenic infant formulas. It ",
+  "states that extensively hydrolysed formulas (EHFs) are usually used first-line. They are whey- or casein-based and are generally well ",
+  "tolerated by infants and children with cow's milk allergy. Amino acid formulas (AAFs) should be reserved for children with severe ",
+  "symptoms of IgE- or non-IgE-mediated allergy or a history of anaphylaxis; those who cannot tolerate EHFs or have ongoing symptoms ",
+  "with them; and those whose symptoms do not respond to maternal avoidance of cow's milk or who have symptoms while exclusively breastfeeding. ",
+  "Amino acid formula (AAF) products are almost three times more expensive than EHF, and it is believed that only a small proportion of infants ",
+  "(<a href='https://doi.org/10.1016/j.jaip.2017.09.003' target='_blank'>thought to be around 10%</a>) ",
+  "need to be started on AAF for CMPA in primary care."
+],
 	"tags": [
 		"nutrition",
 		"core"
