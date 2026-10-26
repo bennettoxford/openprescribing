@@ -79,10 +79,24 @@
   "authored_by": "richard.croker@phc.ox.ac.uk",
   "checked_by": "",
   "date_reviewed": "2026-08-25",
-  "next_review": "",
+  "next_review": "2027-08-25",
   "measure_complexity": "medium",
   "measure_type": "dmd",
   "radar_exclude": false,
+  "change_log": [
+	  {
+    "date": "2019-10-08",
+    "description": "Created measure.",
+    "action_by": "brian.mackenna@phc.ox.ac.uk",
+    "checked_by": "richard.croker@phc.ox.ac.uk"
+    },
+    {
+      "date": "2026-10-26",
+      "description": "Updated to include inhalers with newer propeallants.",
+      "action_by": "richard.croker@phc.ox.ac.uk",
+      "checked_by": ""
+    }
+  ]
   "design_notes": [
   "This measure uses vw__dmd_objs_with_form_route, which collates BNF codes at VMP, VMPP, AMP and AMPP level into a single view, along with a formulation route (e.g. oral.tablet).  This allows us to easily filter for numerator ('pressurizedinhalation.inhalation') ",
   "and denominator ('pressurizedinhalation.inhalation', 'powderinhalation.inhalation', 'inhalationsolution.inhalation'). ",
