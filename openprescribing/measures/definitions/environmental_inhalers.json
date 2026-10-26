@@ -76,8 +76,6 @@
   "p.bnf_code NOT LIKE '0301011R0%' --Salbutamol \n",
   ")"
   ],
-  "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "",
   "date_reviewed": "2026-08-25",
   "next_review": "2027-08-25",
   "measure_complexity": "medium",
