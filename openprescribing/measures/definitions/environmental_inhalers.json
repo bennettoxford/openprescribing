@@ -96,7 +96,7 @@
       "action_by": "richard.croker@phc.ox.ac.uk",
       "checked_by": ""
     }
-  ]
+  ],
   "design_notes": [
   "This measure uses vw__dmd_objs_with_form_route, which collates BNF codes at VMP, VMPP, AMP and AMPP level into a single view, along with a formulation route (e.g. oral.tablet).  This allows us to easily filter for numerator ('pressurizedinhalation.inhalation') ",
   "and denominator ('pressurizedinhalation.inhalation', 'powderinhalation.inhalation', 'inhalationsolution.inhalation'). ",
