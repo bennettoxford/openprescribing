@@ -76,8 +76,8 @@
   "p.bnf_code NOT LIKE '0301011R0%' --Salbutamol \n",
   ")"
   ],
-  "date_reviewed": "2026-08-25",
-  "next_review": "2027-08-25",
+  "date_reviewed": "2026-10-26",
+  "next_review": "2027-10-26",
   "measure_complexity": "medium",
   "measure_type": "dmd",
   "radar_exclude": false,
