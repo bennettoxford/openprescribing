@@ -92,9 +92,9 @@
     },
     {
       "date": "2026-10-26",
-      "description": "Updated to include inhalers with newer propeallants.",
+      "description": "Updated to exclude inhalers with newer lower GWP propellants from the numerator.",
       "action_by": "richard.croker@phc.ox.ac.uk",
-      "checked_by": ""
+      "checked_by": "christopher.wood@phc.ox.ac.uk"
     }
   ],
   "design_notes": [
