@@ -40,19 +40,33 @@
    "0913531D0 # Tablet OTC probiotic (0913531)"
   ],
   "denominator_type": "list_size",
-  "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "andrew.brown@phc.ox.ac.uk",
-  "date_reviewed": "2024-08-06",
-  "next_review": "2026-08-06",
   "measure_complexity": "low",
   "measure_type": "bnf_code",
   "radar_exclude": false,
-      "change_log": [
+  "change_log": [
+	  {
+    "date": "2019-09-24",
+    "description": "Created measure.",
+    "action_by": "brian.mackenna@phc.ox.ac.uk",
+    "checked_by": "richard.croker@phc.ox.ac.uk"
+    },
     {
-      "date": "2026-08-17",
-      "description": "Updated Why it matters.",
+    "date": "2023-03-27",
+    "description": "Amending measure to reflect BNF code changes",
+    "action_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": "richard.croker@phc.ox.ac.uk"
+    },
+    {
+    "date": "2024-08-06",
+    "description": "Added in tablets",
+    "action_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": "andrew.brown@phc.ox.ac.uk"
+    },
+    {
+      "date": "2026-10-26",
+      "description": "Updated why it matters text, and reviewed contents in numerator",
       "action_by": "victoria.speed@phc.ox.ac.uk",
-      "checked_by": "TBC"
+      "checked_by": "XXX@phc.ox.ac.uk"
     }
   ]
 }
