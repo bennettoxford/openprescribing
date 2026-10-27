@@ -491,15 +491,16 @@ def attach_image(msg, url, file_path, selector, dimensions="1024x1024"):
         dimensions = "800x600"
     else:
         wait = 1000
-    cmd = '{cmd} "{host}{url}" {file_path} "{selector}" {dimensions} {wait}'
+    cmd = '{cmd} "{host}{url}" {file_path} "{selector}" {dimensions} {wait} "{host_header}"'
     cmd = cmd.format(
         cmd=GRAB_CMD,
-        host=settings.GRAB_HOST,
+        host=settings.SCREENSHOT_HOST,
         url=url,
         file_path=file_path,
         selector=selector,
         dimensions=dimensions,
         wait=wait,
+        host_header=settings.SCREENSHOT_HOST_HEADER,
     )
     response = subprocess.run(
         cmd,
