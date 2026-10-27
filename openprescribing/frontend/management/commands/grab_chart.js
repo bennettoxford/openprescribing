@@ -31,9 +31,17 @@ if (system.args.length < 7) {
       networkRequest.setHeader('Host', hostHeader);
     }
   };
+  page.onResourceReceived = function(response) {
+    if (response.url === address && response.stage === 'end' && response.status >= 400) {
+      // PhantomJS still reports an error response as a successful load
+      console.log('Got status ' + response.status + ' for ' + address);
+      phantom.exit(1);
+    }
+  };
   page.open(address, function(status) {
-    if (!status === 'success') {
+    if (status !== 'success') {
       console.log('Unable to load the address!');
+      phantom.exit(1);
     } else {
       waitFor({
         debug: true,
