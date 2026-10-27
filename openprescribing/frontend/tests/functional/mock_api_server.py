@@ -115,7 +115,7 @@ class MockApiServer(object):
     def start(self):
         mock_server = HTTPServer(("0.0.0.0", self.port), MockApiRequestHandler)
         self.mock_server_thread = Thread(target=mock_server.serve_forever)
-        self.mock_server_thread.daemon = True
+        self.mock_server_thread.setDaemon(True)
         self.mock_server_thread.start()
         logger.info("Started mock API server on port %s" % self.port)
 

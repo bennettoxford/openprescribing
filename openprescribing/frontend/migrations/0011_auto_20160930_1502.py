@@ -4,6 +4,7 @@
 
 import datetime
 from django.db import migrations, models
+from django.utils.timezone import utc
 
 
 class Migration(migrations.Migration):
@@ -20,13 +21,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='orgbookmark',
             name='created_at',
-            field=models.DateTimeField(auto_now_add=True, default=datetime.datetime(2016, 9, 30, 14, 2, 24, 557986, tzinfo=datetime.timezone.utc)),
+            field=models.DateTimeField(auto_now_add=True, default=datetime.datetime(2016, 9, 30, 14, 2, 24, 557986, tzinfo=utc)),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='searchbookmark',
             name='created_at',
-            field=models.DateTimeField(auto_now_add=True, default=datetime.datetime(2016, 9, 30, 14, 2, 30, 426508, tzinfo=datetime.timezone.utc)),
+            field=models.DateTimeField(auto_now_add=True, default=datetime.datetime(2016, 9, 30, 14, 2, 30, 426508, tzinfo=utc)),
             preserve_default=False,
         ),
     ]

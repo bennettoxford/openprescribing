@@ -1,4 +1,3 @@
-import argparse
 import json
 import os
 from datetime import datetime
@@ -10,11 +9,8 @@ from django.core.management import BaseCommand
 from openprescribing.utils import mkdir_p
 
 
-def fetch_org_details(batch_size):
-    offset = 0
-    org_details = None
-
-    while True:
+class Command(BaseCommand):
+    def handle(self, **kwargs):
         rsp = requests.post(
             "https://www.odsdatasearchandexport.nhs.uk/api/search/organisationReportSearch",
             json={
@@ -45,35 +41,10 @@ def fetch_org_details(batch_size):
                     ]
                 ),
                 "searchQueryIsActive": "All (Status)",
-                "offset": offset,
-                "batchSize": batch_size,
+                "offset": 0,
+                "batchSize": 100000,
             },
         )
-        page = rsp.json()
-
-        if org_details is None:
-            org_details = page
-        else:
-            org_details["orgArray"].extend(page["orgArray"])
-
-        if len(page["orgArray"]) < batch_size:
-            return org_details
-
-        offset += batch_size
-
-
-class Command(BaseCommand):
-    def add_arguments(self, parser):
-        def positive_int(value):
-            value = int(value)
-            if value <= 0:
-                raise argparse.ArgumentTypeError("must be greater than zero")
-            return value
-
-        parser.add_argument("--batch-size", type=positive_int, default=1000)
-
-    def handle(self, **kwargs):
-        org_details = fetch_org_details(kwargs["batch_size"])
 
         output_dir = os.path.join(
             settings.PIPELINE_DATA_BASEDIR,
@@ -84,4 +55,4 @@ class Command(BaseCommand):
         mkdir_p(output_dir)
 
         with open(os.path.join(output_dir, "org_details.json"), "w") as f:
-            json.dump(org_details, f, indent=2)
+            json.dump(rsp.json(), f, indent=2)

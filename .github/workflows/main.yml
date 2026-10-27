@@ -17,22 +17,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      - name: Install just
-        uses: ./.github/actions/install-just
       - name: Retrieve Google Cloud credentials
         run: ./.github/scripts/decrypt_secret.sh
         env:
           GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE: ${{ secrets.GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE }}
       - name: Unit tests
-        run: just docker-test-nonfunctional
+        run: docker compose run --service-ports test && docker compose run --service-ports test-production
         env:
-          # We set this because the test service depends on the browserstacklocal-test
-          # service for its network, and the latter won't start without it.
-          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-          # We set this for a similar reason. Without a local identifier, starting the
-          # browserstacklocal-test service would terminate existing connections to
-          # BrowserStack.
-          BROWSERSTACK_LOCAL_IDENTIFIER: ${{ github.run_id }}-${{ github.run_attempt }}-${{ github.job }}
+          TEST_SUITE: nonfunctional
       - name: Notify slack failure
         if: failure()
         env:
@@ -48,23 +40,35 @@ jobs:
 
     strategy:
       matrix:
-        browser: ["Edge:latest:Windows:10", "Firefox:latest:OS X:Catalina"]
+        browser: [ "Edge:latest:Windows:10", "Firefox:latest:OS X:Catalina" ]
     steps:
+      - name: 'BrowserStack Env Setup'
+        uses: 'browserstack/github-actions/setup-env@master'
+        with:
+          username:  ${{ secrets.BROWSERSTACK_USERNAME }}
+          access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          build-name: BUILD_INFO
+          project-name: REPO_NAME
+      - name: 'BrowserStack Local Tunnel Setup'
+        uses: 'browserstack/github-actions/setup-local@master'
+        with:
+          local-testing: start
+          local-identifier: random
       - name: Checkout
         uses: actions/checkout@v7
-      - name: Install just
-        uses: ./.github/actions/install-just
       - name: Retrieve Google Cloud credentials
         run: ./.github/scripts/decrypt_secret.sh
         env:
           GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE: ${{ secrets.GOOGLE_CLOUD_GITHUB_ACTIONS_PASSPHRASE }}
       - name: Functional tests
-        run: just docker-test-browserstack-functional
+        run: docker compose run --service-ports test
         env:
+          TEST_SUITE: functional
           BROWSER: ${{ matrix.browser }}
-          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-          BROWSERSTACK_LOCAL_IDENTIFIER: ${{ github.run_id }}-${{ github.run_attempt }}-${{ github.job }}-${{ strategy.job-index }}
+      - name: 'BrowserStackLocal Stop'
+        uses: 'browserstack/github-actions/setup-local@master'
+        with:
+          local-testing: stop
       - name: Notify slack failure
         if: failure()
         env:
@@ -76,24 +80,6 @@ jobs:
           status: "FAILURE (functional test $BROWSER)"
           color: danger
 
-  system_checks:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-      - name: Run system checks
-        run: docker compose run test-production
-      - name: Notify slack failure
-        if: failure()
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-        uses: voxmedia/github-action-slack-notify-build@v1
-        with:
-          channel: tech-noise
-          status: "FAILURE (system_checks)"
-          color: danger
-
   linting:
     runs-on: ubuntu-latest
 
@@ -101,9 +87,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Setup Python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@v6
         with:
-          python-version: "3.12"
+          python-version: '3.12'
       - name: "Linting"
         run: |
           pip install -r requirements.dev.txt
@@ -120,7 +106,7 @@ jobs:
 
   notify_slack:
     runs-on: ubuntu-latest
-    needs: [unit_test, functional_tests, system_checks, linting]
+    needs: [ unit_test , functional_tests , linting ]
 
     steps:
       - name: Notify slack success

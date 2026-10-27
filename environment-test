@@ -1,0 +1,9 @@
+DB_NAME=openprescribing-test
+DB_USER=user
+DB_PASS=pass
+DB_HOST=db-test
+
+SECRET_KEY=secret_key
+MAILGUN_WEBHOOK_USER=mailgun_webhook_user
+MAILGUN_WEBHOOK_PASS=mailgun_webhook_pass
+MAILGUN_API_KEY=mailgun_api_key

@@ -21,11 +21,7 @@ class Command(BaseCommand):
         return "-".join([d[:4], d[4:6], d[6:]])
 
     def import_practices_from_epraccur(self, filename):
-        with open(filename) as practice_file:
-            entries = csv.reader(practice_file)
-            self._import_practices(entries)
-
-    def _import_practices(self, entries):
+        entries = csv.reader(open(filename))
         count = 0
         for row in entries:
             row = [r.strip() for r in row]

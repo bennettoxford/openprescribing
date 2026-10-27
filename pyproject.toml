@@ -1,13 +1,6 @@
-[project]
-name = "OpenPrescribing"
-version = "1"
-requires-python = ">=3.12.1"
-dependencies = []
-
 [tool.black]
-target-version = ["py312"]
-extend-exclude = "/migrations/"
+extend-exclude = '/migrations/'
 
 [tool.isort]
 profile = "black"
-skip_glob = ["*/migrations/*"]
+skip_glob = ['*/migrations/*']

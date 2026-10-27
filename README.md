@@ -6,12 +6,6 @@ Website code for https://openprescribing.net - a Django application that provide
 
 Information about data sources used on OpenPrescribing can be found [here](https://openprescribing.net/about/).
 
-> [!NOTE]
-> If you're developing OpenPrescribing,
-> then start by running `just` and learning about the recipes.
-> Consider reading [TESTING.md](TESTING.md), too.
-> This information is dated, but it's retained because it's useful.
-
 # Set up the application
 
 You can install the application dependencies either on bare metal or
@@ -136,7 +130,8 @@ database configuration, you'll need to blow away the volume with:
     docker-compose rm -f all
 
 Any time you change the npm or pip dependencies, you should rebuild
-the docker image used by the tests.
+the docker image used by the tests to improve runtime performance of
+travis.
 
     # Base docker image, for production
     docker build -t ebmdatalab/openprescribing-py3-base .
@@ -176,6 +171,22 @@ like that at `contrib/supervisor/nginx/`.  We control the gunicorn process using
 Run migrations:
 
     python manage.py migrate
+
+## Sampling live data
+
+You can copy everything from the production server, if you want, but
+the full set of prescribing data is enormous. To get a sample of that,
+run the following on production:
+
+    mkdir /tmp/sample
+    ./manage.py sample_data dump --dir /tmp/sample
+
+Copy that to a local location (e.g. `/tmp/sample` again), then run:
+
+    ./manage.py sample_data load --dir /tmp/sample
+
+By default, the `dump` invocation extracts data relating to the CCG
+`09X`, but you can override that with the `--ccg` switch.
 
 # Run tests
 
@@ -223,8 +234,6 @@ And the inverse is:
     TEST_SUITE=nonfunctional make test
 
 ### Run the functional tests in BrowserStack
-
-This project is tested with BrowserStack.
 
 In our CI environment we use [BrowserStack](https://www.browserstack.com/) to run
 the functional tests in various browsers. If you are connected to the

@@ -106,22 +106,21 @@ def create_code_mapping(filenames):
     bnf_map = []
     removed_mappings = []
     for f in filenames:
-        with open(f, "r") as mapping_file:
-            for line in mapping_file:
-                line = line.strip()
-                if not line:
-                    continue  # skip blank lines
-                elif line.startswith("#"):
-                    continue  # skip comments
-                elif "\t" not in line:
-                    raise CommandError("Input lines must be tab delimited: %s" % line)
-                prev_code, next_code = line.split("\t")
-                prev_code = prev_code.strip()
-                next_code = next_code.strip()
-                if next_code.upper() == "REMOVED":
-                    removed_mappings.append(prev_code)
-                elif re.match(r"^[0-9A-Z]+$", next_code):
-                    bnf_map.append((prev_code, next_code))
+        for line in open(f, "r"):
+            line = line.strip()
+            if not line:
+                continue  # skip blank lines
+            elif line.startswith("#"):
+                continue  # skip comments
+            elif "\t" not in line:
+                raise CommandError("Input lines must be tab delimited: %s" % line)
+            prev_code, next_code = line.split("\t")
+            prev_code = prev_code.strip()
+            next_code = next_code.strip()
+            if next_code.upper() == "REMOVED":
+                removed_mappings.append(prev_code)
+            elif re.match(r"^[0-9A-Z]+$", next_code):
+                bnf_map.append((prev_code, next_code))
 
     with transaction.atomic():
         with connection.cursor() as cursor:

@@ -15,9 +15,7 @@ def generate_filename(sqlite_path):
     which can be used as a cache key and also for de-duplication (so it's easy
     to see if rebuilding a file has resulted in any change to the data).
     """
-    last_modified = datetime.datetime.fromtimestamp(
-        os.path.getmtime(sqlite_path), datetime.UTC
-    )
+    last_modified = datetime.datetime.utcfromtimestamp(os.path.getmtime(sqlite_path))
     max_date = get_max_date_from_file(sqlite_path)
     hash_str = hash_file(sqlite_path)
     return "matrixstore_{max_date}_{modified}_{hash}.sqlite".format(

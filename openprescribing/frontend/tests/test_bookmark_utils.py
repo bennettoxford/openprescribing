@@ -406,7 +406,7 @@ def get_free_port():
 def start_mock_server(port):
     mock_server = HTTPServer(("localhost", port), MockServerRequestHandler)
     mock_server_thread = Thread(target=mock_server.serve_forever)
-    mock_server_thread.daemon = True
+    mock_server_thread.setDaemon(True)
     mock_server_thread.start()
 
 

@@ -1,0 +1,3 @@
+POSTGRES_PASSWORD=pass
+POSTGRES_USER=user
+POSTGRES_DB=openprescribing-test

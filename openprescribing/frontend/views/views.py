@@ -303,7 +303,7 @@ def ccg_home_page(request, ccg_code):
 
 
 def all_stps(request):
-    stps = STP.objects.exclude(pct=None).order_by("name")
+    stps = STP.objects.order_by("name")
     context = {"stps": stps}
     return render(request, "all_stps.html", context)
 
@@ -1134,7 +1134,7 @@ def spending_for_one_entity(request, entity_code, entity_type):
 
 
 def _user_is_bot(request):
-    user_agent = request.headers.get("user-agent", "")
+    user_agent = request.META.get("HTTP_USER_AGENT", "")
     # Despite appearances this is actually a fairly robust way of detecting bots
     # See: https://webmasters.stackexchange.com/a/64805
     match = re.search("(bot|crawl|spider)", user_agent.lower())
@@ -1356,8 +1356,8 @@ def custom_500(request):
             "The database took too long to respond.  If you were running an"
             "analysis with multiple codes, try again with fewer."
         )
-    if (request.headers.get("x-requested-with") == "XMLHttpRequest") or (
-        "application/json" in request.headers.get("accept", "")
+    if (request.META.get("HTTP_X_REQUESTED_WITH") == "XMLHttpRequest") or (
+        "application/json" in request.META.get("HTTP_ACCEPT", "")
     ):
         return HttpResponse(reason, status=500)
     else:

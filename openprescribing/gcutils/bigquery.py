@@ -4,7 +4,7 @@ import tempfile
 import warnings
 from contextlib import contextmanager
 
-import pandas_gbq
+import pandas as pd
 from django.conf import settings
 from django.db.models import fields as model_fields
 from django.db.models.fields import related as related_fields
@@ -75,7 +75,8 @@ class Client(object):
             self.dataset = None
         else:
             self.dataset_id = DATASETS[dataset_key]
-            self.dataset = gcbq.Dataset(f"{self.project}.{self.dataset_id}")
+            dataset_ref = self.gcbq_client.dataset(self.dataset_id)
+            self.dataset = gcbq.Dataset(dataset_ref)
 
     def run_job(self, method_name, args, config_opts, config_default_opts):
         job_config = {
@@ -223,7 +224,7 @@ class Client(object):
             "dialect": "legacy" if legacy else "standard",
         }
         with exception_sql_printer(sql):
-            return pandas_gbq.read_gbq(sql, **kwargs)
+            return pd.read_gbq(sql, **kwargs)
 
     def upload_model(self, model, table_id=None):
         if table_id is None:
@@ -380,8 +381,8 @@ class Table(object):
         self.run_job("query", args, options, default_options)
 
     def copy_to_new_dataset(self, new_dataset_key, **options):
-        dataset_ref = f"{self.project}.{DATASETS[new_dataset_key]}"
-        new_table_ref = f"{dataset_ref}.{self.table_id}"
+        dataset_ref = self.gcbq_client.dataset(DATASETS[new_dataset_key])
+        new_table_ref = dataset_ref.table(self.table_id)
 
         args = [self.gcbq_table_ref, new_table_ref]
         self.run_job("copy_table", args, options, {})
