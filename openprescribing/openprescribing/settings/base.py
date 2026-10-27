@@ -342,6 +342,12 @@ CRISPY_TEMPLATE_PACK = "bootstrap3"
 # For grabbing images that we insert into alert emails
 GRAB_HOST = "https://openprescribing.net"
 
+# PhantomJS fetches pages for screenshots from SCREENSHOT_HOST (the local nginx, to
+# avoid Cloudflare bot protection), sending SCREENSHOT_HOST_HEADER as the Host
+# header with requests to that host.
+SCREENSHOT_HOST = "https://127.0.0.1"
+SCREENSHOT_HOST_HEADER = "openprescribing.net"
+
 # For sending messages to Slack
 # Webhook URLs for posting to different channels can be configured at
 # https://api.slack.com/apps/A03UM1N45JN/incoming-webhooks

@@ -69,6 +69,8 @@ BQ_DEFAULT_TABLE_EXPIRATION_MS = 3 * 60 * 60 * 1000  # 3 hours
 
 # For grabbing images that we insert into alert emails
 GRAB_HOST = "http://localhost"
+SCREENSHOT_HOST = "http://localhost"
+SCREENSHOT_HOST_HEADER = "localhost"
 
 # This is the same as the dev/local one
 GOOGLE_TRACKING_ID = "UA-62480003-2"

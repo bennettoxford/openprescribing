@@ -90,6 +90,8 @@ BQ_MEASURES_DATASET = "staging_{}".format(BQ_MEASURES_DATASET)
 
 # For grabbing images that we insert into alert emails
 GRAB_HOST = "http://staging.openprescribing.net"
+SCREENSHOT_HOST = "https://127.0.0.1"
+SCREENSHOT_HOST_HEADER = "staging.openprescribing.net"
 
 GOOGLE_TRACKING_ID = "UA-62480003-3"
 GOOGLE_OPTIMIZE_CONTAINER_ID = "GTM-KRQSJM9"
