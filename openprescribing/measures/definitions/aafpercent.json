@@ -29,7 +29,7 @@
 	"numerator_bnf_codes_filter": [
 		"0913107A0 # Powder amino acid formula (0913107)",
 		"0913131A0 # Powder amino acid formula (0913131)",
-		"0913131B0 # Powder amino acid semi solid  (0913131)",
+		"0913131B0 # Powder amino acid semi solid (0913131)",
 		"0913355A0 # Powder discontinued amino acid formula (0913355)",
 		"0913361A0 # Powder discontinued amino acid formula (0913361)"
 	],
@@ -40,15 +40,34 @@
 		"0913131B0 # Powder amino acid semi solid  (0913131)",
 		"0913355A0 # Powder discontinued amino acid formula (0913355)",
 		"0913361A0 # Powder discontinued amino acid formula (0913361)",
-		"0913101A0 # Powder extensively hydrolysed formula (0913101)",
+		"0913101A0 # Powder extensively hydrolysed formula (0913101)", 
+		"0913102A0 # Powder extensively hydrolysed formula with MCT (0913102)",
+		"0913103A0 # RtS extensively hydrolysed formula, high energy (0913103)",
 		"0913132A0 # Powder extensively hydrolysed formula (0913132)",
 		"0913351A0 # Powder discontinued extensively hydrolysed formula (0913351)"
 	],
-	"authored_by": "richard.croker@phc.ox.ac.uk",
-	"checked_by": "andrew.brown@phc.ox.ac.uk",
-	"date_reviewed": "2024-02-12",
-	"next_review": "2026-02-12",
 	"measure_notebook_url": "https://github.com/ebmdatalab/jupyter-notebooks/blob/master/new_measures/New%20Measure%20-%20Cow's%20Milk%20Protein%20Allergy.ipynb",
 	"measure_complexity": "low",
-	"measure_type": "bnf_code"
+	"measure_type": "bnf_code",
+	  "change_log": [
+	  {
+    "date": "2019-03-25",
+    "description": "Created measure.",
+    "action_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": "brian.mackenna@phc.ox.ac.uk"
+    },
+    {
+    "date": "2023-03-27",
+    "description": "Amending for BNF changes - makes classification easier",
+    "action_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": "richard.croker@phc.ox.ac.uk"
+    },
+    {
+      "date": "2028-10-26",
+      "description": "Updated why it matters text, and reviewed contents in numerator",
+      "action_by": "victoria.speed@phc.ox.ac.uk",
+      "checked_by": "richard.croker@phc.ox.ac.uk"
+    }
+  ]
+}
 }
