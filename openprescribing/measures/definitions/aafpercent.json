@@ -9,11 +9,11 @@
   "These products are prescribed for a number of allergy indications, and are most commonly prescribed for Cow's Milk Protein Allergy ",
   "(CMPA). The <a href='https://cks.nice.org.uk/topics/cows-milk-allergy-in-children/management/suspected-cows-milk-allergy/#hypoallergenic-infant-formulas' target='_blank'>",
   "NICE Clinical Knowledge Summary for Cows' Milk Allergy in children</a> outlines the use of hypoallergenic infant formulas. It ",
-  "states that extensively hydrolysed formulas (EHFs) are usually used first-line. They are whey- or casein-based and are generally well ",
+  "states that extensively hydrolysed formulas (eHFs) are usually used first-line. They are whey- or casein-based and are generally well ",
   "tolerated by infants and children with cow's milk allergy. Amino acid formulas (AAFs) should be reserved for children with severe ",
-  "symptoms of IgE- or non-IgE-mediated allergy or a history of anaphylaxis; those who cannot tolerate EHFs or have ongoing symptoms ",
+  "symptoms of IgE- or non-IgE-mediated allergy or a history of anaphylaxis; those who cannot tolerate eHFs or have ongoing symptoms ",
   "with them; and those whose symptoms do not respond to maternal avoidance of cow's milk or who have symptoms while exclusively breastfeeding. ",
-  "Amino acid formula products tend to be significantly more expensive than EHF, and it is believed that only a small proportion of infants ",
+  "Amino acid formula products tend to be significantly more expensive than eHF, and it is believed that only a small proportion of infants ",
   "(<a href='https://doi.org/10.1016/j.jaip.2017.09.003' target='_blank'>thought to be around 10%</a>) ",
   "need to be started on AAF for CMPA in primary care."
 ],
@@ -49,7 +49,7 @@
 	"measure_notebook_url": "https://github.com/ebmdatalab/jupyter-notebooks/blob/master/new_measures/New%20Measure%20-%20Cow's%20Milk%20Protein%20Allergy.ipynb",
 	"measure_complexity": "low",
 	"measure_type": "bnf_code",
-	  "change_log": [
+	"change_log": [
 	  {
     "date": "2019-03-25",
     "description": "Created measure.",
@@ -69,5 +69,4 @@
       "checked_by": "richard.croker@phc.ox.ac.uk"
     }
   ]
-}
 }
