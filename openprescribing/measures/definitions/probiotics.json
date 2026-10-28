@@ -5,19 +5,21 @@
   "y_label": "Cost (£) per 1000 patients",
   "why_it_matters": [
     "<p>The Advisory Committee on Borderline Substances (ACBS) is responsible for assessing and recommending products applying for ",
-    "listing in Part XV of the Drug Tariff. In 2018 the ACBS reviewed some products listed in Part XV to ensure they are still ",
+    "listing in Part XV (Borderline Substances) of the Drug Tariff. In 2018, the ACBS reviewed some products listed in Part XV to ensure they were still ",
     "clinically effective and appropriate to be listed. They considered the probiotics VSL#3 and Vivomixx and advised the Secretary ",
     "of State for Health and Social Care to remove these products. The Secretary of State accepted this recommendation and removed the ",
-    "products from the Drug Tariff in November 2018.",
-    "This is consistent with <a href='https://www.england.nhs.uk/medicines/conditions-for-which-over-the-counter-items-should-not-routinely-be-prescribed/'> ",
-    "NHS England guidance </a> that recommends probiotics should no longer be routinely prescribed.</p>",
-    "<p> The ACBS concluded that the evidence did not sufficiently demonstrate that the products are clinically effective. Additionally",
-    "the ACBS & MHRA consider the presentation of a product to prevent a clinical condition such as pouchitis as a specific medicinal claim.",
-    "Therefore these products now fall within the definition of a medicine (not a borderline substance) and should be regulated as such. </p>",
-    "<p>Importantly this means that they are also allowed on prescription, despite not currently",
-    "being licensed as a medicine, and having been removed from the drug tariff as the evidence does not support them meeting the threshold",
-    "for Part XV of the Drug Tariff.</p>"
-    ],
+    "products from the Drug Tariff in November 2018.</p>",
+    "<p><a href='https://www.england.nhs.uk/medicines/conditions-for-which-over-the-counter-items-should-not-routinely-be-prescribed/' target='_blank'>",
+    "NHS England guidance states</a>:</p>",
+    "<p><i>There is insufficient clinical evidence to support prescribing of probiotics within the NHS for the treatment or prevention of diarrhoea of any cause. ",
+    "Following a review, the <a href='https://www.medicinesresources.nhs.uk/en/Medicines-Awareness/Guidance-and-Advice/Drug-Prescribing/Probiotics-VSL3-and-Vivomixx-have-been-removed-from-the-Drug-Tariff-following-review-by-Advisory-Committee-on-Borderline-Substances-ACBS-/' target='_blank'>",
+    "Advisory Committee on Borderline Substances</a> concluded that the evidence did not sufficiently demonstrate that the items are clinically effective. ",
+    "These probiotics are no longer in Part XV of the <a href='https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/drug-tariff' target='_blank'>",
+    "Drug Tariff</a>. Both the UK Health Security Agency <a href='https://www.gov.uk/government/collections/clostridium-difficile-guidance-data-and-analysis' target='_blank'>",
+    "Clostridioides difficile guidance</a> and National Institute for Health and Care Excellence (NICE) <a href='https://www.nice.org.uk/guidance/cg84' target='_blank'>",
+    "guidance on gastroenteritis in under 5s</a> do not recommend probiotics. Instead, they recommend that good-quality randomised controlled trials should be conducted in the UK ",
+    "to evaluate the effectiveness and safety of a specific probiotic using clearly defined treatment regimens and outcome measures before they are routinely prescribed.</i></p>"
+  ],
   "numerator_short": "Probiotics cost (£)",
   "denominator_short": "1000 patients",
   "url": null,
@@ -38,11 +40,33 @@
    "0913531D0 # Tablet OTC probiotic (0913531)"
   ],
   "denominator_type": "list_size",
-  "authored_by": "richard.croker@phc.ox.ac.uk",
-  "checked_by": "andrew.brown@phc.ox.ac.uk",
-  "date_reviewed": "2024-08-06",
-  "next_review": "2026-08-06",
   "measure_complexity": "low",
   "measure_type": "bnf_code",
-  "radar_exclude": false
+  "radar_exclude": false,
+  "change_log": [
+	  {
+    "date": "2019-09-24",
+    "description": "Created measure.",
+    "action_by": "brian.mackenna@phc.ox.ac.uk",
+    "checked_by": "richard.croker@phc.ox.ac.uk"
+    },
+    {
+    "date": "2023-03-27",
+    "description": "Amending measure to reflect BNF code changes",
+    "action_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": "richard.croker@phc.ox.ac.uk"
+    },
+    {
+    "date": "2024-08-06",
+    "description": "Added in tablets",
+    "action_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": "andrew.brown@phc.ox.ac.uk"
+    },
+    {
+      "date": "2026-10-26",
+      "description": "Updated why it matters text, and reviewed contents in numerator",
+      "action_by": "victoria.speed@phc.ox.ac.uk",
+      "checked_by": "XXX@phc.ox.ac.uk"
+    }
+  ]
 }
