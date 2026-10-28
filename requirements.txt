@@ -1,4 +1,4 @@
-asgiref==3.12.1
+asgiref==3.13.0
     # via
     #   django
     #   django-cors-headers
@@ -12,9 +12,9 @@ bcrypt==5.0.0
     # via paramiko
 beautifulsoup4==4.15.0
     # via -r requirements.in
-cachetools==7.2.4
+cachetools==7.2.6
     # via premailer
-certifi==2026.10.19
+certifi==2026.10.23
     # via
     #   requests
     #   selenium
@@ -26,7 +26,7 @@ charset-normalizer==3.5.2
     # via requests
 contourpy==1.4.0
     # via matplotlib
-coverage==7.16.2
+coverage==7.17.0
     # via -r requirements.in
 crispy-bootstrap3==2024.1
     # via -r requirements.in
@@ -44,7 +44,7 @@ cssutils==2.11.1
     #   premailer
 cycler==0.12.1
     # via matplotlib
-db-dtypes==1.8.0
+db-dtypes==1.9.0
     # via pandas-gbq
 diskcache==5.6.3
     # via -r requirements.in
@@ -89,9 +89,9 @@ fab-classic==1.21.0
     # via -r requirements.in
 flake8==7.4.1
     # via -r requirements.in
-fonttools==4.67.0
+fonttools==4.68.0
     # via matplotlib
-google-api-core[grpc]==2.42.0
+google-api-core[grpc]==2.43.0
     # via
     #   google-api-python-client
     #   google-cloud-bigquery
@@ -139,19 +139,19 @@ google-resumable-media==2.11.0
     # via
     #   google-cloud-bigquery
     #   google-cloud-storage
-googleapis-common-protos==1.75.5
+googleapis-common-protos==1.76.0
     # via
     #   google-api-core
     #   grpcio-status
     #   opentelemetry-exporter-otlp-proto-http
 graphviz==0.21
     # via -r requirements.in
-grpcio==1.84.0
+grpcio==1.85.0
     # via
     #   google-api-core
     #   google-cloud-bigquery-storage
     #   grpcio-status
-grpcio-status==1.84.0
+grpcio-status==1.85.0
     # via google-api-core
 gunicorn==26.2.0
     # via -r requirements.in
@@ -288,7 +288,7 @@ pandas==2.3.3
     #   db-dtypes
     #   pandas-gbq
     #   seaborn
-pandas-gbq==0.35.2
+pandas-gbq==0.35.3
     # via -r requirements.in
 paramiko==5.1.0
     # via fab-classic
@@ -316,13 +316,13 @@ pyarrow==26.0.0
     # via
     #   db-dtypes
     #   pandas-gbq
-pyasn1==0.6.4
+pyasn1==0.6.5
     # via pyasn1-modules
 pyasn1-modules==0.4.2
     # via google-auth
 pycodestyle==2.15.0
     # via flake8
-pycparser==3.11
+pycparser==3.12
     # via cffi
 pydata-google-auth==1.9.1
     # via pandas-gbq
