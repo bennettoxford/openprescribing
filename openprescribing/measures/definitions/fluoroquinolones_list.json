@@ -33,12 +33,28 @@
     "050112 # Quinolones"
   ],
   "denominator_type": "list_size",
-  "authored_by": "christopher.wood@phc.ox.ac.uk",
-  "checked_by": "victoria.speed@phc.ox.ac.uk",
-  "date_reviewed": "2024-02-12",
-  "next_review": "2026-02-12",
   "measure_complexity": "low",
   "measure_type": "custom", 
-  "radar_exclude": false
+  "radar_exclude": false,
+  "change_log": [
+	  {
+    "date": "2019-03-25",
+    "description": "Created measure",
+    "action_by": "richard.croker@phc.ox.ac.uk",
+    "checked_by": "brian.mackenna@phc.ox.ac.uk"
+    },
+    {
+    "date": "2024-02-12",
+    "description": "Measure review, update measure to list size",
+    "action_by": "christopher.wood@phc.ox.ac.uk",
+    "checked_by": "victoria.speed@phc.ox.ac.uk"
+    },
+    {
+      "date": "2026-10-26",
+      "description": "Review measure and add change log",
+      "action_by": "victoria.speed@phc.ox.ac.uk",
+      "checked_by": "xx"
+    }
+  ]
 }
   
