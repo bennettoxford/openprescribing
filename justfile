@@ -73,6 +73,9 @@ migrate *args: (manage "migrate" args)
 # Run `manage.py runserver`
 run *args: (manage "runserver" args)
 
+# Run `manage.py collectstatic`
+collectstatic *args: (manage "collectstatic --clear --no-input" args)
+
 # Run with Gunicorn for development and testing
 [env("DJANGO_SETTINGS_MODULE", "openprescribing.settings.production")]
 [env("GUNICORN_LOG_LEVEL", "info")]
