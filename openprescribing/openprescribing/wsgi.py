@@ -1,3 +1,5 @@
+import warnings
+
 import dotenv
 from django.core.wsgi import get_wsgi_application
 
@@ -24,7 +26,9 @@ APPS_ROOT = dirname(dirname(abspath(__file__)))
 path.append(APPS_ROOT)
 
 SETTINGS_ROOT = dirname(APPS_ROOT)
-dotenv.read_dotenv(os.path.join(SETTINGS_ROOT, "environment"), override=True)
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore", UserWarning)
+    dotenv.read_dotenv(os.path.join(SETTINGS_ROOT, "environment"), override=True)
 
 # We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
 # if running multiple sites in the same mod_wsgi process. To fix this, use
