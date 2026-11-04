@@ -11,11 +11,12 @@
     "build-css": "lessc ../css/index.less > ../../static/css/index.css",
     "build-config": "browserify src/config.js --standalone config -t envify | uglifyjs > ../../static/js/config.min.js",
     "build-clipboardjs": "cp node_modules/clipboard/dist/clipboard.min.js ../../static/js/",
-    "build": "npm-run-all -p build-config build-js build-css build-clipboardjs",
+    "build-maplibs": "cp node_modules/leaflet/dist/leaflet.js node_modules/leaflet/dist/leaflet.css node_modules/protomaps-leaflet/dist/protomaps-leaflet.js ../../static/js/",
+    "build": "npm-run-all -p build-config build-js build-css build-clipboardjs build-maplibs",
     "lint": "eslint src/*.js",
     "watch-config": "watchify src/config.js --standalone config -t envify -o ../../static/js/config.js --debug --verbose",
     "watch-css": "when-changed ../css/ 'npm run build-css'",
-    "watch": "npm-run-all -p build-clipboardjs watch-config watch-css watch-js"
+    "watch": "npm-run-all -p build-clipboardjs build-maplibs watch-config watch-css watch-js"
   },
   "browser": {
     "select2": "./vendor/select2.full.min.js",
@@ -64,9 +65,10 @@
     "handlebars": "4.7.7",
     "humanize": "^0.0.9",
     "jquery": "^1.11.3",
-    "mapbox.js": "^2.4.0",
+    "leaflet": "^1.9.4",
     "moment": "^2.31.0",
     "npm-run-all": "^4.1.2",
+    "protomaps-leaflet": "^5.1.0",
     "uglify-js": "^3.2.2",
     "uglifyify": "^4.0.5",
     "underscore": "^1.8.3"
