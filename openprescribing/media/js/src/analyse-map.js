@@ -27,7 +27,9 @@ var analyseMap = {
       _this.map.addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
       _this.map.scrollWheelZoom.disable();
     } else {
-      _this.map.removeLayer(_this.orgLayer);
+      if (typeof _this.orgLayer !== 'undefined') {
+        _this.map.removeLayer(_this.orgLayer);
+      }
       if (typeof _this.legendHtml !== 'undefined') {
         _this.map.legendControl.removeLegend(_this.legendHtml);
       }
@@ -123,7 +125,7 @@ var analyseMap = {
                     monthData[ratio]);
         this.popup.setLatLng(e.latlng);
         this.popup.setContent(html);
-        if (!this.popup._isOpen) {
+        if (!this.map.hasLayer(this.popup)) {
           this.popup.openOn(this.map);
         }
         window.clearTimeout(closeTooltip);
@@ -138,7 +140,12 @@ var analyseMap = {
         }, 100);
       }, _this);
       layer.on('click', function(e) {
-        this.map.fitBounds(e.target.getBounds());
+        // Polygons have bounds; circle markers (points) don't in Leaflet 1.x.
+        if (typeof e.target.getBounds === 'function') {
+          this.map.fitBounds(e.target.getBounds());
+        } else {
+          this.map.panTo(e.latlng);
+        }
         e.target.fireEvent('mousemove', e);
       }, _this);
     });
