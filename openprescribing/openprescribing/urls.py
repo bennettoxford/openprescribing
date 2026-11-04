@@ -1,6 +1,7 @@
 import functools
 
 from django.contrib import admin
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.http.response import HttpResponseRedirect
 from django.urls import include, path, reverse
 from django.views.generic import RedirectView, TemplateView
@@ -49,6 +50,13 @@ def all_england_redirects(request, *args, **kwargs):
 urlpatterns = [
     path(r"", views.home, name="home"),
     # Static pages.
+    path(
+        "favicon.ico",
+        RedirectView.as_view(
+            url=staticfiles_storage.url("img/favicon.ico"), permanent=True
+        ),
+        name="favicon",
+    ),
     path(r"api/", TemplateView.as_view(template_name="api.html"), name="api"),
     path(r"about/", TemplateView.as_view(template_name="about.html"), name="about"),
     path(r"faq/", TemplateView.as_view(template_name="faq.html"), name="faq"),
