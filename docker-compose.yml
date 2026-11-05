@@ -79,7 +79,7 @@ services:
 
   test-production:
     image: ghcr.io/bennettoxford/openprescribing-py312-base:latest
-    command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && python manage.py check --deploy'
+    command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && python manage.py collectstatic && python manage.py check --deploy'
     environment:
       <<: *shared-environment
       DJANGO_SETTINGS_MODULE: openprescribing.settings.production
