@@ -83,7 +83,7 @@ def npm_install():
     installed = run("if [[ -n $(which npm) ]]; then echo 1; fi")
     if not installed:
         sudo(
-            "curl -sL https://deb.nodesource.com/setup_20.x |"
+            "curl -sL https://deb.nodesource.com/setup_24.x |"
             "bash - && apt-get install -y  "
             "nodejs binutils libproj-dev gdal-bin libgeoip1 libgeos-c1;",
             user=env.local_user,
