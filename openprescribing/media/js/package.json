@@ -11,7 +11,7 @@
     "build-css": "lessc ../css/index.less > ../../static/css/index.css",
     "build-config": "browserify src/config.js --standalone config -t envify | uglifyjs > ../../static/js/config.min.js",
     "build-clipboardjs": "cp node_modules/clipboard/dist/clipboard.min.js ../../static/js/",
-    "build-maplibs": "cp node_modules/leaflet/dist/leaflet.js node_modules/leaflet/dist/leaflet.css node_modules/protomaps-leaflet/dist/protomaps-leaflet.js ../../static/js/",
+    "build-maplibs": "cp -r node_modules/leaflet/dist/leaflet.js node_modules/leaflet/dist/leaflet.js.map node_modules/leaflet/dist/leaflet.css node_modules/leaflet/dist/images node_modules/protomaps-leaflet/dist/protomaps-leaflet.js node_modules/protomaps-leaflet/dist/protomaps-leaflet.js.map ../../static/js/",
     "build": "npm-run-all -p build-config build-js build-css build-clipboardjs build-maplibs",
     "lint": "eslint src/*.js",
     "watch-config": "watchify src/config.js --standalone config -t envify -o ../../static/js/config.js --debug --verbose",
