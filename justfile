@@ -120,11 +120,7 @@ assets-install:
 # Build the Node.js assets
 [group("Assets")]
 assets-build:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    cd openprescribing/media/js
-    npm run build
+    cd openprescribing/media/js && npm run build
 
 # Docker recipes
 # --------------------------------------------------------------------------------------
