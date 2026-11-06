@@ -122,6 +122,12 @@ assets-install:
 assets-build:
     cd openprescribing/media/js && npm run build
 
+# Clean (remove) the built Node.js assets and the collected static files
+[group("Assets")]
+assets-clean:
+    git clean --force -dX -- openprescribing/static
+    rm --force --recursive openprescribing/assets
+
 # Docker recipes
 # --------------------------------------------------------------------------------------
 
