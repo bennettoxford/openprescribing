@@ -115,14 +115,7 @@ test-browserstack-functional *args: browserstacklocal
 # Install the Node.js dependencies
 [group("Assets")]
 assets-install:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    cd openprescribing/media/js
-    npm install -g browserify
-    npm install -g jshint
-    npm install -g less
-    npm install
+    cd openprescribing/media/js && npm install
 
 # Build the Node.js assets
 [group("Assets")]
