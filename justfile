@@ -73,9 +73,6 @@ migrate *args: (manage "migrate" args)
 # Run `manage.py runserver`
 run *args: (manage "runserver" args)
 
-# Run `manage.py collectstatic`
-collectstatic *args: (manage "collectstatic --clear --no-input" args)
-
 # Run with Gunicorn for development and testing
 [env("DJANGO_SETTINGS_MODULE", "openprescribing.settings.production")]
 [env("GUNICORN_LOG_LEVEL", "info")]
@@ -115,23 +112,22 @@ test-browserstack-functional *args: browserstacklocal
 # Install the Node.js dependencies
 [group("Assets")]
 assets-install:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    cd openprescribing/media/js
-    npm install -g browserify
-    npm install -g jshint
-    npm install -g less
-    npm install
+    cd openprescribing/media/js && npm install
 
 # Build the Node.js assets
 [group("Assets")]
 assets-build:
-    #!/usr/bin/env bash
-    set -euo pipefail
+    cd openprescribing/media/js && npm run build
 
-    cd openprescribing/media/js
-    npm run build
+# Run `manage.py collectstatic`
+[group("Assets")]
+collectstatic *args: (manage "collectstatic --clear --no-input" args)
+
+# Clean (remove) the built Node.js assets and the collected static files
+[group("Assets")]
+assets-clean:
+    git clean --force -dX -- openprescribing/static
+    rm --force --recursive openprescribing/assets
 
 # Docker recipes
 # --------------------------------------------------------------------------------------
