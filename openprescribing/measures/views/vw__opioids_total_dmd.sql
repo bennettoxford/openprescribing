@@ -9,8 +9,8 @@ WITH simp_form AS (
       STRPOS(form.descr, ".")+ 1) #takes the dosage form out of the string (e.g. tablet.oral) TO leave route.
     END AS simple_form
   FROM
-    {project}.{dmd}.ont AS ont #the coded route for dosage form, includes vmp code
-    INNER JOIN {project}.{dmd}.ontformroute AS form ON form.cd = ont.form #text description of route
+    ebmdatalab.dmd.ont AS ont #the coded route for dosage form, includes vmp code
+    INNER JOIN ebmdatalab.dmd.ontformroute AS form ON form.cd = ont.form #text description of route
     )
 
 #subquery to normalise strength to mg
@@ -35,10 +35,10 @@ WITH simp_form AS (
     ELSE NULL # will give a null value if a non-stanard dosage unit - this can then be checked if neccesary
     END AS strnt_dnmtr_val_ml #denominator now in ml
     FROM
-    {project}.{dmd}.vpi AS vpi
-    INNER JOIN {project}.{dmd}.ing AS ing ON vpi.ing = ing.id
-    LEFT JOIN {project}.{dmd}.unitofmeasure AS unit_num ON vpi.strnt_nmrtr_uom = unit_num.cd #join to create text value for numerator unit
-    LEFT JOIN {project}.{dmd}.unitofmeasure AS unit_den ON vpi.strnt_dnmtr_uom = unit_den.cd #join to create text value for denominator unit
+    ebmdatalab.dmd.vpi AS vpi
+    INNER JOIN ebmdatalab.dmd.ing AS ing ON vpi.ing = ing.id
+    LEFT JOIN ebmdatalab.dmd.unitofmeasure AS unit_num ON vpi.strnt_nmrtr_uom = unit_num.cd #join to create text value for numerator unit
+    LEFT JOIN ebmdatalab.dmd.unitofmeasure AS unit_den ON vpi.strnt_dnmtr_uom = unit_den.cd #join to create text value for denominator unit
 )
 
 #main query to calculate the OME
@@ -54,27 +54,28 @@ SELECT
   rx.bnf_name as bnf_name, #BNF name from prescribing data
   vpi.strnt_nmrtr_val_mg, #strength numerator in mg
   SUM(
-    ( CASE WHEN rx.bnf_code LIKE '0407020A0%BJ' OR rx.bnf_code LIKE '0407020A0%BP' THEN (net_cost / 4.56 * ome * strnt_nmrtr_val_mg) / coalesce(vpi.strnt_dnmtr_val_ml, 1) # adjust for special container for PecFent 100mcg
+    CASE WHEN rx.bnf_code LIKE '0407020A0%BJ' OR rx.bnf_code LIKE '0407020A0%BP' THEN (net_cost / 4.56 * ome * strnt_nmrtr_val_mg) / coalesce(vpi.strnt_dnmtr_val_ml, 1) # adjust for special container for PecFent 100mcg
       WHEN COALESCE(vpi.bs_subid, vpi.ing) = 373492002
       AND form.simple_form = 'transdermal' THEN (quantity * ome * vpi.strnt_nmrtr_val_mg * 72)/ coalesce(vpi.strnt_dnmtr_val_ml, 1) # creates 72 hour dose for fentanyl transdermal patches, as doses are per hour on DM+D)
       WHEN COALESCE(vpi.bs_subid, vpi.ing) = 387173000
       AND form.simple_form = 'transdermal'
-      AND vpi.strnt_nmrtr_val IN (5, 10, 15, 20) THEN (quantity * ome * vpi.strnt_nmrtr_val_mg * 168)/ coalesce(vpi.strnt_dnmtr_val_ml, 1) # creates 168 hour (7 day) dose for low-dose buprenorphine patch
-      WHEN COALESCE(vpi.bs_subid, vpi.ing) = 387173000
-      AND form.simple_form = 'transdermal'
-      AND vpi.strnt_nmrtr_val IN (35, 52.5, 70) THEN (quantity * ome * vpi.strnt_nmrtr_val_mg * 96)/ coalesce(vpi.strnt_dnmtr_val_ml, 1) # creates 96 hour dose for higher-dose buprenorphine patch
+      THEN CASE
+        WHEN MOD(vpi.strnt_nmrtr_val * 2, 7) = 0
+        THEN (quantity * ome * vpi.strnt_nmrtr_val_mg * 168) / COALESCE(vpi.strnt_dnmtr_val_ml, 1)
+        ELSE (quantity * ome * vpi.strnt_nmrtr_val_mg * 96) / COALESCE(vpi.strnt_dnmtr_val_ml, 1)
+      END
       WHEN form.simple_form = 'injection' THEN (quantity * ome * vpi.strnt_nmrtr_val_mg * vmp.udfs)/ coalesce(vpi.strnt_dnmtr_val_ml, 1) # injections need to be weighted by pack size
       ELSE (quantity * ome * strnt_nmrtr_val_mg) / coalesce(vpi.strnt_dnmtr_val_ml, 1) #all other products have usual dose - coalesce as solid dose forms do not have a denominator
       END
-    )
   ) AS ome_dose,
   opioid.ome AS ome
+  
 FROM
   norm_vpi AS vpi #VPI has both ING and VMP codes in the table
-  INNER JOIN {project}.{dmd}.vmp AS vmp ON vpi.vmp = vmp.id #join to get BNF codes for both VMPs and AMPs joined indirectly TO ING.
+  INNER JOIN ebmdatalab.dmd.vmp AS vmp ON vpi.vmp = vmp.id #join to get BNF codes for both VMPs and AMPs joined indirectly TO ING.
   INNER JOIN simp_form AS form ON vmp.id = form.vmp #join to subquery for simplified administration route
-  INNER JOIN {project}.{measures}.opioid_ing_form_ome AS opioid ON opioid.vpi = COALESCE(vpi.bs_subid, vpi.ing) AND opioid.form = form.simple_form #join to OME table, which has OME value for ING/route pairs
-  INNER JOIN {project}.{hscic}.normalised_prescribing AS rx ON CONCAT(
+  INNER JOIN ebmdatalab.measures.opioid_ing_form_ome AS opioid ON opioid.vpi = COALESCE(vpi.bs_subid, vpi.ing) AND opioid.form = form.simple_form #join to OME table, which has OME value for ING/route pairs
+  INNER JOIN ebmdatalab.hscic.normalised_prescribing AS rx ON CONCAT(
     SUBSTR(rx.bnf_code, 0, 9),
     'AA',
     SUBSTR(rx.bnf_code,-2, 2)
