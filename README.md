@@ -322,42 +322,41 @@ If you add new javascript source files, update the `modules` array at
 
 # Deployment
 
+The production site is deployed automatically on merging to the main branch by [bennettbot](https://github.com/bennettoxford/bennettbot/).
+(See this [job config](https://github.com/bennettoxford/bennettbot/blob/e9e0599aa636f480a7be54e940d942d35153866b/bennettbot/job_configs.py#L125-L129).)
+This happens in response to a webhook configured [here](https://github.com/bennettoxford/openprescribing/settings/hooks/85994427).
+
 Deployment is carried out using [`fabric`](http://www.fabfile.org/).
 
-Your public key must be added to `authorized_keys` for the `hello`
-user, and SSH forwarding should work (this possibly means running
-`ssh-agent add <private-key>` on your workstation - see
-[this helpful debugging guide](https://developer.github.com/guides/using-ssh-agent-forwarding/)
-if you are having problems.
+bennettbot's public key must be added to `authorized_keys` for the `bennettbot` user, and SSH forwarding should work.
+The `bennettbot` user must be a member of the `fabric` group.
 
-Running `fab deploy:production` will:
-
+bennettbot runs `fab deploy:production`, which runs the steps in `fabfile.py`:
 
 * Check if there are any changes to deploy
-* Install `npm` and `pip` as required (you will need sudo access to do this)
 * Update the repo on the server
+* Install `npm` if it is missing
 * Install any new pip and npm dependencies
 * Build JS and CSS artefacts
-* Run pending migations (only for production environment)
-* Reload the server gracefully
+* Run `collectstatic`
+* Run pending migrations
+* Restart the app's systemd service
 * Clear the cloudflare cache
+* Install the crontab
 * Log a deploy to `deploy-log.json` in the deployment directory on the server
+* Post a deploy notification to Slack
 
-You can also deploy to staging:
+The fabfile contains provisions for deploying to a staging server.
+However, the staging site is no longer used.
 
-    fab deploy:staging
+## nginx
 
-Or deploy a specific branch to staging:
+Note that after deploying a change that updates openprescribing.conf, a manual step is required to update nginx config:
 
-    fab deploy:staging,branch=my_amazing_branch
-
-If the fabfile detects no undeployed changes, it will refuse to run. You can force it to do so (for example, to make it rebuild assets), with:
-
-    fab deploy:production,force_build=true
-
-Or for staging:
-
-    fab deploy:staging,force_build=true,branch=deployment
+```
+$ sudo cp /webapps/openprescribing/contrib/nginx/openprescribing.conf /etc/nginx/sites-available/openprescribing
+$ sudo nginx -t && sudo systemctl reload nginx
+```
 
 # Development
 
