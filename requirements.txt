@@ -12,7 +12,7 @@ bcrypt==5.0.0
     # via paramiko
 beautifulsoup4==4.15.0
     # via -r requirements.in
-cachetools==7.2.8
+cachetools==8.0.0
     # via premailer
 certifi==2026.10.23
     # via
@@ -26,7 +26,7 @@ charset-normalizer==3.5.2
     # via requests
 contourpy==1.4.0
     # via matplotlib
-coverage==7.17.1
+coverage==7.17.2
     # via -r requirements.in
 crispy-bootstrap3==2024.1
     # via -r requirements.in
@@ -91,7 +91,7 @@ flake8==7.5.0
     # via -r requirements.in
 fonttools==4.68.0
     # via matplotlib
-google-api-core[grpc]==2.43.2
+google-api-core[grpc]==2.44.0
     # via
     #   google-api-python-client
     #   google-cloud-bigquery
@@ -99,9 +99,9 @@ google-api-core[grpc]==2.43.2
     #   google-cloud-core
     #   google-cloud-storage
     #   pandas-gbq
-google-api-python-client==2.201.0
+google-api-python-client==2.202.0
     # via -r requirements.in
-google-auth[pyopenssl]==2.62.1
+google-auth[pyopenssl]==2.62.2
     # via
     #   google-api-core
     #   google-api-python-client
@@ -153,7 +153,7 @@ grpcio==1.85.1
     #   grpcio-status
 grpcio-status==1.85.1
     # via google-api-core
-gunicorn==26.2.0
+gunicorn==27.0.0
     # via -r requirements.in
 h11==0.16.0
     # via wsproto
@@ -380,7 +380,7 @@ sniffio==1.3.1
     # via trio
 sortedcontainers==2.4.0
     # via trio
-soupsieve==4.0
+soupsieve==4.1
     # via beautifulsoup4
 sqlean-py==3.50.4.5
     # via -r requirements.in
@@ -414,7 +414,7 @@ urllib3[socks]==2.8.0
     #   django-anymail
     #   requests
     #   selenium
-watchdog==7.0.0
+watchdog==7.1.0
     # via when-changed
 webencodings==0.6.1
     # via html5lib
