@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y binutils libproj-dev gdal-bin libgeoip1
 # Install Node & NPM
 RUN \
   cd $(mktemp --directory) && \
-  curl --silent --location 'https://nodejs.org/dist/v24.22.2/node-v24.22.2-linux-x64.tar.gz' \
+  curl --silent --location 'https://nodejs.org/dist/v24.22.3/node-v24.22.3-linux-x64.tar.gz' \
     | tar --no-same-owner --no-same-permissions -xzf - && \
   mv --no-target-directory node-* /usr/local/lib/node && \
   ln --symbolic /usr/local/lib/node/bin/node /usr/local/bin/node && \
