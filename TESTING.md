@@ -56,6 +56,42 @@ See `.github/workflows/main.yml` for values used in CI.
 [How Local Testing works]: https://www.browserstack.com/docs/local-testing/how-local-testing-works
 [Select browsers and devices]: https://www.browserstack.com/docs/automate/selenium/select-browsers-and-devices
 
+### Running the functional tests locally with BrowserStackLocal
+
+Running the functional tests locally with BrowserStackLocal uses *host mode networking*,
+a networking mode where a container,
+in this case the container running BrowserStackLocal,
+shares the host machine's network namespace.
+
+On a Linux machine, the host machine *is* the Linux machine.
+The functional tests and the container running BrowserStackLocal use the same network namespace.
+The functional tests execute correctly.
+
+On a macOS machine, the host machine isn't the macOS machine;
+the host machine is a Linux virtual machine running on the macOS machine.
+The functional tests use the macOS machine's network namespace and
+the container running BrowserStackLocal uses the Linux virtual machine's network namespace.
+The functional tests don't execute correctly.
+
+Some container runtimes support Linux-like host mode networking on macOS.
+As of November 2026, these include:
+
+* [Docker Desktop][] v4.34 and later, but not by default
+* [OrbStack][] v0.7.0 and later
+
+See the "[Host network driver][]" page
+for more information about enabling host mode networking in Docker Desktop.
+
+Some, unfortunately, don't.
+As of November 2026, these include:
+
+* [Colima][]
+
+[Colima]: https://colima.run/
+[Docker Desktop]: https://www.docker.com/products/docker-desktop/
+[Host network driver]: https://docs.docker.com/engine/network/drivers/host/
+[OrbStack]: https://orbstack.dev/
+
 ## Non-functional tests
 
 The non-functional tests can be run locally or in a container:
