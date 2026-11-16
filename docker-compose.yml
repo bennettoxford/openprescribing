@@ -56,6 +56,7 @@ services:
 
   test:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
+    platform: linux/amd64
     command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && make test'
     environment:
       <<: *shared-environment
@@ -81,6 +82,7 @@ services:
 
   test-production:
     image: ghcr.io/bennettoxford/openprescribing-py312-base:latest
+    platform: linux/amd64
     command: /bin/bash -c './scripts/docker_setup.sh && cd openprescribing && python manage.py collectstatic && python manage.py check --deploy'
     environment:
       <<: *shared-environment
@@ -93,6 +95,7 @@ services:
 
   dev:
     image: ghcr.io/bennettoxford/openprescribing-py312-test:latest
+    platform: linux/amd64
     command: /bin/bash -c './scripts/docker_setup.sh &&  cd openprescribing && /bin/bash -l'
     environment:
       <<: *shared-environment
