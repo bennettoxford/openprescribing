@@ -38,8 +38,7 @@ def main():
 
     overdue = set()
 
-    for path in sorted(Path("measures/definitions").rglob("*.json")):
-        print(f"Checking: {path}")
+    for path in sorted(Path("openprescribing/measures/definitions").rglob("*.json")):
         if any(part.startswith(".") for part in path.parts):
             continue
 
