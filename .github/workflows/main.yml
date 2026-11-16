@@ -83,7 +83,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Run system checks
-        run: docker compose run test-production
+        run: docker compose run --quiet-pull test-production
       - name: Notify slack failure
         if: failure()
         env:
