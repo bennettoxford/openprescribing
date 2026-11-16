@@ -12,6 +12,7 @@ x-shared-environment: &shared-environment
 
 x-browserstacklocal: &browserstacklocal
   image: browserstack/local:latest
+  platform: linux/amd64
   # We disable the dashboard because 1) It's not that useful; and 2) We might want
   # browserstacklocal and browserstacklocal-test to run simultaneously (they have
   # different network namespaces). However, only the container that started first would
@@ -26,6 +27,7 @@ x-browserstacklocal: &browserstacklocal
 services:
   postgis:
     image: postgis/postgis:16-3.4
+    platform: linux/amd64
     environment:
       # These values are defined here as well as in justfile (DB_PASS, DB_USER,
       # DB_NAME). We accept a small amount of redundancy in return for decoupling this
