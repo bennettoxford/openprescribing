@@ -6,7 +6,7 @@ from pathlib import Path
 
 LABEL = "review-overdue"
 TODAY = date.today()
-
+DRY_RUN = os.environ.get("DRY_RUN", "false").lower() == "true"
 
 def gh(*args):
     result = subprocess.run(
@@ -34,9 +34,9 @@ def main():
         if "pull_request" not in issue
     ]
 
-    gh("label", "create", LABEL,
-       "--color", "D93F0B", "--force")
-
+    if not DRY_RUN:
+        gh("label", "create", LABEL,
+           "--color", "D93F0B", "--force")
     overdue = set()
 
     for path in sorted(Path(".").rglob("*.json")):
@@ -67,7 +67,10 @@ def main():
 
             if existing:
                 if existing["state"] == "closed":
-                    gh("issue", "reopen", str(existing["number"]))
+                    if DRY_RUN:
+                        print(f"DRY RUN: Would reopen issue #{existing['number']}")
+                    else:
+                        gh("issue", "reopen", str(existing["number"]))
                 continue
 
             name = data.get("name", path.stem)
@@ -80,11 +83,14 @@ def main():
                 "`next_review` in its JSON definition."
             )
 
-            gh("issue", "create",
-               "--title", f"Review overdue: {name}",
-               "--body", body,
-               "--label", LABEL)
-            print(f"Created issue: {name}")
+            if DRY_RUN:
+                print(f"DRY RUN: Would create issue: {name} ({review_date})")
+            else:
+                gh("issue", "create",
+                   "--title", f"Review overdue: {name}",
+                   "--body", body,
+                   "--label", LABEL)
+                print(f"Created issue: {name}")
 
     # Close issues no longer overdue.
     for issue in issues:
@@ -99,9 +105,12 @@ def main():
             ]
             and not any(marker in body for marker in overdue)
         ):
-            gh("issue", "close", str(issue["number"]),
-               "--comment", "Measure is no longer overdue.")
-            print(f"Closed issue #{issue['number']}")
+            if DRY_RUN:
+                print(f"DRY RUN: Would close issue #{issue['number']}")
+            else:
+                gh("issue", "close", str(issue["number"]),
+                   "--comment", "Measure is no longer overdue.")
+                print(f"Closed issue #{issue['number']}")
 
 
 if __name__ == "__main__":
