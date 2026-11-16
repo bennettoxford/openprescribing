@@ -12,10 +12,10 @@ DRY_RUN = os.environ.get("DRY_RUN", "false").lower() == "true"
 
 # Replace with actual GitHub usernames, in rotation order.
 REVIEWERS = [
-    "github-user-a",
-    "github-user-b",
-    "github-user-c",
-    "github-user-d",
+    "richiecroker",
+    "speed-vm",
+    "chrisjwood16",
+    "carolineacuda",
 ]
 
 REVIEW_DAYS = 14
