@@ -8,6 +8,7 @@ LABEL = "review-overdue"
 TODAY = date.today()
 DRY_RUN = os.environ.get("DRY_RUN", "false").lower() == "true"
 
+
 def gh(*args):
     result = subprocess.run(
         ["gh", *args],
