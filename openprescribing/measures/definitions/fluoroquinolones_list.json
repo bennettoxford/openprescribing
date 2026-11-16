@@ -35,6 +35,8 @@
   "denominator_type": "list_size",
   "measure_complexity": "low",
   "measure_type": "custom", 
+  "date_reviewed": "2026-11-16",
+  "next_review": "2028-11-16",
   "radar_exclude": false,
   "change_log": [
 	  {
