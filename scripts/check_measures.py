@@ -39,6 +39,7 @@ def main():
     overdue = set()
 
     for path in sorted(Path("measures/definitions").rglob("*.json")):
+        print(f"Checking: {path}")
         if any(part.startswith(".") for part in path.parts):
             continue
 
