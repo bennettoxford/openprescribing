@@ -1,0 +1,33 @@
+name: Check measure review dates
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "**/*.json"
+      - "scripts/check_reviews.py"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-reviews:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check overdue reviews
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python scripts/check_reviews.py
