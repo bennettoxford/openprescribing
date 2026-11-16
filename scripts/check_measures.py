@@ -47,7 +47,7 @@ def main():
 
     # Find previously created measure-review issues.
     review_issues = [
-    issue for issue in issues if "<!-- measure-review:" in (issue.get("body") or "")
+        issue for issue in issues if "<!-- measure-review:" in (issue.get("body") or "")
     ]
 
     # Sort by issue number to reconstruct assignment order.
