@@ -1,3 +1,4 @@
+
 import json
 import os
 import subprocess
@@ -23,21 +24,19 @@ def main():
     repo = os.environ["GITHUB_REPOSITORY"]
 
     # Get all existing issues, including closed ones.
-    issues = json.loads(gh(
-        "api", "--paginate",
-        f"repos/{repo}/issues?state=all&per_page=100",
-        "--slurp",
-    ))
-    issues = [
-        issue
-        for page in issues
-        for issue in page
-        if "pull_request" not in issue
-    ]
+    issues = json.loads(
+        gh(
+            "api",
+            "--paginate",
+            f"repos/{repo}/issues?state=all&per_page=100",
+            "--slurp",
+        )
+    )
+    issues = [issue for page in issues for issue in page if "pull_request" not in issue]
 
     if not DRY_RUN:
-        gh("label", "create", LABEL,
-           "--color", "D93F0B", "--force")
+        gh("label", "create", LABEL, "--color", "D93F0B", "--force")
+
     overdue = set()
 
     for path in sorted(Path(".").rglob("*.json")):
@@ -58,8 +57,7 @@ def main():
         marker = f"<!-- measure-review:{path.as_posix()} -->"
 
         existing = next(
-            (issue for issue in issues
-             if marker in (issue.get("body") or "")),
+            (issue for issue in issues if marker in (issue.get("body") or "")),
             None,
         )
 
@@ -87,10 +85,16 @@ def main():
             if DRY_RUN:
                 print(f"DRY RUN: Would create issue: {name} ({review_date})")
             else:
-                gh("issue", "create",
-                   "--title", f"Review overdue: {name}",
-                   "--body", body,
-                   "--label", LABEL)
+                gh(
+                    "issue",
+                    "create",
+                    "--title",
+                    f"Review overdue: {name}",
+                    "--body",
+                    body,
+                    "--label",
+                    LABEL,
+                )
                 print(f"Created issue: {name}")
 
     # Close issues no longer overdue.
@@ -101,16 +105,19 @@ def main():
         body = issue.get("body") or ""
         if (
             "<!-- measure-review:" in body
-            and LABEL in [
-                label["name"] for label in issue["labels"]
-            ]
+            and LABEL in [label["name"] for label in issue["labels"]]
             and not any(marker in body for marker in overdue)
         ):
             if DRY_RUN:
                 print(f"DRY RUN: Would close issue #{issue['number']}")
             else:
-                gh("issue", "close", str(issue["number"]),
-                   "--comment", "Measure is no longer overdue.")
+                gh(
+                    "issue",
+                    "close",
+                    str(issue["number"]),
+                    "--comment",
+                    "Measure is no longer overdue.",
+                )
                 print(f"Closed issue #{issue['number']}")
 
 
