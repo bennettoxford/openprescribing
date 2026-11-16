@@ -5,11 +5,12 @@ on:
     - cron: "0 8 * * *"
   workflow_dispatch:
   push:
-   branches:
-     - check_measures_action
+    branches:
+      - check_measures_action
     paths:
       - "**/*.json"
-      - "scripts/check_reviews.py"
+      - "scripts/check_measures.py"
+      - ".github/workflows/check_measures.yml"
 
 permissions:
   contents: read
@@ -33,4 +34,4 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           DRY_RUN: "true"
-        run: python scripts/check_reviews.py
+        run: python scripts/check_measures.py
