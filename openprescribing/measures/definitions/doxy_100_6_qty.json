@@ -11,9 +11,7 @@
       "recommends five-day courses when antibiotics are indicated for sinusitis, sore throat, COPD infective exacerbation, cough (acute), pneumonia (community-acquired) and otitis media.",
       "For doxycycline this would be 200mg on the first day, then 100mg once a day for 4 days (5-day course in total) requiring a total of 6 capsules/dispersible tablets. ", 
       "Where greater than 5 days treatment is prescribed for these indications, this increases both the unnecessary exposure to antibiotics, as well as cost. ",
-      "There are some indications which require higher doses/longer durations of doxycycline, e.g. treatment of infected leg ulcers.</p>",
-      "<p><a href='https://www.england.nhs.uk/long-read/national-medicines-optimisation-opportunities-2023-24/#14-reducing-course-length-of-antimicrobial-prescribing' target='_Blank'>NHS England National Medicines Optimisation Opportunities for 2024/25</a>",
-      "identify use of the shortest effective antibiotic courses as an area for improvement."
+      "There are some indications which require higher doses/longer durations of doxycycline, e.g. treatment of infected leg ulcers.</p>"
     ],
     "tags": [
       "antimicrobial",
@@ -37,8 +35,22 @@
     "no_analyse_url": true,
     "authored_by": "christopher.wood@phc.ox.ac.uk",
     "checked_by": "richard.croker@phc.ox.ac.uk",
-    "date_reviewed": "2023-09-11",
-    "next_review": "2025-09-11",
-    "measure_complexity": "low"
+    "date_reviewed": "2026-10-19",
+    "next_review": "2028-10-19",
+    "measure_complexity": "low",
+    "change_log": [
+    {
+      "date": "2023-09-11",
+      "description": "Created measure.",
+      "action_by": "christopher.wood@phc.ox.ac.uk",
+      "checked_by": "richard.croker@phc.ox.ac.uk"
+    },
+    {
+      "date": "2026-10-19",
+      "description": "Removed reference to NHS England National Medicines Optimisation Opportunities as this is no longer being updated by NHSE.",
+      "action_by": "richard.croker@phc.ox.ac.uk",
+      "checked_by": "christopher.wood@phc.ox.ac.uk"
+    }
+  ]
   }
   

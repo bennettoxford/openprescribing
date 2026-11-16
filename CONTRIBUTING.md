@@ -1,5 +1,9 @@
 # How to contribute
 
+> [!NOTE]
+> Thank you for your interest in OpenPrescribing.
+> Unfortunately, we're unable to accept outside contributions at present.
+
 Thank you for your interest in contributing! If you haven't already, drop us a line on mail@openprescribing.net. We want you working on things you're excited about.
 
 We use GitHub issues for suggestions and for bug tracking.

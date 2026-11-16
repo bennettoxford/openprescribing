@@ -5,13 +5,12 @@ var utils = require('./chart_utils');
 var domready = require('domready');
 var Highcharts = require('Highcharts');
 var chartOptions = require('./highcharts-options');
-var L = require('mapbox.js');
+var basemap = require('./basemap');
 var Handlebars = require('handlebars');
 var config = require('./config');
 Highcharts.setOptions({
   global: {useUTC: false},
 });
-L.mapbox.accessToken = window.MAPBOX_PUBLIC_TOKEN;
 
 var measures = {
   el: {
@@ -140,28 +139,28 @@ var measures = {
     var _this = this;
     if ($('#' + _this.el.mapPanel).length) {
       var maxZoom = _this.zoomLevelForOrgType(options.orgType);
-      var map = L.mapbox.map(
-        _this.el.mapPanel,
-        null,
-        {zoomControl: false});
+      var L = window.L;
+      var map = basemap.createMap(_this.el.mapPanel, {zoomControl: false});
       map.setView([52.905, -1.79], maxZoom);
-      map.addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
-      map.scrollWheelZoom.disable();
-      var layer = L.mapbox.featureLayer()
-          .loadURL(options['orgLocationUrl'])
-          .on('ready', function() {
-            if (layer.getBounds().isValid()) {
-              map.fitBounds(layer.getBounds(), {maxZoom: maxZoom});
-              layer.setStyle({fillColor: '#ff00ff',
-                              fillOpacity: 0.2,
-                              weight: 0.5,
-                              color: '#333',
-                              radius: 10});
-            } else {
-              $('#map-container').html('');
-            }
-          })
-          .addTo(map);
+      $.getJSON(options['orgLocationUrl']).done(function(data) {
+        var layer = L.geoJSON(data, {
+          style: {
+            fillColor: '#ff00ff',
+            fillOpacity: 0.2,
+            weight: 0.5,
+            color: '#333',
+            radius: 10,
+          },
+          pointToLayer: function(feature, latlng) {
+            return L.circleMarker(latlng);
+          },
+        }).addTo(map);
+        if (layer.getBounds().isValid()) {
+          map.fitBounds(layer.getBounds(), {maxZoom: maxZoom});
+        } else {
+          $('#map-container').html('');
+        }
+      });
     }
   },
 

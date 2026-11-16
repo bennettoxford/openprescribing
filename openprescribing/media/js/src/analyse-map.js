@@ -1,10 +1,28 @@
-require('mapbox.js');
 var $ = require('jquery');
 var chroma = require('chroma-js');
 var utils = require('./chart_utils');
 var formatters = require('./chart_formatters');
 var _ = require('underscore');
 var config = require('./config');
+var basemap = require('./basemap');
+
+// Leaflet is loaded via a <script> tag (see templates/_map_assets.html).
+var L = window.L;
+
+var LegendControl = L.Control.extend({
+  options: {position: 'bottomright'},
+
+  onAdd: function() {
+    this._div = L.DomUtil.create('div', 'map-legend');
+    this._div.style.display = 'none';
+    return this._div;
+  },
+
+  setContent: function(html) {
+    this._div.innerHTML = html;
+    this._div.style.display = html ? '' : 'none';
+  },
+});
 
 var analyseMap = {
 
@@ -21,43 +39,37 @@ var analyseMap = {
 
     var _this = this;
     _this.activeNames = _.pluck(options.orgIds, 'name');
-    L.mapbox.accessToken = window.MAPBOX_PUBLIC_TOKEN;
     if (typeof _this.map === 'undefined') {
-      _this.map = L.mapbox.map('map', null);
-      _this.map.addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
-      _this.map.scrollWheelZoom.disable();
+      _this.map = basemap.createMap('map', {});
+      _this.legend = new LegendControl().addTo(_this.map);
     } else {
-      _this.map.removeLayer(_this.orgLayer);
-      if (typeof _this.legendHtml !== 'undefined') {
-        _this.map.legendControl.removeLegend(_this.legendHtml);
+      if (typeof _this.orgLayer !== 'undefined') {
+        _this.map.removeLayer(_this.orgLayer);
       }
+      _this.legend.setContent('');
     }
     var completed = $.Deferred();
 
     _this.popup = new L.Popup({autoPan: false});
     var boundsUrl = this.getBoundsUrl(options);
 
-    _this.orgLayer = L.mapbox.featureLayer(null, {
-      pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, {
-          radius: 8,
-          color: '#000',
-          weight: 1,
-          opacity: 1,
-          fillOpacity: 0.97,
-        });
-      },
-    })
-            .loadURL(boundsUrl)
-            .addTo(_this.map)
-            .on('ready', joinDataAndSetupMap);
+    $.getJSON(boundsUrl).done(joinDataAndSetupMap);
 
-    function joinDataAndSetupMap() {
+    function joinDataAndSetupMap(geojson) {
       var dataByName = utils.indexDataByRowNameAndMonth(options.data.combinedData);
       _this.minMaxByDate = utils.calculateMinMaxByDate(options.data.combinedData);
-      var f = joinFeaturesWithData(_this.orgLayer.getGeoJSON(),
-                                         dataByName);
-      _this.orgLayer.setGeoJSON(f);
+      _this.features = joinFeaturesWithData(geojson, dataByName);
+      _this.orgLayer = L.geoJSON(_this.features, {
+        pointToLayer: function(feature, latlng) {
+          return L.circleMarker(latlng, {
+            radius: 8,
+            color: '#000',
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.97,
+          });
+        },
+      }).addTo(_this.map);
       if ('_northEast' in _this.orgLayer.getBounds()) {
         _this.map.fitBounds(_this.orgLayer.getBounds(), {
           minZoom: 7,
@@ -123,7 +135,7 @@ var analyseMap = {
                     monthData[ratio]);
         this.popup.setLatLng(e.latlng);
         this.popup.setContent(html);
-        if (!this.popup._isOpen) {
+        if (!this.map.hasLayer(this.popup)) {
           this.popup.openOn(this.map);
         }
         window.clearTimeout(closeTooltip);
@@ -138,7 +150,12 @@ var analyseMap = {
         }, 100);
       }, _this);
       layer.on('click', function(e) {
-        this.map.fitBounds(e.target.getBounds());
+        // Polygons have bounds; circle markers (points) don't in Leaflet 1.x.
+        if (typeof e.target.getBounds === 'function') {
+          this.map.fitBounds(e.target.getBounds());
+        } else {
+          this.map.panTo(e.latlng);
+        }
         e.target.fireEvent('mousemove', e);
       }, _this);
     });
@@ -161,9 +178,7 @@ return x[1];
     } else {
       minMax = (month in _this.minMaxByDate) ? _this.minMaxByDate[month][ratio] : null;
     }
-    _this.map.legendControl.removeLegend(_this.legendHtml);
-    _this.legendHtml = _this.getLegend(minMax, options);
-    _this.map.legendControl.addLegend(_this.legendHtml);
+    _this.legend.setContent(_this.getLegend(minMax, options));
     _this.orgLayer.eachLayer(function(layer) {
       var layerData = layer.feature.properties.data;
       var val = ((typeof layerData !== 'undefined') && (month in layerData)) ? layerData[month][ratio] : null;
@@ -193,7 +208,7 @@ return x[1];
 
   resize: function() {
     var _this = this;
-    if ((_this.orgLayer.getGeoJSON()) && (_this.orgLayer.getGeoJSON().length) && (_this.orgLayer.getBounds().isValid())) {
+    if ((_this.features) && (_this.features.length) && (_this.orgLayer.getBounds().isValid())) {
       _this.map.invalidateSize();
       _this.map.fitBounds(_this.orgLayer.getBounds(), {
         minZoom: 7,

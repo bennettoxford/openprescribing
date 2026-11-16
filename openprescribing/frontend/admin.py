@@ -147,35 +147,40 @@ class UserWithProfile(UserAdmin):
             orgbookmark_count=Count("orgbookmark", distinct=True),
         )
 
+    @admin.display(
+        description="Orgs bookmarked",
+        ordering="orgbookmark_count",
+    )
     def orgbookmarks(self, obj):
         return obj.orgbookmark_set.count()
 
-    orgbookmarks.short_description = "Orgs bookmarked"
-    orgbookmarks.admin_order_field = "orgbookmark_count"
-
+    @admin.display(
+        description="Searches bookmarked",
+        ordering="searchbookmark_count",
+    )
     def searchbookmarks(self, obj):
         return obj.searchbookmark_set.count()
 
-    searchbookmarks.short_description = "Searches bookmarked"
-    searchbookmarks.admin_order_field = "searchbookmark_count"
-
+    @admin.display(
+        description="Emails received",
+        ordering="profile__emails_received",
+    )
     def emails_received(self, obj):
         return obj.profile.emails_received
 
-    emails_received.short_description = "Emails received"
-    emails_received.admin_order_field = "profile__emails_received"
-
+    @admin.display(
+        description="Emails opened",
+        ordering="profile__emails_opened",
+    )
     def emails_opened(self, obj):
         return obj.profile.emails_opened
 
-    emails_opened.short_description = "Emails opened"
-    emails_opened.admin_order_field = "profile__emails_opened"
-
+    @admin.display(
+        description="Links clicked",
+        ordering="profile__emails_clicked",
+    )
     def emails_clicked(self, obj):
         return obj.profile.emails_clicked
-
-    emails_clicked.short_description = "Links clicked"
-    emails_clicked.admin_order_field = "profile__emails_clicked"
 
     def get_urls(self):
         return [

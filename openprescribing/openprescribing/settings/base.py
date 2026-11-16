@@ -68,11 +68,6 @@ SITE_ID = 1
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
 USE_I18N = False
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#use-l10n
-USE_L10N = True
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
-USE_TZ = True
 # END GENERAL CONFIGURATION
 
 # https://docs.djangoproject.com/en/3.2/releases/3.2/#customizing-type-of-auto-created-primary-keys
@@ -115,7 +110,14 @@ STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 )
 
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+    },
+}
 # END STATIC FILE CONFIGURATION
 
 
@@ -339,6 +341,12 @@ CRISPY_TEMPLATE_PACK = "bootstrap3"
 
 # For grabbing images that we insert into alert emails
 GRAB_HOST = "https://openprescribing.net"
+
+# PhantomJS fetches pages for screenshots from SCREENSHOT_HOST (the local nginx, to
+# avoid Cloudflare bot protection), sending SCREENSHOT_HOST_HEADER as the Host
+# header with requests to that host.
+SCREENSHOT_HOST = "https://127.0.0.1"
+SCREENSHOT_HOST_HEADER = "openprescribing.net"
 
 # For sending messages to Slack
 # Webhook URLs for posting to different channels can be configured at

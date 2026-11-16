@@ -26,7 +26,7 @@ def nhs_abbreviations(word, **kwargs):
         "st",
     ]:
         return word.upper()
-    elif word.lower() in ["dr", "st"]:
+    elif word.lower() in ["dr", "st", "ptnrs"]:
         return word.title()
     elif word.upper() in (
         "NHS",
@@ -42,7 +42,7 @@ def nhs_abbreviations(word, **kwargs):
         return word.upper()
     elif "&" in word:
         return word.upper()
-    elif (word.lower() not in ["ptnrs", "by", "ccgs"]) and (
+    elif (word.lower() not in ["by", "ccgs"]) and (
         not re.match(r".*[aeiou]{1}", word.lower())
     ):
         return word.upper()

@@ -72,7 +72,13 @@ def get_ppu_breakdown(prescribing, org_type, org_id):
     for bnf_code, (quantities, net_costs) in prescribing.items():
         quantities = group_by_org.get_group(quantities, org_id)[:, 0]
         net_costs = group_by_org.get_group(net_costs, org_id)[:, 0]
-        ppu = net_costs / quantities
+        # Division by zero seems unlikely; non-zero net costs and zero quantities seems
+        # like an error. However, zero net costs and zero quantities seems possible, and
+        # would manifest as a RuntimeWarning. To handle this, we don't divide zero
+        # quantities. Instead, we explicitly represent the results of dividing by zero
+        # quantities as `nan`s.
+        ppu = numpy.full(net_costs.shape, numpy.nan)
+        numpy.divide(net_costs, quantities, out=ppu, where=quantities != 0)
         rounded_ppu = numpy.rint(ppu)
         ppu_values = numpy.unique(rounded_ppu)
         ppu_values = ppu_values[numpy.isfinite(ppu_values)]

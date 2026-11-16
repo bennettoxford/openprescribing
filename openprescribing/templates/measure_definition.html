@@ -84,14 +84,28 @@
       </td>
     </tr>
     {% if measure_details.change_log %}
-    <tr>
-      <th>Change log</th>
-      <td>
-      {% for log in measure_details.change_log %}
-        <p><em>{{ log.date }}</em>: {{ log.description }}</p>
-      {% endfor %}
-      </td>
-    </tr>
+      <tr>
+        <th>Change log</th>
+        <td>
+          {% for log in measure_details.change_log %}
+            <p>
+              <em>{{ log.date }}</em>: {{ log.description }}
+              {% if log.action_by or log.checked_by %}
+                <br>
+                <small>
+                  {% if log.action_by %}
+                    <b>Actioned by:</b> {{ log.action_by|username_from_email }}
+                  {% endif %}
+                  {% if log.action_by and log.checked_by %}<br>{% endif %}
+                  {% if log.checked_by %}
+                    <b>Checked by:</b> {{ log.checked_by|username_from_email }}
+                  {% endif %}
+                </small>
+              {% endif %}
+            </p>
+          {% endfor %}
+        </td>
+      </tr>
     {% endif %}
 
   </table>

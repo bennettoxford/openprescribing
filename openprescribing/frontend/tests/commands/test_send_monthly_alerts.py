@@ -132,7 +132,11 @@ class FailingEmailTestCase(TestCase):
         measure.id = "measureid"
         test_context = _makeContext(worst=[measure])
         self.assertEqual(EmailMessage.objects.count(), 1)
-        with self.assertRaises(BatchedEmailErrors):
+        with (
+            # Prevent the traceback from reaching stdout
+            self.assertLogs("common.alert_utils", level="ERROR"),
+            self.assertRaises(BatchedEmailErrors),
+        ):
             call_mocked_command(test_context, finder, max_errors="4")
         self.assertEqual(EmailMessage.objects.count(), 3)
         self.assertEqual(len(mail.outbox), 2)
@@ -155,7 +159,11 @@ class FailingEmailTestCase(TestCase):
         measure.id = "measureid"
         test_context = _makeContext(worst=[measure])
         self.assertEqual(EmailMessage.objects.count(), 1)
-        with self.assertRaises(BatchedEmailErrors):
+        with (
+            # Prevent the traceback from reaching stdout
+            self.assertLogs("common.alert_utils", level="ERROR"),
+            self.assertRaises(BatchedEmailErrors),
+        ):
             call_mocked_command(test_context, finder, max_errors="0")
         self.assertEqual(EmailMessage.objects.count(), 1)
         self.assertEqual(len(mail.outbox), 0)

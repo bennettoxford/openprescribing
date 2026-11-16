@@ -180,7 +180,13 @@ def get_target_ppu(quantities, net_costs, group_by_org, target_centile):
     """
     quantities = group_by_org.sum(quantities)
     net_costs = group_by_org.sum(net_costs)
-    ppu = net_costs / quantities
+    # Division by zero seems unlikely; non-zero net costs and zero quantities seems like
+    # an error. However, zero net costs and zero quantities seems possible, and would
+    # manifest as a RuntimeWarning. To handle this, we don't divide zero quantities.
+    # Instead, we explicitly represent the results of dividing by zero quantities as
+    # `nan`s.
+    ppu = numpy.full(net_costs.shape, numpy.nan)
+    numpy.divide(net_costs, quantities, out=ppu, where=quantities != 0)
     target_ppu = numpy.nanpercentile(ppu, axis=0, q=target_centile)
     return target_ppu
 

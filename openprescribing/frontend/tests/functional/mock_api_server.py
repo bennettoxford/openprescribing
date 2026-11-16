@@ -11,7 +11,8 @@ logger = logging.getLogger(__name__)
 
 
 def _load_json(name):
-    return open("%s/%s.json" % (FIXTURES_BASE, name), "r").read()
+    with open("%s/%s.json" % (FIXTURES_BASE, name), "r") as f:
+        return f.read()
 
 
 class MockApiRequestHandler(BaseHTTPRequestHandler):
@@ -114,7 +115,7 @@ class MockApiServer(object):
     def start(self):
         mock_server = HTTPServer(("0.0.0.0", self.port), MockApiRequestHandler)
         self.mock_server_thread = Thread(target=mock_server.serve_forever)
-        self.mock_server_thread.setDaemon(True)
+        self.mock_server_thread.daemon = True
         self.mock_server_thread.start()
         logger.info("Started mock API server on port %s" % self.port)
 

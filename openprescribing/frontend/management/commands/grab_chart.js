@@ -9,8 +9,8 @@ page.viewportSize = {
 };
 var address;
 
-if (system.args.length < 6) {
-  console.log('Usage: phantomjs grab_chart.js <url> <filename> <selector> <width>x<height> timeout');
+if (system.args.length < 7) {
+  console.log('Usage: phantomjs grab_chart.js <url> <filename> <selector> <width>x<height> timeout <host-header>');
   phantom.exit(1);
 } else {
   address = system.args[1];
@@ -22,9 +22,26 @@ if (system.args.length < 6) {
     height: parseInt(parts[1], 10)
   };
   var wait = parseInt(system.args[5]);
+  var hostHeader = system.args[6];
+  // Only override Host for requests to the server we're grabbing from, not
+  // third-party ones
+  var origin = address.match(/^https?:\/\/[^\/]+/)[0];
+  page.onResourceRequested = function(requestData, networkRequest) {
+    if (requestData.url.indexOf(origin) === 0) {
+      networkRequest.setHeader('Host', hostHeader);
+    }
+  };
+  page.onResourceReceived = function(response) {
+    if (response.url === address && response.stage === 'end' && response.status >= 400) {
+      // PhantomJS still reports an error response as a successful load
+      console.log('Got status ' + response.status + ' for ' + address);
+      phantom.exit(1);
+    }
+  };
   page.open(address, function(status) {
-    if (!status === 'success') {
+    if (status !== 'success') {
       console.log('Unable to load the address!');
+      phantom.exit(1);
     } else {
       waitFor({
         debug: true,

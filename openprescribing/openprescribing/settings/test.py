@@ -69,6 +69,8 @@ BQ_DEFAULT_TABLE_EXPIRATION_MS = 3 * 60 * 60 * 1000  # 3 hours
 
 # For grabbing images that we insert into alert emails
 GRAB_HOST = "http://localhost"
+SCREENSHOT_HOST = "http://localhost"
+SCREENSHOT_HOST_HEADER = "localhost"
 
 # This is the same as the dev/local one
 GOOGLE_TRACKING_ID = "UA-62480003-2"
@@ -96,7 +98,14 @@ SLACK_SENDING_ACTIVE = False
 # Running with a different storage backend in test is not ideal but it's what
 # the Django docs recommend:
 # https://docs.djangoproject.com/en/1.11/ref/contrib/staticfiles/#django.contrib.staticfiles.storage.ManifestStaticFilesStorage.manifest_strict
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
 
 # Path of directory containing measure definitions.
 MEASURE_DEFINITIONS_PATH = os.path.join(

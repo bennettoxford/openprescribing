@@ -90,7 +90,7 @@
     <h3 class="worse">Possible savings</h3>
     <p>We looked at all the measures where this organisation could have saved at least £1,000 in the last six months.
 
-    {% if stats.top_savings.possible_savings|length_is:1 %}
+    {% if stats.top_savings.possible_savings|length == 1 %}
       <p><b>If it prescribed in line</b> with the average {{ bookmark.org_type }} it could have saved about <b>£{{ stats.top_savings.possible_savings.0.1|roundpound }}</b> on <a href="{% dashboard_measure_uri stats.top_savings.possible_savings.0.0 %}">{{stats.top_savings.possible_savings.0.0.name}}</a>.</p>
     {% else %}
       </p>

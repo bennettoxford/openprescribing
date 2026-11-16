@@ -1,0 +1,21 @@
+name: Install just
+description: Install the just command runner
+
+inputs:
+  version:
+    description: The version of just to install
+    required: false
+    default: "1.58.0"
+
+runs:
+  using: composite
+  steps:
+    - name: Install just
+      shell: bash
+      env:
+        JUST_VERSION: ${{ inputs.version }}
+      run: |
+        mkdir -p "$HOME/.local/bin"
+        curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh |
+          bash -s -- --tag "$JUST_VERSION" --to "$HOME/.local/bin"
+        echo "$HOME/.local/bin" >> "$GITHUB_PATH"

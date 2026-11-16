@@ -171,7 +171,7 @@
     "subject":"test",
     "user_id": 4,
     "tags": ["2014-11-01", "measures", "analyse"],
-    "created_at": "2014-12-01"
+    "created_at": "2014-12-01T00:00:00.000Z"
   }
 },
 {

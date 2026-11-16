@@ -98,7 +98,7 @@ def fancy_join(lst, sep=", ", final_sep=" and "):
 
 @register.filter
 def username_from_email(email):
-    return email.split("@")[0]
+    return email.split("@")[0].replace(".", " ").title()
 
 
 @register.simple_tag(takes_context=True)

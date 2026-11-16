@@ -2,7 +2,7 @@ import csv
 import tempfile
 from decimal import Decimal
 
-from django.test import TestCase
+from django.test import TestCase, tag
 from dmd.models import VMPP
 from frontend.models import PCT
 from gcutils.bigquery import Client, TableExporter, build_schema
@@ -10,6 +10,7 @@ from gcutils.storage import Client as StorageClient
 from google.cloud.exceptions import NotFound
 
 
+@tag("integration")
 class BQClientTest(TestCase):
     fixtures = ["dmd-subset"]
 

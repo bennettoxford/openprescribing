@@ -4,6 +4,9 @@ openprescribing/data/raw_data
 openprescribing/media/js/archive
 openprescribing/media/js/node_modules
 openprescribing/static/js/*js
+openprescribing/static/js/*.map
+openprescribing/static/js/images
+openprescribing/static/js/leaflet.css
 openprescribing/static/css/index.css
 openprescribing/assets
 openprescribing/docs/*.svg
