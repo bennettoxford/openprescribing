@@ -252,10 +252,10 @@ docker-build-images:
     # the current directory.
 
     # Build the new base image. This corresponds to the test-production service.
-    docker buildx build --file Dockerfile --tag "$base_image" .
+    docker buildx build --platform linux/amd64 --file Dockerfile --tag "$base_image" .
 
     # Build the new test image. This corresponds to the test service.
-    docker buildx build --file Dockerfile-test --tag "$test_image" .
+    docker buildx build --platform linux/amd64 --file Dockerfile-test --tag "$test_image" .
 
 # Push the base and test images to GHCR
 [confirm("This will push the base and test images to GHCR. Do you wish to continue? (y/n)")]
