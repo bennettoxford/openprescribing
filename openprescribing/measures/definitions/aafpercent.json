@@ -49,6 +49,9 @@
 	"measure_notebook_url": "https://github.com/ebmdatalab/jupyter-notebooks/blob/master/new_measures/New%20Measure%20-%20Cow's%20Milk%20Protein%20Allergy.ipynb",
 	"measure_complexity": "low",
 	"measure_type": "bnf_code",
+    "date_reviewed": "2026-11-16",
+    "next_review": "2028-11-16",
+    "radar_exclude": false,
 	"change_log": [
 	  {
     "date": "2019-03-25",
