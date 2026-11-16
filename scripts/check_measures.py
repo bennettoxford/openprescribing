@@ -1,12 +1,24 @@
+
 import json
 import os
+import re
 import subprocess
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 LABEL = "review-overdue"
 TODAY = date.today()
 DRY_RUN = os.environ.get("DRY_RUN", "false").lower() == "true"
+
+# Replace with actual GitHub usernames, in rotation order.
+REVIEWERS = [
+    "github-user-a",
+    "github-user-b",
+    "github-user-c",
+    "github-user-d",
+]
+
+REVIEW_DAYS = 14
 
 
 def gh(*args):
@@ -22,7 +34,7 @@ def gh(*args):
 def main():
     repo = os.environ["GITHUB_REPOSITORY"]
 
-    # Get all existing issues, including closed ones.
+    # Retrieve all issues, including closed issues.
     issues = json.loads(
         gh(
             "api",
@@ -31,16 +43,40 @@ def main():
             "--slurp",
         )
     )
+
     issues = [issue for page in issues for issue in page if "pull_request" not in issue]
+
+    # Find previously created measure-review issues.
+    review_issues = [
+        issue
+        for issue in issues
+        if "<!-- measure-review:" in (issue.get("body") or "")
+    ]
+
+    # Sort by issue number to reconstruct assignment order.
+    review_issues.sort(key=lambda issue: issue["number"])
+
+    # Determine the next reviewer from the stored rotation marker.
+    reviewer_index = 0
+
+    for issue in review_issues:
+        body = issue.get("body") or ""
+        match = re.search(r"<!-- review-rotation:(\d+) -->", body)
+
+        if match:
+            previous_index = int(match.group(1))
+            reviewer_index = (previous_index + 1) % len(REVIEWERS)
 
     if not DRY_RUN:
         gh("label", "create", LABEL, "--color", "D93F0B", "--force")
 
     overdue = set()
+    checked = 0
+    new_issues = 0
 
+    # Search only the measure definitions.
     for path in sorted(Path("openprescribing/measures/definitions").rglob("*.json")):
-        if any(part.startswith(".") for part in path.parts):
-            continue
+        checked += 1
 
         with path.open(encoding="utf-8") as f:
             data = json.load(f)
@@ -53,16 +89,18 @@ def main():
             continue
 
         review_date = date.fromisoformat(review_date)
+
         marker = f"<!-- measure-review:{path.as_posix()} -->"
 
         existing = next(
-            (issue for issue in issues if marker in (issue.get("body") or "")),
+            (issue for issue in review_issues if marker in (issue.get("body") or "")),
             None,
         )
 
         if review_date < TODAY:
             overdue.add(marker)
 
+            # Existing issues are not reassigned.
             if existing:
                 if existing["state"] == "closed":
                     if DRY_RUN:
@@ -72,17 +110,30 @@ def main():
                 continue
 
             name = data.get("name", path.stem)
+            reviewer = REVIEWERS[reviewer_index]
+            due_date = TODAY + timedelta(days=REVIEW_DAYS)
+
+            rotation_marker = f"<!-- review-rotation:{reviewer_index} -->"
+
             body = (
-                f"{marker}\n\n"
-                f"Measure: **{name}**\n\n"
-                f"File: `{path.as_posix()}`\n\n"
-                f"Next review date: **{review_date}**\n\n"
-                "Please review this measure and update "
-                "`next_review` in its JSON definition."
+                f"{marker}\n"
+                f"{rotation_marker}\n\n"
+                f"## Measure review required\n\n"
+                f"**Measure:** {name}\n\n"
+                f"**Definition:** `{path.as_posix()}`\n\n"
+                f"**Next review date:** {review_date:%Y-%m-%d}\n\n"
+                f"**Assigned reviewer:** @{reviewer}\n\n"
+                f"**Review deadline:** {due_date:%Y-%m-%d}\n\n"
+                "Please review the measure definition and "
+                "update `next_review` when the review is complete."
             )
 
             if DRY_RUN:
-                print(f"DRY RUN: Would create issue: {name} ({review_date})")
+                print(
+                    f"DRY RUN: Would create issue: {name} "
+                    f"({review_date}) assigned to @{reviewer}, "
+                    f"due {due_date}"
+                )
             else:
                 gh(
                     "issue",
@@ -93,18 +144,26 @@ def main():
                     body,
                     "--label",
                     LABEL,
+                    "--assignee",
+                    reviewer,
                 )
-                print(f"Created issue: {name}")
+                print(
+                    f"Created issue: {name}, "
+                    f"assigned to @{reviewer}, due {due_date}"
+                )
 
-    # Close issues no longer overdue.
-    for issue in issues:
+            new_issues += 1
+            reviewer_index = (reviewer_index + 1) % len(REVIEWERS)
+
+    # Close issues whose measures are no longer overdue.
+    for issue in review_issues:
         if issue["state"] != "open":
             continue
 
         body = issue.get("body") or ""
+
         if (
-            "<!-- measure-review:" in body
-            and LABEL in [label["name"] for label in issue["labels"]]
+            LABEL in [label["name"] for label in issue["labels"]]
             and not any(marker in body for marker in overdue)
         ):
             if DRY_RUN:
@@ -118,6 +177,12 @@ def main():
                     "Measure is no longer overdue.",
                 )
                 print(f"Closed issue #{issue['number']}")
+
+    print(f"\nChecked {checked} JSON files.")
+    print(f"{new_issues} new review issues {'identified' if DRY_RUN else 'created'}.")
+
+    if DRY_RUN:
+        print("DRY RUN complete. No GitHub issues were modified.")
 
 
 if __name__ == "__main__":
