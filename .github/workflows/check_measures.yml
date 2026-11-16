@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
    branches:
-     - check_measure_action
+     - check_measures_action
     paths:
       - "**/*.json"
       - "scripts/check_reviews.py"
