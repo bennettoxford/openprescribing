@@ -8,13 +8,17 @@ on:
     branches:
       - check_measures_action
     paths:
-      - "**/*.json"
+      - "openprescribing/measures/definitions/**/*.json"
       - "scripts/check_measures.py"
       - ".github/workflows/check_measures.yml"
 
 permissions:
   contents: read
   issues: write
+
+concurrency:
+  group: measure-reviews
+  cancel-in-progress: false
 
 jobs:
   check-reviews:
