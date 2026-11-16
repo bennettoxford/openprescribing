@@ -1,4 +1,3 @@
-
 import json
 import os
 import re
@@ -48,9 +47,7 @@ def main():
 
     # Find previously created measure-review issues.
     review_issues = [
-        issue
-        for issue in issues
-        if "<!-- measure-review:" in (issue.get("body") or "")
+    issue for issue in issues if "<!-- measure-review:" in (issue.get("body") or "")
     ]
 
     # Sort by issue number to reconstruct assignment order.
@@ -162,9 +159,8 @@ def main():
 
         body = issue.get("body") or ""
 
-        if (
-            LABEL in [label["name"] for label in issue["labels"]]
-            and not any(marker in body for marker in overdue)
+        if LABEL in [label["name"] for label in issue["labels"]] and not any(
+            marker in body for marker in overdue
         ):
             if DRY_RUN:
                 print(f"DRY RUN: Would close issue #{issue['number']}")
