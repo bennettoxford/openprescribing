@@ -19,9 +19,16 @@ DEFINITIONS = Path("openprescribing/measures/definitions")
 
 
 def gh(*args):
-    return subprocess.run(
-        ["gh", *args], capture_output=True, text=True, check=True
-    ).stdout
+    result = subprocess.run(
+        ["gh", *args],
+        capture_output=True,
+        text=True,
+    )
+
+    if result.returncode != 0:
+        raise RuntimeError(
+            f"GitHub CLI failed: {result.stderr.strip()}"
+        )
 
 
 def project_configuration():
