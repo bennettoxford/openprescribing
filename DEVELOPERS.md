@@ -16,6 +16,11 @@ OpenPrescribing has a small number of system dependencies:
 * [Node.js][]
 * [PhantomJS][]
 
+**Docker**, or a Docker alternative, is required to run several services
+and for building the base and test images.
+On macOS, the container runtime should support Linux-like host mode networking.
+See [TESTING.md][] for more information.
+
 **GDAL and GEOS** are required by [GeoDjango][].
 The "[Installing geospatial libraries][2]" page in the GeoDjango docs has instructions for installing them.
 Note that you need not install the other geospatial libraries mentioned on that page.
