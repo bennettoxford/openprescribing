@@ -12,11 +12,12 @@ OpenPrescribing has a small number of system dependencies:
 
 * [Docker][], or a Docker alternative
 * [GDAL][], the Geospatial Data Abstraction Library[^1]
+* [GEOS][], the Geometry Engine Open Source
 * [Node.js][]
 * [PhantomJS][]
 
-**GDAL** is required by [GeoDjango][].
-The "[Installing geospatial libraries][2]" page in the GeoDjango docs has instructions for installing it.
+**GDAL and GEOS** are required by [GeoDjango][].
+The "[Installing geospatial libraries][2]" page in the GeoDjango docs has instructions for installing them.
 Note that you need not install the other geospatial libraries mentioned on that page.
 If you install GDAL and GEOS with Homebrew on macOS,
 then you will need to add simlinks from the Homebrew library directory to the default library directory:
@@ -57,6 +58,7 @@ as you have to maintain separate versions of this file for development and testi
 [Django: fuss-free use of Homebrew GDAL/GEOS libraries on macOS]: https://adamj.eu/tech/2024/03/20/django-homebrew-gdal-geos/
 [Docker]: https://www.docker.com/
 [GDAL]: https://gdal.org/en/stable/
+[GEOS]: https://libgeos.org/
 [GeoDjango]: https://docs.djangoproject.com/en/5.0/ref/contrib/gis/
 [Just]: https://just.systems/
 [Node.js]: https://nodejs.org/en
