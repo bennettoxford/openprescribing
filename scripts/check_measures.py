@@ -27,7 +27,7 @@ def gh(*args):
     if result.returncode != 0:
         raise RuntimeError(f"GitHub CLI failed: {result.stderr.strip()}")
     
-        return result.stdout
+    return result.stdout
 
 
 def project_configuration():
