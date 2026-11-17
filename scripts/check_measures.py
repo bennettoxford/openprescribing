@@ -10,7 +10,7 @@ LABEL = "review-measure"
 TODAY = date.today()
 REVIEW_NOTICE_DAYS = 30
 DRY_RUN = os.environ.get("DRY_RUN", "false").lower() == "true"
-REVIEWERS = ["richiecroker","speed-vm","chrisjwood16","carolineacuda",]
+REVIEWERS = ["richiecroker", "speed-vm", "chrisjwood16", "carolineacuda"]
 PROJECT_OWNER = "bennettoxford"
 PROJECT_NUMBER = 15
 PROJECT_STATUS = "OP Measure Review"
