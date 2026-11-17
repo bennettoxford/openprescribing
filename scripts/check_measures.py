@@ -1,4 +1,3 @@
-
 import json
 import os
 import re
@@ -26,9 +25,7 @@ def gh(*args):
     )
 
     if result.returncode != 0:
-        raise RuntimeError(
-            f"GitHub CLI failed: {result.stderr.strip()}"
-        )
+    raise RuntimeError(f"GitHub CLI failed: {result.stderr.strip()}")
 
     return result.stdout
 
