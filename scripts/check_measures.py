@@ -30,6 +30,8 @@ def gh(*args):
             f"GitHub CLI failed: {result.stderr.strip()}"
         )
 
+    return result.stdout
+
 
 def project_configuration():
     project = json.loads(
