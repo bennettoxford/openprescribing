@@ -40,8 +40,9 @@ As with other Bennett Institute projects,
 [Fast Node Manager][] (`fnm`) is recommended.
 
 **PhantomJS** is required to generate, and test the generation of, alert emails.
-Download a suitable binary from the "[Download PhantomJS][3]" page in the docs
+Download a binary from the "[Download PhantomJS][3]" page in the PhantomJS docs
 and ensure `phantomjs` is in the search path (`PATH`).
+Unfortunately, a binary isn't available for Apple Silicon.
 
 ## Testing
 
