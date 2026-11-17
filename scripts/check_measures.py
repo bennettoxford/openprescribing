@@ -8,6 +8,7 @@ from pathlib import Path
 
 LABEL = "review-measure"
 TODAY = date.today()
+REVIEW_NOTICE_DAYS = 30
 DRY_RUN = os.environ.get("DRY_RUN", "false").lower() == "true"
 REVIEWERS = ["richiecroker","speed-vm","chrisjwood16","carolineacuda",]
 PROJECT_OWNER = "bennettoxford"
@@ -183,7 +184,7 @@ def main():
             continue
         checked += 1
         review_date = date.fromisoformat(data["next_review"])
-        if review_date >= TODAY:
+        if review_date > TODAY + timedelta(days=REVIEW_NOTICE_DAYS):
             continue
         marker = f"<!-- measure-review:{path.as_posix()}:{review_date.isoformat()} -->"
         existing = next(
