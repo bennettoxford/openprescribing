@@ -29,26 +29,28 @@ class Command(BaseCommand):
         ccg_file = options["by_ccg"]
         practice_file = options["by_practice"]
 
-        ccg_prevalence = csv.DictReader(open(ccg_file))
-        for row in ccg_prevalence:
-            ccg_code = row["ccgcode"]
-            ccg = PCT.objects.get(code=ccg_code)
-            q, created = QOFPrevalence.objects.get_or_create(
-                pct=ccg,
-                start_year=start_year,
-                indicator_group=row["indicator_group"],
-                register_description=row["Register_description"],
-                disease_register_size=row["disease_register_size"],
-            )
+        with open(ccg_file, newline="") as csvfile:
+            ccg_prevalence = csv.DictReader(csvfile)
+            for row in ccg_prevalence:
+                ccg_code = row["ccgcode"]
+                ccg = PCT.objects.get(code=ccg_code)
+                q, created = QOFPrevalence.objects.get_or_create(
+                    pct=ccg,
+                    start_year=start_year,
+                    indicator_group=row["indicator_group"],
+                    register_description=row["Register_description"],
+                    disease_register_size=row["disease_register_size"],
+                )
 
-        practice_prevalence = csv.DictReader(open(practice_file))
-        for row in practice_prevalence:
-            practicecode = row["practicecode"]
-            practice = Practice.objects.get(code=practicecode)
-            q, created = QOFPrevalence.objects.get_or_create(
-                practice=practice,
-                start_year=start_year,
-                indicator_group=row["indicator_group"],
-                register_description=row["Register_description"],
-                disease_register_size=row["disease_register_size"],
-            )
+        with open(practice_file, newline="") as csvfile:
+            practice_prevalence = csv.DictReader(csvfile)
+            for row in practice_prevalence:
+                practicecode = row["practicecode"]
+                practice = Practice.objects.get(code=practicecode)
+                q, created = QOFPrevalence.objects.get_or_create(
+                    practice=practice,
+                    start_year=start_year,
+                    indicator_group=row["indicator_group"],
+                    register_description=row["Register_description"],
+                    disease_register_size=row["disease_register_size"],
+                )
