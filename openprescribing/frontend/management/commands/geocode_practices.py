@@ -25,11 +25,12 @@ class Command(BaseCommand):
             if options["verbosity"] > 1:
                 self.IS_VERBOSE = True
 
-            gridall = csv.reader(open(options["filename"]))
-            postcodes = {}
-            for row in gridall:
-                postcode = row[1].replace(" ", "").strip()
-                postcodes[postcode] = [row[36], row[37]]
+            with open(options["filename"], newline="") as csvfile:
+                gridall = csv.reader(csvfile)
+                postcodes = {}
+                for row in gridall:
+                    postcode = row[1].replace(" ", "").strip()
+                    postcodes[postcode] = [row[36], row[37]]
 
             wgs84 = SpatialReference(4326)
             bng = SpatialReference(27700)
