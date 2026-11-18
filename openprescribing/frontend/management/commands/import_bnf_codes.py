@@ -20,10 +20,9 @@ class Command(BaseCommand):
         if "filename" not in options:
             raise CommandError("Please supply a filename")
 
-        reader = csv.DictReader(open(options["filename"]))
-
         sections = {}
-        with transaction.atomic():
+        with transaction.atomic(), open(options["filename"], newline="") as csvfile:
+            reader = csv.DictReader(csvfile)
             for row in reader:
                 # Add to sections list.
                 c_id = row["BNF_CHAPTER_CODE"]
