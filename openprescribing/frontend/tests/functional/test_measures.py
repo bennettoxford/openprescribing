@@ -48,7 +48,8 @@ class MeasuresTests(SeleniumTestCase):
         call_command("flush", verbosity=0, interactive=False, reset_sequences=False)
         super(MeasuresTests, cls).tearDownClass()
 
-    def _fixture_setup(self):
+    @classmethod
+    def _fixture_setup(cls):
         pass
 
     def _fixture_teardown(self):

@@ -26,7 +26,6 @@ def as_geojson_stream(dicts, geometry_field="geometry", srid=4326):
     to_geojson = GeoJSONConvertor(srid)
     header = {
         "type": "FeatureCollection",
-        "crs": {"type": "name", "properties": {"name": "EPSG:{}".format(srid)}},
     }
     # Output header omitting closing brace
     yield json.dumps(header)[:-1]
