@@ -15,7 +15,7 @@ django-anymail[mailgun]
 django-cors-headers
 django-crispy-forms
 django-dotenv
-django==5.2.14
+django==5.2.17
 djangorestframework
 djangorestframework-csv
 google-api-python-client
