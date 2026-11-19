@@ -48,7 +48,7 @@ db-dtypes==1.9.0
     # via pandas-gbq
 diskcache==5.6.3
     # via -r requirements.in
-django==5.2.8
+django==5.2.10
     # via
     #   -r requirements.in
     #   crispy-bootstrap3
