@@ -6,12 +6,19 @@
 
 {% block content %}
 
-<h2>Get in touch</h2>
+  <div class="page-header">
+    <h1>Get in touch</h1>
+  </div>
 
 <p>We welcome all feedback: please contact us at <a href="mailto:{{ FEEDBACK_MAILTO }}">{{ SUPPORT_TO_EMAIL }}</a>.</p>
+
+<br />
 
 {% include '_mailchimp_signup.html' %}
 
 <p>Follow us on Twitter: <a href="https://twitter.com/BennettOxford">@BennettOxford</a></p>
+
+<br />
+<br />
 
 {% endblock %}
