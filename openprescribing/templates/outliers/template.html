@@ -12,18 +12,6 @@
 
     <title>Static outliers for {{ entity_name }}</title>
 
-    {% if GOOGLE_TRACKING_ID %}
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_TRACKING_ID }}"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', '{{ GOOGLE_TRACKING_ID }}');
-    </script>
-    {% endif %}
-
     <!-- Plausible Analytics -->
     <script id="plausible" defer data-domain="openprescribing.net" src="https://plausible.io/js/script.compat.js"></script>
 </head>
