@@ -93,9 +93,6 @@ GRAB_HOST = "http://staging.openprescribing.net"
 SCREENSHOT_HOST = "https://127.0.0.1"
 SCREENSHOT_HOST_HEADER = "staging.openprescribing.net"
 
-GOOGLE_TRACKING_ID = "UA-62480003-3"
-GOOGLE_OPTIMIZE_CONTAINER_ID = "GTM-KRQSJM9"
-
 sentry_raven_dsn = utils.get_env_setting("STAGING_SENTRY_RAVEN_DSN", default="")
 if sentry_raven_dsn:
     RAVEN_CONFIG = {"dsn": sentry_raven_dsn}
