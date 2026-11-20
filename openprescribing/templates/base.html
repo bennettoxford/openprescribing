@@ -8,49 +8,8 @@
     <meta charset="utf-8">
     <script>
       // var SENTRY_PUBLIC_DSN = '{% sentry_public_dsn "https" %}';
-      var SOURCE_COMMIT_ID = '{{ SOURCE_COMMIT_ID }}';    </script>
-    {% if GOOGLE_TRACKING_ID %}
-    <script>
-      function setParamsFromQueryString(params, keys) {
-        for(i=0; i < keys.length; i++) {
-         var match = location.search.match(new RegExp("[?&]"+keys[0]+"=([^&]+)(&|$)"));
-         var val = match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-         if (val) {
-          params[keys[0]] = val;
-         }
-        }
-        return params;
-      }
+      var SOURCE_COMMIT_ID = '{{ SOURCE_COMMIT_ID }}';
     </script>
-    <!-- Prevent flicker of unstyled content in Google Optimize -->
-    {% if GOOGLE_OPTIMIZE_CONTAINER_ID %}
-    <style>.async-hide { opacity: 0 !important} </style>
-    <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
-h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
-(a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null;},c);h.timeout=c;
-})(window,document.documentElement,'async-hide','dataLayer',4000,
-      {'{{ GOOGLE_OPTIMIZE_CONTAINER_ID }}':true});</script>
-    {% endif %}
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      var params = {};
-      params = setParamsFromQueryString(params, ['expId', 'expVar']);
-      ga('create', '{{ GOOGLE_TRACKING_ID }}', 'auto', params);
-      {% if GOOGLE_OPTIMIZE_CONTAINER_ID %}
-        ga('require', '{{ GOOGLE_OPTIMIZE_CONTAINER_ID }}');
-      {% endif %}
-      ga('send', 'pageview', location.pathname + location.search + location.hash);
-    </script>
-    {% else %}
-    <script>
-      // Define no-op `ga()` function so code which assumes it doesn't error
-      function ga() {}
-    </script>
-    {% endif %}
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
