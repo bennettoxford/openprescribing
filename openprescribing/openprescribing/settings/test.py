@@ -72,9 +72,6 @@ GRAB_HOST = "http://localhost"
 SCREENSHOT_HOST = "http://localhost"
 SCREENSHOT_HOST_HEADER = "localhost"
 
-# This is the same as the dev/local one
-GOOGLE_TRACKING_ID = "UA-62480003-2"
-
 # Base directory for pipeline metadata
 PIPELINE_METADATA_DIR = os.path.join(APPS_ROOT, "pipeline", "test-data", "metadata")
 

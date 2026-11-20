@@ -207,12 +207,6 @@ var measures = {
 
   handleDataDownloadClick: function(chartData, chartId) {
     var browserSupported = ! this.isOldIe;
-    ga('send', {
-      'hitType': 'event',
-      'eventCategory': 'measure_data',
-      'eventAction': browserSupported ? 'download' : 'failed_download',
-      'eventLabel': chartId,
-    });
     if (browserSupported) {
       mu.startDataDownload(chartData, chartId);
     } else {

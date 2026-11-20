@@ -156,13 +156,6 @@ var analyseChart = {
     this.globalOptions.friendly = formatters.getFriendlyNamesForChart(this.globalOptions);
     this.hash = hashHelper.setHashParams(this.globalOptions);
     this.hash += ($(this.el.submitButton).data('clicked')) ? '&source=button' : '&source=pageload';
-    ga('send', 'pageview', '/analyse_dummy_search?' + this.hash);
-    ga('send', {
-      'hitType': 'event',
-      'eventCategory': 'search_button',
-      'eventAction': 'click',
-      'eventLabel': _this.hash,
-    });
     if (this.globalOptions.data.combinedData.length > 0) {
       this.el.loadingEl.hide();
       this.el.resultsEl.show();
@@ -312,12 +305,6 @@ var analyseChart = {
     filename = this.globalOptions.friendly.filename + '.csv';
     $('#data-link').on('click', function(e) {
       e.preventDefault();
-      ga('send', {
-        'hitType': 'event',
-        'eventCategory': 'data_link',
-        'eventAction': 'click',
-        'eventLabel': _this.hash,
-      });
       downloadjs(encodedUri, filename, 'text/csv');
     });
     $(this.el.rowCount).text('(' + this.globalOptions.data.combinedData.length + ' rows)');
@@ -400,12 +387,6 @@ var analyseChart = {
     // Items/spending toggle.
     $('#items-spending-toggle .btn').on('click', function(e) {
       e.preventDefault();
-      ga('send', {
-        'hitType': 'event',
-        'eventCategory': 'items_spending_toggle',
-        'eventAction': 'click',
-        'eventLabel': _this.hash,
-      });
       $('#items-spending-toggle .btn').removeClass('btn-info').addClass('btn-default');
       $(this).addClass('btn-info').removeClass('btn-default');
       _this.globalOptions.activeOption = $(this).data('type');
@@ -515,16 +496,7 @@ var analyseChart = {
     }
   },
 
-  onChange: function(suppressAnalytics) {
-    var _this = this;
-    if (!suppressAnalytics) {
-      ga('send', {
-        'hitType': 'event',
-        'eventCategory': 'time_slider',
-        'eventAction': 'slide',
-        'eventLabel': _this.hash,
-      });
-    }
+  onChange: function() {
     var monthIndex = parseInt(this.el.slider.val());
     this.globalOptions.activeMonth = this.globalOptions.allMonths[monthIndex];
     this.updateCharts();
