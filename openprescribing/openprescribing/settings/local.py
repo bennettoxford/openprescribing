@@ -73,8 +73,6 @@ INSTALLED_APPS += ("django_extensions",)
 INTERNAL_IPS = ("127.0.0.1",)
 # END TOOLBAR CONFIGURATION
 
-GOOGLE_TRACKING_ID = "UA-62480003-2"
-
 # LOGGING CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
 LOGGING = {
