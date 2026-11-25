@@ -7,7 +7,7 @@ from fabric.api import abort, env, prefix, run, settings, shell_env, sudo, task,
 from fabric.context_managers import cd
 from fabric.contrib.files import exists
 
-env.hosts = ["web2.openprescribing.net"]
+env.hosts = ["deploy.openprescribing.net"]
 env.forward_agent = True
 env.colorize_errors = True
 env.user = "bennettbot"
